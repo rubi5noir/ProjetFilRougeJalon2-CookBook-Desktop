@@ -11,9 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DAL\Interfaces\" />
-    <Folder Include="DAL\Repositories\" />
-    <Folder Include="Models\BussinessObjects\" />
     <Folder Include="Models\DataTransfertObjects\In\" />
     <Folder Include="Models\DataTransfertObjects\Out\" />
   </ItemGroup>
