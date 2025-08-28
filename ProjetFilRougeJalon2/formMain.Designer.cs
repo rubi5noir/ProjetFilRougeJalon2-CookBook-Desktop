@@ -31,25 +31,25 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formMain));
             tableLayoutPanelMain = new TableLayoutPanel();
             tableLayoutPanelHeader = new TableLayoutPanel();
-            tableLayoutPanelMyRecipes = new TableLayoutPanel();
-            tableLayoutPanelCategories = new TableLayoutPanel();
-            tableLayoutPanelRecipes = new TableLayoutPanel();
-            tableLayoutPanelBody = new TableLayoutPanel();
-            tableLayoutPanelFooter = new TableLayoutPanel();
             tableLayoutPanelResearch = new TableLayoutPanel();
             textBoxResearch = new TextBox();
             buttonResearch = new Button();
             buttonAccount = new Button();
+            tableLayoutPanelBody = new TableLayoutPanel();
+            tableLayoutPanelMyRecipes = new TableLayoutPanel();
             labelMyRecipes = new Label();
+            tableLayoutPanelCategories = new TableLayoutPanel();
             labelCategories = new Label();
+            tableLayoutPanelRecipes = new TableLayoutPanel();
             labelRecipes = new Label();
+            tableLayoutPanelFooter = new TableLayoutPanel();
             tableLayoutPanelMain.SuspendLayout();
             tableLayoutPanelHeader.SuspendLayout();
+            tableLayoutPanelResearch.SuspendLayout();
+            tableLayoutPanelBody.SuspendLayout();
             tableLayoutPanelMyRecipes.SuspendLayout();
             tableLayoutPanelCategories.SuspendLayout();
             tableLayoutPanelRecipes.SuspendLayout();
-            tableLayoutPanelBody.SuspendLayout();
-            tableLayoutPanelResearch.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanelMain
@@ -84,83 +84,6 @@
             tableLayoutPanelHeader.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanelHeader.Size = new Size(868, 70);
             tableLayoutPanelHeader.TabIndex = 1;
-            // 
-            // tableLayoutPanelMyRecipes
-            // 
-            tableLayoutPanelMyRecipes.ColumnCount = 1;
-            tableLayoutPanelMyRecipes.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanelMyRecipes.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            tableLayoutPanelMyRecipes.Controls.Add(labelMyRecipes, 0, 0);
-            tableLayoutPanelMyRecipes.Dock = DockStyle.Fill;
-            tableLayoutPanelMyRecipes.Location = new Point(3, 3);
-            tableLayoutPanelMyRecipes.Name = "tableLayoutPanelMyRecipes";
-            tableLayoutPanelMyRecipes.RowCount = 2;
-            tableLayoutPanelMyRecipes.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanelMyRecipes.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanelMyRecipes.Size = new Size(862, 119);
-            tableLayoutPanelMyRecipes.TabIndex = 2;
-            // 
-            // tableLayoutPanelCategories
-            // 
-            tableLayoutPanelCategories.ColumnCount = 1;
-            tableLayoutPanelCategories.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanelCategories.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            tableLayoutPanelCategories.Controls.Add(labelCategories, 0, 0);
-            tableLayoutPanelCategories.Dock = DockStyle.Fill;
-            tableLayoutPanelCategories.Location = new Point(3, 128);
-            tableLayoutPanelCategories.Name = "tableLayoutPanelCategories";
-            tableLayoutPanelCategories.RowCount = 2;
-            tableLayoutPanelCategories.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanelCategories.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanelCategories.Size = new Size(862, 119);
-            tableLayoutPanelCategories.TabIndex = 3;
-            // 
-            // tableLayoutPanelRecipes
-            // 
-            tableLayoutPanelRecipes.ColumnCount = 1;
-            tableLayoutPanelRecipes.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanelRecipes.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            tableLayoutPanelRecipes.Controls.Add(labelRecipes, 0, 0);
-            tableLayoutPanelRecipes.Dock = DockStyle.Fill;
-            tableLayoutPanelRecipes.Location = new Point(3, 253);
-            tableLayoutPanelRecipes.Name = "tableLayoutPanelRecipes";
-            tableLayoutPanelRecipes.RowCount = 2;
-            tableLayoutPanelRecipes.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanelRecipes.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanelRecipes.Size = new Size(862, 121);
-            tableLayoutPanelRecipes.TabIndex = 4;
-            // 
-            // tableLayoutPanelBody
-            // 
-            tableLayoutPanelBody.ColumnCount = 1;
-            tableLayoutPanelBody.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanelBody.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            tableLayoutPanelBody.Controls.Add(tableLayoutPanelMyRecipes, 0, 0);
-            tableLayoutPanelBody.Controls.Add(tableLayoutPanelCategories, 0, 1);
-            tableLayoutPanelBody.Controls.Add(tableLayoutPanelRecipes, 0, 2);
-            tableLayoutPanelBody.Dock = DockStyle.Fill;
-            tableLayoutPanelBody.Location = new Point(3, 79);
-            tableLayoutPanelBody.Name = "tableLayoutPanelBody";
-            tableLayoutPanelBody.RowCount = 3;
-            tableLayoutPanelBody.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanelBody.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanelBody.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanelBody.Size = new Size(868, 377);
-            tableLayoutPanelBody.TabIndex = 5;
-            // 
-            // tableLayoutPanelFooter
-            // 
-            tableLayoutPanelFooter.ColumnCount = 2;
-            tableLayoutPanelFooter.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanelFooter.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanelFooter.Dock = DockStyle.Fill;
-            tableLayoutPanelFooter.Location = new Point(3, 462);
-            tableLayoutPanelFooter.Name = "tableLayoutPanelFooter";
-            tableLayoutPanelFooter.RowCount = 2;
-            tableLayoutPanelFooter.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanelFooter.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanelFooter.Size = new Size(868, 46);
-            tableLayoutPanelFooter.TabIndex = 6;
             // 
             // tableLayoutPanelResearch
             // 
@@ -213,6 +136,39 @@
             buttonAccount.TabIndex = 1;
             buttonAccount.UseVisualStyleBackColor = false;
             // 
+            // tableLayoutPanelBody
+            // 
+            tableLayoutPanelBody.ColumnCount = 1;
+            tableLayoutPanelBody.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanelBody.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanelBody.Controls.Add(tableLayoutPanelMyRecipes, 0, 0);
+            tableLayoutPanelBody.Controls.Add(tableLayoutPanelCategories, 0, 1);
+            tableLayoutPanelBody.Controls.Add(tableLayoutPanelRecipes, 0, 2);
+            tableLayoutPanelBody.Dock = DockStyle.Fill;
+            tableLayoutPanelBody.Location = new Point(3, 79);
+            tableLayoutPanelBody.Name = "tableLayoutPanelBody";
+            tableLayoutPanelBody.RowCount = 3;
+            tableLayoutPanelBody.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanelBody.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanelBody.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
+            tableLayoutPanelBody.Size = new Size(868, 377);
+            tableLayoutPanelBody.TabIndex = 5;
+            // 
+            // tableLayoutPanelMyRecipes
+            // 
+            tableLayoutPanelMyRecipes.ColumnCount = 1;
+            tableLayoutPanelMyRecipes.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanelMyRecipes.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanelMyRecipes.Controls.Add(labelMyRecipes, 0, 0);
+            tableLayoutPanelMyRecipes.Dock = DockStyle.Fill;
+            tableLayoutPanelMyRecipes.Location = new Point(3, 3);
+            tableLayoutPanelMyRecipes.Name = "tableLayoutPanelMyRecipes";
+            tableLayoutPanelMyRecipes.RowCount = 2;
+            tableLayoutPanelMyRecipes.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanelMyRecipes.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanelMyRecipes.Size = new Size(862, 119);
+            tableLayoutPanelMyRecipes.TabIndex = 2;
+            // 
             // labelMyRecipes
             // 
             labelMyRecipes.AutoSize = true;
@@ -225,6 +181,21 @@
             labelMyRecipes.Size = new Size(856, 59);
             labelMyRecipes.TabIndex = 0;
             labelMyRecipes.Text = "Mes Recettes";
+            // 
+            // tableLayoutPanelCategories
+            // 
+            tableLayoutPanelCategories.ColumnCount = 1;
+            tableLayoutPanelCategories.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanelCategories.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanelCategories.Controls.Add(labelCategories, 0, 0);
+            tableLayoutPanelCategories.Dock = DockStyle.Fill;
+            tableLayoutPanelCategories.Location = new Point(3, 128);
+            tableLayoutPanelCategories.Name = "tableLayoutPanelCategories";
+            tableLayoutPanelCategories.RowCount = 2;
+            tableLayoutPanelCategories.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanelCategories.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanelCategories.Size = new Size(862, 119);
+            tableLayoutPanelCategories.TabIndex = 3;
             // 
             // labelCategories
             // 
@@ -239,6 +210,21 @@
             labelCategories.TabIndex = 0;
             labelCategories.Text = "Categories";
             // 
+            // tableLayoutPanelRecipes
+            // 
+            tableLayoutPanelRecipes.ColumnCount = 1;
+            tableLayoutPanelRecipes.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanelRecipes.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanelRecipes.Controls.Add(labelRecipes, 0, 0);
+            tableLayoutPanelRecipes.Dock = DockStyle.Fill;
+            tableLayoutPanelRecipes.Location = new Point(3, 253);
+            tableLayoutPanelRecipes.Name = "tableLayoutPanelRecipes";
+            tableLayoutPanelRecipes.RowCount = 2;
+            tableLayoutPanelRecipes.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanelRecipes.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanelRecipes.Size = new Size(862, 121);
+            tableLayoutPanelRecipes.TabIndex = 4;
+            // 
             // labelRecipes
             // 
             labelRecipes.AutoSize = true;
@@ -252,6 +238,20 @@
             labelRecipes.TabIndex = 0;
             labelRecipes.Text = "Recettes";
             // 
+            // tableLayoutPanelFooter
+            // 
+            tableLayoutPanelFooter.ColumnCount = 2;
+            tableLayoutPanelFooter.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanelFooter.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanelFooter.Dock = DockStyle.Fill;
+            tableLayoutPanelFooter.Location = new Point(3, 462);
+            tableLayoutPanelFooter.Name = "tableLayoutPanelFooter";
+            tableLayoutPanelFooter.RowCount = 2;
+            tableLayoutPanelFooter.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanelFooter.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanelFooter.Size = new Size(868, 46);
+            tableLayoutPanelFooter.TabIndex = 6;
+            // 
             // formMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -264,15 +264,15 @@
             tableLayoutPanelMain.ResumeLayout(false);
             tableLayoutPanelHeader.ResumeLayout(false);
             tableLayoutPanelHeader.PerformLayout();
+            tableLayoutPanelResearch.ResumeLayout(false);
+            tableLayoutPanelResearch.PerformLayout();
+            tableLayoutPanelBody.ResumeLayout(false);
             tableLayoutPanelMyRecipes.ResumeLayout(false);
             tableLayoutPanelMyRecipes.PerformLayout();
             tableLayoutPanelCategories.ResumeLayout(false);
             tableLayoutPanelCategories.PerformLayout();
             tableLayoutPanelRecipes.ResumeLayout(false);
             tableLayoutPanelRecipes.PerformLayout();
-            tableLayoutPanelBody.ResumeLayout(false);
-            tableLayoutPanelResearch.ResumeLayout(false);
-            tableLayoutPanelResearch.PerformLayout();
             ResumeLayout(false);
         }
 

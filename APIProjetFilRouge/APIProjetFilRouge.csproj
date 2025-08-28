@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="DAL\Interfaces\" />
+    <Folder Include="DAL\Repositories\" />
+    <Folder Include="Models\BussinessObjects\" />
+    <Folder Include="Models\DataTransfertObjects\In\" />
+    <Folder Include="Models\DataTransfertObjects\Out\" />
+  </ItemGroup>
+
+</Project>
