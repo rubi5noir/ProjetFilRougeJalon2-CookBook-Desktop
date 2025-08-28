@@ -1,6 +1,8 @@
-﻿namespace APIProjetFilRouge.BLL.Services
+﻿using APIProjetFilRouge.BLL.Interfaces;
+
+namespace APIProjetFilRouge.BLL.Services
 {
-    public class EtapeService
+    public class EtapeService : IEtapeService
     {
     }
 }

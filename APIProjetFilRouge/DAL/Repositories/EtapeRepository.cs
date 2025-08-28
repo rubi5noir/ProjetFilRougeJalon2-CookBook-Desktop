@@ -1,6 +1,8 @@
-﻿namespace APIProjetFilRouge.DAL.Repositories
+﻿using APIProjetFilRouge.DAL.Interfaces;
+
+namespace APIProjetFilRouge.DAL.Repositories
 {
-    public class EtapeRepository
+    public class EtapeRepository : IEtapeRepository
     {
     }
 }

@@ -1,6 +1,8 @@
-﻿namespace APIProjetFilRouge.BLL.Services
+﻿using APIProjetFilRouge.BLL.Interfaces;
+
+namespace APIProjetFilRouge.BLL.Services
 {
-    public class CategorieService
+    public class CategorieService : ICategorieService
     {
     }
 }

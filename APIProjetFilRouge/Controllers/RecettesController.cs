@@ -12,7 +12,7 @@ namespace APIProjetFilRouge.Controllers
         {
             try
             {
-                return StatusCode(StatusCodes.Status200OK, );
+                return StatusCode(StatusCodes.Status200OK);
             }
             catch
             {
