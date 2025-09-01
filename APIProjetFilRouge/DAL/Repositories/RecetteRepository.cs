@@ -15,20 +15,27 @@ namespace APIProjetFilRouge.DAL.Repositories
         private readonly string _queryGetAllRecettes =
             "SELECT " +
             "id, nom, description, temps_preparation, temps_cuisson, difficulte, id_utilisateur, img " +
-            "FROM recette";
+            "FROM recettes";
 
         #endregion
 
         #region Getter
 
-        public List<Recette> GetAllRecettes()
+        /// <summary>
+        /// Retrieves all recipes from the database.
+        /// </summary>
+        /// <returns>
+        /// <para>A list of Recette objects representing all recipes.</para>
+        /// <para>Throws an exception if an error occurs while retrieving the recipes.</para>
+        /// </returns>
+        public async Task<List<Recette>> GetAllRecettes()
         {
             try
             {
                 List<Recette> recettes = new List<Recette>();
                 using (var connexion = new NpgsqlConnection(_connectionString))
                 {
-                    recettes = connexion.Query<Recette>(_queryGetAllRecettes).ToList();
+                    recettes = (await connexion.QueryAsync<Recette>(_queryGetAllRecettes)).ToList();
                 }
                 return recettes;
             }

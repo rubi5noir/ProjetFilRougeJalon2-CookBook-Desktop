@@ -5,7 +5,7 @@
         public int note { get; set; }
         public string commentaire { get; set; }
 
-        public Recette recette { get; set; }
-        public Compte utilisateur { get; set; }
+        public int id_recette { get; set; }
+        public int id_utilisateur { get; set; }
     }
 }

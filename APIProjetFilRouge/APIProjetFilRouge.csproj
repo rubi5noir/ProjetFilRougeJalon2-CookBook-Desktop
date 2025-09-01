@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <Folder Include="Models\DataTransfertObjects\In\" />
-    <Folder Include="Models\DataTransfertObjects\Out\" />
   </ItemGroup>
 
 </Project>

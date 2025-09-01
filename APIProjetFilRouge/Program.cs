@@ -1,4 +1,6 @@
 
+using APIProjetFilRouge.BLL.Services;
+
 namespace APIProjetFilRouge
 {
     public class Program
@@ -8,6 +10,8 @@ namespace APIProjetFilRouge
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddBll();
+            builder.Services.AddDal();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
