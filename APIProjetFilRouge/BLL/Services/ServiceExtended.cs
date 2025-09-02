@@ -14,15 +14,5 @@ namespace APIProjetFilRouge.BLL.Services
             services.AddTransient<IIngredientService, IngredientService>();
             services.AddTransient<IRecetteService, RecetteService>();
         }
-
-        public static void AddDal(this IServiceCollection services)
-        {
-            services.AddTransient<APIProjetFilRouge.DAL.Interfaces.IAvisRepository, APIProjetFilRouge.DAL.Repositories.AvisRepository>();
-            services.AddTransient<APIProjetFilRouge.DAL.Interfaces.ICategorieRepository, APIProjetFilRouge.DAL.Repositories.CategorieRepository>();
-            services.AddTransient<APIProjetFilRouge.DAL.Interfaces.ICompteRepository, APIProjetFilRouge.DAL.Repositories.CompteRepository>();
-            services.AddTransient<APIProjetFilRouge.DAL.Interfaces.IEtapeRepository, APIProjetFilRouge.DAL.Repositories.EtapeRepository>();
-            services.AddTransient<APIProjetFilRouge.DAL.Interfaces.IIngredientRepository, APIProjetFilRouge.DAL.Repositories.IngredientRepository>();
-            services.AddTransient<APIProjetFilRouge.DAL.Interfaces.IRecetteRepository, APIProjetFilRouge.DAL.Repositories.RecetteRepository>();
-        }
     }
 }

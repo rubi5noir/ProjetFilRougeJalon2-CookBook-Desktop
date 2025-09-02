@@ -1,4 +1,4 @@
-﻿namespace APIProjetFilRouge.Models.DataTransfertObjects.Out
+﻿namespace APIProjetFilRouge.Models.DataTransfertObjects.Between
 {
     public class AverageNoteDTO
     {

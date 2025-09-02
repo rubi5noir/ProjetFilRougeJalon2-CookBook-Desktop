@@ -1,9 +1,8 @@
-﻿namespace APIProjetFilRouge.Models.BussinessObjects
+﻿namespace APIProjetFilRouge.Models.DataTransfertObjects.Between
 {
-    public class Etape
+    public class EtapeDTO
     {
         public int numero { get; set; }
         public string texte { get; set; }
-
     }
 }

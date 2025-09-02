@@ -8,14 +8,33 @@ namespace APIProjetFilRouge.DAL.Repositories
 {
     public class RecetteRepository : IRecetteRepository
     {
-        private readonly string _connectionString = "Server=localhost;database=CookBook;uid=postgres;Pwd=password;Port=5435";
+        private readonly string _connectionString;
+        private const string recetteTable = "recettes";
+
+        public RecetteRepository(IConfiguration configuration)
+        {
+            var connectionString = configuration.GetConnectionString("DefaultConnection");
+
+            if (string.IsNullOrEmpty(connectionString))
+            {
+                throw new ArgumentNullException("Connection string 'DefaultConnection' not found.");
+            }
+
+            _connectionString = connectionString;
+        }
 
         #region Queries
 
-        private readonly string _queryGetAllRecettes =
+        private const string _queryGetAllRecettes =
             "SELECT " +
             "id, nom, description, temps_preparation, temps_cuisson, difficulte, id_utilisateur, img " +
-            "FROM recettes";
+            $"FROM {recetteTable}";
+
+        private const string _queryGetRecetteById =
+            "SELECT " +
+            "id, nom, description, temps_preparation, temps_cuisson, difficulte, id_utilisateur, img " +
+            $"FROM {recetteTable} " +
+            "WHERE id = @Id";
 
         #endregion
 
@@ -38,6 +57,23 @@ namespace APIProjetFilRouge.DAL.Repositories
                     recettes = (await connexion.QueryAsync<Recette>(_queryGetAllRecettes)).ToList();
                 }
                 return recettes;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while retrieving all recipes.", ex);
+            }
+        }
+
+        public async Task<Recette> GetRecetteById(int id)
+        {
+            try
+            {
+                Recette recette = new Recette();
+                using (var connexion = new NpgsqlConnection(_connectionString))
+                {
+                    recette = await connexion.QuerySingleAsync<Recette>(_queryGetRecetteById, new {Id = id});
+                }
+                return recette;
             }
             catch (Exception ex)
             {

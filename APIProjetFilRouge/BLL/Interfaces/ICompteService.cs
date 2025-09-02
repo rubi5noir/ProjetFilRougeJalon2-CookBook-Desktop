@@ -1,6 +1,10 @@
-﻿namespace APIProjetFilRouge.BLL.Interfaces
+﻿using APIProjetFilRouge.Models.BussinessObjects;
+using APIProjetFilRouge.Models.DataTransfertObjects.Between;
+
+namespace APIProjetFilRouge.BLL.Interfaces
 {
     public interface ICompteService
     {
+        Task<CreateurOfRecetteDTO> GetCreateurById(int Createur);
     }
 }

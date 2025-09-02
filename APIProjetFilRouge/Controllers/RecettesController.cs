@@ -34,7 +34,7 @@ namespace APIProjetFilRouge.Controllers
             {
                 return StatusCode(StatusCodes.Status200OK, await _recetteService.GetRecetteForVignette());
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status400BadRequest, ex.Message);
             }
@@ -43,7 +43,15 @@ namespace APIProjetFilRouge.Controllers
         [HttpGet("id")]
         public async Task<IActionResult> GetRecetteById(int id)
         {
-            return StatusCode(StatusCodes.Status200OK, await _recetteService.GetRecetteDetailsById(id));
+            try
+            {
+                return StatusCode(StatusCodes.Status200OK, await _recetteService.GetRecetteDetailsById(id));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status400BadRequest, ex.Message);
+            }
+
         }
 
         #endregion

@@ -1,7 +1,7 @@
 ﻿using APIProjetFilRouge.BLL.Interfaces;
 using APIProjetFilRouge.DAL.Interfaces;
 using APIProjetFilRouge.Models.BussinessObjects;
-using APIProjetFilRouge.Models.DataTransfertObjects.Out;
+using APIProjetFilRouge.Models.DataTransfertObjects.Between;
 
 namespace APIProjetFilRouge.BLL.Services
 {
@@ -23,20 +23,46 @@ namespace APIProjetFilRouge.BLL.Services
         /// </returns>
         public async Task<AverageNoteDTO> GetAverageNoteOfAllRecettes()
         {
-            //Recuperer toutes les notes
-            List<Avis> avis = await _avisRepository.GetAllAvis();
+            try
+            {
+                //Recuperer toutes les notes
+                List<Avis> avis = await _avisRepository.GetAllAvis();
 
-            AverageNoteDTO avisAverageNotes = new AverageNoteDTO();
+                AverageNoteDTO avisAverageNotes = new AverageNoteDTO();
 
-            // Calcul des moyennes par recette
-            avisAverageNotes.averageNotesDictionary = avis
-                .GroupBy(a => a.id_recette)
-                .ToDictionary(
-                    g => g.Key,                   // idRecette
-                    g => g.Average(a => a.note)   // moyenne des notes
-                );
+                // Calcul des moyennes par recette
+                avisAverageNotes.averageNotesDictionary = avis
+                    .GroupBy(a => a.id_recette)
+                    .ToDictionary(
+                        g => g.Key,                   // idRecette
+                        g => g.Average(a => a.note)   // moyenne des notes
+                    );
 
-            return avisAverageNotes;
+                return avisAverageNotes;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error", ex);
+            }
+        }
+
+        public async Task<List<AvisOfRecetteDTO>> GetAvisOfRecette(int id)
+        {
+            try
+            {
+                List<AvisOfRecetteDTO> avis = (await _avisRepository.GetAvisByRecetteId(id)).Select(a => new AvisOfRecetteDTO
+                {
+                    id_utilisateur = a.id_utilisateur,
+                    note = a.note,
+                    commentaire = a.commentaire
+                }).ToList();
+
+                return avis;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error", ex);
+            }
         }
     }
 }

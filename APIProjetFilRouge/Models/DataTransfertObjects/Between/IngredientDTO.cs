@@ -1,6 +1,6 @@
-﻿namespace APIProjetFilRouge.Models.BussinessObjects
+﻿namespace APIProjetFilRouge.Models.DataTransfertObjects.Between
 {
-    public class Ingredient
+    public class IngredientDTO
     {
         public int id { get; set; }
         public string nom { get; set; }

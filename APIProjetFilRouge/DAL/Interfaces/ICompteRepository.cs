@@ -1,6 +1,9 @@
-﻿namespace APIProjetFilRouge.DAL.Interfaces
+﻿using APIProjetFilRouge.Models.BussinessObjects;
+
+namespace APIProjetFilRouge.DAL.Interfaces
 {
     public interface ICompteRepository
     {
+        Task<Compte> GetCompteById(int id);
     }
 }
