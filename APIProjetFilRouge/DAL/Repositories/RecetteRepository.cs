@@ -64,6 +64,12 @@ namespace APIProjetFilRouge.DAL.Repositories
             }
         }
 
+
+        /// <summary>
+        /// Retrieves a specific recipe by its ID.
+        /// </summary>
+        /// <param name="id">ID of the recipe</param>
+        /// <returns></returns>
         public async Task<Recette> GetRecetteById(int id)
         {
             try

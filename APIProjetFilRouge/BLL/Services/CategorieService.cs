@@ -13,6 +13,12 @@ namespace APIProjetFilRouge.BLL.Services
             _categorieRepository = categorieRepository;
         }
 
+
+        /// <summary>
+        /// Retrieves all categories associated with a specific recipe by the ID of the recipe.
+        /// </summary>
+        /// <param name="id">ID of the recipe</param>
+        /// <returns></returns>
         public async Task<List<CategorieDTO>> GetCategoriesOfRecette(int id)
         {
             try

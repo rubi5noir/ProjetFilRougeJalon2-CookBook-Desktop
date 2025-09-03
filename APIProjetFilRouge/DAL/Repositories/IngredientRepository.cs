@@ -35,6 +35,11 @@ namespace APIProjetFilRouge.DAL.Repositories
 
         #region Getter
 
+        /// <summary>
+        /// Retrieves the list of ingredients along with their quantities for a specific recipe by the ID of the recipe.
+        /// </summary>
+        /// <param name="id">ID of the recipe</param>
+        /// <returns></returns>
         public async Task<List<Ingredient>> GetIngredientsWithQuantitiesOfRecette(int id)
         {
             try

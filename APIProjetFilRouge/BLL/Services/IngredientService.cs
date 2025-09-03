@@ -15,7 +15,11 @@ namespace APIProjetFilRouge.BLL.Services
             _ingredientRepository = ingredientRepository;
         }
 
-
+        /// <summary>
+        /// Retrieves all ingredients with their quantities for a specific recipe by the ID of the recipe.
+        /// </summary>
+        /// <param name="id">ID of the recipe</param>
+        /// <returns></returns>
         public async Task<List<IngredientDTO>> GetIngredientsWithQuantitiesOfRecette(int id)
         {
             try

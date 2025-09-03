@@ -35,6 +35,11 @@ namespace APIProjetFilRouge.DAL.Repositories
 
         #region Getter
 
+        /// <summary>
+        /// Retrieves all categories associated with a specific recipe by the ID of the recipe.
+        /// </summary>
+        /// <param name="id">ID of the recipe</param>
+        /// <returns></returns>
         public async Task<List<Categorie>> GetCategoriesOfRecette(int id)
         {
             try

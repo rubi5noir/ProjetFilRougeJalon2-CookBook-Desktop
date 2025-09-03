@@ -21,12 +21,23 @@ namespace APIProjetFilRouge.DAL.Repositories
             _connectionString = connectionString;
         }
 
+        #region Queries
+
         private const string _queryGetCompteById =
             "SELECT " +
             "id, identifiant, nom, prenom, email, password, admin " +
             $"FROM {compteTable} " +
             "WHERE id = @Id";
 
+        #endregion
+
+        #region Getter
+
+        /// <summary>
+        /// Retrieves an account by its ID.
+        /// </summary>
+        /// <param name="id">ID of the account</param>
+        /// <returns></returns>
         public async Task<Compte> GetCompteById(int id)
         {
             try
@@ -44,5 +55,7 @@ namespace APIProjetFilRouge.DAL.Repositories
                 throw new Exception("An error occurred while retrieving the account by ID.", ex);
             }
         }
+
+        #endregion
     }
 }

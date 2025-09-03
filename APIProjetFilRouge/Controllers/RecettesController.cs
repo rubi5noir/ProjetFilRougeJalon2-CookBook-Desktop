@@ -40,7 +40,14 @@ namespace APIProjetFilRouge.Controllers
             }
         }
 
+        /// <summary>
+        /// Retrieves detailed information about a specific recipe by its ID
+        /// </summary>
+        /// <param name="id">ID of the recipe</param>
+        /// <returns></returns>
         [HttpGet("id")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetRecetteById(int id)
         {
             try

@@ -46,6 +46,11 @@ namespace APIProjetFilRouge.BLL.Services
             }
         }
 
+        /// <summary>
+        /// Retrieves all reviews of a specific recipe by its ID.
+        /// </summary>
+        /// <param name="id">ID of the recipe</param>
+        /// <returns></returns>
         public async Task<List<AvisOfRecetteDTO>> GetAvisOfRecette(int id)
         {
             try

@@ -59,6 +59,12 @@ namespace APIProjetFilRouge.BLL.Services
             }
         }
 
+
+        /// <summary>
+        /// Retrieves detailed information about a recipe by it's ID
+        /// </summary>
+        /// <param name="id">ID of the recipe</param>
+        /// <returns></returns>
         public async Task<RecetteDetailsDTO> GetRecetteDetailsById(int id)
         {
             try
