@@ -27,16 +27,9 @@ namespace APIProjetFilRouge.BLL.Services
         /// </returns>
         public async Task<List<Recette>> GetRecetteVignette()
         {
-            try
-            {
-                List<Recette> recettes = await _recetteRepository.GetAllRecettes();
+            List<Recette> recettes = await _recetteRepository.GetAllRecettes();
 
-                return recettes;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error", ex);
-            }
+            return recettes;
         }
 
 
@@ -47,16 +40,9 @@ namespace APIProjetFilRouge.BLL.Services
         /// <returns></returns>
         public async Task<Recette> GetRecetteById(int id)
         {
-            try
-            {
-                var recette = await _recetteRepository.GetRecetteById(id);
+            var recette = await _recetteRepository.GetRecetteById(id);
 
-                return recette;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error", ex);
-            }
+            return recette;
         }
 
         #endregion

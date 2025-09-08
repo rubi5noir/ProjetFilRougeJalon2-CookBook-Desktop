@@ -21,16 +21,9 @@ namespace APIProjetFilRouge.BLL.Services
         /// <returns></returns>
         public async Task<Compte> GetCreateurById(int Createur)
         {
-            try
-            {
-                var createur = await _compteRepository.GetCompteById(Createur);
+            var createur = await _compteRepository.GetCompteById(Createur);
 
-                return createur;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error", ex);
-            }
+            return createur;
         }
     }
 }

@@ -1,6 +1,7 @@
 
 using APIProjetFilRouge.BLL.Services;
 using APIProjetFilRouge.DAL;
+using APIProjetFilRouge.Models;
 
 namespace APIProjetFilRouge
 {
@@ -20,6 +21,8 @@ namespace APIProjetFilRouge
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
+
+            app.UseMiddleware<GlobalExceptionMiddleware>();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

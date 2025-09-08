@@ -42,21 +42,14 @@ namespace APIProjetFilRouge.DAL.Repositories
         /// <returns></returns>
         public async Task<List<Ingredient>> GetIngredientsWithQuantitiesOfRecette(int id)
         {
-            try
-            {
-                List<Ingredient> ingredients;
+            List<Ingredient> ingredients;
 
-                using (var connexion = new Npgsql.NpgsqlConnection(_connectionString))
-                {
-                    ingredients = (await connexion.QueryAsync<Ingredient>(_queryGetIngredientsWithQuantitiesOfRecette, new { Id = id })).ToList();
-                }
-
-                return ingredients;
-            }
-            catch (Exception ex)
+            using (var connexion = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                throw new Exception("An error occurred while retrieving ingredients with quantities for the recipe.", ex);
+                ingredients = (await connexion.QueryAsync<Ingredient>(_queryGetIngredientsWithQuantitiesOfRecette, new { Id = id })).ToList();
             }
+
+            return ingredients;
         }
 
         #endregion

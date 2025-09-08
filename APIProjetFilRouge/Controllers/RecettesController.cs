@@ -45,35 +45,28 @@ namespace APIProjetFilRouge.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetRecettesVignettes()
         {
-            try
+            var recettes = await _recetteService.GetRecetteVignette();
+
+            var avis = await _avisService.GetAvisOfAllRecettes();
+            AverageNoteDTO avisAverageNotes = new AverageNoteDTO();
+            // Calcul des moyennes par recette
+            avisAverageNotes.averageNotesDictionary = avis
+                .GroupBy(a => a.id_recette)
+                .ToDictionary(
+                    g => g.Key,                   // idRecette
+                    g => g.Average(a => a.note)   // moyenne des notes
+                );
+
+            List<RecetteForVignetteDTO> recetteForVignetteList = recettes.Select(r => new RecetteForVignetteDTO
             {
-                var recettes = await _recetteService.GetRecetteVignette();
+                id = r.id,
+                nom = r.nom,
+                description = r.description,
+                img = r.img,
+                noteMoyenne = avisAverageNotes.averageNotesDictionary.TryGetValue(r.id, out var average) ? average : 0
+            }).ToList();
 
-                var avis = await _avisService.GetAvisOfAllRecettes();
-                AverageNoteDTO avisAverageNotes = new AverageNoteDTO();
-                // Calcul des moyennes par recette
-                avisAverageNotes.averageNotesDictionary = avis
-                    .GroupBy(a => a.id_recette)
-                    .ToDictionary(
-                        g => g.Key,                   // idRecette
-                        g => g.Average(a => a.note)   // moyenne des notes
-                    );
-
-                List<RecetteForVignetteDTO> recetteForVignetteList = recettes.Select(r => new RecetteForVignetteDTO
-                {
-                    id = r.id,
-                    nom = r.nom,
-                    description = r.description,
-                    img = r.img,
-                    noteMoyenne = avisAverageNotes.averageNotesDictionary.TryGetValue(r.id, out var average) ? average : 0
-                }).ToList();
-
-                return StatusCode(StatusCodes.Status200OK, recetteForVignetteList);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status400BadRequest, ex.Message);
-            }
+            return StatusCode(StatusCodes.Status200OK, recetteForVignetteList);
         }
 
         /// <summary>
@@ -86,69 +79,62 @@ namespace APIProjetFilRouge.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetRecetteById(int id)
         {
-            try
+            var recette = await _recetteService.GetRecetteById(id);
+
+            var avis = await _avisService.GetAvisOfRecette(id);
+            var avisDTO = avis.Select(avis => new AvisOfRecetteDTO
             {
-                var recette = await _recetteService.GetRecetteById(id);
+                note = avis.note,
+                commentaire = avis.commentaire,
+                id_utilisateur = avis.id_utilisateur
+            }).ToList();
 
-                var avis = await _avisService.GetAvisOfRecette(id);
-                var avisDTO = avis.Select(avis => new AvisOfRecetteDTO
-                {
-                    note = avis.note,
-                    commentaire = avis.commentaire,
-                    id_utilisateur = avis.id_utilisateur
-                }).ToList();
-
-                var utilisateur = await _compteService.GetCreateurById(recette.id_utilisateur);
-                var createur = new CreateurOfRecetteDTO
-                {
-                    id = utilisateur.id,
-                    identifiant = utilisateur.identifiant
-                };
-
-                var ingredients = await _ingredientService.GetIngredientsWithQuantitiesOfRecette(id);
-                var ingredientsList = ingredients.Select(ingredient => new IngredientDTO
-                {
-                    id = ingredient.id,
-                    nom = ingredient.nom,
-                    quantite = ingredient.quantite
-                }).ToList();
-
-                var categories = await _categorieService.GetCategoriesOfRecette(id);
-                var categoriesDTO = categories.Select(c => new CategorieDTO
-                {
-                    id = c.id,
-                    nom = c.nom
-                }).ToList();
-
-                var etapes = await _etapeService.GetEtapesOfRecette(id);
-                List<EtapeDTO> etapesDTO = etapes.Select(e => new EtapeDTO
-                {
-                    numero = e.numero,
-                    texte = e.texte
-                }).ToList();
-
-                RecetteDetailsDTO recetteDetails = new RecetteDetailsDTO
-                {
-                    id = recette.id,
-                    identifiantCreateur = createur.identifiant,
-                    nom = recette.nom,
-                    description = recette.description,
-                    temps_preparation = recette.temps_preparation,
-                    temps_cuisson = recette.temps_cuisson,
-                    difficulte = recette.difficulte,
-                    img = recette.img,
-                    ingredients = ingredientsList,
-                    categories = categoriesDTO,
-                    etapes = etapesDTO,
-                    avis = avisDTO
-                };
-
-                return StatusCode(StatusCodes.Status200OK, recetteDetails);
-            }
-            catch (Exception ex)
+            var utilisateur = await _compteService.GetCreateurById(recette.id_utilisateur);
+            var createur = new CreateurOfRecetteDTO
             {
-                return StatusCode(StatusCodes.Status400BadRequest, ex.Message);
-            }
+                id = utilisateur.id,
+                identifiant = utilisateur.identifiant
+            };
+
+            var ingredients = await _ingredientService.GetIngredientsWithQuantitiesOfRecette(id);
+            var ingredientsList = ingredients.Select(ingredient => new IngredientDTO
+            {
+                id = ingredient.id,
+                nom = ingredient.nom,
+                quantite = ingredient.quantite
+            }).ToList();
+
+            var categories = await _categorieService.GetCategoriesOfRecette(id);
+            var categoriesDTO = categories.Select(c => new CategorieDTO
+            {
+                id = c.id,
+                nom = c.nom
+            }).ToList();
+
+            var etapes = await _etapeService.GetEtapesOfRecette(id);
+            List<EtapeDTO> etapesDTO = etapes.Select(e => new EtapeDTO
+            {
+                numero = e.numero,
+                texte = e.texte
+            }).ToList();
+
+            RecetteDetailsDTO recetteDetails = new RecetteDetailsDTO
+            {
+                id = recette.id,
+                identifiantCreateur = createur.identifiant,
+                nom = recette.nom,
+                description = recette.description,
+                temps_preparation = recette.temps_preparation,
+                temps_cuisson = recette.temps_cuisson,
+                difficulte = recette.difficulte,
+                img = recette.img,
+                ingredients = ingredientsList,
+                categories = categoriesDTO,
+                etapes = etapesDTO,
+                avis = avisDTO
+            };
+
+            return StatusCode(StatusCodes.Status200OK, recetteDetails);
 
         }
 

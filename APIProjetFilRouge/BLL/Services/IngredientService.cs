@@ -22,16 +22,9 @@ namespace APIProjetFilRouge.BLL.Services
         /// <returns></returns>
         public async Task<List<Ingredient>> GetIngredientsWithQuantitiesOfRecette(int id)
         {
-            try
-            {
-                var ingredients = await _ingredientRepository.GetIngredientsWithQuantitiesOfRecette(id);
+            var ingredients = await _ingredientRepository.GetIngredientsWithQuantitiesOfRecette(id);
 
-                return ingredients;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error", ex);
-            }
+            return ingredients;
         }
     }
 }

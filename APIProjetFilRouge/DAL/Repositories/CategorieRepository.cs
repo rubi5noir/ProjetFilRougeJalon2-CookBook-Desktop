@@ -42,20 +42,13 @@ namespace APIProjetFilRouge.DAL.Repositories
         /// <returns></returns>
         public async Task<List<Categorie>> GetCategoriesOfRecette(int id)
         {
-            try
-            {
-                List<Categorie> categories;
+            List<Categorie> categories;
 
-                using (var connexion = new Npgsql.NpgsqlConnection(_connectionString))
-                {
-                    categories = (await connexion.QueryAsync<Categorie>(_queryGetCategoriesOfRecette, new { Id = id })).ToList();
-                }
-                return categories;
-            }
-            catch (Exception ex)
+            using (var connexion = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                throw new Exception("An error occurred while retrieving categories for the recipe.", ex);
+                categories = (await connexion.QueryAsync<Categorie>(_queryGetCategoriesOfRecette, new { Id = id })).ToList();
             }
+            return categories;
         }
 
         #endregion

@@ -23,17 +23,10 @@ namespace APIProjetFilRouge.BLL.Services
         /// </returns>
         public async Task<List<Avis>> GetAvisOfAllRecettes()
         {
-            try
-            {
-                //Recuperer toutes les notes
-                List<Avis> avis = await _avisRepository.GetAllAvis();
+            //Recuperer toutes les notes
+            List<Avis> avis = await _avisRepository.GetAllAvis();
 
-                return avis;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error", ex);
-            }
+            return avis;
         }
 
         /// <summary>
@@ -43,16 +36,9 @@ namespace APIProjetFilRouge.BLL.Services
         /// <returns></returns>
         public async Task<List<Avis>> GetAvisOfRecette(int id)
         {
-            try
-            {
-                List<Avis> avis = await _avisRepository.GetAvisByRecetteId(id);
+            List<Avis> avis = await _avisRepository.GetAvisByRecetteId(id);
 
-                return avis;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error", ex);
-            }
+            return avis;
         }
     }
 }

@@ -72,19 +72,12 @@ namespace APIProjetFilRouge.DAL.Repositories
         /// <returns></returns>
         public async Task<Recette> GetRecetteById(int id)
         {
-            try
+            Recette recette = new Recette();
+            using (var connexion = new NpgsqlConnection(_connectionString))
             {
-                Recette recette = new Recette();
-                using (var connexion = new NpgsqlConnection(_connectionString))
-                {
-                    recette = await connexion.QuerySingleAsync<Recette>(_queryGetRecetteById, new {Id = id});
-                }
-                return recette;
+                recette = await connexion.QuerySingleAsync<Recette>(_queryGetRecetteById, new { Id = id });
             }
-            catch (Exception ex)
-            {
-                throw new Exception("An error occurred while retrieving all recipes.", ex);
-            }
+            return recette;
         }
 
         #endregion

@@ -10,14 +10,7 @@ namespace APIProjetFilRouge.Controllers
         [HttpGet]
         public IActionResult GetForHomePage()
         {
-            try
-            {
-                return StatusCode(StatusCodes.Status200OK, "API is running And this is the home page stuff getter");
-            }
-            catch
-            {
-                return BadRequest();
-            }
+            return StatusCode(StatusCodes.Status200OK, "API is running And this is the home page stuff getter");
         }
     }
 }

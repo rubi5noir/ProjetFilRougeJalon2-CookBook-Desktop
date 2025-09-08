@@ -22,16 +22,9 @@ namespace APIProjetFilRouge.BLL.Services
         /// <returns></returns>
         public async Task<List<Etape>> GetEtapesOfRecette(int id)
         {
-            try
-            {
-                List<Etape> etapes = await _etapeRepository.GetEtapesOfRecette(id);
+            List<Etape> etapes = await _etapeRepository.GetEtapesOfRecette(id);
 
-                return etapes;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("An error occurred while retrieving steps for the recipe.", ex);
-            }
+            return etapes;
         }
     }
 }

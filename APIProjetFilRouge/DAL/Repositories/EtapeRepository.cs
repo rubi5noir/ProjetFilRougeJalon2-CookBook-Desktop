@@ -39,20 +39,13 @@ namespace APIProjetFilRouge.DAL.Repositories
         /// <returns></returns>
         public async Task<List<Etape>> GetEtapesOfRecette(int id)
         {
-            try
-            {
-                List<Etape> etapes;
+            List<Etape> etapes;
 
-                using (var connexion = new Npgsql.NpgsqlConnection(_connectionString))
-                {
-                    etapes = (await connexion.QueryAsync<Etape>(_queryGetEtapesOfRecette, new { IdRecette = id })).ToList();
-                }
-                return etapes;
-            }
-            catch (Exception ex)
+            using (var connexion = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                throw new Exception("An error occurred while retrieving steps for the recipe.", ex);
+                etapes = (await connexion.QueryAsync<Etape>(_queryGetEtapesOfRecette, new { IdRecette = id })).ToList();
             }
+            return etapes;
         }
 
         #endregion

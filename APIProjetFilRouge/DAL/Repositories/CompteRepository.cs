@@ -40,20 +40,13 @@ namespace APIProjetFilRouge.DAL.Repositories
         /// <returns></returns>
         public async Task<Compte> GetCompteById(int id)
         {
-            try
-            {
-                Compte compte = new Compte();
+            Compte compte = new Compte();
 
-                using (var connexion = new Npgsql.NpgsqlConnection(_connectionString))
-                {
-                    compte = await connexion.QuerySingleAsync<Compte>(_queryGetCompteById, new { Id = id });
-                }
-                return compte;
-            }
-            catch (Exception ex)
+            using (var connexion = new Npgsql.NpgsqlConnection(_connectionString))
             {
-                throw new Exception("An error occurred while retrieving the account by ID.", ex);
+                compte = await connexion.QuerySingleAsync<Compte>(_queryGetCompteById, new { Id = id });
             }
+            return compte;
         }
 
         #endregion

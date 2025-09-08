@@ -42,19 +42,12 @@ namespace APIProjetFilRouge.DAL.Repositories
         /// </returns>
         public async Task<List<Avis>> GetAllAvis()
         {
-            try
+            List<Avis> Avis = new List<Avis>();
+            using (var connexion = new NpgsqlConnection(_connectionString))
             {
-                List<Avis> Avis = new List<Avis>();
-                using (var connexion = new NpgsqlConnection(_connectionString))
-                {
-                    Avis = (await connexion.QueryAsync<Avis>(_queryGetAllAvis)).ToList();
-                }
-                return Avis;
+                Avis = (await connexion.QueryAsync<Avis>(_queryGetAllAvis)).ToList();
             }
-            catch (Exception ex)
-            {
-                throw new Exception("An error occurred while retrieving all reviews.", ex);
-            }
+            return Avis;
         }
 
         /// <summary>
@@ -64,19 +57,12 @@ namespace APIProjetFilRouge.DAL.Repositories
         /// <returns></returns>
         public async Task<List<Avis>> GetAvisByRecetteId(int id)
         {
-            try
+            List<Avis> Avis = new List<Avis>();
+            using (var connexion = new NpgsqlConnection(_connectionString))
             {
-                List<Avis> Avis = new List<Avis>();
-                using (var connexion = new NpgsqlConnection(_connectionString))
-                {
-                    Avis = (await connexion.QueryAsync<Avis>(_queryGetAvisByRecetteId, new {Id = id})).ToList();
-                }
-                return Avis;
+                Avis = (await connexion.QueryAsync<Avis>(_queryGetAvisByRecetteId, new { Id = id })).ToList();
             }
-            catch (Exception ex)
-            {
-                throw new Exception("An error occurred while retrieving all reviews.", ex);
-            }
+            return Avis;
         }
     }
 }

@@ -22,16 +22,9 @@ namespace APIProjetFilRouge.BLL.Services
         /// <returns></returns>
         public async Task<List<Categorie>> GetCategoriesOfRecette(int id)
         {
-            try
-            {
-                var categories = await _categorieRepository.GetCategoriesOfRecette(id);
+            var categories = await _categorieRepository.GetCategoriesOfRecette(id);
 
-                return categories;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("An error occurred while retrieving all categories.", ex);
-            }
+            return categories;
         }
     }
 }

@@ -1,0 +1,87 @@
+﻿using Npgsql;
+
+namespace APIProjetFilRouge.Models
+{
+    public class GlobalExceptionMiddleware
+    {
+        private readonly RequestDelegate _next;
+        private readonly ILogger<GlobalExceptionMiddleware> _logger;
+        private readonly IWebHostEnvironment _env;
+
+        public GlobalExceptionMiddleware(RequestDelegate next, ILogger<GlobalExceptionMiddleware> logger, IWebHostEnvironment env)
+        {
+            _next = next;
+            _logger = logger;
+            _env = env;
+        }
+
+        public async Task InvokeAsync(HttpContext context)
+        {
+            try
+            {
+                await _next(context);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"{DateTime.Now}");
+                await HandleExceptionAsync(context, ex);
+            }
+        }
+
+        private Task HandleExceptionAsync(HttpContext context, Exception exception)
+        {
+            // Suivant le type d'exception, on peut retourner des codes HTTP et des réponses différentes.
+
+            context.Response.ContentType = "application/json";
+            GlobalExceptionMessage response;
+
+            // Gestion des erreurs de base de données PostgreSQL
+            if (exception is NpgsqlException npgsqlex)
+            {
+                // Code pour une violation de contrainte d'unicité
+                if (npgsqlex.ErrorCode == -2147467259)
+                {
+                    context.Response.StatusCode = StatusCodes.Status409Conflict;
+                    response = new GlobalExceptionMessage
+                    {
+                        error = "Conflit",
+                        details = _env.IsDevelopment() ? $"{exception.GetType().Name} : {exception.Message}" : "Une ressource avec les mêmes informations existe déjà."
+                    };
+                    return context.Response.WriteAsJsonAsync(response);
+                }
+
+                // Pour d'autres erreurs de base de données, on retourne une erreur serveur
+                else
+                {
+                    context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+                    response = new GlobalExceptionMessage
+                    {
+                        error = "Error",
+                        details = _env.IsDevelopment() ? $"{exception.GetType().Name} : {exception.Message}" : "Veuillez vérifier les informations entrées."
+                    };
+                    return context.Response.WriteAsJsonAsync(response);
+                }
+
+            }
+
+            // Autres types d'exceptions
+            else
+            {
+                context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+                response = new GlobalExceptionMessage
+                {
+                    error = "Une erreur interne est survenue.",
+                    details = _env.IsDevelopment() ? $"{exception.GetType().Name} : {exception.Message}" : "Veuillez vous adresser à l'administrateur du système."
+                };
+                return context.Response.WriteAsJsonAsync(response);
+            }
+        }
+    }
+
+
+    public class GlobalExceptionMessage
+    {
+        public string error { get; set; }
+        public string details { get; set; }
+    }
+}
