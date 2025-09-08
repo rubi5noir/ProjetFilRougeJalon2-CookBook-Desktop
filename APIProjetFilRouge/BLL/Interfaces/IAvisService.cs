@@ -1,11 +1,12 @@
 ﻿using APIProjetFilRouge.DAL.Interfaces;
+using APIProjetFilRouge.Models.BussinessObjects;
 using APIProjetFilRouge.Models.DataTransfertObjects.Between;
 
 namespace APIProjetFilRouge.BLL.Interfaces
 {
     public interface IAvisService
     {
-        public Task<AverageNoteDTO> GetAverageNoteOfAllRecettes();
-        public Task<List<AvisOfRecetteDTO>> GetAvisOfRecette(int id);
+        public Task<List<Avis>> GetAvisOfAllRecettes();
+        public Task<List<Avis>> GetAvisOfRecette(int id);
     }
 }

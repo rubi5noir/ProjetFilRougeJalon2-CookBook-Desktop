@@ -1,9 +1,10 @@
-﻿using APIProjetFilRouge.Models.DataTransfertObjects.Between;
+﻿using APIProjetFilRouge.Models.BussinessObjects;
+using APIProjetFilRouge.Models.DataTransfertObjects.Between;
 
 namespace APIProjetFilRouge.BLL.Interfaces
 {
     public interface IIngredientService
     {
-        Task<List<IngredientDTO>> GetIngredientsWithQuantitiesOfRecette(int id);
+        Task<List<Ingredient>> GetIngredientsWithQuantitiesOfRecette(int id);
     }
 }

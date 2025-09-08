@@ -1,10 +1,11 @@
-﻿using APIProjetFilRouge.Models.DataTransfertObjects.Out;
+﻿using APIProjetFilRouge.Models.BussinessObjects;
+using APIProjetFilRouge.Models.DataTransfertObjects.Out;
 
 namespace APIProjetFilRouge.BLL.Interfaces
 {
     public interface IRecetteService
     {
-        Task<List<RecetteForVignetteDTO>> GetRecetteForVignette();
-        Task<RecetteDetailsDTO> GetRecetteDetailsById(int id);
+        Task<List<Recette>> GetRecetteVignette();
+        Task<Recette> GetRecetteById(int id);
     }
 }

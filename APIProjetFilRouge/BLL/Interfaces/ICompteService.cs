@@ -5,6 +5,6 @@ namespace APIProjetFilRouge.BLL.Interfaces
 {
     public interface ICompteService
     {
-        Task<CreateurOfRecetteDTO> GetCreateurById(int Createur);
+        Task<Compte> GetCreateurById(int Createur);
     }
 }

@@ -20,19 +20,13 @@ namespace APIProjetFilRouge.BLL.Services
         /// </summary>
         /// <param name="id">ID of the recipe</param>
         /// <returns></returns>
-        public async Task<List<IngredientDTO>> GetIngredientsWithQuantitiesOfRecette(int id)
+        public async Task<List<Ingredient>> GetIngredientsWithQuantitiesOfRecette(int id)
         {
             try
             {
                 var ingredients = await _ingredientRepository.GetIngredientsWithQuantitiesOfRecette(id);
 
-                List<IngredientDTO> ingredientsList = ingredients.Select(ingredient => new IngredientDTO{
-                    id = ingredient.id, 
-                    nom = ingredient.nom,
-                    quantite = ingredient.quantite
-                }).ToList();
-
-                return ingredientsList;
+                return ingredients;
             }
             catch (Exception ex)
             {

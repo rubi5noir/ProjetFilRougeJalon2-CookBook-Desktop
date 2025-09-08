@@ -1,5 +1,6 @@
 ﻿using APIProjetFilRouge.BLL.Interfaces;
 using APIProjetFilRouge.DAL.Interfaces;
+using APIProjetFilRouge.Models.BussinessObjects;
 using APIProjetFilRouge.Models.DataTransfertObjects.Between;
 
 namespace APIProjetFilRouge.BLL.Services
@@ -19,17 +20,13 @@ namespace APIProjetFilRouge.BLL.Services
         /// </summary>
         /// <param name="id">ID of the recipe</param>
         /// <returns></returns>
-        public async Task<List<CategorieDTO>> GetCategoriesOfRecette(int id)
+        public async Task<List<Categorie>> GetCategoriesOfRecette(int id)
         {
             try
             {
                 var categories = await _categorieRepository.GetCategoriesOfRecette(id);
 
-                return categories.Select(c => new CategorieDTO
-                {
-                    id = c.id,
-                    nom = c.nom
-                }).ToList();
+                return categories;
             }
             catch (Exception ex)
             {

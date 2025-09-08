@@ -1,9 +1,10 @@
-﻿using APIProjetFilRouge.Models.DataTransfertObjects.Between;
+﻿using APIProjetFilRouge.Models.BussinessObjects;
+using APIProjetFilRouge.Models.DataTransfertObjects.Between;
 
 namespace APIProjetFilRouge.BLL.Interfaces
 {
     public interface IEtapeService
     {
-        Task<List<EtapeDTO>> GetEtapesOfRecette(int id);
+        Task<List<Etape>> GetEtapesOfRecette(int id);
     }
 }

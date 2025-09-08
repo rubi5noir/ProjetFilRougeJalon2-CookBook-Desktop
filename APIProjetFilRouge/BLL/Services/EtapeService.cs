@@ -20,19 +20,13 @@ namespace APIProjetFilRouge.BLL.Services
         /// </summary>
         /// <param name="id">ID of the recipe</param>
         /// <returns></returns>
-        public async Task<List<EtapeDTO>> GetEtapesOfRecette(int id)
+        public async Task<List<Etape>> GetEtapesOfRecette(int id)
         {
             try
             {
                 List<Etape> etapes = await _etapeRepository.GetEtapesOfRecette(id);
 
-                List<EtapeDTO> etapesDTO = etapes.Select(e => new EtapeDTO
-                {
-                    numero = e.numero,
-                    texte = e.texte
-                }).ToList();
-
-                return etapesDTO;
+                return etapes;
             }
             catch (Exception ex)
             {
