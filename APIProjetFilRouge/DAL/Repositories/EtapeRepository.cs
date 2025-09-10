@@ -1,4 +1,5 @@
 ﻿using APIProjetFilRouge.DAL.Interfaces;
+using APIProjetFilRouge.DAL.Session;
 using APIProjetFilRouge.Models.BussinessObjects;
 using Dapper;
 
@@ -6,17 +7,12 @@ namespace APIProjetFilRouge.DAL.Repositories
 {
     public class EtapeRepository : IEtapeRepository
     {
-        private readonly string _connectionString;
         private const string etapeTable = "etapes";
 
-        public EtapeRepository(IConfiguration configuration)
+        readonly IDBSession _dbSession;
+        public EtapeRepository(IDBSession dbSession)
         {
-            var connectionString = configuration.GetConnectionString("DefaultConnection");
-            if (string.IsNullOrEmpty(connectionString))
-            {
-                throw new ArgumentNullException("Connection string 'DefaultConnection' not found.");
-            }
-            _connectionString = connectionString;
+            _dbSession = dbSession;
         }
 
         #region Queries
@@ -32,19 +28,12 @@ namespace APIProjetFilRouge.DAL.Repositories
 
         #region Getter
 
-        /// <summary>
-        /// Retrieves all steps for a specific recipe by the ID of the recipe.
-        /// </summary>
-        /// <param name="id">ID of the recipe</param>
-        /// <returns></returns>
-        public async Task<List<Etape>> GetEtapesOfRecette(int id)
+        public async Task<List<Etape>> GetEtapesOfRecetteAsync(int id)
         {
             List<Etape> etapes;
 
-            using (var connexion = new Npgsql.NpgsqlConnection(_connectionString))
-            {
-                etapes = (await connexion.QueryAsync<Etape>(_queryGetEtapesOfRecette, new { IdRecette = id })).ToList();
-            }
+            etapes = (await _dbSession.Connection.QueryAsync<Etape>(_queryGetEtapesOfRecette, new { IdRecette = id })).ToList();
+
             return etapes;
         }
 

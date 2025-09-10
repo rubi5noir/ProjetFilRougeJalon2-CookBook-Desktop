@@ -14,14 +14,9 @@ namespace APIProjetFilRouge.BLL.Services
             _compteRepository = compteRepository;
         }
 
-        /// <summary>
-        /// Retrieves the creator information by their ID.
-        /// </summary>
-        /// <param name="Createur">ID of the creator of the recipe</param>
-        /// <returns></returns>
-        public async Task<Compte> GetCreateurById(int Createur)
+        public async Task<Compte> GetCreateurByIdAsync(int Createur)
         {
-            var createur = await _compteRepository.GetCompteById(Createur);
+            var createur = await _compteRepository.GetCompteByIdAsync(Createur);
 
             return createur;
         }

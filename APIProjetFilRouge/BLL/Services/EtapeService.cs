@@ -15,14 +15,9 @@ namespace APIProjetFilRouge.BLL.Services
         }
 
 
-        /// <summary>
-        /// Retrieves the steps of a specific recipe by the ID of the recipe.
-        /// </summary>
-        /// <param name="id">ID of the recipe</param>
-        /// <returns></returns>
-        public async Task<List<Etape>> GetEtapesOfRecette(int id)
+        public async Task<List<Etape>> GetEtapesOfRecetteAsync(int id)
         {
-            List<Etape> etapes = await _etapeRepository.GetEtapesOfRecette(id);
+            List<Etape> etapes = await _etapeRepository.GetEtapesOfRecetteAsync(id);
 
             return etapes;
         }

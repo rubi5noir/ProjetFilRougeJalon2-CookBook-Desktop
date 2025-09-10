@@ -15,14 +15,9 @@ namespace APIProjetFilRouge.BLL.Services
             _ingredientRepository = ingredientRepository;
         }
 
-        /// <summary>
-        /// Retrieves all ingredients with their quantities for a specific recipe by the ID of the recipe.
-        /// </summary>
-        /// <param name="id">ID of the recipe</param>
-        /// <returns></returns>
-        public async Task<List<Ingredient>> GetIngredientsWithQuantitiesOfRecette(int id)
+        public async Task<List<Ingredient>> GetIngredientsWithQuantitiesOfRecetteAsync(int id)
         {
-            var ingredients = await _ingredientRepository.GetIngredientsWithQuantitiesOfRecette(id);
+            var ingredients = await _ingredientRepository.GetIngredientsWithQuantitiesOfRecetteAsync(id);
 
             return ingredients;
         }

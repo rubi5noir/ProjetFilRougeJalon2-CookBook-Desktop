@@ -1,26 +1,24 @@
 ﻿using APIProjetFilRouge.DAL.Interfaces;
+using APIProjetFilRouge.DAL.Session;
 using APIProjetFilRouge.Models.BussinessObjects;
 using Dapper;
 using Npgsql;
+using System.Collections.Generic;
 
 namespace APIProjetFilRouge.DAL.Repositories
 {
     public class AvisRepository : IAvisRepository
     {
-        private readonly string _connectionString;
         private const string avisTable = "avis";
-
-        public AvisRepository(IConfiguration configuration)
+        readonly IDBSession _dbSession;
+        public AvisRepository(IDBSession dbSession)
         {
-            var connectionString = configuration.GetConnectionString("DefaultConnection");
-
-            if (string.IsNullOrEmpty(connectionString))
-            {
-                throw new ArgumentNullException("Connection string 'DefaultConnection' not found.");
-            }
-
-            _connectionString = connectionString;
+            _dbSession = dbSession;
         }
+
+        #region Querries
+
+        #region Querries GET
 
         private const string _queryGetAllAvis =
             "SELECT " +
@@ -33,36 +31,69 @@ namespace APIProjetFilRouge.DAL.Repositories
             $"FROM {avisTable} " +
             "WHERE id_recette = @Id";
 
-        /// <summary>
-        /// Retrieves all reviews from the database.
-        /// </summary>
-        /// <returns>
-        /// <para>A list of Avis objects representing all reviews.</para>
-        /// <para>Throws an exception if an error occurs while retrieving the reviews.</para>
-        /// </returns>
-        public async Task<List<Avis>> GetAllAvis()
+        #endregion
+
+        #region Querries CREATE
+
+        private const string _queryCreateAvis =
+            $"INSERT INTO {avisTable} " +
+            "(id_recette, id_utilisateur, note, commentaire) " +
+            "VALUES(@id_recette, @id_utilisateur, @note, @commentaire)";
+
+        #endregion
+
+        #region DELETE
+
+        private const string _queryDeleteAvis =
+            $"DELETE FROM {avisTable} " +
+            "WHERE id_recette = @id_recette AND id_utilisateur = @id_utilisateur";
+
+        #endregion
+
+        #endregion
+
+        #region Getter
+
+        public async Task<List<Avis>> GetAllAvisAsync()
         {
             List<Avis> Avis = new List<Avis>();
-            using (var connexion = new NpgsqlConnection(_connectionString))
-            {
-                Avis = (await connexion.QueryAsync<Avis>(_queryGetAllAvis)).ToList();
-            }
+
+            Avis = (await _dbSession.Connection.QueryAsync<Avis>(_queryGetAllAvis)).ToList();
+
             return Avis;
         }
 
-        /// <summary>
-        /// Retrieves all reviews of a specific recipe by its ID.
-        /// </summary>
-        /// <param name="id">ID of the recipe</param>
-        /// <returns></returns>
-        public async Task<List<Avis>> GetAvisByRecetteId(int id)
+        public async Task<List<Avis>> GetAvisByRecetteIdAsync(int id)
         {
             List<Avis> Avis = new List<Avis>();
-            using (var connexion = new NpgsqlConnection(_connectionString))
-            {
-                Avis = (await connexion.QueryAsync<Avis>(_queryGetAvisByRecetteId, new { Id = id })).ToList();
-            }
+
+            Avis = (await _dbSession.Connection.QueryAsync<Avis>(_queryGetAvisByRecetteId, new { Id = id })).ToList();
+
             return Avis;
         }
+
+        #endregion
+
+        #region Setter
+
+        public async Task<int> CreateAvisAsync(int id_recette, int id_utilisateur, int note, string commentaire)
+        {
+            int result;
+
+            result = (await _dbSession.Connection.ExecuteAsync(_queryCreateAvis, new { id_recette = id_recette, id_utilisateur = id_utilisateur, note = note, commentaire = commentaire }));
+
+            return result;
+        }
+
+        public async Task<int> DeleteAvisAsync(int id_recette, int id_utilisateur)
+        {
+            int result;
+
+            result = (await _dbSession.Connection.ExecuteAsync(_queryDeleteAvis, new { id_recette = id_recette, id_utilisateur = id_utilisateur }));
+
+            return result;
+        }
+
+        #endregion
     }
 }

@@ -38,14 +38,14 @@ namespace APIProjetFilRouge.Models
             // Gestion des erreurs de base de données PostgreSQL
             if (exception is NpgsqlException npgsqlex)
             {
-                // Code pour une violation de contrainte d'unicité
-                if (npgsqlex.ErrorCode == -2147467259)
+                // No Data (To Keep The if and else for the time being (wich is until there is some post methods in the API))
+                if (npgsqlex.ErrorCode == 02000)
                 {
-                    context.Response.StatusCode = StatusCodes.Status409Conflict;
+                    context.Response.StatusCode = StatusCodes.Status400BadRequest;
                     response = new GlobalExceptionMessage
                     {
-                        error = "Conflit",
-                        details = _env.IsDevelopment() ? $"{exception.GetType().Name} : {exception.Message}" : "Une ressource avec les mêmes informations existe déjà."
+                        error = "Error",
+                        details = _env.IsDevelopment() ? $"{exception.GetType().Name} : {exception.Message}" : "Aucunes Données."
                     };
                     return context.Response.WriteAsJsonAsync(response);
                 }

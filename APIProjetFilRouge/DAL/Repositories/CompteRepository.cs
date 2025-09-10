@@ -1,4 +1,5 @@
 ﻿using APIProjetFilRouge.DAL.Interfaces;
+using APIProjetFilRouge.DAL.Session;
 using APIProjetFilRouge.Models.BussinessObjects;
 using Dapper;
 
@@ -6,22 +7,20 @@ namespace APIProjetFilRouge.DAL.Repositories
 {
     public class CompteRepository : ICompteRepository
     {
-        private readonly string _connectionString;
         private const string compteTable = "utilisateurs";
 
-        public CompteRepository(IConfiguration configuration)
+        readonly IDBSession _dbSession;
+        public CompteRepository(IDBSession dbSession)
         {
-            var connectionString = configuration.GetConnectionString("DefaultConnection");
-
-            if (string.IsNullOrEmpty(connectionString))
-            {
-                throw new ArgumentNullException("Connection string 'DefaultConnection' not found.");
-            }
-
-            _connectionString = connectionString;
+            _dbSession = dbSession;
         }
 
         #region Queries
+
+        private const string _queryGetAllComptes =
+            "SELECT " +
+            "id, identifiant, nom, prenom, email, password, admin " +
+            $"FROM {compteTable}";
 
         private const string _queryGetCompteById =
             "SELECT " +
@@ -33,19 +32,21 @@ namespace APIProjetFilRouge.DAL.Repositories
 
         #region Getter
 
-        /// <summary>
-        /// Retrieves an account by its ID.
-        /// </summary>
-        /// <param name="id">ID of the account</param>
-        /// <returns></returns>
-        public async Task<Compte> GetCompteById(int id)
+        public async Task<List<Compte>> GetAllComptesAsync()
+        {
+            List<Compte> comptes = new List<Compte>();
+
+            comptes = (await _dbSession.Connection.QueryAsync<Compte>(_queryGetAllComptes)).ToList();
+
+            return comptes;
+        }
+
+        public async Task<Compte> GetCompteByIdAsync(int id)
         {
             Compte compte = new Compte();
 
-            using (var connexion = new Npgsql.NpgsqlConnection(_connectionString))
-            {
-                compte = await connexion.QuerySingleAsync<Compte>(_queryGetCompteById, new { Id = id });
-            }
+            compte = await _dbSession.Connection.QuerySingleAsync<Compte>(_queryGetCompteById, new { Id = id });
+
             return compte;
         }
 

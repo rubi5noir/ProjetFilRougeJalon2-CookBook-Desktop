@@ -14,29 +14,17 @@ namespace APIProjetFilRouge.BLL.Services
             _avisRepository = avisRepository;
         }
 
-        /// <summary>
-        /// Retrieves the average note for all recipes.
-        /// </summary>
-        /// <returns>
-        /// <para>An AverageNoteDTO object containing a dictionary with recipe IDs as keys and their corresponding average notes as values.</para>
-        /// <para>Throws an exception if an error occurs while processing the request.</para>
-        /// </returns>
-        public async Task<List<Avis>> GetAvisOfAllRecettes()
+        public async Task<List<Avis>> GetAvisOfAllRecettesAsync()
         {
             //Recuperer toutes les notes
-            List<Avis> avis = await _avisRepository.GetAllAvis();
+            List<Avis> avis = await _avisRepository.GetAllAvisAsync();
 
             return avis;
         }
 
-        /// <summary>
-        /// Retrieves all reviews of a specific recipe by its ID.
-        /// </summary>
-        /// <param name="id">ID of the recipe</param>
-        /// <returns></returns>
-        public async Task<List<Avis>> GetAvisOfRecette(int id)
+        public async Task<List<Avis>> GetAvisOfRecetteAsync(int id)
         {
-            List<Avis> avis = await _avisRepository.GetAvisByRecetteId(id);
+            List<Avis> avis = await _avisRepository.GetAvisByRecetteIdAsync(id);
 
             return avis;
         }

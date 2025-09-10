@@ -5,7 +5,21 @@ namespace APIProjetFilRouge.BLL.Interfaces
 {
     public interface IRecetteService
     {
-        Task<List<Recette>> GetRecetteVignette();
-        Task<Recette> GetRecetteById(int id);
+
+        /// <summary>
+        /// Retrieves a list of recipes formatted for vignettes
+        /// </summary>
+        /// <returns>
+        /// <para>A list of RecetteForVignetteDTO objects representing the recipes for vignettes</para>
+        /// <para>Throws an exception if an error occurs while processing the request</para>
+        /// </returns>
+        Task<List<Recette>> GetRecetteVignetteAsync();
+
+        /// <summary>
+        /// Retrieves detailed information about a recipe by it's ID
+        /// </summary>
+        /// <param name="id">ID of the recipe</param>
+        /// <returns></returns>
+        Task<Recette> GetRecetteByIdAsync(int id);
     }
 }

@@ -3,6 +3,7 @@ using APIProjetFilRouge.BLL.Services;
 using APIProjetFilRouge.DAL.Interfaces;
 using APIProjetFilRouge.Models.BussinessObjects;
 using APIProjetFilRouge.Models.DataTransfertObjects.Between;
+using APIProjetFilRouge.Models.DataTransfertObjects.In;
 using APIProjetFilRouge.Models.DataTransfertObjects.Out;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -45,9 +46,9 @@ namespace APIProjetFilRouge.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetRecettesVignettes()
         {
-            var recettes = await _recetteService.GetRecetteVignette();
+            var recettes = await _recetteService.GetRecetteVignetteAsync();
 
-            var avis = await _avisService.GetAvisOfAllRecettes();
+            var avis = await _avisService.GetAvisOfAllRecettesAsync();
             AverageNoteDTO avisAverageNotes = new AverageNoteDTO();
             // Calcul des moyennes par recette
             avisAverageNotes.averageNotesDictionary = avis
@@ -79,9 +80,9 @@ namespace APIProjetFilRouge.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetRecetteById(int id)
         {
-            var recette = await _recetteService.GetRecetteById(id);
+            var recette = await _recetteService.GetRecetteByIdAsync(id);
 
-            var avis = await _avisService.GetAvisOfRecette(id);
+            var avis = await _avisService.GetAvisOfRecetteAsync(id);
             var avisDTO = avis.Select(avis => new AvisOfRecetteDTO
             {
                 note = avis.note,
@@ -89,14 +90,14 @@ namespace APIProjetFilRouge.Controllers
                 id_utilisateur = avis.id_utilisateur
             }).ToList();
 
-            var utilisateur = await _compteService.GetCreateurById(recette.id_utilisateur);
+            var utilisateur = await _compteService.GetCreateurByIdAsync(recette.id_utilisateur);
             var createur = new CreateurOfRecetteDTO
             {
                 id = utilisateur.id,
                 identifiant = utilisateur.identifiant
             };
 
-            var ingredients = await _ingredientService.GetIngredientsWithQuantitiesOfRecette(id);
+            var ingredients = await _ingredientService.GetIngredientsWithQuantitiesOfRecetteAsync(id);
             var ingredientsList = ingredients.Select(ingredient => new IngredientDTO
             {
                 id = ingredient.id,
@@ -104,14 +105,14 @@ namespace APIProjetFilRouge.Controllers
                 quantite = ingredient.quantite
             }).ToList();
 
-            var categories = await _categorieService.GetCategoriesOfRecette(id);
+            var categories = await _categorieService.GetCategoriesOfRecetteAsync(id);
             var categoriesDTO = categories.Select(c => new CategorieDTO
             {
                 id = c.id,
                 nom = c.nom
             }).ToList();
 
-            var etapes = await _etapeService.GetEtapesOfRecette(id);
+            var etapes = await _etapeService.GetEtapesOfRecetteAsync(id);
             List<EtapeDTO> etapesDTO = etapes.Select(e => new EtapeDTO
             {
                 numero = e.numero,
@@ -136,6 +137,52 @@ namespace APIProjetFilRouge.Controllers
 
             return StatusCode(StatusCodes.Status200OK, recetteDetails);
 
+        }
+
+        #endregion
+
+        #region Poster
+
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> CreateRecette([FromBody] RecetteCreateDTO recetteCreateDTO)
+        {
+
+
+            Recette recette = new Recette
+            {
+                id_utilisateur = recetteCreateDTO.id_utilisateur,
+                nom = recetteCreateDTO.nom,
+                description = recetteCreateDTO.description,
+                temps_preparation = recetteCreateDTO.temps_preparation,
+                temps_cuisson = recetteCreateDTO.temps_cuisson,
+                difficulte = recetteCreateDTO.difficulte,
+                img = recetteCreateDTO.img
+            };
+
+            List<Ingredient> ingredients = recetteCreateDTO.ingredients.Select(i => new Ingredient
+            {
+                id = i.id,
+                nom = i.nom,
+                quantite = i.quantite
+            }).ToList();
+
+            List<Etape> etapes = recetteCreateDTO.etapes.Select(e => new Etape
+            {
+                numero = e.numero,
+                texte = e.texte
+            }).ToList();
+
+            List<Categorie> categories = recetteCreateDTO.categories.Select(c => new Categorie
+            {
+                id = c.id,
+                nom = c.nom
+            }).ToList();
+
+
+
+            return StatusCode(StatusCodes.Status201Created);
         }
 
         #endregion

@@ -18,29 +18,16 @@ namespace APIProjetFilRouge.BLL.Services
 
         #region Getter
 
-        /// <summary>
-        /// Retrieves a list of recipes formatted for vignettes
-        /// </summary>
-        /// <returns>
-        /// <para>A list of RecetteForVignetteDTO objects representing the recipes for vignettes</para>
-        /// <para>Throws an exception if an error occurs while processing the request</para>
-        /// </returns>
-        public async Task<List<Recette>> GetRecetteVignette()
+        public async Task<List<Recette>> GetRecetteVignetteAsync()
         {
-            List<Recette> recettes = await _recetteRepository.GetAllRecettes();
+            List<Recette> recettes = await _recetteRepository.GetAllRecettesAsync();
 
             return recettes;
         }
 
-
-        /// <summary>
-        /// Retrieves detailed information about a recipe by it's ID
-        /// </summary>
-        /// <param name="id">ID of the recipe</param>
-        /// <returns></returns>
-        public async Task<Recette> GetRecetteById(int id)
+        public async Task<Recette> GetRecetteByIdAsync(int id)
         {
-            var recette = await _recetteRepository.GetRecetteById(id);
+            var recette = await _recetteRepository.GetRecetteByIdAsync(id);
 
             return recette;
         }
