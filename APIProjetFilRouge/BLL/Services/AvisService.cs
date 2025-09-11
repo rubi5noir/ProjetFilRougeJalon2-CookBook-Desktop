@@ -28,5 +28,17 @@ namespace APIProjetFilRouge.BLL.Services
 
             return avis;
         }
+
+        public async Task<int> CreateAvisAsync(Avis avis)
+        {
+            int newAvisId = await _avisRepository.CreateAvisAsync(avis);
+            return newAvisId;
+        }
+
+        public async Task<int> DeleteAvisAsync(int id_recette, int id_utilisateur)
+        {
+            int rowsAffected = await _avisRepository.DeleteAvisAsync(id_recette, id_utilisateur);
+            return rowsAffected;
+        }
     }
 }

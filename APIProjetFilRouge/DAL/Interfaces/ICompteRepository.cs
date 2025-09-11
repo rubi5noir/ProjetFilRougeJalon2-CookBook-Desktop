@@ -27,7 +27,7 @@ namespace APIProjetFilRouge.DAL.Interfaces
         /// <param name="password">password of the user</param>
         /// <param name="admin">is user admin?</param>
         /// <returns>id of the new account</returns>
-        Task<int> CreateCompteAsync(string identifiant, string nom, string prenom, string email, string password, bool admin);
+        Task<int> CreateCompteAsync(Compte compte);
 
         /// <summary>
         /// Deletes an account from the database based on the account ID.

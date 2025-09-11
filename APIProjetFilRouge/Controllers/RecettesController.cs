@@ -90,7 +90,7 @@ namespace APIProjetFilRouge.Controllers
                 id_utilisateur = avis.id_utilisateur
             }).ToList();
 
-            var utilisateur = await _compteService.GetCreateurByIdAsync(recette.id_utilisateur);
+            var utilisateur = await _compteService.GetCompteByIdAsync(recette.id_utilisateur);
             var createur = new CreateurOfRecetteDTO
             {
                 id = utilisateur.id,
@@ -180,7 +180,60 @@ namespace APIProjetFilRouge.Controllers
                 nom = c.nom
             }).ToList();
 
+            // Transaction a venir (attente du cours)
 
+            return StatusCode(StatusCodes.Status201Created);
+        }
+
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> UpdateRecette([FromBody] RecetteUpdateDTO recetteUpdateDTO)
+        {
+
+
+            Recette recette = new Recette
+            {
+                id = recetteUpdateDTO.id,
+                nom = recetteUpdateDTO.nom,
+                description = recetteUpdateDTO.description,
+                temps_preparation = recetteUpdateDTO.temps_preparation,
+                temps_cuisson = recetteUpdateDTO.temps_cuisson,
+                difficulte = recetteUpdateDTO.difficulte,
+                img = recetteUpdateDTO.img
+            };
+
+            List<Ingredient> ingredients = recetteUpdateDTO.ingredients.Select(i => new Ingredient
+            {
+                id = i.id,
+                nom = i.nom,
+                quantite = i.quantite
+            }).ToList();
+
+            List<Etape> etapes = recetteUpdateDTO.etapes.Select(e => new Etape
+            {
+                numero = e.numero,
+                texte = e.texte
+            }).ToList();
+
+            List<Categorie> categories = recetteUpdateDTO.categories.Select(c => new Categorie
+            {
+                id = c.id,
+                nom = c.nom
+            }).ToList();
+
+            // Transaction a venir (attente du cours)
+
+            return StatusCode(StatusCodes.Status200OK);
+        }
+
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> DeleteRecette(int id)
+        {
+
+            // Transaction a venir (attente du cours)
 
             return StatusCode(StatusCodes.Status201Created);
         }

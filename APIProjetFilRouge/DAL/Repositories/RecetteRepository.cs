@@ -45,7 +45,7 @@ namespace APIProjetFilRouge.DAL.Repositories
         private const string _queryUpdateRecette =
             $"UPDATE {recetteTable} " +
             "SET nom = @nom, description = @description, temps_preparation = @temps_preparation, " +
-            "temps_cuisson = @temps_cuisson, difficulte = @difficulte, id_utilisateur = @id_utilisateur, img = @img " +
+            "temps_cuisson = @temps_cuisson, difficulte = @difficulte, img = @img " +
             "WHERE id = @id";
 
         private const string _queryDeleteRecette =
@@ -108,7 +108,6 @@ namespace APIProjetFilRouge.DAL.Repositories
                 temps_preparation = recette.temps_preparation,
                 temps_cuisson = recette.temps_cuisson,
                 difficulte = recette.difficulte,
-                id_utilisateur = recette.id_utilisateur,
                 img = recette.img
             });
             return rowAffected;

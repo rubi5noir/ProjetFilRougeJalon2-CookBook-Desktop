@@ -11,5 +11,9 @@ namespace APIProjetFilRouge.BLL.Interfaces
         /// <param name="id">ID of the recipe</param>
         /// <returns></returns>
         Task<List<Etape>> GetEtapesOfRecetteAsync(int id);
+
+        Task<int> CreateEtapeAsync(Etape etape);
+
+        Task<int> DeleteEtapeAsync(int id_recette, int numero);
     }
 }

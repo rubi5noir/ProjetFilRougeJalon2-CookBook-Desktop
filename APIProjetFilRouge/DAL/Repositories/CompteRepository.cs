@@ -74,16 +74,16 @@ namespace APIProjetFilRouge.DAL.Repositories
 
         #region Setter
 
-        public async Task<int> CreateCompteAsync(string identifiant, string nom, string prenom, string email, string password, bool admin)
+        public async Task<int> CreateCompteAsync(Compte compte)
         {
             var parameters = new
             {
-                identifiant,
-                nom,
-                prenom,
-                email,
-                password,
-                admin
+                compte.identifiant,
+                compte.nom,
+                compte.prenom,
+                compte.email,
+                compte.password,
+                compte.admin
             };
             int newId = await _dbSession.Connection.QuerySingleAsync<int>(_queryCreateCompte, parameters);
             return newId;

@@ -5,11 +5,17 @@ namespace APIProjetFilRouge.BLL.Interfaces
 {
     public interface ICompteService
     {
+        Task<Compte> GetAllComptesAsync(int id);
+
         /// <summary>
-        /// Retrieves the creator information by their ID.
+        /// Retrieves the account information by their ID.
         /// </summary>
-        /// <param name="Createur">ID of the creator of the recipe</param>
+        /// <param name="Createur">ID of the account</param>
         /// <returns></returns>
-        Task<Compte> GetCreateurByIdAsync(int Createur);
+        Task<Compte> GetCompteByIdAsync(int id);
+
+        Task<int> CreateCompteAsync(Compte compte);
+
+        Task<int> DeleteCompteAsync(int id);
     }
 }

@@ -33,6 +33,28 @@ namespace APIProjetFilRouge.BLL.Services
         }
 
         #endregion
+
+        #region Setter
+
+        public async Task<int> CreateRecetteAsync(Recette recette)
+        {
+            int newRecetteId = await _recetteRepository.CreateRecetteAsync(recette);
+            return newRecetteId;
+        }
+
+        public async Task<int> UpdateRecetteAsync(Recette recette)
+        {
+            int rowAffected = await _recetteRepository.UpdateRecetteAsync(recette);
+            return rowAffected;
+        }
+
+        public async Task<int> DeleteRecetteAsync(int id)
+        {
+            int rowAffected = await _recetteRepository.DeleteRecetteAsync(id);
+            return rowAffected;
+        }
+
+        #endregion
     }
 
 }

@@ -21,5 +21,17 @@ namespace APIProjetFilRouge.BLL.Services
 
             return etapes;
         }
+
+        public async Task<int> CreateEtapeAsync(Etape etape)
+        {
+            int rowsAffected = await _etapeRepository.CreateEtapeAsync(etape);
+            return rowsAffected;
+        }
+
+        public async Task<int> DeleteEtapeAsync(int id_recette, int numero)
+        {
+            int rowsAffected = await _etapeRepository.DeleteEtapeAsync(id_recette, numero);
+            return rowsAffected;
+        }
     }
 }

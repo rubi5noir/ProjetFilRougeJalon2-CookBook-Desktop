@@ -14,11 +14,29 @@ namespace APIProjetFilRouge.BLL.Services
             _compteRepository = compteRepository;
         }
 
-        public async Task<Compte> GetCreateurByIdAsync(int Createur)
+        public async Task<List<Compte>> GetAllComptesAsync()
         {
-            var createur = await _compteRepository.GetCompteByIdAsync(Createur);
+            var compte = await _compteRepository.GetAllComptesAsync();
+            return compte;
+        }
+
+        public async Task<Compte> GetCompteByIdAsync(int id)
+        {
+            var createur = await _compteRepository.GetCompteByIdAsync(id);
 
             return createur;
+        }
+
+        public async Task<int> CreateCompteAsync(Compte compte)
+        {
+            int newCompteId = await _compteRepository.CreateCompteAsync(compte);
+            return newCompteId;
+        }
+
+        public async Task<int> DeleteCompteAsync(int id)
+        {
+            int rowsAffected = await _compteRepository.DeleteCompteAsync(id);
+            return rowsAffected;
         }
     }
 }
