@@ -33,16 +33,12 @@ namespace APIProjetFilRouge.DAL.Repositories
 
         #endregion
 
-        #region Querries CREATE
+        #region Querries SET
 
         private const string _queryCreateAvis =
             $"INSERT INTO {avisTable} " +
             "(id_recette, id_utilisateur, note, commentaire) " +
             "VALUES(@id_recette, @id_utilisateur, @note, @commentaire)";
-
-        #endregion
-
-        #region DELETE
 
         private const string _queryDeleteAvis =
             $"DELETE FROM {avisTable} " +
@@ -51,6 +47,8 @@ namespace APIProjetFilRouge.DAL.Repositories
         #endregion
 
         #endregion
+
+        #region Methods
 
         #region Getter
 
@@ -76,11 +74,11 @@ namespace APIProjetFilRouge.DAL.Repositories
 
         #region Setter
 
-        public async Task<int> CreateAvisAsync(int id_recette, int id_utilisateur, int note, string commentaire)
+        public async Task<int> CreateAvisAsync(Avis avis)
         {
             int result;
 
-            result = (await _dbSession.Connection.ExecuteAsync(_queryCreateAvis, new { id_recette = id_recette, id_utilisateur = id_utilisateur, note = note, commentaire = commentaire }));
+            result = (await _dbSession.Connection.ExecuteAsync(_queryCreateAvis, new { id_recette = avis.id_recette, id_utilisateur = avis.id_utilisateur, note = avis.note, commentaire = avis.commentaire }));
 
             return result;
         }
@@ -93,6 +91,8 @@ namespace APIProjetFilRouge.DAL.Repositories
 
             return result;
         }
+
+        #endregion
 
         #endregion
     }

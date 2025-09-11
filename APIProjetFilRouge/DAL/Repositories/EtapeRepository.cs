@@ -17,6 +17,8 @@ namespace APIProjetFilRouge.DAL.Repositories
 
         #region Queries
 
+        #region Queries GET
+
         private const string _queryGetEtapesOfRecette =
             "SELECT " +
             "numero, id_recette, texte " +
@@ -25,6 +27,23 @@ namespace APIProjetFilRouge.DAL.Repositories
             "ORDER BY numero";
 
         #endregion
+
+        #region Queries SET
+
+        private const string _queryCreateEtape =
+            $"INSERT INTO {etapeTable} " +
+            "(id_recette, numero, texte) " +
+            "VALUES(@id_recette, @numero, @texte)";
+
+        private const string _queryDeleteEtape =
+            $"DELETE FROM {etapeTable} " +
+            "WHERE id_recette = @id_recette AND numero = @numero";
+
+        #endregion
+
+        #endregion
+
+        #region Methods
 
         #region Getter
 
@@ -36,6 +55,35 @@ namespace APIProjetFilRouge.DAL.Repositories
 
             return etapes;
         }
+
+        #endregion
+
+        #region Setter
+
+        public async Task<int> CreateEtapeAsync(Etape etape)
+        {
+            var parameters = new
+            {
+                etape.id_recette,
+                etape.numero,
+                etape.texte
+            };
+            var result = await _dbSession.Connection.ExecuteAsync(_queryCreateEtape, parameters);
+            return result;
+        }
+
+        public async Task<int> DeleteEtapeAsync(int id_recette, int numero)
+        {
+            var parameters = new
+            {
+                id_recette,
+                numero
+            };
+            var result = await _dbSession.Connection.ExecuteAsync(_queryDeleteEtape, parameters);
+            return result;
+        }
+
+        #endregion
 
         #endregion
     }

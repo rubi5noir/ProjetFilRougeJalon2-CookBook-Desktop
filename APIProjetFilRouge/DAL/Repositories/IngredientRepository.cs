@@ -18,6 +18,8 @@ namespace APIProjetFilRouge.DAL.Repositories
 
         #region Queries
 
+        #region Queries GET
+
         private const string _queryGetAllIngredients =
             "SELECT " +
             "id, nom " +
@@ -31,6 +33,24 @@ namespace APIProjetFilRouge.DAL.Repositories
             $"WHERE {ingredientInRecetteTable}.id_recette = @Id";
 
         #endregion
+
+        #region Queries SET
+
+        private const string _queryCreateIngredient =
+            $"INSERT INTO {ingredientTable} " +
+            "(nom) " +
+            "VALUES(@nom) " +
+            "RETURNING id;";
+
+        private const string _queryDeleteIngredient =
+            $"DELETE FROM {ingredientTable} " +
+            "WHERE id = @id";
+
+        #endregion
+
+        #endregion
+
+        #region Methods
 
         #region Getter
 
@@ -52,6 +72,27 @@ namespace APIProjetFilRouge.DAL.Repositories
 
             return ingredients;
         }
+
+        #endregion
+
+        #region Setter
+
+        public async Task<int> CreateIngredientAsync(Ingredient ingredient)
+        {
+            var id = await _dbSession.Connection.ExecuteScalarAsync<int>(_queryCreateIngredient, new
+            {
+                ingredient.nom
+            });
+            return id;
+        }
+
+        public async Task<int> DeleteIngredientAsync(int id)
+        {
+            int rowAffected = await _dbSession.Connection.ExecuteAsync(_queryDeleteIngredient, new { id });
+            return rowAffected;
+        }
+
+        #endregion
 
         #endregion
     }

@@ -17,6 +17,8 @@ namespace APIProjetFilRouge.DAL.Repositories
 
         #region Queries
 
+        #region Queries GET
+
         private const string _queryGetAllComptes =
             "SELECT " +
             "id, identifiant, nom, prenom, email, password, admin " +
@@ -29,6 +31,24 @@ namespace APIProjetFilRouge.DAL.Repositories
             "WHERE id = @Id";
 
         #endregion
+
+        #region Queries SET
+
+        private const string _queryCreateCompte =
+            $"INSERT INTO {compteTable} " +
+            "(identifiant, nom, prenom, email, password, admin) " +
+            "VALUES(@identifiant, @nom, @prenom, @email, @password, @admin) " +
+            "RETURNING id;";
+
+        private const string _queryDeleteCompte =
+            $"DELETE FROM {compteTable} " +
+            "WHERE id = @id";
+
+        #endregion
+
+        #endregion
+
+        #region Methods
 
         #region Getter
 
@@ -49,6 +69,33 @@ namespace APIProjetFilRouge.DAL.Repositories
 
             return compte;
         }
+
+        #endregion
+
+        #region Setter
+
+        public async Task<int> CreateCompteAsync(string identifiant, string nom, string prenom, string email, string password, bool admin)
+        {
+            var parameters = new
+            {
+                identifiant,
+                nom,
+                prenom,
+                email,
+                password,
+                admin
+            };
+            int newId = await _dbSession.Connection.QuerySingleAsync<int>(_queryCreateCompte, parameters);
+            return newId;
+        }
+
+        public async Task<int> DeleteCompteAsync(int id)
+        {
+            int rowsAffected = await _dbSession.Connection.ExecuteAsync(_queryDeleteCompte, new { id = id });
+            return rowsAffected;
+        }
+
+        #endregion
 
         #endregion
     }

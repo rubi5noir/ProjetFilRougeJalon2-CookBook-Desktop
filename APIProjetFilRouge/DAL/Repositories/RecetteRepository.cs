@@ -19,6 +19,8 @@ namespace APIProjetFilRouge.DAL.Repositories
 
         #region Queries
 
+        #region Queries GET
+
         private const string _queryGetAllRecettes =
             "SELECT " +
             "id, nom, description, temps_preparation, temps_cuisson, difficulte, id_utilisateur, img " +
@@ -31,6 +33,30 @@ namespace APIProjetFilRouge.DAL.Repositories
             "WHERE id = @Id";
 
         #endregion
+
+        #region Queries SET
+
+        private const string _queryCreateRecette =
+            $"INSERT INTO {recetteTable} " +
+            "(nom, description, temps_preparation, temps_cuisson, difficulte, id_utilisateur, img) " +
+            "VALUES(@nom, @description, @temps_preparation, @temps_cuisson, @difficulte, @id_utilisateur, @img) " +
+            "RETURNING id;";
+
+        private const string _queryUpdateRecette =
+            $"UPDATE {recetteTable} " +
+            "SET nom = @nom, description = @description, temps_preparation = @temps_preparation, " +
+            "temps_cuisson = @temps_cuisson, difficulte = @difficulte, id_utilisateur = @id_utilisateur, img = @img " +
+            "WHERE id = @id";
+
+        private const string _queryDeleteRecette =
+            $"DELETE FROM {recetteTable} " +
+            "WHERE id = @id";
+
+        #endregion
+
+        #endregion
+
+        #region Methods
 
         #region Getter
 
@@ -52,6 +78,49 @@ namespace APIProjetFilRouge.DAL.Repositories
 
             return recette;
         }
+
+        #endregion
+
+        #region Setter
+
+        public async Task<int> CreateRecetteAsync(Recette recette)
+        {
+            int newId = await _dbSession.Connection.QuerySingleAsync<int>(_queryCreateRecette, new
+            {
+                nom = recette.nom,
+                description = recette.description,
+                temps_preparation = recette.temps_preparation,
+                temps_cuisson = recette.temps_cuisson,
+                difficulte = recette.difficulte,
+                id_utilisateur = recette.id_utilisateur,
+                img = recette.img
+            });
+            return newId;
+        }
+
+        public async Task<int> UpdateRecetteAsync(Recette recette)
+        {
+            int rowAffected = await _dbSession.Connection.ExecuteAsync(_queryUpdateRecette, new
+            {
+                id = recette.id,
+                nom = recette.nom,
+                description = recette.description,
+                temps_preparation = recette.temps_preparation,
+                temps_cuisson = recette.temps_cuisson,
+                difficulte = recette.difficulte,
+                id_utilisateur = recette.id_utilisateur,
+                img = recette.img
+            });
+            return rowAffected;
+        }
+
+        public async Task<int> DeleteRecetteAsync(int id)
+        {
+            int rowAffected = await _dbSession.Connection.ExecuteAsync(_queryDeleteRecette, new { id });
+            return rowAffected;
+        }
+
+        #endregion
 
         #endregion
     }

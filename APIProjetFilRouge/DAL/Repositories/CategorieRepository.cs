@@ -2,6 +2,7 @@
 using APIProjetFilRouge.DAL.Session;
 using APIProjetFilRouge.Models.BussinessObjects;
 using Dapper;
+using System.Runtime.CompilerServices;
 
 namespace APIProjetFilRouge.DAL.Repositories
 {
@@ -16,7 +17,14 @@ namespace APIProjetFilRouge.DAL.Repositories
             _dbSession = dbSession;
         }
 
-        #region Queries
+        #region Querries
+
+        #region Querries GET
+
+        private const string _queryGetAllCategories =
+                   "SELECT " +
+                   $"{categorieTable}.id, {categorieTable}.nom " +
+                   $"FROM {categorieTable} ";
 
         private const string _queryGetCategoriesOfRecette =
             "SELECT " +
@@ -27,7 +35,32 @@ namespace APIProjetFilRouge.DAL.Repositories
 
         #endregion
 
+        #region Querries SET
+
+        private const string _queryCreateCategorie =
+            $"INSERT INTO {categorieTable} " +
+            "(nom) " +
+            "VALUES(@nom) " +
+            "RETURNING id;";
+
+        private const string _queryDeleteCategorie =
+            $"DELETE FROM {categorieTable} " +
+            "WHERE id = @id";
+
+        #endregion
+
+        #endregion
+
+        #region Methods
+
         #region Getter
+
+        public async Task<List<Categorie>> GetAllCategoriesAsync()
+        {
+            List<Categorie> categories;
+            categories = (await _dbSession.Connection.QueryAsync<Categorie>(_queryGetAllCategories)).ToList();
+            return categories;
+        }
 
         public async Task<List<Categorie>> GetCategoriesOfRecetteAsync(int id)
         {
@@ -37,6 +70,24 @@ namespace APIProjetFilRouge.DAL.Repositories
 
             return categories;
         }
+
+        #endregion
+
+        #region Setter
+
+        public async Task<int> CreateCategorieAsync(string nom)
+        {
+            int newId = await _dbSession.Connection.QuerySingleAsync<int>(_queryCreateCategorie, new { nom = nom });
+            return newId;
+        }
+
+        public async Task<int> DeleteCategorieAsync(int id)
+        {
+            int rowsAffected = await _dbSession.Connection.ExecuteAsync(_queryDeleteCategorie, new { id = id });
+            return rowsAffected;
+        }
+
+        #endregion
 
         #endregion
     }
