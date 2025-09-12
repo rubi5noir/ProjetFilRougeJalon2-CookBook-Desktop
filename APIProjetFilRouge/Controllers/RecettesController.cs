@@ -16,20 +16,10 @@ namespace APIProjetFilRouge.Controllers
     public class RecettesController : ControllerBase
     {
         private readonly IRecetteService _recetteService;
-        private readonly IAvisService _avisService;
-        private readonly ICompteService _compteService;
-        private readonly IIngredientService _ingredientService;
-        private readonly ICategorieService _categorieService;
-        private readonly IEtapeService _etapeService;
 
-        public RecettesController(IRecetteService recetteService, IAvisService avisService, ICompteService compteService, IIngredientService ingredientService, ICategorieService categorieService, IEtapeService etapeService)
+        public RecettesController(IRecetteService recetteService)
         {
             _recetteService = recetteService;
-            _avisService = avisService;
-            _compteService = compteService;
-            _ingredientService = ingredientService;
-            _categorieService = categorieService;
-            _etapeService = etapeService;
         }
 
         #region Getter
@@ -48,7 +38,7 @@ namespace APIProjetFilRouge.Controllers
         {
             var recettes = await _recetteService.GetRecetteVignetteAsync();
 
-            var avis = await _avisService.GetAvisOfAllRecettesAsync();
+            var avis = await _recetteService.GetAvisOfAllRecettesAsync();
             AverageNoteDTO avisAverageNotes = new AverageNoteDTO();
             // Calcul des moyennes par recette
             avisAverageNotes.averageNotesDictionary = avis
@@ -82,7 +72,7 @@ namespace APIProjetFilRouge.Controllers
         {
             var recette = await _recetteService.GetRecetteByIdAsync(id);
 
-            var avis = await _avisService.GetAvisOfRecetteAsync(id);
+            var avis = await _recetteService.GetAvisOfRecetteAsync(id);
             var avisDTO = avis.Select(avis => new AvisOfRecetteDTO
             {
                 note = avis.note,
@@ -90,14 +80,14 @@ namespace APIProjetFilRouge.Controllers
                 id_utilisateur = avis.id_utilisateur
             }).ToList();
 
-            var utilisateur = await _compteService.GetCompteByIdAsync(recette.id_utilisateur);
+            var utilisateur = await _recetteService.GetCompteByIdAsync(recette.id_utilisateur);
             var createur = new CreateurOfRecetteDTO
             {
                 id = utilisateur.id,
                 identifiant = utilisateur.identifiant
             };
 
-            var ingredients = await _ingredientService.GetIngredientsWithQuantitiesOfRecetteAsync(id);
+            var ingredients = await _recetteService.GetIngredientsWithQuantitiesOfRecetteAsync(id);
             var ingredientsList = ingredients.Select(ingredient => new IngredientDTO
             {
                 id = ingredient.id,
@@ -105,14 +95,14 @@ namespace APIProjetFilRouge.Controllers
                 quantite = ingredient.quantite
             }).ToList();
 
-            var categories = await _categorieService.GetCategoriesOfRecetteAsync(id);
+            var categories = await _recetteService.GetCategoriesOfRecetteAsync(id);
             var categoriesDTO = categories.Select(c => new CategorieDTO
             {
                 id = c.id,
                 nom = c.nom
             }).ToList();
 
-            var etapes = await _etapeService.GetEtapesOfRecetteAsync(id);
+            var etapes = await _recetteService.GetEtapesOfRecetteAsync(id);
             List<EtapeDTO> etapesDTO = etapes.Select(e => new EtapeDTO
             {
                 numero = e.numero,
