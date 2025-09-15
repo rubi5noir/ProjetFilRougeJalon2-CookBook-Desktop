@@ -40,6 +40,11 @@ namespace APIProjetFilRouge.DAL.Repositories
             "(id_recette, id_utilisateur, note, commentaire) " +
             "VALUES(@id_recette, @id_utilisateur, @note, @commentaire)";
 
+        private const string _queryUpdateAvis =
+            $"UPDATE {avisTable} " +
+            "SET note = @note, commentaire = @commentaire " +
+            "WHERE id_recette = @id_recette AND WHERE id_utilisateur = @id_utilisateur";
+
         private const string _queryDeleteAvis =
             $"DELETE FROM {avisTable} " +
             "WHERE id_recette = @id_recette AND id_utilisateur = @id_utilisateur";
@@ -79,6 +84,15 @@ namespace APIProjetFilRouge.DAL.Repositories
             int result;
 
             result = (await _dbSession.Connection.ExecuteAsync(_queryCreateAvis, new { id_recette = avis.id_recette, id_utilisateur = avis.id_utilisateur, note = avis.note, commentaire = avis.commentaire }));
+
+            return result;
+        }
+
+        public async Task<int> UpdateAvisAsync(Avis avis)
+        {
+            int result;
+
+            result = (await _dbSession.Connection.ExecuteAsync(_queryUpdateAvis, new { note = avis.note, commentaire = avis.commentaire, id_recette = avis.id_recette, id_utilisateur = avis.id_utilisateur }));
 
             return result;
         }

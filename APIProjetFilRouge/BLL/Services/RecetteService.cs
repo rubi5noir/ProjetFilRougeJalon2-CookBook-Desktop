@@ -49,6 +49,12 @@ namespace APIProjetFilRouge.BLL.Services
             return newAvisId;
         }
 
+        public async Task<int> UpdateAvisAsync(Avis avis)
+        {
+            int rowsAffected = await _avisRepository.UpdateAvisAsync(avis);
+            return rowsAffected;
+        }
+
         public async Task<int> DeleteAvisAsync(int id_recette, int id_utilisateur)
         {
             int rowsAffected = await _avisRepository.DeleteAvisAsync(id_recette, id_utilisateur);
@@ -72,10 +78,16 @@ namespace APIProjetFilRouge.BLL.Services
             return categories;
         }
 
-        public async Task<int> CreateCategorieAsync(string nom)
+        public async Task<int> CreateCategorieAsync(Categorie categorie)
         {
-            int newCategorieId = await _categorieRepository.CreateCategorieAsync(nom);
+            int newCategorieId = await _categorieRepository.CreateCategorieAsync(categorie.nom);
             return newCategorieId;
+        }
+
+        public async Task<int> UpdateCategorieAsync(Categorie categorie)
+        {
+            int rowsAffected = await _categorieRepository.UpdateCategorieAsync(categorie);
+            return rowsAffected;
         }
 
         public async Task<int> DeleteCategorieAsync(int id)
@@ -107,6 +119,12 @@ namespace APIProjetFilRouge.BLL.Services
             return newCompteId;
         }
 
+        public async Task<int> UpdateCompteAsync(Compte compte)
+        {
+            int rowsAffected = await _compteRepository.UpdateCompteAsync(compte);
+            return rowsAffected;
+        }
+
         public async Task<int> DeleteCompteAsync(int id)
         {
             int rowsAffected = await _compteRepository.DeleteCompteAsync(id);
@@ -127,6 +145,12 @@ namespace APIProjetFilRouge.BLL.Services
         public async Task<int> CreateEtapeAsync(Etape etape)
         {
             int rowsAffected = await _etapeRepository.CreateEtapeAsync(etape);
+            return rowsAffected;
+        }
+
+        public async Task<int> UpdateEtapeAsync(Etape etape)
+        {
+            int rowsAffected = await _etapeRepository.UpdateEtapeAsync(etape);
             return rowsAffected;
         }
 
@@ -157,6 +181,12 @@ namespace APIProjetFilRouge.BLL.Services
         {
             int newIngredientId = await _ingredientRepository.CreateIngredientAsync(ingredient);
             return newIngredientId;
+        }
+
+        public async Task<int> UpdateIngredientAsync(Ingredient ingredient)
+        {
+            int rowsAffected = await _ingredientRepository.UpdateIngredientAsync(ingredient);
+            return rowsAffected;
         }
 
         public async Task<int> DeleteIngredientAsync(int id)

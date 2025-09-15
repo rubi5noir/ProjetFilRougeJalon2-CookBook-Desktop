@@ -23,6 +23,12 @@ namespace APIProjetFilRouge.DAL.Interfaces
         Task<int> CreateCompteAsync(Compte compte);
 
         /// <summary>
+        /// Update an account from the database.
+        /// </summary>
+        /// <returns><see cref="int"/> : Number of rows affected</returns>
+        Task<int> UpdateCompteAsync(Compte compte);
+
+        /// <summary>
         /// Deletes an account from the database based on the account ID.
         /// </summary>
         /// <returns><see cref="int"/> : Number of rows affected</returns>

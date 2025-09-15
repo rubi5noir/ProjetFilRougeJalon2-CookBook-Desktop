@@ -26,6 +26,12 @@ namespace APIProjetFilRouge.BLL.Interfaces
         Task<int> CreateAvisAsync(Avis avis);
 
         /// <summary>
+        /// Update a review
+        /// </summary>
+        /// <returns></returns>
+        Task<int> UpdateAvisAsync(Avis avis);
+
+        /// <summary>
         /// Delete a review based on recipe ID and user ID
         /// </summary>
         /// <returns></returns>
@@ -51,7 +57,13 @@ namespace APIProjetFilRouge.BLL.Interfaces
         /// Create a new category in the database
         /// </summary>
         /// <returns><see cref="int"/> : Id of the new categorie</returns>
-        Task<int> CreateCategorieAsync(string nom);
+        Task<int> CreateCategorieAsync(Categorie categorie);
+
+        /// <summary>
+        /// Update a category from the database
+        /// </summary>
+        /// <returns></returns>
+        Task<int> UpdateCategorieAsync(Categorie categorie);
 
         /// <summary>
         /// Delete a category from the database
@@ -82,6 +94,12 @@ namespace APIProjetFilRouge.BLL.Interfaces
         Task<int> CreateCompteAsync(Compte compte);
 
         /// <summary>
+        /// Update a user account from the database
+        /// </summary>
+        /// <returns></returns>
+        Task<int> UpdateCompteAsync(Compte compte);
+
+        /// <summary>
         /// Delete a user account from the database
         /// </summary>
         /// <returns></returns>
@@ -102,6 +120,12 @@ namespace APIProjetFilRouge.BLL.Interfaces
         /// </summary>
         /// <returns><see cref="int"/> : Number of the new step</returns>
         Task<int> CreateEtapeAsync(Etape etape);
+
+        /// <summary>
+        /// Update a step from a recipe
+        /// </summary>
+        /// <returns></returns>
+        Task<int> UpdateEtapeAsync(Etape etape);
 
         /// <summary>
         /// Delete a step from a recipe based on recipe ID and step number
@@ -130,6 +154,12 @@ namespace APIProjetFilRouge.BLL.Interfaces
         /// </summary>
         /// <returns><see cref="int"/> : Id of the new ingredient</returns>
         Task<int> CreateIngredientAsync(Ingredient ingredient);
+
+        /// <summary>
+        /// Update an ingredient from the database
+        /// </summary>
+        /// <returns></returns>
+        Task<int> UpdateIngredientAsync(Ingredient ingredient);
 
         /// <summary>
         /// Delete an ingredient from the database

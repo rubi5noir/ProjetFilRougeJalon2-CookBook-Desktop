@@ -24,6 +24,12 @@ namespace APIProjetFilRouge.DAL.Interfaces
         Task<int> CreateCategorieAsync(string nom);
 
         /// <summary>
+        /// Update a categorie from the database.
+        /// </summary>
+        /// <returns><see cref="int"/> : Number of rows affected</returns>
+        Task<int> UpdateCategorieAsync(Categorie categorie);
+
+        /// <summary>
         /// Deletes a categorie from the database based on the categorie ID.
         /// </summary>
         /// <returns><see cref="int"/> : Number of rows affected</returns>

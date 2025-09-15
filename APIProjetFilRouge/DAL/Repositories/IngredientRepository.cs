@@ -40,7 +40,12 @@ namespace APIProjetFilRouge.DAL.Repositories
             $"INSERT INTO {ingredientTable} " +
             "(nom) " +
             "VALUES(@nom) " +
-            "RETURNING id;";
+            "RETURNING id";
+
+        private const string _queryUpdateIngredient =
+            $"UPDATE {ingredientTable} " +
+            "SET nom = @nom " +
+            "WHERE id = @id";
 
         private const string _queryDeleteIngredient =
             $"DELETE FROM {ingredientTable} " +
@@ -86,10 +91,16 @@ namespace APIProjetFilRouge.DAL.Repositories
             return id;
         }
 
+        public async Task<int> UpdateIngredientAsync(Ingredient ingredient)
+        {
+            var rowsAffected = await _dbSession.Connection.ExecuteAsync(_queryUpdateIngredient, new { nom = ingredient.nom, id = ingredient.id });
+            return rowsAffected;
+        }
+
         public async Task<int> DeleteIngredientAsync(int id)
         {
-            int rowAffected = await _dbSession.Connection.ExecuteAsync(_queryDeleteIngredient, new { id });
-            return rowAffected;
+            int rowsAffected = await _dbSession.Connection.ExecuteAsync(_queryDeleteIngredient, new { id });
+            return rowsAffected;
         }
 
         #endregion

@@ -35,9 +35,14 @@ namespace APIProjetFilRouge.DAL.Repositories
             "(id_recette, numero, texte) " +
             "VALUES(@id_recette, @numero, @texte)";
 
+        private const string _queryUpdateEtape =
+            $"UPDATE {etapeTable} " +
+            "SET texte = @texte " +
+            "WHERE id_recette = id_recette AND WHERE numero = @numero";
+
         private const string _queryDeleteEtape =
             $"DELETE FROM {etapeTable} " +
-            "WHERE id_recette = @id_recette AND numero = @numero";
+            "WHERE id_recette = @id_recette AND WHERE numero = @numero";
 
         #endregion
 
@@ -69,6 +74,12 @@ namespace APIProjetFilRouge.DAL.Repositories
                 etape.texte
             };
             var result = await _dbSession.Connection.ExecuteAsync(_queryCreateEtape, parameters);
+            return result;
+        }
+
+        public async Task<int> UpdateEtapeAsync(Etape etape)
+        {
+            var result = await _dbSession.Connection.ExecuteAsync(_queryUpdateEtape, new { texte = etape.texte, id_recette = etape.id_recette, numero = etape.numero });
             return result;
         }
 

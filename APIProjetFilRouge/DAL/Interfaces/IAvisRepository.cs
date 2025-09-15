@@ -23,6 +23,12 @@ namespace APIProjetFilRouge.DAL.Interfaces
         Task<int> CreateAvisAsync(Avis avis);
 
         /// <summary>
+        /// Update a review from the database.
+        /// </summary>
+        /// <returns><see cref="int"/> : Number of rows affected</returns>
+        Task<int> UpdateAvisAsync(Avis avis);
+
+        /// <summary>
         /// Deletes a review from the database based on the recipe ID and user ID.
         /// </summary>
         /// <returns><see cref="int"/> : Number of rows affected</returns>

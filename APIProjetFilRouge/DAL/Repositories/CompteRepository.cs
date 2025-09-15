@@ -40,6 +40,11 @@ namespace APIProjetFilRouge.DAL.Repositories
             "VALUES(@identifiant, @nom, @prenom, @email, @password, @admin) " +
             "RETURNING id;";
 
+        private const string _queryUpdateCompte =
+            $"UPDATE {compteTable} " +
+            "SET identifiant = @identifiant " +
+            "WHERE id = @id";
+
         private const string _queryDeleteCompte =
             $"DELETE FROM {compteTable} " +
             "WHERE id = @id";
@@ -87,6 +92,17 @@ namespace APIProjetFilRouge.DAL.Repositories
             };
             int newId = await _dbSession.Connection.QuerySingleAsync<int>(_queryCreateCompte, parameters);
             return newId;
+        }
+
+        public async Task<int> UpdateCompteAsync(Compte compte)
+        {
+            var parameters = new
+            {
+                compte.identifiant,
+                compte.id
+            };
+            int rowsAffected = await _dbSession.Connection.ExecuteAsync(_queryUpdateCompte, parameters);
+            return rowsAffected;
         }
 
         public async Task<int> DeleteCompteAsync(int id)

@@ -5,7 +5,6 @@ namespace APIProjetFilRouge.Models.DataTransfertObjects.In
 {
     public class RecetteUpdateDTO
     {
-        public int id { get; set; }
         public string nom { get; set; }
         public string description { get; set; }
         public TimeSpan temps_preparation { get; set; }
@@ -25,7 +24,6 @@ namespace APIProjetFilRouge.Models.DataTransfertObjects.In
     {
         public RecetteUpdateDTOValidator()
         {
-            RuleFor(r => r.id).GreaterThan(0).NotNull().WithMessage("Recette introuvable");
             RuleFor(r => r.nom).NotEmpty().NotNull().WithMessage("Le nom de la recette est obligatoire.");
             RuleFor(r => r.description).NotEmpty().NotNull().WithMessage("La description de la recette est obligatoire.");
             RuleFor(r => r.difficulte).InclusiveBetween(1, 5).WithMessage("La difficulté doit être renseignée.");

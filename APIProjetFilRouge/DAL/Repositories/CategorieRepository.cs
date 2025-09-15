@@ -43,6 +43,11 @@ namespace APIProjetFilRouge.DAL.Repositories
             "VALUES(@nom) " +
             "RETURNING id;";
 
+        private const string _queryUpdateCategorie =
+            $"UPDATE {categorieTable}" +
+            "SET nom = @nom " +
+            "WHERE id = @id";
+
         private const string _queryDeleteCategorie =
             $"DELETE FROM {categorieTable} " +
             "WHERE id = @id";
@@ -79,6 +84,12 @@ namespace APIProjetFilRouge.DAL.Repositories
         {
             int newId = await _dbSession.Connection.QuerySingleAsync<int>(_queryCreateCategorie, new { nom = nom });
             return newId;
+        }
+
+        public async Task<int> UpdateCategorieAsync(Categorie categorie)
+        {
+            int rowsAffected = await _dbSession.Connection.ExecuteAsync(_queryUpdateCategorie, new { nom = categorie.nom, id = categorie.id });
+            return rowsAffected;
         }
 
         public async Task<int> DeleteCategorieAsync(int id)

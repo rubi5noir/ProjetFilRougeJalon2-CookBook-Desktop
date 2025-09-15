@@ -13,22 +13,101 @@ namespace APIProjetFilRouge.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RecettesController : ControllerBase
+    public class CookBookController : ControllerBase
     {
         private readonly IRecetteService _recetteService;
 
-        public RecettesController(IRecetteService recetteService)
+        public CookBookController(IRecetteService recetteService)
         {
             _recetteService = recetteService;
         }
 
         #region Getter
 
+        #region Avis
+
+
+
+        #endregion
+
+        #region Categories
+
+        /// <summary>
+        /// Retrieves all categories
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("Categories")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetAllCategories()
+        {
+            var categories = await _recetteService.GetAllCategoriesAsync();
+            var categoriesDTO = categories.Select(c => new CategorieDTO
+            {
+                id = c.id,
+                nom = c.nom
+            }).ToList();
+
+            return StatusCode(StatusCodes.Status200OK, categoriesDTO);
+        }
+
+        #endregion
+
+        #region Comptes
+
+        /// <summary>
+        /// Retrieve All user's accounts
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("Comptes")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetComptes()
+        {
+            var comptes = await _recetteService.GetAllComptesAsync();
+            var comptesDTO = comptes.Select(c => new CompteDTO
+            {
+                id = c.id,
+                identifiant = c.identifiant
+            }).ToList();
+
+            return Ok(comptesDTO);
+        }
+
+        #endregion
+
+        #region Etapes
+
+
+
+        #endregion
+
+        #region Ingredients
+
+        [HttpGet("Ingredients")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetIngredients()
+        {
+            var ingredients = await _recetteService.GetAllIngredientsAsync();
+            var ingredientsDTO = ingredients.Select(i => new IngredientDTO
+            {
+                id = i.id,
+                nom = i.nom
+            }).ToList();
+
+            return Ok(ingredientsDTO);
+        }
+
+        #endregion
+
+        #region Recettes
+
         /// <summary>
         /// Retrieves a list of recipes formatted for vignettes
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet("Recettes")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetRecettesVignettes()
@@ -61,7 +140,7 @@ namespace APIProjetFilRouge.Controllers
         /// Retrieves detailed information about a specific recipe by its ID
         /// </summary>
         /// <returns></returns>
-        [HttpGet("id")]
+        [HttpGet("Recettes/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetRecetteById(int id)
@@ -127,9 +206,123 @@ namespace APIProjetFilRouge.Controllers
 
         #endregion
 
+        #endregion
+
         #region Poster
 
-        [HttpPost]
+        #region Avis
+
+        [HttpPost("Recettes/{id}/Avis/Create")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> CreateAvisOnRecette(int id, [FromBody] AvisOfRecetteDTO avisOfRecetteDTO)
+        {
+            var avis = new Avis
+            {
+                id_recette = id,
+                id_utilisateur = avisOfRecetteDTO.id_utilisateur,
+                note = avisOfRecetteDTO.note,
+                commentaire = avisOfRecetteDTO.commentaire
+            };
+
+            var result = await _recetteService.CreateAvisAsync(avis);
+            return Ok(result);
+        }
+
+        [HttpPost("Recettes/{id}/Avis/Update")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> UpdateAvisOnRecette(int id, [FromBody] AvisOfRecetteDTO avisOfRecetteDTO)
+        {
+            var avis = new Avis
+            {
+                id_recette = id,
+                id_utilisateur = avisOfRecetteDTO.id_utilisateur,
+                note = avisOfRecetteDTO.note,
+                commentaire = avisOfRecetteDTO.commentaire
+            };
+
+            var result = await _recetteService.UpdateAvisAsync(avis);
+            return Ok(result);
+        }
+
+        [HttpPost("Recettes/{id}/Avis/Delete")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> DeleteAvisOnRecette(int id, [FromBody] AvisOfRecetteDTO avisOfRecetteDTO)
+        {
+            var avis = new Avis
+            {
+                id_recette = id,
+                id_utilisateur = avisOfRecetteDTO.id_utilisateur,
+                note = avisOfRecetteDTO.note,
+                commentaire = avisOfRecetteDTO.commentaire
+            };
+
+            var result = await _recetteService.DeleteAvisAsync(avis.id_recette, avis.id_utilisateur);
+            return Ok(result);
+        }
+
+        #endregion
+
+        #region Categories
+
+        [HttpPost("Categories/Create")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> CreateCategorie([FromBody] CategorieDTO categorieDTO)
+        {
+            var categorie = new Categorie
+            {
+                id = 0,
+                nom = categorieDTO.nom
+            };
+
+            var result = await _recetteService.CreateCategorieAsync(categorie);
+            return Ok(result);
+        }
+
+        #endregion
+
+        #region Comptes
+
+
+
+        #endregion
+
+        #region Etapes
+
+
+
+        #endregion
+
+        #region Ingredients
+
+        /// <summary>
+        /// Create a new ingredient
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost("Ingredients/Create")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> CreateIngredient([FromBody] string nom)
+        {
+            var ingredient = new Ingredient
+            {
+                id = 0,
+                nom = nom
+            };
+
+            var result = await _recetteService.CreateIngredientAsync(ingredient);
+
+            return Ok(result);
+        }
+
+        #endregion
+
+        #region Recette
+
+        [HttpPost("Recettes/Create")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateRecette([FromBody] RecetteCreateDTO recetteCreateDTO)
@@ -171,16 +364,16 @@ namespace APIProjetFilRouge.Controllers
             return StatusCode(StatusCodes.Status201Created);
         }
 
-        [HttpPost]
+        [HttpPost("Recettes/Update/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpdateRecette([FromBody] RecetteUpdateDTO recetteUpdateDTO)
+        public async Task<IActionResult> UpdateRecette(int id, [FromBody] RecetteUpdateDTO recetteUpdateDTO)
         {
 
 
             Recette recette = new Recette
             {
-                id = recetteUpdateDTO.id,
+                id = id,
                 nom = recetteUpdateDTO.nom,
                 description = recetteUpdateDTO.description,
                 temps_preparation = recetteUpdateDTO.temps_preparation,
@@ -213,7 +406,7 @@ namespace APIProjetFilRouge.Controllers
             return StatusCode(StatusCodes.Status200OK);
         }
 
-        [HttpPost]
+        [HttpPost("Recettes/Delete/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> DeleteRecette(int id)
@@ -223,6 +416,8 @@ namespace APIProjetFilRouge.Controllers
 
             return StatusCode(StatusCodes.Status201Created);
         }
+
+        #endregion
 
         #endregion
     }
