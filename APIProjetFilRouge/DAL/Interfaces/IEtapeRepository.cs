@@ -7,23 +7,19 @@ namespace APIProjetFilRouge.DAL.Interfaces
         /// <summary>
         /// Retrieves all steps for a specific recipe by the ID of the recipe.
         /// </summary>
-        /// <param name="id">ID of the recipe</param>
-        /// <returns></returns>
+        /// <returns><see cref="List{Etape}"/> of <see cref="Etape"/> : All Steps of the recipe</returns>
         Task<List<Etape>> GetEtapesOfRecetteAsync(int id);
 
         /// <summary>
         /// Creates a new step in the database.
         /// </summary>
-        /// <param name="etape">step to create</param>
-        /// <returns>number of rows affected</returns>
+        /// <returns><see cref="int"/> : Number of rows affected</returns>
         Task<int> CreateEtapeAsync(Etape etape);
 
         /// <summary>
         /// Deletes a step from the database based on the recipe ID and step number.
         /// </summary>
-        /// <param name="id_recette">id of the recipe</param>
-        /// <param name="numero">number of the step</param>
-        /// <returns>number of rows affected</returns>
+        /// <returns><see cref="int"/> : Number of rows affected</returns>
         Task<int> DeleteEtapeAsync(int id_recette, int numero);
     }
 }

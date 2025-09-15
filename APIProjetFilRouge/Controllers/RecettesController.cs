@@ -27,10 +27,7 @@ namespace APIProjetFilRouge.Controllers
         /// <summary>
         /// Retrieves a list of recipes formatted for vignettes
         /// </summary>
-        /// <returns>
-        /// <para>200 OK - Returns the list of recipes for vignettes</para>
-        /// <para>400 Bad Request - If an error occurs while processing the request</para>
-        /// </returns>
+        /// <returns></returns>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -63,7 +60,6 @@ namespace APIProjetFilRouge.Controllers
         /// <summary>
         /// Retrieves detailed information about a specific recipe by its ID
         /// </summary>
-        /// <param name="id">ID of the recipe</param>
         /// <returns></returns>
         [HttpGet("id")]
         [ProducesResponseType(StatusCodes.Status200OK)]

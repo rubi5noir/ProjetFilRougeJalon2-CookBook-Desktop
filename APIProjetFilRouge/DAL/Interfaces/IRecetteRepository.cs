@@ -7,38 +7,31 @@ namespace APIProjetFilRouge.DAL.Interfaces
         /// <summary>
         /// Retrieves all recipes from the database.
         /// </summary>
-        /// <returns>
-        /// <para>A list of Recette objects representing all recipes.</para>
-        /// <para>Throws an exception if an error occurs while retrieving the recipes.</para>
-        /// </returns>
+        /// <returns><see cref="List{Recette}"/> of <see cref="Recette"/> : All recipes</returns>
         Task<List<Recette>> GetAllRecettesAsync();
 
         /// <summary>
         /// Retrieves a specific recipe by its ID.
         /// </summary>
-        /// <param name="id">ID of the recipe</param>
-        /// <returns></returns>
+        /// <returns><see cref="Recette"/> : The recipe</returns>
         Task<Recette> GetRecetteByIdAsync(int id);
 
         /// <summary>
         /// Creates a new recipe in the database.
         /// </summary>
-        /// <param name="recette">recipe to create</param>
-        /// <returns>id of the recipe</returns>
+        /// <returns><see cref="int"/> : Id of the new recipe</returns>
         Task<int> CreateRecetteAsync(Recette recette);
 
         /// <summary>
         /// Updates an existing recipe in the database.
         /// </summary>
-        /// <param name="recette">recipe to put in the database</param>
-        /// <returns>number of rows affected</returns>
+        /// <returns><see cref="int"/> : Number of rows affected</returns>
         Task<int> UpdateRecetteAsync(Recette recette);
 
         /// <summary>
         /// Deletes a recipe from the database based on the recipe ID.
         /// </summary>
-        /// <param name="id">id of the recipe</param>
-        /// <returns>number of rows affected</returns>
+        /// <returns><see cref="int"/> : Number of rows affected</returns>
         Task<int> DeleteRecetteAsync(int id);
     }
 }
