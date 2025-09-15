@@ -154,9 +154,9 @@ namespace APIProjetFilRouge.BLL.Services
             return rowsAffected;
         }
 
-        public async Task<int> DeleteEtapeAsync(int id_recette, int numero)
+        public async Task<int> DeleteEtapeAsync(Etape etape)
         {
-            int rowsAffected = await _etapeRepository.DeleteEtapeAsync(id_recette, numero);
+            int rowsAffected = await _etapeRepository.DeleteEtapeAsync(etape.id_recette, etape.numero);
             return rowsAffected;
         }
 

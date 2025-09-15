@@ -74,6 +74,25 @@ namespace APIProjetFilRouge.Controllers
             return Ok(comptesDTO);
         }
 
+        [HttpGet("Comptes/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetCompteDetails([FromRoute] int id)
+        {
+            var compte = await _recetteService.GetCompteByIdAsync(id);
+            var compteDetailsDTO = new CompteDetailsDTO
+            {
+                id = compte.id,
+                identifiant = compte.identifiant,
+                nom = compte.nom,
+                prenom = compte.prenom,
+                email = compte.email,
+                admin = compte.admin
+            };
+
+            return Ok(compteDetailsDTO);
+        }
+
         #endregion
 
         #region Etapes
@@ -143,7 +162,7 @@ namespace APIProjetFilRouge.Controllers
         [HttpGet("Recettes/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetRecetteById(int id)
+        public async Task<IActionResult> GetRecetteById([FromRoute] int id)
         {
             var recette = await _recetteService.GetRecetteByIdAsync(id);
 
@@ -215,7 +234,7 @@ namespace APIProjetFilRouge.Controllers
         [HttpPost("Recettes/{id}/Avis/Create")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> CreateAvisOnRecette(int id, [FromBody] AvisOfRecetteDTO avisOfRecetteDTO)
+        public async Task<IActionResult> CreateAvisOnRecette([FromRoute] int id, [FromBody] AvisOfRecetteDTO avisOfRecetteDTO)
         {
             var avis = new Avis
             {
@@ -232,7 +251,7 @@ namespace APIProjetFilRouge.Controllers
         [HttpPost("Recettes/{id}/Avis/Update")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpdateAvisOnRecette(int id, [FromBody] AvisOfRecetteDTO avisOfRecetteDTO)
+        public async Task<IActionResult> UpdateAvisOnRecette([FromRoute] int id, [FromBody] AvisOfRecetteDTO avisOfRecetteDTO)
         {
             var avis = new Avis
             {
@@ -249,7 +268,7 @@ namespace APIProjetFilRouge.Controllers
         [HttpPost("Recettes/{id}/Avis/Delete")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> DeleteAvisOnRecette(int id, [FromBody] AvisOfRecetteDTO avisOfRecetteDTO)
+        public async Task<IActionResult> DeleteAvisOnRecette([FromRoute] int id, [FromBody] AvisOfRecetteDTO avisOfRecetteDTO)
         {
             var avis = new Avis
             {
@@ -282,6 +301,30 @@ namespace APIProjetFilRouge.Controllers
             return Ok(result);
         }
 
+        [HttpPost("Categories/Update/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> UpdateCategorie([FromRoute] int id, [FromBody] CategorieDTO categorieDTO)
+        {
+            var categorie = new Categorie
+            {
+                id = id,
+                nom = categorieDTO.nom
+            };
+
+            var result = await _recetteService.UpdateCategorieAsync(categorie);
+            return Ok(result);
+        }
+
+        [HttpPost("Categories/Delete/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> DeleteCategorie([FromRoute] int id)
+        {
+            var result = await _recetteService.DeleteCategorieAsync(id);
+            return Ok(result);
+        }
+
         #endregion
 
         #region Comptes
@@ -292,7 +335,53 @@ namespace APIProjetFilRouge.Controllers
 
         #region Etapes
 
+        [HttpPost("Recettes/{id}/Etapes/Create")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> CreateEtape([FromRoute] int id, [FromBody] EtapeDTO etapeDTO)
+        {
+            var etape = new Etape
+            {
+                id_recette = id,
+                numero = etapeDTO.numero,
+                texte = etapeDTO.texte
+            };
 
+            var result = await _recetteService.CreateEtapeAsync(etape);
+            return Ok(result);
+        }
+
+        [HttpPost("Recettes/{id}/Etapes/Update")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> UpdateEtape([FromRoute] int id, [FromBody] EtapeDTO etapeDTO)
+        {
+            var etape = new Etape
+            {
+                id_recette = id,
+                numero = etapeDTO.numero,
+                texte = etapeDTO.texte
+            };
+
+            var result = await _recetteService.UpdateEtapeAsync(etape);
+            return Ok(result);
+        }
+
+        [HttpPost("Recettes/{id}/Etapes/Delete")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> DeleteEtape([FromRoute] int id, [FromBody] EtapeDTO etapeDTO)
+        {
+            var etape = new Etape
+            {
+                id_recette = id,
+                numero = etapeDTO.numero,
+                texte = etapeDTO.texte
+            };
+
+            var result = await _recetteService.DeleteEtapeAsync(etape);
+            return Ok(result);
+        }
 
         #endregion
 
@@ -314,7 +403,30 @@ namespace APIProjetFilRouge.Controllers
             };
 
             var result = await _recetteService.CreateIngredientAsync(ingredient);
+            return Ok(result);
+        }
 
+        [HttpPost("Ingredients/{id}/Update")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> UpdateIngredient([FromRoute] int id, [FromBody] string nom)
+        {
+            var ingredient = new Ingredient
+            {
+                id = id,
+                nom = nom
+            };
+
+            var result = await _recetteService.UpdateIngredientAsync(ingredient);
+            return Ok(result);
+        }
+
+        [HttpPost("Ingredients/{id}/Delete")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> DeleteIngredient([FromRoute] int id)
+        {
+            var result = await _recetteService.DeleteIngredientAsync(id);
             return Ok(result);
         }
 
@@ -367,7 +479,7 @@ namespace APIProjetFilRouge.Controllers
         [HttpPost("Recettes/Update/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpdateRecette(int id, [FromBody] RecetteUpdateDTO recetteUpdateDTO)
+        public async Task<IActionResult> UpdateRecette([FromRoute] int id, [FromBody] RecetteUpdateDTO recetteUpdateDTO)
         {
 
 
@@ -409,7 +521,7 @@ namespace APIProjetFilRouge.Controllers
         [HttpPost("Recettes/Delete/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> DeleteRecette(int id)
+        public async Task<IActionResult> DeleteRecette([FromRoute] int id)
         {
 
             // Transaction a venir (attente du cours)

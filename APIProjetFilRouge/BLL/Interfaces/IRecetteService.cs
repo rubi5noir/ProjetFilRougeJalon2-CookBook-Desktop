@@ -131,7 +131,7 @@ namespace APIProjetFilRouge.BLL.Interfaces
         /// Delete a step from a recipe based on recipe ID and step number
         /// </summary>
         /// <returns></returns>
-        Task<int> DeleteEtapeAsync(int id_recette, int numero);
+        Task<int> DeleteEtapeAsync(Etape etape);
 
         #endregion
 
