@@ -44,13 +44,22 @@ namespace APIProjetFilRouge.DAL.Repositories
             "RETURNING id;";
 
         private const string _queryUpdateCategorie =
-            $"UPDATE {categorieTable}" +
+            $"UPDATE {categorieTable} " +
             "SET nom = @nom " +
             "WHERE id = @id";
 
         private const string _queryDeleteCategorie =
             $"DELETE FROM {categorieTable} " +
             "WHERE id = @id";
+
+        private const string _queryAddCategorieToRecette =
+            $"INSERT INTO {categorieInRecetteTable} " +
+            "(id_recette, id_categorie) " +
+            "VALUES(@id_recette, @id_categorie)";
+
+        private const string _queryRemoveCategorieFromRecette =
+            $"DELETE FROM {categorieInRecetteTable} " +
+            "WHERE id_recette = @id_recette AND id_categorie = @id_categorie";
 
         #endregion
 
@@ -71,7 +80,10 @@ namespace APIProjetFilRouge.DAL.Repositories
         {
             List<Categorie> categories;
 
-            categories = (await _dbSession.Connection.QueryAsync<Categorie>(_queryGetCategoriesOfRecette, new { Id = id })).ToList();
+            categories = (await _dbSession.Connection.QueryAsync<Categorie>(_queryGetCategoriesOfRecette, new
+            {
+                Id = id
+            })).ToList();
 
             return categories;
         }
@@ -82,19 +94,49 @@ namespace APIProjetFilRouge.DAL.Repositories
 
         public async Task<int> CreateCategorieAsync(string nom)
         {
-            int newId = await _dbSession.Connection.QuerySingleAsync<int>(_queryCreateCategorie, new { nom = nom });
+            int newId = await _dbSession.Connection.QuerySingleAsync<int>(_queryCreateCategorie, new
+            {
+                nom = nom
+            });
             return newId;
         }
 
         public async Task<int> UpdateCategorieAsync(Categorie categorie)
         {
-            int rowsAffected = await _dbSession.Connection.ExecuteAsync(_queryUpdateCategorie, new { nom = categorie.nom, id = categorie.id });
+            int rowsAffected = await _dbSession.Connection.ExecuteAsync(_queryUpdateCategorie, new
+            {
+                nom = categorie.nom,
+                id = categorie.id
+            });
             return rowsAffected;
         }
 
         public async Task<int> DeleteCategorieAsync(int id)
         {
-            int rowsAffected = await _dbSession.Connection.ExecuteAsync(_queryDeleteCategorie, new { id = id });
+            int rowsAffected = await _dbSession.Connection.ExecuteAsync(_queryDeleteCategorie, new
+            {
+                id = id
+            });
+            return rowsAffected;
+        }
+
+        public async Task<int> AddCategorieToRecetteAsync(int id_recette, Categorie categorie)
+        {
+            int rowsAffected = await _dbSession.Connection.ExecuteAsync(_queryAddCategorieToRecette, new
+            {
+                id_recette = id_recette,
+                id_categorie = categorie.id
+            });
+            return rowsAffected;
+        }
+
+        public async Task<int> RemoveCategorieFromRecetteAsync(int id_recette, Categorie categorie)
+        {
+            int rowsAffected = await _dbSession.Connection.ExecuteAsync(_queryRemoveCategorieFromRecette, new
+            {
+                id_recette = id_recette,
+                id_categorie = categorie.id
+            });
             return rowsAffected;
         }
 

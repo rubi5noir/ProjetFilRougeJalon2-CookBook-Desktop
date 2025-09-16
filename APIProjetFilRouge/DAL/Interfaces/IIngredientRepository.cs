@@ -34,5 +34,17 @@ namespace APIProjetFilRouge.DAL.Interfaces
         /// </summary>
         /// <returns><see cref="int"/> : Number of rows affected</returns>
         Task<int> DeleteIngredientAsync(int id);
+
+        /// <summary>
+        /// Add an ingredient to a recipe from the database.
+        /// </summary>
+        /// <returns><see cref="int"/> : Number of rows affected</returns>
+        Task<int> AddIngredientToRecetteAsync(int id_recette, Ingredient ingredient);
+
+        /// <summary>
+        /// Remove an ingredient from a recipe from the database.
+        /// </summary>
+        /// <returns><see cref="int"/> : Number of rows affected</returns>
+        Task<int> RemoveIngredientFromRecetteAsync(int id_recette, Ingredient ingredient);
     }
 }

@@ -1,0 +1,94 @@
+﻿using APIProjetFilRouge.BLL.Interfaces;
+using APIProjetFilRouge.Models.BussinessObjects;
+using APIProjetFilRouge.Models.DataTransfertObjects.Between;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+namespace APIProjetFilRouge.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class IngredientsController : ControllerBase
+    {
+        private readonly ICookBookService _recetteService;
+
+        public IngredientsController(ICookBookService recetteService)
+        {
+            _recetteService = recetteService;
+        }
+
+        #region GET
+
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetIngredients()
+        {
+            var ingredients = await _recetteService.GetAllIngredientsAsync();
+            var ingredientsDTO = ingredients.Select(i => new IngredientDTO
+            {
+                id = i.id,
+                nom = i.nom
+            }).ToList();
+
+            return Ok(ingredientsDTO);
+        }
+
+        #endregion
+
+        #region POST
+
+        /// <summary>
+        /// Create a new ingredient
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost("Create")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> CreateIngredient([FromBody] string nom)
+        {
+            var ingredient = new Ingredient
+            {
+                id = 0,
+                nom = nom
+            };
+
+            var result = await _recetteService.CreateIngredientAsync(ingredient);
+            return Ok(result);
+        }
+
+        #endregion
+
+        #region PUT
+
+        [HttpPut("Update/{id}")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> UpdateIngredient([FromRoute] int id, [FromBody] string nom)
+        {
+            var ingredient = new Ingredient
+            {
+                id = id,
+                nom = nom
+            };
+
+            var result = await _recetteService.UpdateIngredientAsync(ingredient);
+            return Ok(result);
+        }
+
+        #endregion
+
+        #region DELETE
+
+        [HttpDelete("Delete/{id}")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> DeleteIngredient([FromRoute] int id)
+        {
+            var result = await _recetteService.DeleteIngredientAsync(id);
+            return Ok(result);
+        }
+
+        #endregion
+    }
+}

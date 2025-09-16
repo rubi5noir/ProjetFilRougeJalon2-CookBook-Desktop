@@ -74,7 +74,10 @@ namespace APIProjetFilRouge.DAL.Repositories
         {
             Recette recette = new Recette();
 
-            recette = await _dbSession.Connection.QuerySingleAsync<Recette>(_queryGetRecetteById, new { Id = id });
+            recette = await _dbSession.Connection.QuerySingleAsync<Recette>(_queryGetRecetteById, new
+            {
+                Id = id
+            });
 
             return recette;
         }
@@ -115,7 +118,10 @@ namespace APIProjetFilRouge.DAL.Repositories
 
         public async Task<int> DeleteRecetteAsync(int id)
         {
-            int rowAffected = await _dbSession.Connection.ExecuteAsync(_queryDeleteRecette, new { id });
+            int rowAffected = await _dbSession.Connection.ExecuteAsync(_queryDeleteRecette, new
+            {
+                id
+            });
             return rowAffected;
         }
 

@@ -3,7 +3,7 @@ using APIProjetFilRouge.Models.DataTransfertObjects.Out;
 
 namespace APIProjetFilRouge.BLL.Interfaces
 {
-    public interface IRecetteService
+    public interface ICookBookService
     {
         #region Avis
 
@@ -29,13 +29,13 @@ namespace APIProjetFilRouge.BLL.Interfaces
         /// Update a review
         /// </summary>
         /// <returns></returns>
-        Task<int> UpdateAvisAsync(Avis avis);
+        Task<bool> UpdateAvisAsync(Avis avis);
 
         /// <summary>
         /// Delete a review based on recipe ID and user ID
         /// </summary>
         /// <returns></returns>
-        Task<int> DeleteAvisAsync(int id_recette, int id_utilisateur);
+        Task<bool> DeleteAvisAsync(int id_recette, int id_utilisateur);
 
         #endregion
 
@@ -63,13 +63,17 @@ namespace APIProjetFilRouge.BLL.Interfaces
         /// Update a category from the database
         /// </summary>
         /// <returns></returns>
-        Task<int> UpdateCategorieAsync(Categorie categorie);
+        Task<bool> UpdateCategorieAsync(Categorie categorie);
 
         /// <summary>
         /// Delete a category from the database
         /// </summary>
         /// <returns></returns>
-        Task<int> DeleteCategorieAsync(int id);
+        Task<bool> DeleteCategorieAsync(int id);
+
+        Task<bool> AddCategorieToRecetteAsync(int id_recette, Categorie categorie);
+
+        Task<bool> RemoveCategorieFromRecetteAsync(int id_recette, Categorie categorie);
 
         #endregion
 
@@ -97,13 +101,13 @@ namespace APIProjetFilRouge.BLL.Interfaces
         /// Update a user account from the database
         /// </summary>
         /// <returns></returns>
-        Task<int> UpdateCompteAsync(Compte compte);
+        Task<bool> UpdateCompteAsync(Compte compte);
 
         /// <summary>
         /// Delete a user account from the database
         /// </summary>
         /// <returns></returns>
-        Task<int> DeleteCompteAsync(int id);
+        Task<bool> DeleteCompteAsync(int id);
 
         #endregion
 
@@ -125,13 +129,13 @@ namespace APIProjetFilRouge.BLL.Interfaces
         /// Update a step from a recipe
         /// </summary>
         /// <returns></returns>
-        Task<int> UpdateEtapeAsync(Etape etape);
+        Task<bool> UpdateEtapeAsync(Etape etape);
 
         /// <summary>
         /// Delete a step from a recipe based on recipe ID and step number
         /// </summary>
         /// <returns></returns>
-        Task<int> DeleteEtapeAsync(Etape etape);
+        Task<bool> DeleteEtapeAsync(Etape etape);
 
         #endregion
 
@@ -159,13 +163,17 @@ namespace APIProjetFilRouge.BLL.Interfaces
         /// Update an ingredient from the database
         /// </summary>
         /// <returns></returns>
-        Task<int> UpdateIngredientAsync(Ingredient ingredient);
+        Task<bool> UpdateIngredientAsync(Ingredient ingredient);
 
         /// <summary>
         /// Delete an ingredient from the database
         /// </summary>
         /// <returns></returns>
-        Task<int> DeleteIngredientAsync(int id);
+        Task<bool> DeleteIngredientAsync(int id);
+
+        Task<bool> AddIngredientToRecetteAsync(int id_recette, Ingredient ingredient);
+
+        Task<bool> RemoveIngredientFromRecetteAsync(int id_recette, Ingredient ingredient);
 
         #endregion
 
@@ -193,13 +201,13 @@ namespace APIProjetFilRouge.BLL.Interfaces
         /// Update an existing recipe in the database
         /// </summary>
         /// <returns></returns>
-        Task<int> UpdateRecetteAsync(Recette recette);
+        Task<bool> UpdateRecetteAsync(Recette recette);
 
         /// <summary>
         /// Delete a recipe from the database
         /// </summary>
         /// <returns></returns>
-        Task<int> DeleteRecetteAsync(int id);
+        Task<bool> DeleteRecetteAsync(int id);
 
         #endregion
     }

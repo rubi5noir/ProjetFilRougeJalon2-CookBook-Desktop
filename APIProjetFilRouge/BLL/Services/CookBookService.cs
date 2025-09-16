@@ -7,7 +7,7 @@ using APIProjetFilRouge.Models.DataTransfertObjects.Out;
 
 namespace APIProjetFilRouge.BLL.Services
 {
-    public class RecetteService : IRecetteService
+    public class CookBookService : ICookBookService
     {
         private readonly IAvisRepository _avisRepository;
         private readonly ICategorieRepository _categorieRepository;
@@ -16,7 +16,7 @@ namespace APIProjetFilRouge.BLL.Services
         private readonly IIngredientRepository _ingredientRepository;
         private readonly IRecetteRepository _recetteRepository;
 
-        public RecetteService(IAvisRepository avisRepository, ICategorieRepository categorieRepository, ICompteRepository compteRepository, IEtapeRepository etapeRepository, IIngredientRepository ingredientRepository, IRecetteRepository recetteRepository)
+        public CookBookService(IAvisRepository avisRepository, ICategorieRepository categorieRepository, ICompteRepository compteRepository, IEtapeRepository etapeRepository, IIngredientRepository ingredientRepository, IRecetteRepository recetteRepository)
         { 
             _avisRepository = avisRepository;
             _categorieRepository = categorieRepository;
@@ -49,16 +49,20 @@ namespace APIProjetFilRouge.BLL.Services
             return newAvisId;
         }
 
-        public async Task<int> UpdateAvisAsync(Avis avis)
+        public async Task<bool> UpdateAvisAsync(Avis avis)
         {
             int rowsAffected = await _avisRepository.UpdateAvisAsync(avis);
-            return rowsAffected;
+
+            bool isUpdated = rowsAffected == 1;
+            return isUpdated;
         }
 
-        public async Task<int> DeleteAvisAsync(int id_recette, int id_utilisateur)
+        public async Task<bool> DeleteAvisAsync(int id_recette, int id_utilisateur)
         {
             int rowsAffected = await _avisRepository.DeleteAvisAsync(id_recette, id_utilisateur);
-            return rowsAffected;
+
+            bool isDeleted = rowsAffected == 1;
+            return isDeleted;
         }
 
         #endregion
@@ -84,16 +88,36 @@ namespace APIProjetFilRouge.BLL.Services
             return newCategorieId;
         }
 
-        public async Task<int> UpdateCategorieAsync(Categorie categorie)
+        public async Task<bool> UpdateCategorieAsync(Categorie categorie)
         {
             int rowsAffected = await _categorieRepository.UpdateCategorieAsync(categorie);
-            return rowsAffected;
+
+            bool isUpdated = rowsAffected == 1;
+            return isUpdated;
         }
 
-        public async Task<int> DeleteCategorieAsync(int id)
+        public async Task<bool> DeleteCategorieAsync(int id)
         {
             int rowsAffected = await _categorieRepository.DeleteCategorieAsync(id);
-            return rowsAffected;
+
+            bool isDeleted = rowsAffected == 1;
+            return isDeleted;
+        }
+
+        public async Task<bool> AddCategorieToRecetteAsync(int id_recette, Categorie categorie)
+        {
+            int rowsAffected = await _categorieRepository.AddCategorieToRecetteAsync(id_recette, categorie);
+            
+            bool isAdded = rowsAffected == 1;
+            return isAdded;
+        }
+
+        public async Task<bool> RemoveCategorieFromRecetteAsync(int id_recette, Categorie categorie)
+        {
+            int rowsAffected = await _categorieRepository.RemoveCategorieFromRecetteAsync(id_recette, categorie);
+
+            bool isRemoved = rowsAffected == 1;
+            return isRemoved;
         }
 
         #endregion
@@ -119,16 +143,20 @@ namespace APIProjetFilRouge.BLL.Services
             return newCompteId;
         }
 
-        public async Task<int> UpdateCompteAsync(Compte compte)
+        public async Task<bool> UpdateCompteAsync(Compte compte)
         {
             int rowsAffected = await _compteRepository.UpdateCompteAsync(compte);
-            return rowsAffected;
+
+            bool isUpdated = rowsAffected == 1;
+            return isUpdated;
         }
 
-        public async Task<int> DeleteCompteAsync(int id)
+        public async Task<bool> DeleteCompteAsync(int id)
         {
             int rowsAffected = await _compteRepository.DeleteCompteAsync(id);
-            return rowsAffected;
+
+            bool isDeleted = rowsAffected == 1;
+            return isDeleted;
         }
 
         #endregion
@@ -148,16 +176,20 @@ namespace APIProjetFilRouge.BLL.Services
             return rowsAffected;
         }
 
-        public async Task<int> UpdateEtapeAsync(Etape etape)
+        public async Task<bool> UpdateEtapeAsync(Etape etape)
         {
             int rowsAffected = await _etapeRepository.UpdateEtapeAsync(etape);
-            return rowsAffected;
+
+            bool isUpdated = rowsAffected == 1;
+            return isUpdated;
         }
 
-        public async Task<int> DeleteEtapeAsync(Etape etape)
+        public async Task<bool> DeleteEtapeAsync(Etape etape)
         {
             int rowsAffected = await _etapeRepository.DeleteEtapeAsync(etape.id_recette, etape.numero);
-            return rowsAffected;
+
+            bool isDeleted = rowsAffected == 1;
+            return isDeleted;
         }
 
         #endregion
@@ -183,16 +215,36 @@ namespace APIProjetFilRouge.BLL.Services
             return newIngredientId;
         }
 
-        public async Task<int> UpdateIngredientAsync(Ingredient ingredient)
+        public async Task<bool> UpdateIngredientAsync(Ingredient ingredient)
         {
             int rowsAffected = await _ingredientRepository.UpdateIngredientAsync(ingredient);
-            return rowsAffected;
+
+            bool isUpdated = rowsAffected == 1;
+            return isUpdated;
         }
 
-        public async Task<int> DeleteIngredientAsync(int id)
+        public async Task<bool> DeleteIngredientAsync(int id)
         {
             int rowsAffected = await _ingredientRepository.DeleteIngredientAsync(id);
-            return rowsAffected;
+            
+            bool isDeleted = rowsAffected == 1;
+            return isDeleted;
+        }
+
+        public async Task<bool> AddIngredientToRecetteAsync(int id_recette, Ingredient ingredient)
+        {
+            int rowsAffected = await _ingredientRepository.AddIngredientToRecetteAsync(id_recette, ingredient);
+
+            bool isAdded = rowsAffected == 1;
+            return isAdded;
+        }
+
+        public async Task<bool> RemoveIngredientFromRecetteAsync(int id_recette, Ingredient ingredient)
+        {
+            int rowsAffected = await _ingredientRepository.RemoveIngredientFromRecetteAsync(id_recette, ingredient);
+
+            bool isRemoved = rowsAffected == 1;
+            return isRemoved;
         }
 
         #endregion
@@ -225,16 +277,20 @@ namespace APIProjetFilRouge.BLL.Services
             return newRecetteId;
         }
 
-        public async Task<int> UpdateRecetteAsync(Recette recette)
+        public async Task<bool> UpdateRecetteAsync(Recette recette)
         {
             int rowAffected = await _recetteRepository.UpdateRecetteAsync(recette);
-            return rowAffected;
+
+            bool isUpdated = rowAffected == 1;
+            return isUpdated;
         }
 
-        public async Task<int> DeleteRecetteAsync(int id)
+        public async Task<bool> DeleteRecetteAsync(int id)
         {
             int rowAffected = await _recetteRepository.DeleteRecetteAsync(id);
-            return rowAffected;
+
+            bool isDeleted = rowAffected == 1;
+            return isDeleted;
         }
 
         #endregion

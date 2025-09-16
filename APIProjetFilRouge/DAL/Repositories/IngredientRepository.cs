@@ -51,6 +51,15 @@ namespace APIProjetFilRouge.DAL.Repositories
             $"DELETE FROM {ingredientTable} " +
             "WHERE id = @id";
 
+        private const string _queryAddIngredientToRecette =
+            $"INSERT INTO {ingredientInRecetteTable} " +
+            "(id_recette, id_ingredient, quantite) " +
+            "VALUES(@id_recette, @id_ingredient, @quantite)";
+
+        private const string _queryRemoveIngredientFromRecette =
+            $"DELETE FROM {ingredientInRecetteTable} " +
+            "WHERE id_recette = @id_recette AND id_ingredient = @id_ingredient";
+
         #endregion
 
         #endregion
@@ -73,7 +82,10 @@ namespace APIProjetFilRouge.DAL.Repositories
         {
             List<Ingredient> ingredients;
 
-            ingredients = (await _dbSession.Connection.QueryAsync<Ingredient>(_queryGetIngredientsWithQuantitiesOfRecette, new { Id = id })).ToList();
+            ingredients = (await _dbSession.Connection.QueryAsync<Ingredient>(_queryGetIngredientsWithQuantitiesOfRecette, new
+            {
+                Id = id
+            })).ToList();
 
             return ingredients;
         }
@@ -93,13 +105,41 @@ namespace APIProjetFilRouge.DAL.Repositories
 
         public async Task<int> UpdateIngredientAsync(Ingredient ingredient)
         {
-            var rowsAffected = await _dbSession.Connection.ExecuteAsync(_queryUpdateIngredient, new { nom = ingredient.nom, id = ingredient.id });
+            var rowsAffected = await _dbSession.Connection.ExecuteAsync(_queryUpdateIngredient, new
+            {
+                nom = ingredient.nom,
+                id = ingredient.id
+            });
             return rowsAffected;
         }
 
         public async Task<int> DeleteIngredientAsync(int id)
         {
-            int rowsAffected = await _dbSession.Connection.ExecuteAsync(_queryDeleteIngredient, new { id });
+            int rowsAffected = await _dbSession.Connection.ExecuteAsync(_queryDeleteIngredient, new
+            {
+                id = id
+            });
+            return rowsAffected;
+        }
+
+        public async Task<int> AddIngredientToRecetteAsync(int id_recette, Ingredient ingredient)
+        {
+            var rowsAffected = await _dbSession.Connection.ExecuteAsync(_queryAddIngredientToRecette, new
+            {
+                id_recette = id_recette,
+                id_ingredient = ingredient.id,
+                quantite = ingredient.quantite
+            });
+            return rowsAffected;
+        }
+
+        public async Task<int> RemoveIngredientFromRecetteAsync(int id_recette, Ingredient ingredient)
+        {
+            var rowsAffected = await _dbSession.Connection.ExecuteAsync(_queryRemoveIngredientFromRecette, new
+            {
+                id_recette = id_recette,
+                id_ingredient = ingredient.id
+            });
             return rowsAffected;
         }
 

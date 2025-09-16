@@ -70,7 +70,10 @@ namespace APIProjetFilRouge.DAL.Repositories
         {
             Compte compte = new Compte();
 
-            compte = await _dbSession.Connection.QuerySingleAsync<Compte>(_queryGetCompteById, new { Id = id });
+            compte = await _dbSession.Connection.QuerySingleAsync<Compte>(_queryGetCompteById, new
+            {
+                Id = id
+            });
 
             return compte;
         }
@@ -81,7 +84,8 @@ namespace APIProjetFilRouge.DAL.Repositories
 
         public async Task<int> CreateCompteAsync(Compte compte)
         {
-            var parameters = new
+            
+            int newId = await _dbSession.Connection.QuerySingleAsync<int>(_queryCreateCompte, new
             {
                 compte.identifiant,
                 compte.nom,
@@ -89,25 +93,26 @@ namespace APIProjetFilRouge.DAL.Repositories
                 compte.email,
                 compte.password,
                 compte.admin
-            };
-            int newId = await _dbSession.Connection.QuerySingleAsync<int>(_queryCreateCompte, parameters);
+            });
             return newId;
         }
 
         public async Task<int> UpdateCompteAsync(Compte compte)
         {
-            var parameters = new
+            int rowsAffected = await _dbSession.Connection.ExecuteAsync(_queryUpdateCompte,new
             {
                 compte.identifiant,
                 compte.id
-            };
-            int rowsAffected = await _dbSession.Connection.ExecuteAsync(_queryUpdateCompte, parameters);
+            });
             return rowsAffected;
         }
 
         public async Task<int> DeleteCompteAsync(int id)
         {
-            int rowsAffected = await _dbSession.Connection.ExecuteAsync(_queryDeleteCompte, new { id = id });
+            int rowsAffected = await _dbSession.Connection.ExecuteAsync(_queryDeleteCompte, new
+            {
+                id = id
+            });
             return rowsAffected;
         }
 

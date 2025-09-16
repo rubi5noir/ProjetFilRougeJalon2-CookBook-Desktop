@@ -56,7 +56,10 @@ namespace APIProjetFilRouge.DAL.Repositories
         {
             List<Etape> etapes;
 
-            etapes = (await _dbSession.Connection.QueryAsync<Etape>(_queryGetEtapesOfRecette, new { IdRecette = id })).ToList();
+            etapes = (await _dbSession.Connection.QueryAsync<Etape>(_queryGetEtapesOfRecette, new
+            {
+                IdRecette = id
+            })).ToList();
 
             return etapes;
         }
@@ -79,7 +82,12 @@ namespace APIProjetFilRouge.DAL.Repositories
 
         public async Task<int> UpdateEtapeAsync(Etape etape)
         {
-            var result = await _dbSession.Connection.ExecuteAsync(_queryUpdateEtape, new { texte = etape.texte, id_recette = etape.id_recette, numero = etape.numero });
+            var result = await _dbSession.Connection.ExecuteAsync(_queryUpdateEtape, new
+            {
+                texte = etape.texte,
+                id_recette = etape.id_recette,
+                numero = etape.numero
+            });
             return result;
         }
 

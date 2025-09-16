@@ -70,7 +70,10 @@ namespace APIProjetFilRouge.DAL.Repositories
         {
             List<Avis> Avis = new List<Avis>();
 
-            Avis = (await _dbSession.Connection.QueryAsync<Avis>(_queryGetAvisByRecetteId, new { Id = id })).ToList();
+            Avis = (await _dbSession.Connection.QueryAsync<Avis>(_queryGetAvisByRecetteId, new
+            {
+                Id = id
+            })).ToList();
 
             return Avis;
         }
@@ -83,7 +86,13 @@ namespace APIProjetFilRouge.DAL.Repositories
         {
             int result;
 
-            result = (await _dbSession.Connection.ExecuteAsync(_queryCreateAvis, new { id_recette = avis.id_recette, id_utilisateur = avis.id_utilisateur, note = avis.note, commentaire = avis.commentaire }));
+            result = (await _dbSession.Connection.ExecuteAsync(_queryCreateAvis, new
+            {
+                id_recette = avis.id_recette,
+                id_utilisateur = avis.id_utilisateur,
+                note = avis.note,
+                commentaire = avis.commentaire
+            }));
 
             return result;
         }
@@ -92,7 +101,13 @@ namespace APIProjetFilRouge.DAL.Repositories
         {
             int result;
 
-            result = (await _dbSession.Connection.ExecuteAsync(_queryUpdateAvis, new { note = avis.note, commentaire = avis.commentaire, id_recette = avis.id_recette, id_utilisateur = avis.id_utilisateur }));
+            result = (await _dbSession.Connection.ExecuteAsync(_queryUpdateAvis, new
+            {
+                note = avis.note,
+                commentaire = avis.commentaire,
+                id_recette = avis.id_recette,
+                id_utilisateur = avis.id_utilisateur
+            }));
 
             return result;
         }
@@ -101,7 +116,11 @@ namespace APIProjetFilRouge.DAL.Repositories
         {
             int result;
 
-            result = (await _dbSession.Connection.ExecuteAsync(_queryDeleteAvis, new { id_recette = id_recette, id_utilisateur = id_utilisateur }));
+            result = (await _dbSession.Connection.ExecuteAsync(_queryDeleteAvis, new
+            {
+                id_recette = id_recette,
+                id_utilisateur = id_utilisateur
+            }));
 
             return result;
         }

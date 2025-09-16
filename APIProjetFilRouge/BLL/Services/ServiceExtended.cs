@@ -6,7 +6,7 @@ namespace APIProjetFilRouge.BLL.Services
     {
         public static void AddBll(this IServiceCollection services)
         {
-            services.AddTransient<IRecetteService, RecetteService>();
+            services.AddTransient<ICookBookService, CookBookService>();
         }
     }
 }
