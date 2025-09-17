@@ -1,4 +1,4 @@
 - Comment code
-- Handle all exceptions that are "supposed" to be thrown
+- Handle all exceptions that are "supposed" to be thrown in the globalhandler
 - Make the code readable (regions, summary)
 - Make a log to txt (for easier readability for thyself ;) )
