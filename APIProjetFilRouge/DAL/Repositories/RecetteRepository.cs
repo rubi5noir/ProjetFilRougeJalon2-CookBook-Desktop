@@ -64,7 +64,7 @@ namespace APIProjetFilRouge.DAL.Repositories
         {
             List<Recette> recettes = new List<Recette>();
 
-            recettes = (await _dbSession.Connection.QueryAsync<Recette>(_queryGetAllRecettes)).ToList();
+            recettes = (await _dbSession.Connection.QueryAsync<Recette>(_queryGetAllRecettes, transaction: _dbSession.Transaction)).ToList();
 
             return recettes;
         }
@@ -77,7 +77,7 @@ namespace APIProjetFilRouge.DAL.Repositories
             recette = await _dbSession.Connection.QuerySingleAsync<Recette>(_queryGetRecetteById, new
             {
                 Id = id
-            });
+            }, transaction: _dbSession.Transaction);
 
             return recette;
         }
@@ -97,7 +97,7 @@ namespace APIProjetFilRouge.DAL.Repositories
                 difficulte = recette.difficulte,
                 id_utilisateur = recette.id_utilisateur,
                 img = recette.img
-            });
+            }, transaction: _dbSession.Transaction);
             return newId;
         }
 
@@ -112,7 +112,7 @@ namespace APIProjetFilRouge.DAL.Repositories
                 temps_cuisson = recette.temps_cuisson,
                 difficulte = recette.difficulte,
                 img = recette.img
-            });
+            }, transaction: _dbSession.Transaction);
             return rowAffected;
         }
 
@@ -121,7 +121,7 @@ namespace APIProjetFilRouge.DAL.Repositories
             int rowAffected = await _dbSession.Connection.ExecuteAsync(_queryDeleteRecette, new
             {
                 id
-            });
+            }, transaction: _dbSession.Transaction);
             return rowAffected;
         }
 

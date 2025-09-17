@@ -131,15 +131,13 @@ namespace APIProjetFilRouge.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateRecette([FromBody] RecetteCreateDTO recetteCreateDTO)
         {
-
-
             Recette recette = new Recette
             {
                 id_utilisateur = recetteCreateDTO.id_utilisateur,
                 nom = recetteCreateDTO.nom,
                 description = recetteCreateDTO.description,
-                temps_preparation = recetteCreateDTO.temps_preparation,
-                temps_cuisson = recetteCreateDTO.temps_cuisson,
+                temps_preparation = new TimeSpan(recetteCreateDTO.temps_preparation_heures, recetteCreateDTO.temps_preparation_minutes, 0),
+                temps_cuisson = new TimeSpan(recetteCreateDTO.temps_cuisson_heures, recetteCreateDTO.temps_cuisson_minutes, 0),
                 difficulte = recetteCreateDTO.difficulte,
                 img = recetteCreateDTO.img
             };
@@ -163,9 +161,9 @@ namespace APIProjetFilRouge.Controllers
                 nom = c.nom
             }).ToList();
 
-            // Transaction a venir (attente du cours)
+            int newRecetteId = await _recetteService.CreateRecetteAsync(recette, categories, etapes, ingredients);
 
-            return StatusCode(StatusCodes.Status201Created);
+            return StatusCode(StatusCodes.Status201Created, newRecetteId);
         }
 
         #endregion
@@ -184,8 +182,8 @@ namespace APIProjetFilRouge.Controllers
                 id = id,
                 nom = recetteUpdateDTO.nom,
                 description = recetteUpdateDTO.description,
-                temps_preparation = recetteUpdateDTO.temps_preparation,
-                temps_cuisson = recetteUpdateDTO.temps_cuisson,
+                temps_preparation = new TimeSpan(recetteUpdateDTO.temps_preparation_heures, recetteUpdateDTO.temps_preparation_minutes, 0),
+                temps_cuisson = new TimeSpan(recetteUpdateDTO.temps_cuisson_heures, recetteUpdateDTO.temps_cuisson_minutes, 0),
                 difficulte = recetteUpdateDTO.difficulte,
                 img = recetteUpdateDTO.img
             };
@@ -209,9 +207,9 @@ namespace APIProjetFilRouge.Controllers
                 nom = c.nom
             }).ToList();
 
-            // Transaction a venir (attente du cours)
+            bool isUpdated = await _recetteService.UpdateRecetteAsync(recette, categories, etapes, ingredients);
 
-            return StatusCode(StatusCodes.Status200OK);
+            return StatusCode(StatusCodes.Status200OK, isUpdated);
         }
 
         #endregion
@@ -223,8 +221,7 @@ namespace APIProjetFilRouge.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> DeleteRecette([FromRoute] int id)
         {
-
-            // Transaction a venir (attente du cours)
+            bool isDeleted = await _recetteService.DeleteRecetteAsync(id);
 
             return StatusCode(StatusCodes.Status204NoContent);
         }

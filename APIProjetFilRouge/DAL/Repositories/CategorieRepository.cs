@@ -72,7 +72,7 @@ namespace APIProjetFilRouge.DAL.Repositories
         public async Task<List<Categorie>> GetAllCategoriesAsync()
         {
             List<Categorie> categories;
-            categories = (await _dbSession.Connection.QueryAsync<Categorie>(_queryGetAllCategories)).ToList();
+            categories = (await _dbSession.Connection.QueryAsync<Categorie>(_queryGetAllCategories, transaction: _dbSession.Transaction)).ToList();
             return categories;
         }
 
@@ -83,7 +83,7 @@ namespace APIProjetFilRouge.DAL.Repositories
             categories = (await _dbSession.Connection.QueryAsync<Categorie>(_queryGetCategoriesOfRecette, new
             {
                 Id = id
-            })).ToList();
+            }, transaction: _dbSession.Transaction)).ToList();
 
             return categories;
         }
@@ -97,7 +97,7 @@ namespace APIProjetFilRouge.DAL.Repositories
             int newId = await _dbSession.Connection.QuerySingleAsync<int>(_queryCreateCategorie, new
             {
                 nom = nom
-            });
+            }, transaction: _dbSession.Transaction);
             return newId;
         }
 
@@ -107,7 +107,7 @@ namespace APIProjetFilRouge.DAL.Repositories
             {
                 nom = categorie.nom,
                 id = categorie.id
-            });
+            }, transaction: _dbSession.Transaction);
             return rowsAffected;
         }
 
@@ -116,7 +116,7 @@ namespace APIProjetFilRouge.DAL.Repositories
             int rowsAffected = await _dbSession.Connection.ExecuteAsync(_queryDeleteCategorie, new
             {
                 id = id
-            });
+            }, transaction: _dbSession.Transaction);
             return rowsAffected;
         }
 
@@ -126,7 +126,7 @@ namespace APIProjetFilRouge.DAL.Repositories
             {
                 id_recette = id_recette,
                 id_categorie = categorie.id
-            });
+            }, transaction: _dbSession.Transaction);
             return rowsAffected;
         }
 
@@ -136,7 +136,7 @@ namespace APIProjetFilRouge.DAL.Repositories
             {
                 id_recette = id_recette,
                 id_categorie = categorie.id
-            });
+            }, transaction: _dbSession.Transaction);
             return rowsAffected;
         }
 

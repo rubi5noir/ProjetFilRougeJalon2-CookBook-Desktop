@@ -6,8 +6,35 @@ namespace APIProjetFilRouge.DAL.Session
     public abstract class BaseSession : IDBSession
     {
         public DatabaseProviderName? DatabaseProviderName { get; protected set; }
-
         public IDbConnection Connection { get; protected set; }
+
+        public IDbTransaction Transaction { get; private set; }
+        public bool HasActiveTransaction => Transaction != null;
+
+        public void BeginTransaction()
+        {
+            if (Transaction == null)
+            {
+                if (Connection?.State != ConnectionState.Open)
+                    Connection?.Open();
+
+                Transaction = Connection?.BeginTransaction();
+            }
+        }
+
+        public void Commit()
+        {
+            Transaction?.Commit();
+            Transaction = null;
+            Connection?.Close();
+        }
+
+        public void Rollback()
+        {
+            Transaction?.Rollback();
+            Transaction = null;
+            Connection?.Close();
+        }
 
         #region IDisposable Support
 
@@ -28,6 +55,7 @@ namespace APIProjetFilRouge.DAL.Session
                 if (disposing)
                 {
                     // Libérer les ressources managées
+                    Transaction?.Dispose();
                     Connection?.Dispose();
                 }
 

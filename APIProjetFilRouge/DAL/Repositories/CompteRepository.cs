@@ -61,7 +61,7 @@ namespace APIProjetFilRouge.DAL.Repositories
         {
             List<Compte> comptes = new List<Compte>();
 
-            comptes = (await _dbSession.Connection.QueryAsync<Compte>(_queryGetAllComptes)).ToList();
+            comptes = (await _dbSession.Connection.QueryAsync<Compte>(_queryGetAllComptes , transaction: _dbSession.Transaction)).ToList();
 
             return comptes;
         }
@@ -73,7 +73,7 @@ namespace APIProjetFilRouge.DAL.Repositories
             compte = await _dbSession.Connection.QuerySingleAsync<Compte>(_queryGetCompteById, new
             {
                 Id = id
-            });
+            } , transaction: _dbSession.Transaction);
 
             return compte;
         }
@@ -93,7 +93,7 @@ namespace APIProjetFilRouge.DAL.Repositories
                 compte.email,
                 compte.password,
                 compte.admin
-            });
+            }, transaction: _dbSession.Transaction);
             return newId;
         }
 
@@ -103,7 +103,7 @@ namespace APIProjetFilRouge.DAL.Repositories
             {
                 compte.identifiant,
                 compte.id
-            });
+            }, transaction: _dbSession.Transaction);
             return rowsAffected;
         }
 
@@ -112,7 +112,7 @@ namespace APIProjetFilRouge.DAL.Repositories
             int rowsAffected = await _dbSession.Connection.ExecuteAsync(_queryDeleteCompte, new
             {
                 id = id
-            });
+            }, transaction: _dbSession.Transaction);
             return rowsAffected;
         }
 

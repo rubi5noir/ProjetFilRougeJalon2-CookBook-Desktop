@@ -38,11 +38,11 @@ namespace APIProjetFilRouge.DAL.Repositories
         private const string _queryUpdateEtape =
             $"UPDATE {etapeTable} " +
             "SET texte = @texte " +
-            "WHERE id_recette = id_recette AND WHERE numero = @numero";
+            "WHERE id_recette = id_recette AND numero = @numero";
 
         private const string _queryDeleteEtape =
             $"DELETE FROM {etapeTable} " +
-            "WHERE id_recette = @id_recette AND WHERE numero = @numero";
+            "WHERE id_recette = @id_recette AND numero = @numero";
 
         #endregion
 
@@ -59,7 +59,7 @@ namespace APIProjetFilRouge.DAL.Repositories
             etapes = (await _dbSession.Connection.QueryAsync<Etape>(_queryGetEtapesOfRecette, new
             {
                 IdRecette = id
-            })).ToList();
+            }, transaction: _dbSession.Transaction)).ToList();
 
             return etapes;
         }
@@ -70,13 +70,13 @@ namespace APIProjetFilRouge.DAL.Repositories
 
         public async Task<int> CreateEtapeAsync(Etape etape)
         {
-            var parameters = new
+            var result = await _dbSession.Connection.ExecuteAsync(_queryCreateEtape, new
             {
                 etape.id_recette,
                 etape.numero,
                 etape.texte
-            };
-            var result = await _dbSession.Connection.ExecuteAsync(_queryCreateEtape, parameters);
+            }, transaction: _dbSession.Transaction);
+
             return result;
         }
 
@@ -87,18 +87,17 @@ namespace APIProjetFilRouge.DAL.Repositories
                 texte = etape.texte,
                 id_recette = etape.id_recette,
                 numero = etape.numero
-            });
+            }, transaction: _dbSession.Transaction);
             return result;
         }
 
         public async Task<int> DeleteEtapeAsync(int id_recette, int numero)
         {
-            var parameters = new
+            var result = await _dbSession.Connection.ExecuteAsync(_queryDeleteEtape, new
             {
                 id_recette,
                 numero
-            };
-            var result = await _dbSession.Connection.ExecuteAsync(_queryDeleteEtape, parameters);
+            }, transaction: _dbSession.Transaction);
             return result;
         }
 

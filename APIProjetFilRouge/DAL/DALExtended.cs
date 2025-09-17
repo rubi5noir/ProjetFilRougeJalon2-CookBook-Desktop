@@ -2,6 +2,7 @@
 using APIProjetFilRouge.DAL.Repositories;
 using APIProjetFilRouge.DAL.Session;
 using APIProjetFilRouge.DAL.Session.PostGres;
+using APIProjetFilRouge.DAL.UnitsOfWork;
 using APIProjetFilRouge.Models;
 using Microsoft.AspNetCore.Http;
 using static Dapper.SqlMapper;
@@ -19,7 +20,7 @@ namespace APIProjetFilRouge.DAL
                     break;
             }
 
-
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IAvisRepository, AvisRepository>();
             services.AddTransient<ICategorieRepository, CategorieRepository>();
             services.AddTransient<ICompteRepository, CompteRepository>();

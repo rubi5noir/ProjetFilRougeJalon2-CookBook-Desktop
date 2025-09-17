@@ -195,13 +195,13 @@ namespace APIProjetFilRouge.BLL.Interfaces
         /// Create a new recipe to the database
         /// </summary>
         /// <returns><see cref="int"/> : Id of the new recipe</returns>
-        Task<int> CreateRecetteAsync(Recette recette);
+        Task<int> CreateRecetteAsync(Recette recette, List<Categorie> categories, List<Etape> etapes, List<Ingredient> ingredients);
 
         /// <summary>
         /// Update an existing recipe in the database
         /// </summary>
         /// <returns></returns>
-        Task<bool> UpdateRecetteAsync(Recette recette);
+        Task<bool> UpdateRecetteAsync(Recette recette, List<Categorie> categories, List<Etape> etapes, List<Ingredient> ingredients);
 
         /// <summary>
         /// Delete a recipe from the database

@@ -61,7 +61,7 @@ namespace APIProjetFilRouge.DAL.Repositories
         {
             List<Avis> Avis = new List<Avis>();
 
-            Avis = (await _dbSession.Connection.QueryAsync<Avis>(_queryGetAllAvis)).ToList();
+            Avis = (await _dbSession.Connection.QueryAsync<Avis>(_queryGetAllAvis ,transaction: _dbSession.Transaction)).ToList();
 
             return Avis;
         }
@@ -73,7 +73,7 @@ namespace APIProjetFilRouge.DAL.Repositories
             Avis = (await _dbSession.Connection.QueryAsync<Avis>(_queryGetAvisByRecetteId, new
             {
                 Id = id
-            })).ToList();
+            }, transaction: _dbSession.Transaction)).ToList();
 
             return Avis;
         }
@@ -92,7 +92,7 @@ namespace APIProjetFilRouge.DAL.Repositories
                 id_utilisateur = avis.id_utilisateur,
                 note = avis.note,
                 commentaire = avis.commentaire
-            }));
+            }, transaction: _dbSession.Transaction));
 
             return result;
         }
@@ -107,7 +107,7 @@ namespace APIProjetFilRouge.DAL.Repositories
                 commentaire = avis.commentaire,
                 id_recette = avis.id_recette,
                 id_utilisateur = avis.id_utilisateur
-            }));
+            }, transaction: _dbSession.Transaction));
 
             return result;
         }
@@ -120,7 +120,7 @@ namespace APIProjetFilRouge.DAL.Repositories
             {
                 id_recette = id_recette,
                 id_utilisateur = id_utilisateur
-            }));
+            }, transaction: _dbSession.Transaction));
 
             return result;
         }

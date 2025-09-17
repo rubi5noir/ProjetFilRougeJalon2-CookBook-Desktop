@@ -72,7 +72,7 @@ namespace APIProjetFilRouge.DAL.Repositories
         {
             List<Ingredient> ingredients;
 
-            ingredients = (await _dbSession.Connection.QueryAsync<Ingredient>(_queryGetAllIngredients)).ToList();
+            ingredients = (await _dbSession.Connection.QueryAsync<Ingredient>(_queryGetAllIngredients, transaction: _dbSession.Transaction)).ToList();
 
             return ingredients;
         }
@@ -85,7 +85,7 @@ namespace APIProjetFilRouge.DAL.Repositories
             ingredients = (await _dbSession.Connection.QueryAsync<Ingredient>(_queryGetIngredientsWithQuantitiesOfRecette, new
             {
                 Id = id
-            })).ToList();
+            }, transaction: _dbSession.Transaction)).ToList();
 
             return ingredients;
         }
@@ -99,7 +99,7 @@ namespace APIProjetFilRouge.DAL.Repositories
             var id = await _dbSession.Connection.ExecuteScalarAsync<int>(_queryCreateIngredient, new
             {
                 ingredient.nom
-            });
+            }, transaction: _dbSession.Transaction);
             return id;
         }
 
@@ -109,7 +109,7 @@ namespace APIProjetFilRouge.DAL.Repositories
             {
                 nom = ingredient.nom,
                 id = ingredient.id
-            });
+            }, transaction: _dbSession.Transaction);
             return rowsAffected;
         }
 
@@ -118,7 +118,7 @@ namespace APIProjetFilRouge.DAL.Repositories
             int rowsAffected = await _dbSession.Connection.ExecuteAsync(_queryDeleteIngredient, new
             {
                 id = id
-            });
+            }, transaction: _dbSession.Transaction);
             return rowsAffected;
         }
 
@@ -129,7 +129,7 @@ namespace APIProjetFilRouge.DAL.Repositories
                 id_recette = id_recette,
                 id_ingredient = ingredient.id,
                 quantite = ingredient.quantite
-            });
+            }, transaction: _dbSession.Transaction);
             return rowsAffected;
         }
 
@@ -139,7 +139,7 @@ namespace APIProjetFilRouge.DAL.Repositories
             {
                 id_recette = id_recette,
                 id_ingredient = ingredient.id
-            });
+            }, transaction: _dbSession.Transaction);
             return rowsAffected;
         }
 
