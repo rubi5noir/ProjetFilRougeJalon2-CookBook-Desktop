@@ -19,17 +19,37 @@ namespace CookBookAppDesktop
         public FormAppMain()
         {
             InitializeComponent();
+            InitializeInputsLimits();
         }
 
         #region Methods
 
         private void InitializeBinding()
         {
-            // Books
+            // Recettes
             _recettes = new();
             bindingSourceRecettes.DataSource = _recettes;
             dataGridViewRecettes.DataSource = bindingSourceRecettes;
+        }
 
+        private void InitializeInputsLimits()
+        {
+            textBoxNomRecette.MaxLength = 100;
+
+            textBoxDescriptionRecette.MaxLength = 5000;
+
+            numericUpDownTemps_PréparationHeures.Minimum = 0;
+            numericUpDownTemps_PréparationHeures.Maximum = 128;
+            numericUpDownTemps_PréparationMinutes.Minimum = 0;
+            numericUpDownTemps_PréparationMinutes.Maximum = 59;
+
+            numericUpDownTemps_CuissonHeures.Minimum = 0;
+            numericUpDownTemps_CuissonHeures.Maximum = 128;
+            numericUpDownTemps_CuissonMinutes.Minimum = 0;
+            numericUpDownTemps_CuissonMinutes.Maximum = 59;
+
+            numericUpDownDifficulteRecette.Minimum = 1;
+            numericUpDownDifficulteRecette.Maximum = 4;
         }
 
         private async Task RefreshRecettes()
@@ -60,21 +80,26 @@ namespace CookBookAppDesktop
             await RefreshRecettes();
         }
 
-       
+
 
         private async void tabControl_Selecting(object sender, TabControlCancelEventArgs e)
         {
             if (e.TabPage == tabPageRecettes)
                 await RefreshRecettes();
         }
-          
+
 
         #region TabPageRecettes
 
-
+        private async void buttonRefreshRecettes_Click(object sender, EventArgs e)
+        {
+            await RefreshRecettes();
+        }
 
         #endregion
 
         #endregion
+
+
     }
 }

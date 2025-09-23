@@ -606,6 +606,7 @@
             buttonRefreshRecettes.Text = "Actualiser";
             buttonRefreshRecettes.TextImageRelation = TextImageRelation.ImageBeforeText;
             buttonRefreshRecettes.UseVisualStyleBackColor = true;
+            buttonRefreshRecettes.Click += buttonRefreshRecettes_Click;
             // 
             // buttonAddRecettes
             // 
@@ -662,6 +663,7 @@
             MinimumSize = new Size(700, 600);
             Name = "FormAppMain";
             Text = "Form1";
+            Load += FormAppMain_Load;
             tableLayoutPanelApp.ResumeLayout(false);
             tabControlApp.ResumeLayout(false);
             tabPageRecettes.ResumeLayout(false);

@@ -6,7 +6,7 @@ namespace APIProjetFilRouge.Models.DataTransfertObjects.Out
     public class RecetteDetailsDTO
     {
         public int id { get; set; }
-        public string identifiantCreateur { get; set; }
+        public string identifiantCreateur { get; set; } = "";
         public string nom { get; set; }
         public string description { get; set; }
         public TimeSpan temps_preparation { get; set; }
