@@ -7,6 +7,7 @@ namespace APIProjetFilRouge.BLL.Services
         public static void AddBll(this IServiceCollection services)
         {
             services.AddTransient<ICookBookService, CookBookService>();
+            services.AddTransient<IJwtTokenService, JwtTokenService>();
         }
     }
 }
