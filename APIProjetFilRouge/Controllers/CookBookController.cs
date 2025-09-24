@@ -5,12 +5,14 @@ using APIProjetFilRouge.Models.BussinessObjects;
 using APIProjetFilRouge.Models.DataTransfertObjects.Between;
 using APIProjetFilRouge.Models.DataTransfertObjects.In;
 using APIProjetFilRouge.Models.DataTransfertObjects.Out;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace APIProjetFilRouge.Controllers
 {
+    [Authorize(Roles = "Administrateur,Utilisateur")]
     [Route("api/[controller]")]
     [ApiController]
     public class CookBookController : ControllerBase

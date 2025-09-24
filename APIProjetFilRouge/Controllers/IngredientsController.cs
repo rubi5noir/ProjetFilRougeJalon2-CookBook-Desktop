@@ -1,11 +1,13 @@
 ﻿using APIProjetFilRouge.BLL.Interfaces;
 using APIProjetFilRouge.Models.BussinessObjects;
 using APIProjetFilRouge.Models.DataTransfertObjects.Between;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace APIProjetFilRouge.Controllers
 {
+    [Authorize(Roles = "Administrateur,Utilisateur")]
     [Route("api/[controller]")]
     [ApiController]
     public class IngredientsController : ControllerBase
@@ -42,6 +44,7 @@ namespace APIProjetFilRouge.Controllers
         /// Create a new ingredient
         /// </summary>
         /// <returns></returns>
+        [Authorize(Roles = "Administrateur")]
         [HttpPost("Create")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -61,6 +64,7 @@ namespace APIProjetFilRouge.Controllers
 
         #region PUT
 
+        [Authorize(Roles = "Administrateur")]
         [HttpPut("Update/{id}")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -80,6 +84,7 @@ namespace APIProjetFilRouge.Controllers
 
         #region DELETE
 
+        [Authorize(Roles = "Administrateur")]
         [HttpDelete("Delete/{id}")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

@@ -3,11 +3,13 @@ using APIProjetFilRouge.Models.BussinessObjects;
 using APIProjetFilRouge.Models.DataTransfertObjects.Between;
 using APIProjetFilRouge.Models.DataTransfertObjects.In;
 using APIProjetFilRouge.Models.DataTransfertObjects.Out;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace APIProjetFilRouge.Controllers
 {
+    [Authorize(Roles = "Administrateur,Utilisateur")]
     [Route("api/[controller]")]
     [ApiController]
     public class RecettesController : ControllerBase
@@ -126,6 +128,7 @@ namespace APIProjetFilRouge.Controllers
 
         #region POST
 
+        [Authorize(Roles = "Administrateur")]
         [HttpPost("Create")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -170,6 +173,7 @@ namespace APIProjetFilRouge.Controllers
 
         #region PUT
 
+        [Authorize(Roles = "Administrateur")]
         [HttpPut("Update/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -216,6 +220,7 @@ namespace APIProjetFilRouge.Controllers
 
         #region DELETE
 
+        [Authorize(Roles = "Administrateur")]
         [HttpDelete("Delete/{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

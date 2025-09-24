@@ -1,10 +1,12 @@
 ﻿using APIProjetFilRouge.BLL.Interfaces;
 using APIProjetFilRouge.Models.DataTransfertObjects.Out;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace APIProjetFilRouge.Controllers
 {
+    [Authorize(Roles = "Administrateur,Utilisateur")]
     [Route("api/[controller]")]
     [ApiController]
     public class ComptesController : ControllerBase
@@ -22,6 +24,7 @@ namespace APIProjetFilRouge.Controllers
         /// Retrieve All user's accounts
         /// </summary>
         /// <returns></returns>
+        [Authorize(Roles = "Administrateur")]
         [HttpGet("Comptes")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
