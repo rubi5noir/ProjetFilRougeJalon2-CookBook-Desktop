@@ -94,7 +94,7 @@ namespace CookBookAppDesktop
         {
             EtapeDTO current = bindingSourceEtapes.Current as EtapeDTO;
 
-            var res = await _rest.GetAsync<IEnumerable<EtapeDTO>>($"{URL_GET_ETAPES}/{current.id}");
+            var res = await _rest.GetAsync<IEnumerable<EtapeDTO>>($"{URL_GET_ETAPES}");
             
             _etapes.Clear();
             foreach (EtapeDTO e in res)

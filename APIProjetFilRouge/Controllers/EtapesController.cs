@@ -1,6 +1,7 @@
 ﻿using APIProjetFilRouge.BLL.Interfaces;
 using APIProjetFilRouge.Models.BussinessObjects;
 using APIProjetFilRouge.Models.DataTransfertObjects.Between;
+using APIProjetFilRouge.Models.DataTransfertObjects.Out;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -28,7 +29,15 @@ namespace APIProjetFilRouge.Controllers
         public async Task<IActionResult> GetAllEtapes()
         {
             List<Etape> etapes = await _recetteService.GetAllEtapesAsync();
-            return (StatusCode(StatusCodes.Status200OK, etapes));
+
+            List<EtapeOUTDTO> etapesDTO = etapes.Select(e => new EtapeOUTDTO
+            {
+                id = e.id_recette,
+                numero = e.numero,
+                texte = e.texte
+            }).ToList();
+
+            return (StatusCode(StatusCodes.Status200OK, etapesDTO));
         }
 
         [HttpGet("{id}")]
