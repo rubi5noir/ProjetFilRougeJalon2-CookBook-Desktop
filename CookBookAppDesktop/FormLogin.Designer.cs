@@ -125,6 +125,7 @@
             textBoxMotDePasse.Name = "textBoxMotDePasse";
             textBoxMotDePasse.Size = new Size(377, 23);
             textBoxMotDePasse.TabIndex = 3;
+            textBoxMotDePasse.UseSystemPasswordChar = true;
             // 
             // flowLayoutPanelFormLoginButtons
             // 

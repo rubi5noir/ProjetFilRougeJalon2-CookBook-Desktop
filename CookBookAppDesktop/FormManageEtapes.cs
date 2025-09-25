@@ -15,10 +15,10 @@ namespace CookBookAppDesktop
 {
     public partial class FormManageEtapes : Form
     {
-        private const string URL_GET_ETAPES = "api/Etapes";
-        private const string URL_CREATE_ETAPES = "api/Etapes";
-        private const string URL_UPDATE_ETAPES = "api/Etapes";
-        private const string URL_DELETE_ETAPES = "api/Etapes";
+        const string URL_GET_ETAPES = "api/Etapes";
+        const string URL_CREATE_ETAPES = "api/Etapes";
+        const string URL_UPDATE_ETAPES = "api/Etapes";
+        const string URL_DELETE_ETAPES = "api/Etapes";
 
         readonly RestClient _rest = new();
         BindingList<EtapeDTO> _etapes;
@@ -51,7 +51,7 @@ namespace CookBookAppDesktop
             // Remplissage de la liste
             var res = await _rest.GetAsync<IEnumerable<EtapeDTO>>($"{URL_GET_ETAPES}/{current.id}");
 
-            res = res.Select(r => 
+            res = res.Select(r =>
             {
                 r.id = current.id;
                 return r;

@@ -17,25 +17,7 @@ namespace CookBookAppDesktop.Models.DTO
         public TimeSpan temps_total { get { return temps_preparation + temps_cuisson; } }
         public int difficulte { get; set; }
 
-
-        //public List<IngredientDTO> ingredients { get; set; }
-
-        //public List<EtapeDTO> etapes { get; set; }
-
-        //public List<CategorieDTO> categories { get; set; }
-
-        //public Compte? utilisateur { get; set; }
-
-        //public List<AvisOfRecetteDTO> avis { get; set; }
-
-
-        public string? img { get; set; } // pour l'affichage
-
-        //public IFormFile imgFile { get; set; } // pour le formulaire
-
-        /* Nouvel avis */
-        //public string aviscommentaire { get; set; }
-        //public double avisnote { get; set; }
+        public string? img { get; set; }
     }
 
 }

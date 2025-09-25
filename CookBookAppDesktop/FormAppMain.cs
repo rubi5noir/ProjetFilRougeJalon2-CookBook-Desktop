@@ -16,8 +16,16 @@ namespace CookBookAppDesktop
         const string URL_UPDATE_RECETTES = "api/Recettes";
         const string URL_DELETE_RECETTES = "api/Recettes";
 
+        const string URL_GET_ETAPES = "api/Etapes";
+
+
         readonly RestClient _rest = new();
         BindingList<RecetteDetailsDTO> _recettes;
+        BindingList<EtapeDTO> _etapes;
+        BindingList<CategorieDTO> _categories;
+        BindingList<IngredientDTO> _ingredients;
+        BindingList<AvisDTO> _avis;
+
 
         public static string Token;
 
@@ -39,6 +47,11 @@ namespace CookBookAppDesktop
             _recettes = new();
             bindingSourceRecettes.DataSource = _recettes;
             dataGridViewRecettes.DataSource = bindingSourceRecettes;
+
+            // Etapes
+            _etapes = new();
+            bindingSourceEtapes.DataSource = _etapes;
+            dataGridViewEtapes.DataSource = bindingSourceEtapes;
         }
 
         private void InitializeInputsLimits()
@@ -75,6 +88,24 @@ namespace CookBookAppDesktop
             // On se repositionne sur le current
             if (current is not null)
                 bindingSourceRecettes.Position = _recettes.IndexOf(_recettes.Where(r => r.id == current.id).FirstOrDefault());
+        }
+
+        private async Task RefreshEtapes()
+        {
+            EtapeDTO current = bindingSourceEtapes.Current as EtapeDTO;
+
+            var res = await _rest.GetAsync<IEnumerable<EtapeDTO>>($"{URL_GET_ETAPES}/{current.id}");
+            
+            _etapes.Clear();
+            foreach (EtapeDTO e in res)
+                _etapes.Add(e);
+        }
+
+        private async Task RefreshCategories()
+        {
+            CategorieDTO current = bindingSourceRecettes.Current as CategorieDTO;
+
+            
         }
 
         #endregion
@@ -144,9 +175,22 @@ namespace CookBookAppDesktop
             }
         }
 
+        #endregion
+
+        #region TabPageEtapes
+
+        private async void buttonRefreshEtapes_Click(object sender, EventArgs e)
+        {
+            await RefreshEtapes();
+        }
+
         private async void buttonOpenFormSelectionEtapes_Click(object sender, EventArgs e)
         {
             FormManageEtapes formManageEtapes = new FormManageEtapes();
+            if (formManageEtapes.ShowDialog() == DialogResult.OK)
+            {
+                await RefreshEtapes();
+            }
         }
 
         #endregion
