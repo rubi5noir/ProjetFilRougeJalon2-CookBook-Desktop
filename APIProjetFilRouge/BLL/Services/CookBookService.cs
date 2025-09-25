@@ -197,17 +197,17 @@ namespace APIProjetFilRouge.BLL.Services
             return rowsAffected;
         }
 
-        public async Task<bool> UpdateEtapeAsync(Etape etape)
+        public async Task<bool> UpdateEtapeAsync(int num, Etape etape)
         {
-            int rowsAffected = await _unitOfWork.Etape.UpdateEtapeAsync(etape);
+            int rowsAffected = await _unitOfWork.Etape.UpdateEtapeAsync(num, etape);
 
             bool isUpdated = rowsAffected == 1;
             return isUpdated;
         }
 
-        public async Task<bool> DeleteEtapeAsync(Etape etape)
+        public async Task<bool> DeleteEtapeAsync(int num, int id)
         {
-            int rowsAffected = await _unitOfWork.Etape.DeleteEtapeAsync(etape.id_recette, etape.numero);
+            int rowsAffected = await _unitOfWork.Etape.DeleteEtapeAsync(id, num);
 
             bool isDeleted = rowsAffected == 1;
             return isDeleted;
@@ -352,7 +352,7 @@ namespace APIProjetFilRouge.BLL.Services
                 {
                     etape.id_recette = recette.id;
 
-                    await _unitOfWork.Etape.UpdateEtapeAsync(etape);
+                    await _unitOfWork.Etape.UpdateEtapeAsync(0, etape);
                 }
 
                 foreach (var ingredient in ingredients)

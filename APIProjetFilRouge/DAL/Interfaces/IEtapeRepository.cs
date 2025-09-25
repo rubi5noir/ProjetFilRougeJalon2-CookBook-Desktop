@@ -20,7 +20,7 @@ namespace APIProjetFilRouge.DAL.Interfaces
         /// Deletes a step from the database.
         /// </summary>
         /// <returns><see cref="int"/> : Number of rows affected</returns>
-        Task<int> UpdateEtapeAsync(Etape etape);
+        Task<int> UpdateEtapeAsync(int num, Etape etape);
 
         /// <summary>
         /// Deletes a step from the database based on the recipe ID and step number.

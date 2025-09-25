@@ -129,13 +129,13 @@ namespace APIProjetFilRouge.BLL.Interfaces
         /// Update a step from a recipe
         /// </summary>
         /// <returns></returns>
-        Task<bool> UpdateEtapeAsync(Etape etape);
+        Task<bool> UpdateEtapeAsync(int num, Etape etape);
 
         /// <summary>
         /// Delete a step from a recipe based on recipe ID and step number
         /// </summary>
         /// <returns></returns>
-        Task<bool> DeleteEtapeAsync(Etape etape);
+        Task<bool> DeleteEtapeAsync(int num, int id);
 
         #endregion
 
