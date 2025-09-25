@@ -1,11 +1,14 @@
 using CookBookAppDesktop.Models.DTO;
 using System.ComponentModel;
+using System.IdentityModel.Tokens.Jwt;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CookBookAppDesktop
 {
     public partial class FormAppMain : Form
     {
+
         const string URL_GET_RECETTES = "api/Recettes";
         const string URL_CREATE_RECETTES = "api/Recettes";
         const string URL_UPDATE_RECETTES = "api/Recettes";
@@ -13,6 +16,8 @@ namespace CookBookAppDesktop
 
         readonly RestClient _rest = new();
         BindingList<RecetteDetailsDTO> _recettes;
+
+        IEnumerable<string> _roles = [];
 
 
 
@@ -77,7 +82,25 @@ namespace CookBookAppDesktop
             InitializeBinding();
 
             _rest.BaseUrl = "http://localhost:5555";
-            await RefreshRecettes();
+
+            if (string.IsNullOrEmpty(_rest.JwtToken))
+            {
+                FormLogin formLogin = new();
+                if (formLogin.ShowDialog() != DialogResult.OK)
+                {
+                    Close();
+                    return;
+                }
+                else
+                {
+                    _rest.JwtToken = formLogin.JwtToken;
+                    _roles = formLogin._roles;
+
+                    tableLayoutPanelApp.Enabled = true;
+
+                    await RefreshRecettes();
+                }
+            }
         }
 
 
@@ -95,6 +118,42 @@ namespace CookBookAppDesktop
         {
             await RefreshRecettes();
         }
+
+        private async void buttonSelectionnerImageRecette_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "Image Files|*.jpg;*.jpeg;*.png",
+                Title = "Select an Image",
+                InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures)
+            };
+
+            DialogResult result = openFileDialog.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                textBoxImageRecette.Text = openFileDialog.FileName;
+            }
+        }
+
+        private async void buttonOpenFormSelectionEtapes_Click(object sender, EventArgs e)
+        {
+            FormManageEtapes formManageEtapes = new FormManageEtapes();
+            if (formManageEtapes.ShowDialog() != DialogResult.OK)
+            {
+                // Annulation
+            }
+            else
+            {
+                // Recuperation des etapes selectionnées
+            }
+        }
+
+        #endregion
+
+        #region TabPageUtilisateurs
+
+
 
         #endregion
 

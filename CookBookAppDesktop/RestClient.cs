@@ -23,22 +23,15 @@ namespace CookBookAppDesktop
 
         public string BaseUrl { get; set; }
 
-        public string JwtToken
-        {
-            get => _httpClient.DefaultRequestHeaders.Authorization?.Parameter;
-            set
-            {
-                _httpClient.DefaultRequestHeaders.Authorization = string.IsNullOrWhiteSpace(value)
-                    ? null
-                    : new AuthenticationHeaderValue("Bearer", value);
-            }
-        }
+        public string JwtToken { get; set; }
 
         private async Task<HttpResponseMessage> SendAsync(HttpMethod method, string endUrl, HttpContent content = null, Dictionary<string, string> customHeaders = null)
         {
             string Url = CombinerUrl(BaseUrl, endUrl);
 
             var request = new HttpRequestMessage(method, Url) { Content = content };
+            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            request.Headers.Authorization = string.IsNullOrWhiteSpace(JwtToken) ? null : new AuthenticationHeaderValue("Bearer", JwtToken);
 
             if (customHeaders != null)
             {

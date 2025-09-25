@@ -111,6 +111,7 @@
             tableLayoutPanelApp.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             tableLayoutPanelApp.Controls.Add(tabControlApp, 0, 0);
             tableLayoutPanelApp.Dock = DockStyle.Fill;
+            tableLayoutPanelApp.Enabled = false;
             tableLayoutPanelApp.Location = new Point(0, 0);
             tableLayoutPanelApp.Name = "tableLayoutPanelApp";
             tableLayoutPanelApp.RowCount = 1;
@@ -170,6 +171,7 @@
             dataGridViewRecettes.Location = new Point(3, 3);
             dataGridViewRecettes.Name = "dataGridViewRecettes";
             dataGridViewRecettes.ReadOnly = true;
+            dataGridViewRecettes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewRecettes.Size = new Size(658, 180);
             dataGridViewRecettes.TabIndex = 2;
             // 
@@ -302,6 +304,7 @@
             buttonSelectionnerImageRecette.TabIndex = 1;
             buttonSelectionnerImageRecette.Text = "Ajouter une image";
             buttonSelectionnerImageRecette.UseVisualStyleBackColor = true;
+            buttonSelectionnerImageRecette.Click += buttonSelectionnerImageRecette_Click;
             // 
             // labelTemps_PréparationRecette
             // 
@@ -441,6 +444,7 @@
             buttonOpenFormSelectionEtapes.TabIndex = 0;
             buttonOpenFormSelectionEtapes.Text = "Gérer la liste des étapes";
             buttonOpenFormSelectionEtapes.UseVisualStyleBackColor = true;
+            buttonOpenFormSelectionEtapes.Click += buttonOpenFormSelectionEtapes_Click;
             // 
             // listViewListEtapesRecette
             // 
