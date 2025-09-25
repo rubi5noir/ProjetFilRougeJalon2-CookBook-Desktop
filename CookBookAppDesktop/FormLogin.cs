@@ -1,4 +1,5 @@
 ﻿using CookBookAppDesktop.Models.DTO;
+using CookBookAppDesktop.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -70,7 +71,7 @@ namespace CookBookAppDesktop
                     Password = textBoxMotDePasse.Text
                 };
 
-                _rest.BaseUrl = "http://localhost:5555";
+                _rest.BaseUrl = Settings.Default.BaseUrl;
 
                 var res = await _rest.PostAsync<JwtDTO, LoginDTO>($"{URL_GET_LOGIN}", loginDTO);
                 _rest.JwtToken = res.Token;

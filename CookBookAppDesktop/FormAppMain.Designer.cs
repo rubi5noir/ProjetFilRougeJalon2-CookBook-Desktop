@@ -54,10 +54,8 @@
             numericUpDownTemps_CuissonMinutes = new NumericUpDown();
             labelDifficulteRecette = new Label();
             labelIMGRecette = new Label();
-            labelListEtapesRecette = new Label();
             tableLayoutPanelEtapesRecette = new TableLayoutPanel();
             buttonOpenFormSelectionEtapes = new Button();
-            listViewListEtapesRecette = new ListView();
             labelListCategoriesRecette = new Label();
             tableLayoutPanelCategoriesRecette = new TableLayoutPanel();
             buttonOpenFormSelectionCategories = new Button();
@@ -77,6 +75,9 @@
             buttonRemoveRecettes = new Button();
             tabPageEtapes = new TabPage();
             bindingSourceRecettes = new BindingSource(components);
+            tabPage1 = new TabPage();
+            tabPage2 = new TabPage();
+            tabPage3 = new TabPage();
             tableLayoutPanelApp.SuspendLayout();
             tabControlApp.SuspendLayout();
             tabPageRecettes.SuspendLayout();
@@ -99,6 +100,7 @@
             ((System.ComponentModel.ISupportInitialize)numericUpDownDifficulteRecette).BeginInit();
             tableLayoutPanelDescriptionRecette.SuspendLayout();
             flowLayoutPanelGestionRecettesButtons.SuspendLayout();
+            tabPageEtapes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)bindingSourceRecettes).BeginInit();
             SuspendLayout();
             // 
@@ -124,6 +126,9 @@
             // 
             tabControlApp.Controls.Add(tabPageRecettes);
             tabControlApp.Controls.Add(tabPageEtapes);
+            tabControlApp.Controls.Add(tabPage1);
+            tabControlApp.Controls.Add(tabPage2);
+            tabControlApp.Controls.Add(tabPage3);
             tabControlApp.Dock = DockStyle.Fill;
             tabControlApp.Location = new Point(3, 3);
             tabControlApp.Name = "tabControlApp";
@@ -203,8 +208,6 @@
             tableLayoutPanelGestionRecettesInputs.Controls.Add(tableLayoutPanelTemps_CuissonRecette, 1, 3);
             tableLayoutPanelGestionRecettesInputs.Controls.Add(labelDifficulteRecette, 0, 4);
             tableLayoutPanelGestionRecettesInputs.Controls.Add(labelIMGRecette, 0, 5);
-            tableLayoutPanelGestionRecettesInputs.Controls.Add(labelListEtapesRecette, 0, 6);
-            tableLayoutPanelGestionRecettesInputs.Controls.Add(tableLayoutPanelEtapesRecette, 1, 6);
             tableLayoutPanelGestionRecettesInputs.Controls.Add(labelListCategoriesRecette, 0, 7);
             tableLayoutPanelGestionRecettesInputs.Controls.Add(tableLayoutPanelCategoriesRecette, 1, 7);
             tableLayoutPanelGestionRecettesInputs.Controls.Add(labelListIngredientsRecette, 0, 8);
@@ -410,29 +413,17 @@
             labelIMGRecette.TabIndex = 5;
             labelIMGRecette.Text = "Image :";
             // 
-            // labelListEtapesRecette
-            // 
-            labelListEtapesRecette.AutoSize = true;
-            labelListEtapesRecette.Dock = DockStyle.Fill;
-            labelListEtapesRecette.Location = new Point(3, 210);
-            labelListEtapesRecette.Name = "labelListEtapesRecette";
-            labelListEtapesRecette.Size = new Size(127, 106);
-            labelListEtapesRecette.TabIndex = 6;
-            labelListEtapesRecette.Text = "Étapes :";
-            // 
             // tableLayoutPanelEtapesRecette
             // 
-            tableLayoutPanelEtapesRecette.ColumnCount = 2;
-            tableLayoutPanelEtapesRecette.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanelEtapesRecette.ColumnCount = 1;
             tableLayoutPanelEtapesRecette.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanelEtapesRecette.Controls.Add(buttonOpenFormSelectionEtapes, 0, 0);
-            tableLayoutPanelEtapesRecette.Controls.Add(listViewListEtapesRecette, 1, 0);
             tableLayoutPanelEtapesRecette.Dock = DockStyle.Fill;
-            tableLayoutPanelEtapesRecette.Location = new Point(136, 213);
+            tableLayoutPanelEtapesRecette.Location = new Point(3, 3);
             tableLayoutPanelEtapesRecette.Name = "tableLayoutPanelEtapesRecette";
             tableLayoutPanelEtapesRecette.RowCount = 1;
             tableLayoutPanelEtapesRecette.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanelEtapesRecette.Size = new Size(502, 100);
+            tableLayoutPanelEtapesRecette.Size = new Size(664, 521);
             tableLayoutPanelEtapesRecette.TabIndex = 15;
             // 
             // buttonOpenFormSelectionEtapes
@@ -440,26 +431,17 @@
             buttonOpenFormSelectionEtapes.Dock = DockStyle.Fill;
             buttonOpenFormSelectionEtapes.Location = new Point(3, 3);
             buttonOpenFormSelectionEtapes.Name = "buttonOpenFormSelectionEtapes";
-            buttonOpenFormSelectionEtapes.Size = new Size(245, 94);
+            buttonOpenFormSelectionEtapes.Size = new Size(658, 515);
             buttonOpenFormSelectionEtapes.TabIndex = 0;
             buttonOpenFormSelectionEtapes.Text = "Gérer la liste des étapes";
             buttonOpenFormSelectionEtapes.UseVisualStyleBackColor = true;
             buttonOpenFormSelectionEtapes.Click += buttonOpenFormSelectionEtapes_Click;
             // 
-            // listViewListEtapesRecette
-            // 
-            listViewListEtapesRecette.Dock = DockStyle.Fill;
-            listViewListEtapesRecette.Location = new Point(254, 3);
-            listViewListEtapesRecette.Name = "listViewListEtapesRecette";
-            listViewListEtapesRecette.Size = new Size(245, 94);
-            listViewListEtapesRecette.TabIndex = 1;
-            listViewListEtapesRecette.UseCompatibleStateImageBehavior = false;
-            // 
             // labelListCategoriesRecette
             // 
             labelListCategoriesRecette.AutoSize = true;
             labelListCategoriesRecette.Dock = DockStyle.Fill;
-            labelListCategoriesRecette.Location = new Point(3, 316);
+            labelListCategoriesRecette.Location = new Point(3, 210);
             labelListCategoriesRecette.Name = "labelListCategoriesRecette";
             labelListCategoriesRecette.Size = new Size(127, 106);
             labelListCategoriesRecette.TabIndex = 7;
@@ -473,7 +455,7 @@
             tableLayoutPanelCategoriesRecette.Controls.Add(buttonOpenFormSelectionCategories, 0, 0);
             tableLayoutPanelCategoriesRecette.Controls.Add(listViewListCategoriesRecette, 1, 0);
             tableLayoutPanelCategoriesRecette.Dock = DockStyle.Fill;
-            tableLayoutPanelCategoriesRecette.Location = new Point(136, 319);
+            tableLayoutPanelCategoriesRecette.Location = new Point(136, 213);
             tableLayoutPanelCategoriesRecette.Name = "tableLayoutPanelCategoriesRecette";
             tableLayoutPanelCategoriesRecette.RowCount = 1;
             tableLayoutPanelCategoriesRecette.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
@@ -503,9 +485,9 @@
             // 
             labelListIngredientsRecette.AutoSize = true;
             labelListIngredientsRecette.Dock = DockStyle.Fill;
-            labelListIngredientsRecette.Location = new Point(3, 422);
+            labelListIngredientsRecette.Location = new Point(3, 316);
             labelListIngredientsRecette.Name = "labelListIngredientsRecette";
-            labelListIngredientsRecette.Size = new Size(127, 257);
+            labelListIngredientsRecette.Size = new Size(127, 363);
             labelListIngredientsRecette.TabIndex = 8;
             labelListIngredientsRecette.Text = "Ingrédients :";
             // 
@@ -517,11 +499,11 @@
             tableLayoutPanelIngredientsRecette.Controls.Add(buttonOpenFormSelectionIngredients, 0, 0);
             tableLayoutPanelIngredientsRecette.Controls.Add(listViewListIngredientsRecette, 1, 0);
             tableLayoutPanelIngredientsRecette.Dock = DockStyle.Fill;
-            tableLayoutPanelIngredientsRecette.Location = new Point(136, 425);
+            tableLayoutPanelIngredientsRecette.Location = new Point(136, 319);
             tableLayoutPanelIngredientsRecette.Name = "tableLayoutPanelIngredientsRecette";
             tableLayoutPanelIngredientsRecette.RowCount = 1;
             tableLayoutPanelIngredientsRecette.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanelIngredientsRecette.Size = new Size(502, 251);
+            tableLayoutPanelIngredientsRecette.Size = new Size(502, 357);
             tableLayoutPanelIngredientsRecette.TabIndex = 16;
             // 
             // buttonOpenFormSelectionIngredients
@@ -529,7 +511,7 @@
             buttonOpenFormSelectionIngredients.Dock = DockStyle.Fill;
             buttonOpenFormSelectionIngredients.Location = new Point(3, 3);
             buttonOpenFormSelectionIngredients.Name = "buttonOpenFormSelectionIngredients";
-            buttonOpenFormSelectionIngredients.Size = new Size(245, 245);
+            buttonOpenFormSelectionIngredients.Size = new Size(245, 351);
             buttonOpenFormSelectionIngredients.TabIndex = 0;
             buttonOpenFormSelectionIngredients.Text = "Gérér la liste des ingrédients";
             buttonOpenFormSelectionIngredients.UseVisualStyleBackColor = true;
@@ -539,7 +521,7 @@
             listViewListIngredientsRecette.Dock = DockStyle.Fill;
             listViewListIngredientsRecette.Location = new Point(254, 3);
             listViewListIngredientsRecette.Name = "listViewListIngredientsRecette";
-            listViewListIngredientsRecette.Size = new Size(245, 245);
+            listViewListIngredientsRecette.Size = new Size(245, 351);
             listViewListIngredientsRecette.TabIndex = 1;
             listViewListIngredientsRecette.UseCompatibleStateImageBehavior = false;
             // 
@@ -647,6 +629,7 @@
             // 
             // tabPageEtapes
             // 
+            tabPageEtapes.Controls.Add(tableLayoutPanelEtapesRecette);
             tabPageEtapes.Location = new Point(4, 24);
             tabPageEtapes.Name = "tabPageEtapes";
             tabPageEtapes.Padding = new Padding(3);
@@ -654,6 +637,36 @@
             tabPageEtapes.TabIndex = 1;
             tabPageEtapes.Text = "tabPage2";
             tabPageEtapes.UseVisualStyleBackColor = true;
+            // 
+            // tabPage1
+            // 
+            tabPage1.Location = new Point(4, 24);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Padding = new Padding(3);
+            tabPage1.Size = new Size(670, 527);
+            tabPage1.TabIndex = 2;
+            tabPage1.Text = "tabPage1";
+            tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            tabPage2.Location = new Point(4, 24);
+            tabPage2.Name = "tabPage2";
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(670, 527);
+            tabPage2.TabIndex = 3;
+            tabPage2.Text = "tabPage2";
+            tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            tabPage3.Location = new Point(4, 24);
+            tabPage3.Name = "tabPage3";
+            tabPage3.Padding = new Padding(3);
+            tabPage3.Size = new Size(670, 527);
+            tabPage3.TabIndex = 4;
+            tabPage3.Text = "tabPage3";
+            tabPage3.UseVisualStyleBackColor = true;
             // 
             // FormAppMain
             // 
@@ -696,6 +709,7 @@
             tableLayoutPanelDescriptionRecette.ResumeLayout(false);
             tableLayoutPanelDescriptionRecette.PerformLayout();
             flowLayoutPanelGestionRecettesButtons.ResumeLayout(false);
+            tabPageEtapes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)bindingSourceRecettes).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -720,7 +734,6 @@
         private Label labelTemps_CuissonRecette;
         private Label labelDifficulteRecette;
         private Label labelIMGRecette;
-        private Label labelListEtapesRecette;
         private Label labelListCategoriesRecette;
         private Label labelListIngredientsRecette;
         private DataGridView dataGridViewRecettes;
@@ -740,7 +753,6 @@
         private Button buttonOpenFormSelectionEtapes;
         private Button buttonOpenFormSelectionCategories;
         private Button buttonOpenFormSelectionIngredients;
-        private ListView listViewListEtapesRecette;
         private ListView listViewListCategoriesRecette;
         private ListView listViewListIngredientsRecette;
         private NumericUpDown numericUpDownDifficulteRecette;
@@ -752,5 +764,8 @@
         private TextBox textBoxImageRecette;
         private Button buttonSelectionnerImageRecette;
         private NumericUpDown numericUpDown6;
+        private TabPage tabPage1;
+        private TabPage tabPage2;
+        private TabPage tabPage3;
     }
 }

@@ -35,8 +35,8 @@
             tableLayoutPanelInputs = new TableLayoutPanel();
             labelTitre = new Label();
             labelDescription = new Label();
-            textBoxTitre = new TextBox();
             textBoxDescription = new TextBox();
+            numericUpDownTitre = new NumericUpDown();
             flowLayoutPanelButtons = new FlowLayoutPanel();
             buttonAdd = new Button();
             buttonModify = new Button();
@@ -47,6 +47,7 @@
             tableLayoutPanelManageEtapes.SuspendLayout();
             tableLayoutPanelManageEtapesInputs.SuspendLayout();
             tableLayoutPanelInputs.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownTitre).BeginInit();
             flowLayoutPanelButtons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewEtapes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bindingSourceEtapes).BeginInit();
@@ -90,26 +91,26 @@
             tableLayoutPanelManageEtapesInputs.Location = new Point(3, 225);
             tableLayoutPanelManageEtapesInputs.Name = "tableLayoutPanelManageEtapesInputs";
             tableLayoutPanelManageEtapesInputs.RowCount = 2;
-            tableLayoutPanelManageEtapesInputs.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanelManageEtapesInputs.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanelManageEtapesInputs.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanelManageEtapesInputs.RowStyles.Add(new RowStyle());
             tableLayoutPanelManageEtapesInputs.Size = new Size(788, 216);
             tableLayoutPanelManageEtapesInputs.TabIndex = 0;
             // 
             // tableLayoutPanelInputs
             // 
             tableLayoutPanelInputs.ColumnCount = 2;
-            tableLayoutPanelInputs.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanelInputs.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanelInputs.ColumnStyles.Add(new ColumnStyle());
+            tableLayoutPanelInputs.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanelInputs.Controls.Add(labelTitre, 0, 0);
             tableLayoutPanelInputs.Controls.Add(labelDescription, 0, 1);
-            tableLayoutPanelInputs.Controls.Add(textBoxTitre, 1, 0);
             tableLayoutPanelInputs.Controls.Add(textBoxDescription, 1, 1);
+            tableLayoutPanelInputs.Controls.Add(numericUpDownTitre, 1, 0);
             tableLayoutPanelInputs.Dock = DockStyle.Fill;
             tableLayoutPanelInputs.Location = new Point(3, 3);
             tableLayoutPanelInputs.Name = "tableLayoutPanelInputs";
             tableLayoutPanelInputs.RowCount = 2;
-            tableLayoutPanelInputs.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanelInputs.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanelInputs.RowStyles.Add(new RowStyle());
+            tableLayoutPanelInputs.RowStyles.Add(new RowStyle());
             tableLayoutPanelInputs.Size = new Size(782, 102);
             tableLayoutPanelInputs.TabIndex = 0;
             // 
@@ -119,35 +120,36 @@
             labelTitre.Dock = DockStyle.Fill;
             labelTitre.Location = new Point(3, 0);
             labelTitre.Name = "labelTitre";
-            labelTitre.Size = new Size(385, 51);
+            labelTitre.Size = new Size(40, 29);
             labelTitre.TabIndex = 0;
-            labelTitre.Text = "label1";
+            labelTitre.Text = "Titre :";
             // 
             // labelDescription
             // 
             labelDescription.AutoSize = true;
             labelDescription.Dock = DockStyle.Fill;
-            labelDescription.Location = new Point(3, 51);
+            labelDescription.Location = new Point(3, 29);
             labelDescription.Name = "labelDescription";
-            labelDescription.Size = new Size(385, 51);
+            labelDescription.Size = new Size(40, 73);
             labelDescription.TabIndex = 1;
-            labelDescription.Text = "label2";
-            // 
-            // textBoxTitre
-            // 
-            textBoxTitre.Dock = DockStyle.Fill;
-            textBoxTitre.Location = new Point(394, 3);
-            textBoxTitre.Name = "textBoxTitre";
-            textBoxTitre.Size = new Size(385, 23);
-            textBoxTitre.TabIndex = 2;
+            labelDescription.Text = "Texte :";
             // 
             // textBoxDescription
             // 
             textBoxDescription.Dock = DockStyle.Fill;
-            textBoxDescription.Location = new Point(394, 54);
+            textBoxDescription.Location = new Point(49, 32);
+            textBoxDescription.Multiline = true;
             textBoxDescription.Name = "textBoxDescription";
-            textBoxDescription.Size = new Size(385, 23);
+            textBoxDescription.Size = new Size(730, 67);
             textBoxDescription.TabIndex = 3;
+            // 
+            // numericUpDownTitre
+            // 
+            numericUpDownTitre.Dock = DockStyle.Fill;
+            numericUpDownTitre.Location = new Point(49, 3);
+            numericUpDownTitre.Name = "numericUpDownTitre";
+            numericUpDownTitre.Size = new Size(730, 23);
+            numericUpDownTitre.TabIndex = 4;
             // 
             // flowLayoutPanelButtons
             // 
@@ -166,8 +168,9 @@
             buttonAdd.Name = "buttonAdd";
             buttonAdd.Size = new Size(75, 23);
             buttonAdd.TabIndex = 0;
-            buttonAdd.Text = "button1";
+            buttonAdd.Text = "Add";
             buttonAdd.UseVisualStyleBackColor = true;
+            buttonAdd.Click += buttonAdd_Click;
             // 
             // buttonModify
             // 
@@ -175,8 +178,9 @@
             buttonModify.Name = "buttonModify";
             buttonModify.Size = new Size(75, 23);
             buttonModify.TabIndex = 1;
-            buttonModify.Text = "button2";
+            buttonModify.Text = "Update";
             buttonModify.UseVisualStyleBackColor = true;
+            buttonModify.Click += buttonModify_Click;
             // 
             // buttonRemove
             // 
@@ -184,8 +188,9 @@
             buttonRemove.Name = "buttonRemove";
             buttonRemove.Size = new Size(74, 23);
             buttonRemove.TabIndex = 2;
-            buttonRemove.Text = "button3";
+            buttonRemove.Text = "Remove";
             buttonRemove.UseVisualStyleBackColor = true;
+            buttonRemove.Click += buttonDelete_Click;
             // 
             // dataGridViewEtapes
             // 
@@ -213,6 +218,7 @@
             tableLayoutPanelManageEtapesInputs.ResumeLayout(false);
             tableLayoutPanelInputs.ResumeLayout(false);
             tableLayoutPanelInputs.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDownTitre).EndInit();
             flowLayoutPanelButtons.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewEtapes).EndInit();
             ((System.ComponentModel.ISupportInitialize)bindingSourceEtapes).EndInit();
@@ -229,11 +235,11 @@
         private TableLayoutPanel tableLayoutPanelInputs;
         private Label labelTitre;
         private Label labelDescription;
-        private TextBox textBoxTitre;
         private TextBox textBoxDescription;
         private FlowLayoutPanel flowLayoutPanelButtons;
         private Button buttonAdd;
         private Button buttonModify;
         private Button buttonRemove;
+        private NumericUpDown numericUpDownTitre;
     }
 }

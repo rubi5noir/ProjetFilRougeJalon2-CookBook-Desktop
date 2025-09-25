@@ -43,7 +43,7 @@ namespace APIProjetFilRouge.Controllers
         #region POST
 
         [Authorize(Roles = "Administrateur")]
-        [HttpPost("Create/{id}")]
+        [HttpPost("{id}")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateEtape([FromRoute] int id, [FromBody] EtapeDTO etapeDTO)
@@ -64,7 +64,7 @@ namespace APIProjetFilRouge.Controllers
         #region PUT
 
         [Authorize(Roles = "Administrateur")]
-        [HttpPost("Update/{id}/{num}")]
+        [HttpPut("{id}/{num}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UpdateEtape([FromRoute] int id,[FromRoute] int num, [FromBody] EtapeDTO etapeDTO)
@@ -85,7 +85,7 @@ namespace APIProjetFilRouge.Controllers
         #region DELETE
 
         [Authorize(Roles = "Administrateur")]
-        [HttpPost("Delete/{id}/{num}")]
+        [HttpDelete("{id}/{num}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> DeleteEtape([FromRoute] int id, [FromRoute] int num)

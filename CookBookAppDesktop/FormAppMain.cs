@@ -1,5 +1,7 @@
 using CookBookAppDesktop.Models.DTO;
+using CookBookAppDesktop.Properties;
 using System.ComponentModel;
+using System.Configuration;
 using System.IdentityModel.Tokens.Jwt;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,6 +18,8 @@ namespace CookBookAppDesktop
 
         readonly RestClient _rest = new();
         BindingList<RecetteDetailsDTO> _recettes;
+
+        public static string Token;
 
         IEnumerable<string> _roles = [];
 
@@ -81,7 +85,7 @@ namespace CookBookAppDesktop
         {
             InitializeBinding();
 
-            _rest.BaseUrl = "http://localhost:5555";
+            _rest.BaseUrl = Settings.Default.BaseUrl;
 
             if (string.IsNullOrEmpty(_rest.JwtToken))
             {
@@ -95,6 +99,7 @@ namespace CookBookAppDesktop
                 {
                     _rest.JwtToken = formLogin.JwtToken;
                     _roles = formLogin._roles;
+                    Token = _rest.JwtToken;
 
                     tableLayoutPanelApp.Enabled = true;
 
@@ -103,7 +108,10 @@ namespace CookBookAppDesktop
             }
         }
 
-
+        private void FormAppMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Close();
+        }
 
         private async void tabControl_Selecting(object sender, TabControlCancelEventArgs e)
         {
@@ -139,14 +147,6 @@ namespace CookBookAppDesktop
         private async void buttonOpenFormSelectionEtapes_Click(object sender, EventArgs e)
         {
             FormManageEtapes formManageEtapes = new FormManageEtapes();
-            if (formManageEtapes.ShowDialog() != DialogResult.OK)
-            {
-                // Annulation
-            }
-            else
-            {
-                // Recuperation des etapes selectionnées
-            }
         }
 
         #endregion
@@ -158,7 +158,5 @@ namespace CookBookAppDesktop
         #endregion
 
         #endregion
-
-
     }
 }

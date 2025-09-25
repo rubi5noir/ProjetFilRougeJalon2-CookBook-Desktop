@@ -8,6 +8,7 @@ namespace CookBookAppDesktop.Models.DTO
 {
     internal class EtapeDTO
     {
+        public int id { get; set; }
         public int numero { get; set; }
         public string texte { get; set; }
     }
