@@ -19,6 +19,11 @@ namespace APIProjetFilRouge.DAL.Repositories
 
         #region Queries GET
 
+        private const string _queryGetAllEtapes =
+            "SELECT " +
+            "numero, id_recette, texte " +
+            $"FROM {etapeTable} ";
+
         private const string _queryGetEtapesOfRecette =
             "SELECT " +
             "numero, id_recette, texte " +
@@ -56,6 +61,13 @@ namespace APIProjetFilRouge.DAL.Repositories
         #region Methods
 
         #region Getter
+
+        public async Task<List<Etape>> GetAllEtapesAsync()
+        {
+            List<Etape> etapes;
+            etapes = (await _dbSession.Connection.QueryAsync<Etape>(_queryGetAllEtapes, transaction: _dbSession.Transaction)).ToList();
+            return etapes;
+        }
 
         public async Task<List<Etape>> GetEtapesOfRecetteAsync(int id)
         {

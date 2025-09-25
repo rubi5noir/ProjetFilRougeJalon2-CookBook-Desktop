@@ -22,6 +22,15 @@ namespace APIProjetFilRouge.Controllers
 
         #region GET
 
+        [HttpGet()]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetAllEtapes()
+        {
+            List<Etape> etapes = await _recetteService.GetAllEtapesAsync();
+            return (StatusCode(StatusCodes.Status200OK, etapes));
+        }
+
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

@@ -114,6 +114,12 @@ namespace APIProjetFilRouge.BLL.Interfaces
         #region Etape
 
         /// <summary>
+        /// Retrieves all steps from the database
+        /// </summary>
+        /// <returns><see cref="List{Etape}"/> of <see cref="Etape"/> : All existing steps</returns>
+        Task<List<Etape>> GetAllEtapesAsync();
+
+        /// <summary>
         /// Retrieves all steps for a specific recipe based on recipe ID
         /// </summary>
         /// <returns><see cref="List{Etape}"/> of <see cref="Etape"/> : All steps of the recipe</returns>

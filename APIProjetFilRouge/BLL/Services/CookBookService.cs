@@ -180,6 +180,12 @@ namespace APIProjetFilRouge.BLL.Services
 
         #region GET
 
+        public async Task<List<Etape>> GetAllEtapesAsync()
+        {
+            List<Etape> etapes = await _unitOfWork.Etape.GetAllEtapesAsync();
+            return etapes;
+        }
+
         public async Task<List<Etape>> GetEtapesOfRecetteAsync(int id)
         {
             List<Etape> etapes = await _unitOfWork.Etape.GetEtapesOfRecetteAsync(id);
