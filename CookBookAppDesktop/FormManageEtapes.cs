@@ -20,8 +20,11 @@ namespace CookBookAppDesktop
         const string URL_UPDATE_ETAPES = "api/Etapes";
         const string URL_DELETE_ETAPES = "api/Etapes";
 
+        const string URL_GET_RECETTES = "api/Recettes";
+
         readonly RestClient _rest = new();
         BindingList<EtapeDTO> _etapes;
+        BindingList<RecetteDetailsDTO> _recettes;
 
         public FormManageEtapes()
         {
@@ -33,27 +36,27 @@ namespace CookBookAppDesktop
 
         private void InitializeBinding()
         {
+            // etapes
             _etapes = new();
             bindingSourceEtapes.DataSource = _etapes;
             dataGridViewEtapes.DataSource = bindingSourceEtapes;
+
+            // recettes
+            _recettes = new();
+            bindingSourceRecettes.DataSource = _recettes;
+            dataGridViewRecettesForEtapes.DataSource = bindingSourceRecettes;
         }
 
-        private async Task RefreshEtapes()
+        private async Task RefreshEtapes(int id)
         {
             EtapeDTO current = bindingSourceEtapes.Current as EtapeDTO;
 
-            if (current == null)
-            {
-                current = new EtapeDTO();
-                current.id = 1;
-            }
-
             // Remplissage de la liste
-            var res = await _rest.GetAsync<IEnumerable<EtapeDTO>>($"{URL_GET_ETAPES}/{current.id}");
+            var res = await _rest.GetAsync<IEnumerable<EtapeDTO>>($"{URL_GET_ETAPES}/{id}");
 
             res = res.Select(r =>
             {
-                r.id = current.id;
+                r.id = id;
                 return r;
             });
 
@@ -68,6 +71,22 @@ namespace CookBookAppDesktop
                 bindingSourceEtapes.Position = _etapes.IndexOf(_etapes.Where(e => e.numero == current.numero).FirstOrDefault());
         }
 
+        private async Task RefreshRecettes()
+        {
+            RecetteDetailsDTO current = bindingSourceRecettes.Current as RecetteDetailsDTO;
+
+            // Remplissage de la liste
+            var res = await _rest.GetAsync<IEnumerable<RecetteDetailsDTO>>(URL_GET_RECETTES);
+
+            _recettes.Clear();
+            foreach (RecetteDetailsDTO r in res)
+                _recettes.Add(r);
+
+            // On se repositionne sur le current
+            if (current is not null)
+                bindingSourceRecettes.Position = _recettes.IndexOf(_recettes.Where(r => r.id == current.id).FirstOrDefault());
+        }
+
         #endregion
 
         #region Events
@@ -77,7 +96,15 @@ namespace CookBookAppDesktop
             _rest.BaseUrl = Settings.Default.BaseUrl;
             _rest.JwtToken = FormAppMain.Token;
 
-            await RefreshEtapes();
+            await RefreshEtapes(1);
+        }
+
+        private async void dataGridViewRecettesForEtapes_SelectionChanged(object sender, EventArgs e)
+        {
+            RecetteDetailsDTO current = bindingSourceRecettes.Current as RecetteDetailsDTO;
+
+            if (current is not null)
+                await RefreshEtapes(current.id);
         }
 
         private async void buttonAdd_Click(object sender, EventArgs e)
@@ -91,7 +118,7 @@ namespace CookBookAppDesktop
             };
 
             var res = await _rest.PostAsync<EtapeDTO, EtapeDTO>($"{URL_CREATE_ETAPES}/{current.id}", etape);
-            await RefreshEtapes();
+            await RefreshEtapes(current.id);
         }
 
         private async void buttonModify_Click(object sender, EventArgs e)
@@ -105,7 +132,7 @@ namespace CookBookAppDesktop
             etape.texte = textBoxDescription.Text;
 
             var res = await _rest.PutAsync<EtapeDTO, EtapeDTO>($"{URL_UPDATE_ETAPES}/{current.id}/{current.numero}", etape);
-            await RefreshEtapes();
+            await RefreshEtapes(current.id);
         }
 
         private async void buttonDelete_Click(object sender, EventArgs e)
@@ -113,7 +140,12 @@ namespace CookBookAppDesktop
             if (bindingSourceEtapes.Current is not EtapeDTO current)
                 return;
             await _rest.DeleteAsync($"{URL_DELETE_ETAPES}/{current.id}/{current.numero}");
-            await RefreshEtapes();
+            await RefreshEtapes(current.id);
+        }
+
+        private async void buttonRefresh_Click(object sender, EventArgs e)
+        {
+            await RefreshRecettes();
         }
 
         #endregion
