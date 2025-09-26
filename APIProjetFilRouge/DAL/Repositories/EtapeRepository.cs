@@ -45,11 +45,6 @@ namespace APIProjetFilRouge.DAL.Repositories
             "SET texte = @texte " +
             "WHERE id_recette = id_recette AND numero = @numero";
 
-        private const string _queryUpdateEtapeWithOldNum =
-            $"UPDATE {etapeTable} " +
-            "SET numero = @numero , texte = @texte " +
-            "WHERE id_recette = id_recette AND numero = @oldnumero";
-
         private const string _queryDeleteEtape =
             $"DELETE FROM {etapeTable} " +
             "WHERE id_recette = @id_recette AND numero = @numero";
@@ -111,7 +106,13 @@ namespace APIProjetFilRouge.DAL.Repositories
             }
             else
             {
-                var result = await _dbSession.Connection.ExecuteAsync(_queryUpdateEtapeWithOldNum, new
+                var del = await _dbSession.Connection.ExecuteAsync(_queryDeleteEtape, new
+                {
+                    id_recette = etape.id_recette,
+                    numero = num
+                }, transaction: _dbSession.Transaction);
+
+                var result = await _dbSession.Connection.ExecuteAsync(_queryCreateEtape, new
                 {
                     texte = etape.texte,
                     id_recette = etape.id_recette,
@@ -120,7 +121,6 @@ namespace APIProjetFilRouge.DAL.Repositories
                 }, transaction: _dbSession.Transaction);
                 return result;
             }
-
         }
 
         public async Task<int> DeleteEtapeAsync(int id_recette, int numero)

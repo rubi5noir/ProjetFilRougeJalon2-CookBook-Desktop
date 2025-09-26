@@ -205,9 +205,19 @@ namespace APIProjetFilRouge.BLL.Services
 
         public async Task<bool> UpdateEtapeAsync(int num, Etape etape)
         {
+            _unitOfWork.BeginTransaction();
+
             int rowsAffected = await _unitOfWork.Etape.UpdateEtapeAsync(num, etape);
 
             bool isUpdated = rowsAffected == 1;
+            if (isUpdated)
+            {
+                _unitOfWork.Commit();
+            }
+            else
+            {
+                _unitOfWork.Rollback();
+            }
             return isUpdated;
         }
 
