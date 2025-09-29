@@ -18,6 +18,8 @@ namespace CookBookAppDesktop
 
         const string URL_GET_ETAPES = "api/Etapes";
 
+        const string URL_GET_CATEGORIES = "api/Categories";
+
 
         readonly RestClient _rest = new();
         BindingList<RecetteDetailsDTO> _recettes;
@@ -36,6 +38,7 @@ namespace CookBookAppDesktop
         public FormAppMain()
         {
             InitializeComponent();
+            InitializeBinding();
             InitializeInputsLimits();
         }
 
@@ -52,6 +55,11 @@ namespace CookBookAppDesktop
             _etapes = new();
             bindingSourceEtapes.DataSource = _etapes;
             dataGridViewEtapes.DataSource = bindingSourceEtapes;
+
+            // Categories
+            _categories = new();
+            bindingSourceCategories.DataSource = _categories;
+            dataGridViewCategories.DataSource = bindingSourceCategories;
         }
 
         private void InitializeInputsLimits()
@@ -105,7 +113,16 @@ namespace CookBookAppDesktop
         {
             CategorieDTO current = bindingSourceRecettes.Current as CategorieDTO;
 
-            
+            var res = await _rest.GetAsync<IEnumerable<CategorieDTO>>($"{URL_GET_CATEGORIES}");
+
+            _categories.Clear();
+            foreach (CategorieDTO c in res)
+                _categories.Add(c);
+
+            if (current is not null)
+            {
+                bindingSourceCategories.Position = _categories.IndexOf(_categories.Where(c => c.id == current.id).FirstOrDefault());
+            }
         }
 
         #endregion
@@ -114,8 +131,6 @@ namespace CookBookAppDesktop
 
         private async void FormAppMain_Load(object sender, EventArgs e)
         {
-            InitializeBinding();
-
             _rest.BaseUrl = Settings.Default.BaseUrl;
 
             if (string.IsNullOrEmpty(_rest.JwtToken))
@@ -148,6 +163,10 @@ namespace CookBookAppDesktop
         {
             if (e.TabPage == tabPageRecettes)
                 await RefreshRecettes();
+            else if (e.TabPage == tabPageEtapes)
+                await RefreshEtapes();
+            else if (e.TabPage == tabPageCategories)
+                await RefreshCategories();
         }
 
 
@@ -155,6 +174,54 @@ namespace CookBookAppDesktop
 
         private async void buttonRefreshRecettes_Click(object sender, EventArgs e)
         {
+            await RefreshRecettes();
+        }
+
+        private async void buttonAddRecette_Click(object sender, EventArgs e)
+        {
+            RecetteDetailsDTO newRecette = new()
+            {
+                nom = textBoxNomRecette.Text,
+                description = textBoxDescriptionRecette.Text,
+                temps_preparation = new TimeSpan((int)numericUpDownTemps_PréparationHeures.Value, (int)numericUpDownTemps_PréparationMinutes.Value, 0),
+                temps_cuisson = new TimeSpan((int)numericUpDownTemps_CuissonHeures.Value, (int)numericUpDownTemps_CuissonMinutes.Value, 0),
+                difficulte = (int)numericUpDownDifficulteRecette.Value,
+                img = textBoxImageRecette.Text
+            };
+
+            var createdRecette = await _rest.PostAsync<RecetteDetailsDTO, RecetteDetailsDTO>(URL_CREATE_RECETTES, newRecette);
+        }
+
+        private async void buttonUpdateRecette_Click(object sender, EventArgs e)
+        {
+            if (bindingSourceRecettes.Current is not RecetteDetailsDTO selectedRecette)
+            {
+                MessageBox.Show("Veuillez Séléctionné une recette a modifié.");
+                return;
+            }
+            selectedRecette.nom = textBoxNomRecette.Text;
+            selectedRecette.description = textBoxDescriptionRecette.Text;
+            selectedRecette.temps_preparation = new TimeSpan((int)numericUpDownTemps_PréparationHeures.Value, (int)numericUpDownTemps_PréparationMinutes.Value, 0);
+            selectedRecette.temps_cuisson = new TimeSpan((int)numericUpDownTemps_CuissonHeures.Value, (int)numericUpDownTemps_CuissonMinutes.Value, 0);
+            selectedRecette.difficulte = (int)numericUpDownDifficulteRecette.Value;
+            selectedRecette.img = textBoxImageRecette.Text;
+            await _rest.PutAsync<RecetteDetailsDTO>($"{URL_UPDATE_RECETTES}/{selectedRecette.id}", selectedRecette);
+        }
+
+        private async void buttonDeleteRecette_Click(object sender, EventArgs e)
+        {
+            if (bindingSourceRecettes.Current is not RecetteDetailsDTO selectedRecette)
+            {
+                MessageBox.Show("Veuillez Séléctionné une recette a supprimé.");
+                return;
+            }
+            var confirmResult = MessageBox.Show("Etes vous sure de vouloir supprimé cette recette?", "Confirmation Suppression", MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+                await _rest.DeleteAsync($"{URL_DELETE_RECETTES}/{selectedRecette.id}");
+                _recettes.Remove(selectedRecette);
+            }
+
             await RefreshRecettes();
         }
 
@@ -190,6 +257,24 @@ namespace CookBookAppDesktop
             if (formManageEtapes.ShowDialog() == DialogResult.OK)
             {
                 await RefreshEtapes();
+            }
+        }
+
+        #endregion
+
+        #region TabPageCategories
+
+        private async void buttonRefreshCategories_Click(object sender, EventArgs e)
+        {
+            await RefreshCategories();
+        }
+
+        private async void buttonOpenFormSelectionCategories_Click(object sender, EventArgs e)
+        {
+            FormManageCategories formManageCategories = new FormManageCategories();
+            if (formManageCategories.ShowDialog() == DialogResult.OK)
+            {
+                await RefreshCategories();
             }
         }
 

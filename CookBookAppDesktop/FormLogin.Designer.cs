@@ -36,7 +36,6 @@
             textBoxUsername = new TextBox();
             textBoxMotDePasse = new TextBox();
             flowLayoutPanelFormLoginButtons = new FlowLayoutPanel();
-            buttonLogOut = new Button();
             buttonLogIn = new Button();
             tableLayoutPanelFormLogin.SuspendLayout();
             tableLayoutPanelFormLoginUsable.SuspendLayout();
@@ -129,26 +128,17 @@
             // 
             // flowLayoutPanelFormLoginButtons
             // 
-            flowLayoutPanelFormLoginButtons.Controls.Add(buttonLogOut);
             flowLayoutPanelFormLoginButtons.Controls.Add(buttonLogIn);
             flowLayoutPanelFormLoginButtons.Dock = DockStyle.Fill;
             flowLayoutPanelFormLoginButtons.Location = new Point(3, 79);
             flowLayoutPanelFormLoginButtons.Name = "flowLayoutPanelFormLoginButtons";
+            flowLayoutPanelFormLoginButtons.RightToLeft = RightToLeft.Yes;
             flowLayoutPanelFormLoginButtons.Size = new Size(472, 33);
             flowLayoutPanelFormLoginButtons.TabIndex = 1;
             // 
-            // buttonLogOut
-            // 
-            buttonLogOut.Location = new Point(3, 3);
-            buttonLogOut.Name = "buttonLogOut";
-            buttonLogOut.Size = new Size(75, 23);
-            buttonLogOut.TabIndex = 0;
-            buttonLogOut.Text = "LogOut";
-            buttonLogOut.UseVisualStyleBackColor = true;
-            // 
             // buttonLogIn
             // 
-            buttonLogIn.Location = new Point(84, 3);
+            buttonLogIn.Location = new Point(394, 3);
             buttonLogIn.Name = "buttonLogIn";
             buttonLogIn.Size = new Size(75, 23);
             buttonLogIn.TabIndex = 1;
@@ -185,7 +175,6 @@
         private TextBox textBoxUsername;
         private TextBox textBoxMotDePasse;
         private FlowLayoutPanel flowLayoutPanelFormLoginButtons;
-        private Button buttonLogOut;
         private Button buttonLogIn;
     }
 }

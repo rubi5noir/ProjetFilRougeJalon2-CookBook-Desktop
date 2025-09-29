@@ -71,7 +71,10 @@
             buttonRefreshEtapes = new Button();
             tabPageCategories = new TabPage();
             tableLayoutPanelCategoriesRecette = new TableLayoutPanel();
+            tableLayoutPanelCategories = new TableLayoutPanel();
             buttonOpenFormSelectionCategories = new Button();
+            buttonRefreshCategories = new Button();
+            dataGridViewCategories = new DataGridView();
             tabPageIngredients = new TabPage();
             tableLayoutPanelIngredientsRecette = new TableLayoutPanel();
             buttonOpenFormSelectionIngredients = new Button();
@@ -107,6 +110,8 @@
             tableLayoutPanelEtapesButtons.SuspendLayout();
             tabPageCategories.SuspendLayout();
             tableLayoutPanelCategoriesRecette.SuspendLayout();
+            tableLayoutPanelCategories.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewCategories).BeginInit();
             tabPageIngredients.SuspendLayout();
             tableLayoutPanelIngredientsRecette.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)bindingSourceRecettes).BeginInit();
@@ -492,6 +497,7 @@
             buttonAddRecettes.Text = "Ajouter";
             buttonAddRecettes.TextImageRelation = TextImageRelation.ImageBeforeText;
             buttonAddRecettes.UseVisualStyleBackColor = true;
+            buttonAddRecettes.Click += buttonAddRecette_Click;
             // 
             // buttonModifyRecettes
             // 
@@ -503,6 +509,7 @@
             buttonModifyRecettes.Text = "Modifier";
             buttonModifyRecettes.TextImageRelation = TextImageRelation.ImageBeforeText;
             buttonModifyRecettes.UseVisualStyleBackColor = true;
+            buttonModifyRecettes.Click += buttonUpdateRecette_Click;
             // 
             // buttonRemoveRecettes
             // 
@@ -514,6 +521,7 @@
             buttonRemoveRecettes.Text = "Supprimer";
             buttonRemoveRecettes.TextImageRelation = TextImageRelation.ImageBeforeText;
             buttonRemoveRecettes.UseVisualStyleBackColor = true;
+            buttonRemoveRecettes.Click += buttonDeleteRecette_Click;
             // 
             // tabPageEtapes
             // 
@@ -604,25 +612,65 @@
             // tableLayoutPanelCategoriesRecette
             // 
             tableLayoutPanelCategoriesRecette.ColumnCount = 1;
-            tableLayoutPanelCategoriesRecette.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanelCategoriesRecette.Controls.Add(buttonOpenFormSelectionCategories, 0, 0);
+            tableLayoutPanelCategoriesRecette.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanelCategoriesRecette.Controls.Add(tableLayoutPanelCategories, 0, 1);
+            tableLayoutPanelCategoriesRecette.Controls.Add(dataGridViewCategories, 0, 0);
             tableLayoutPanelCategoriesRecette.Dock = DockStyle.Fill;
             tableLayoutPanelCategoriesRecette.Location = new Point(3, 3);
             tableLayoutPanelCategoriesRecette.Name = "tableLayoutPanelCategoriesRecette";
-            tableLayoutPanelCategoriesRecette.RowCount = 1;
-            tableLayoutPanelCategoriesRecette.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanelCategoriesRecette.RowCount = 2;
+            tableLayoutPanelCategoriesRecette.RowStyles.Add(new RowStyle(SizeType.Percent, 75F));
+            tableLayoutPanelCategoriesRecette.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tableLayoutPanelCategoriesRecette.Size = new Size(664, 521);
             tableLayoutPanelCategoriesRecette.TabIndex = 17;
             // 
+            // tableLayoutPanelCategories
+            // 
+            tableLayoutPanelCategories.ColumnCount = 2;
+            tableLayoutPanelCategories.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanelCategories.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 75F));
+            tableLayoutPanelCategories.Controls.Add(buttonOpenFormSelectionCategories, 1, 0);
+            tableLayoutPanelCategories.Controls.Add(buttonRefreshCategories, 0, 0);
+            tableLayoutPanelCategories.Dock = DockStyle.Fill;
+            tableLayoutPanelCategories.Location = new Point(3, 393);
+            tableLayoutPanelCategories.Name = "tableLayoutPanelCategories";
+            tableLayoutPanelCategories.RowCount = 1;
+            tableLayoutPanelCategories.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanelCategories.Size = new Size(658, 125);
+            tableLayoutPanelCategories.TabIndex = 18;
+            // 
             // buttonOpenFormSelectionCategories
             // 
-            buttonOpenFormSelectionCategories.Dock = DockStyle.Fill;
-            buttonOpenFormSelectionCategories.Location = new Point(3, 3);
+            buttonOpenFormSelectionCategories.Location = new Point(167, 3);
             buttonOpenFormSelectionCategories.Name = "buttonOpenFormSelectionCategories";
-            buttonOpenFormSelectionCategories.Size = new Size(658, 515);
+            buttonOpenFormSelectionCategories.Size = new Size(488, 119);
             buttonOpenFormSelectionCategories.TabIndex = 0;
             buttonOpenFormSelectionCategories.Text = "Gérer la liste des catégories";
             buttonOpenFormSelectionCategories.UseVisualStyleBackColor = true;
+            buttonOpenFormSelectionCategories.Click += buttonOpenFormSelectionCategories_Click;
+            // 
+            // buttonRefreshCategories
+            // 
+            buttonRefreshCategories.Dock = DockStyle.Fill;
+            buttonRefreshCategories.Location = new Point(3, 3);
+            buttonRefreshCategories.Name = "buttonRefreshCategories";
+            buttonRefreshCategories.Size = new Size(158, 119);
+            buttonRefreshCategories.TabIndex = 1;
+            buttonRefreshCategories.Text = "Actualiser";
+            buttonRefreshCategories.UseVisualStyleBackColor = true;
+            buttonRefreshCategories.Click += buttonRefreshCategories_Click;
+            // 
+            // dataGridViewCategories
+            // 
+            dataGridViewCategories.AllowUserToAddRows = false;
+            dataGridViewCategories.AllowUserToDeleteRows = false;
+            dataGridViewCategories.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCategories.Dock = DockStyle.Fill;
+            dataGridViewCategories.Location = new Point(3, 3);
+            dataGridViewCategories.Name = "dataGridViewCategories";
+            dataGridViewCategories.ReadOnly = true;
+            dataGridViewCategories.Size = new Size(658, 384);
+            dataGridViewCategories.TabIndex = 19;
             // 
             // tabPageIngredients
             // 
@@ -689,7 +737,7 @@
             MaximumSize = new Size(1280, 1038);
             MinimumSize = new Size(700, 600);
             Name = "FormAppMain";
-            Text = "Form1";
+            Text = "CookBook App";
             Load += FormAppMain_Load;
             tableLayoutPanelApp.ResumeLayout(false);
             tabControlApp.ResumeLayout(false);
@@ -722,6 +770,8 @@
             tableLayoutPanelEtapesButtons.ResumeLayout(false);
             tabPageCategories.ResumeLayout(false);
             tableLayoutPanelCategoriesRecette.ResumeLayout(false);
+            tableLayoutPanelCategories.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridViewCategories).EndInit();
             tabPageIngredients.ResumeLayout(false);
             tableLayoutPanelIngredientsRecette.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)bindingSourceRecettes).EndInit();
@@ -789,5 +839,8 @@
         private BindingSource bindingSourceAvis;
         private TableLayoutPanel tableLayoutPanelEtapesButtons;
         private Button buttonRefreshEtapes;
+        private TableLayoutPanel tableLayoutPanelCategories;
+        private Button buttonRefreshCategories;
+        private DataGridView dataGridViewCategories;
     }
 }

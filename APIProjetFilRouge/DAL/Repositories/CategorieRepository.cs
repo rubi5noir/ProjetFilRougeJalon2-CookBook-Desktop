@@ -49,8 +49,12 @@ namespace APIProjetFilRouge.DAL.Repositories
             "WHERE id = @id";
 
         private const string _queryDeleteCategorie =
-            $"DELETE FROM {categorieTable} " +
-            "WHERE id = @id";
+            $"DELETE FROM CATEGORIES C " +
+            "WHERE C.id = @id " +
+            "AND NOT EXISTS " +
+            "(SELECT 1 " +
+            "FROM CATEGORIES_RECETTES CR " +
+            "WHERE CR.id_categorie = C.id)";
 
         private const string _queryAddCategorieToRecette =
             $"INSERT INTO {categorieInRecetteTable} " +

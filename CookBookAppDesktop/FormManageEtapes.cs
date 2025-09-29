@@ -96,7 +96,7 @@ namespace CookBookAppDesktop
             _rest.BaseUrl = Settings.Default.BaseUrl;
             _rest.JwtToken = FormAppMain.Token;
 
-            await RefreshEtapes(1);
+            await RefreshRecettes();
         }
 
         private async void dataGridViewRecettesForEtapes_SelectionChanged(object sender, EventArgs e)

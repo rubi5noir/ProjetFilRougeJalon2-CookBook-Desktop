@@ -8,5 +8,7 @@ namespace CookBookAppDesktop.Models.DTO
 {
     internal class CategorieDTO
     {
+        public int id { get; set; }
+        public string nom { get; set; }
     }
 }
