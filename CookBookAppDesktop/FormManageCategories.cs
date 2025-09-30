@@ -46,9 +46,9 @@ namespace CookBookAppDesktop
             dataGridViewRecettes.DataSource = bindingSourceRecettes;
 
             // categories of recette
-            _categoriesOfRecette = new();
-            bindingSourceCategoriesOfRecette.DataSource = _categoriesOfRecette;
-            dataGridViewCategoriesOfRecette.DataSource = bindingSourceCategoriesOfRecette;
+            //_categoriesOfRecette = new();
+            //bindingSourceCategoriesOfRecette.DataSource = _categoriesOfRecette;
+            //dataGridViewCategoriesOfRecette.DataSource = bindingSourceCategoriesOfRecette;
         }
 
         private async Task RefreshCategories()

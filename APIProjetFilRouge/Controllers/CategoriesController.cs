@@ -45,7 +45,7 @@ namespace APIProjetFilRouge.Controllers
         #region POST
 
         [Authorize(Roles = "Administrateur")]
-        [HttpPost("Create")]
+        [HttpPost()]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateCategorie([FromBody] CategorieDTO categorieDTO)
@@ -57,7 +57,12 @@ namespace APIProjetFilRouge.Controllers
             };
 
             var result = await _recetteService.CreateCategorieAsync(categorie);
-            return Ok(result);
+
+            if (result == 0)
+            {
+                return BadRequest("Création de la catégorie échouée.");
+            }
+            return StatusCode(StatusCodes.Status201Created, result);
         }
 
         #endregion
@@ -65,7 +70,7 @@ namespace APIProjetFilRouge.Controllers
         #region PUT
 
         [Authorize(Roles = "Administrateur")]
-        [HttpPut("Update/{id}")]
+        [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> UpdateCategorie([FromRoute] int id, [FromBody] CategorieDTO categorieDTO)
@@ -76,7 +81,12 @@ namespace APIProjetFilRouge.Controllers
                 nom = categorieDTO.nom
             };
 
-            var result = await _recetteService.UpdateCategorieAsync(categorie);
+            bool result = await _recetteService.UpdateCategorieAsync(categorie);
+
+            if (result == false)
+            {
+                return BadRequest("Mise à jour de la catégorie échouée.");
+            }
             return Ok(result);
         }
 
@@ -85,12 +95,17 @@ namespace APIProjetFilRouge.Controllers
         #region DELETE
 
         [Authorize(Roles = "Administrateur")]
-        [HttpDelete("Delete/{id}")]
+        [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> DeleteCategorie([FromRoute] int id)
         {
             var result = await _recetteService.DeleteCategorieAsync(id);
+
+            if (result == false)
+            {
+                return BadRequest("Suppression de la catégorie échouée.");
+            }
             return Ok(result);
         }
 

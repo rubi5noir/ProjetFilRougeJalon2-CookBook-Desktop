@@ -49,7 +49,6 @@ namespace APIProjetFilRouge.Models
                     };
                     return context.Response.WriteAsJsonAsync(response);
                 }
-
                 // Pour d'autres erreurs de base de données, on retourne une erreur serveur
                 else
                 {
@@ -61,9 +60,7 @@ namespace APIProjetFilRouge.Models
                     };
                     return context.Response.WriteAsJsonAsync(response);
                 }
-
             }
-
             // Autres types d'exceptions
             else
             {
