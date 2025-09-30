@@ -102,6 +102,7 @@
             dataGridViewCategoriesOfRecette.Location = new Point(3, 3);
             dataGridViewCategoriesOfRecette.Name = "dataGridViewCategoriesOfRecette";
             dataGridViewCategoriesOfRecette.ReadOnly = true;
+            dataGridViewCategoriesOfRecette.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewCategoriesOfRecette.Size = new Size(291, 349);
             dataGridViewCategoriesOfRecette.TabIndex = 0;
             // 
@@ -114,6 +115,7 @@
             dataGridViewRecettes.Location = new Point(300, 3);
             dataGridViewRecettes.Name = "dataGridViewRecettes";
             dataGridViewRecettes.ReadOnly = true;
+            dataGridViewRecettes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewRecettes.Size = new Size(291, 349);
             dataGridViewRecettes.TabIndex = 1;
             // 
@@ -163,6 +165,7 @@
             dataGridViewCategories.Location = new Point(3, 3);
             dataGridViewCategories.Name = "dataGridViewCategories";
             dataGridViewCategories.ReadOnly = true;
+            dataGridViewCategories.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewCategories.Size = new Size(188, 304);
             dataGridViewCategories.TabIndex = 0;
             // 
@@ -217,6 +220,7 @@
             buttonAddCategorie.TabIndex = 0;
             buttonAddCategorie.Text = "Actualiser";
             buttonAddCategorie.UseVisualStyleBackColor = true;
+            buttonAddCategorie.Click += buttonRefreshCategories_Click;
             // 
             // buttonModifyCategorie
             // 
@@ -244,6 +248,7 @@
             Controls.Add(tableLayoutPanelManageCategories);
             Name = "FormManageCategories";
             Text = "FormManageCategories";
+            Load += FormManageCategories_Load;
             tableLayoutPanelManageCategories.ResumeLayout(false);
             tableLayoutPanelManageCategoriesRecettes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewCategoriesOfRecette).EndInit();

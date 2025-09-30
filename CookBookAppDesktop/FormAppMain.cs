@@ -50,6 +50,7 @@ namespace CookBookAppDesktop
             _recettes = new();
             bindingSourceRecettes.DataSource = _recettes;
             dataGridViewRecettes.DataSource = bindingSourceRecettes;
+            dataGridViewEtapesRecette.DataSource = bindingSourceRecettes;
 
             // Etapes
             _etapes = new();
@@ -100,13 +101,19 @@ namespace CookBookAppDesktop
 
         private async Task RefreshEtapes()
         {
+            RecetteDetailsDTO recette = bindingSourceRecettes.Current as RecetteDetailsDTO;
             EtapeDTO current = bindingSourceEtapes.Current as EtapeDTO;
 
-            var res = await _rest.GetAsync<IEnumerable<EtapeDTO>>($"{URL_GET_ETAPES}");
-            
+            var res = await _rest.GetAsync<IEnumerable<EtapeDTO>>($"{URL_GET_ETAPES}/{recette.id}");
+
             _etapes.Clear();
             foreach (EtapeDTO e in res)
                 _etapes.Add(e);
+
+            if (current is not null)
+            {
+                bindingSourceEtapes.Position = _etapes.IndexOf(_etapes.Where(e => e.id == current.id && e.numero == current.numero).FirstOrDefault());
+            }
         }
 
         private async Task RefreshCategories()
@@ -164,7 +171,7 @@ namespace CookBookAppDesktop
             if (e.TabPage == tabPageRecettes)
                 await RefreshRecettes();
             else if (e.TabPage == tabPageEtapes)
-                await RefreshEtapes();
+                await RefreshRecettes();
             else if (e.TabPage == tabPageCategories)
                 await RefreshCategories();
         }
@@ -246,9 +253,14 @@ namespace CookBookAppDesktop
 
         #region TabPageEtapes
 
-        private async void buttonRefreshEtapes_Click(object sender, EventArgs e)
+        private async void dataGridViewRecettes_SelectionChanged(object sender, EventArgs e)
         {
-            await RefreshEtapes();
+            RecetteDetailsDTO current = bindingSourceRecettes.Current as RecetteDetailsDTO;
+
+            if (current != null)
+            {
+                await RefreshEtapes();
+            }
         }
 
         private async void buttonOpenFormSelectionEtapes_Click(object sender, EventArgs e)

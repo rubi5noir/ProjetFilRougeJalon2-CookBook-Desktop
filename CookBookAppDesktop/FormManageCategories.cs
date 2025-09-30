@@ -69,7 +69,7 @@ namespace CookBookAppDesktop
         {
             RecetteDetailsDTO current = bindingSourceRecettes.Current as RecetteDetailsDTO;
             // Remplissage de la liste
-            var res = await _rest.GetAsync<IEnumerable<RecetteDetailsDTO>>(URL_GET_RECETTES);
+            var res = await _rest.GetAsync<IEnumerable<RecetteDetailsDTO>>($"{URL_GET_RECETTES}/{current.id}");
             _recettes.Clear();
             foreach (var item in res)
             {
@@ -90,6 +90,16 @@ namespace CookBookAppDesktop
 
             await RefreshCategories();
             await RefreshRecettes();
+        }
+
+        private async void dataGridViewCategories_CurrentCellChanged(object sender, EventArgs e)
+        {
+            await RefreshRecettes();
+        }
+
+        private async void buttonRefreshCategories_Click(object sender, EventArgs e)
+        {
+            await RefreshCategories();
         }
 
         #endregion
