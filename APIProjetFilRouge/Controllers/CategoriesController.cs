@@ -40,6 +40,16 @@ namespace APIProjetFilRouge.Controllers
             return StatusCode(StatusCodes.Status200OK, categoriesDTO);
         }
 
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetRecipesIDsFromCategorieID([FromRoute] int id)
+        {
+            var recetteIDs = await _recetteService.GetCategorieRelationshipsByIdAsync(id);
+
+            return StatusCode(StatusCodes.Status200OK, recetteIDs);
+        }
+
         #endregion
 
         #region POST

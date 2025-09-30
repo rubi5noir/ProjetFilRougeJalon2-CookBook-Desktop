@@ -48,6 +48,13 @@ namespace APIProjetFilRouge.BLL.Interfaces
         Task<List<Categorie>> GetAllCategoriesAsync();
 
         /// <summary>
+        /// Retrieves all recipe IDs associated with a specific category by the ID of the category
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns><see cref="List{int}"/> of <see cref="int"/> : All recipes IDs </returns>
+        Task<List<int>> GetCategorieRelationshipsByIdAsync(int id);
+
+        /// <summary>
         /// Retrieves categories associated with a specific recipe based on recipe ID
         /// </summary>
         /// <returns><see cref="List{Categorie}"/> of <see cref="Categorie"/> : All categories of the recipe</returns>

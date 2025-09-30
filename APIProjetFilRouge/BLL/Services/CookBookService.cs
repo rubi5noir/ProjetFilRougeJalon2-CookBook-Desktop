@@ -83,6 +83,12 @@ namespace APIProjetFilRouge.BLL.Services
             return categories;
         }
 
+        public async Task<List<int>> GetCategorieRelationshipsByIdAsync(int id)
+        {
+            var categorieRelationships = await _unitOfWork.Categorie.GetCategorieRelationshipsByIdAsync(id);
+            return categorieRelationships;
+        }
+
         #endregion
 
         #region SET

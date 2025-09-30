@@ -18,6 +18,13 @@ namespace APIProjetFilRouge.DAL.Interfaces
         Task<List<Categorie>> GetCategoriesOfRecetteAsync(int id);
 
         /// <summary>
+        /// Retrieves all recipes IDs associated with a specific category by the ID of the category.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns><see cref="List{int}"/> of <see cref="int"/> : All recipes IDs </returns>
+        Task<List<int>> GetCategorieRelationshipsByIdAsync(int id);
+
+        /// <summary>
         /// Creates a new categorie in the database.
         /// </summary>
         /// <returns><see cref="int"/> : Id of the new categorie</returns>

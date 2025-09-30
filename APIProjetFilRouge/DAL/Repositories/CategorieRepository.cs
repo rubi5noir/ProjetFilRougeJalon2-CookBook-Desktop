@@ -33,6 +33,12 @@ namespace APIProjetFilRouge.DAL.Repositories
             $"JOIN {categorieInRecetteTable} ON {categorieTable}.id = {categorieInRecetteTable}.id_categorie " +
             $"WHERE {categorieInRecetteTable}.id_recette = @Id";
 
+        private const string _queryGetCategorieRelationshipsById =
+            "SELECT " +
+            $"{categorieInRecetteTable}.id_recette " +
+            $"FROM {categorieInRecetteTable} " +
+            $"WHERE {categorieInRecetteTable}.id_categorie = @Id";
+
         #endregion
 
         #region Querries SET
@@ -90,6 +96,17 @@ namespace APIProjetFilRouge.DAL.Repositories
             }, transaction: _dbSession.Transaction)).ToList();
 
             return categories;
+        }
+
+        public async Task<List<int>> GetCategorieRelationshipsByIdAsync(int id)
+        {
+            List<int> recetteIds;
+            recetteIds = (await _dbSession.Connection.QueryAsync<int>(_queryGetCategorieRelationshipsById, new
+            {
+                Id = id
+            }, transaction: _dbSession.Transaction)).ToList();
+
+            return recetteIds;
         }
 
         #endregion
