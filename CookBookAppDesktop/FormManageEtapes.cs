@@ -117,8 +117,13 @@ namespace CookBookAppDesktop
                 texte = textBoxDescription.Text
             };
 
-            var res = await _rest.PostAsync<EtapeDTO, EtapeDTO>($"{URL_CREATE_ETAPES}/{current.id}", etape);
-            await RefreshEtapes(current.id);
+            var result = MessageBox.Show($"Êtes-vous sûr de vouloir créer l'étape suivante : \n- numero : {etape.numero}\n- Description : {etape.texte} ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                var res = await _rest.PostAsync<EtapeDTO, EtapeDTO>($"{URL_CREATE_ETAPES}/{current.id}", etape);
+                await RefreshEtapes(current.id);
+            }
+
         }
 
         private async void buttonModify_Click(object sender, EventArgs e)
@@ -131,16 +136,25 @@ namespace CookBookAppDesktop
             etape.numero = int.Parse(numericUpDownTitre.Value.ToString());
             etape.texte = textBoxDescription.Text;
 
-            var res = await _rest.PutAsync<EtapeDTO, EtapeDTO>($"{URL_UPDATE_ETAPES}/{current.id}/{current.numero}", etape);
-            await RefreshEtapes(current.id);
+            var result = MessageBox.Show($"Êtes-vous sûr de vouloir modifier l'étape actuel : \n- numero : {current.numero}\n- Description : {current.texte}\nen l'étape suivante : \n- numero : {etape.numero}\n- Description : {etape.texte} ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                var res = await _rest.PutAsync<EtapeDTO, EtapeDTO>($"{URL_UPDATE_ETAPES}/{current.id}/{current.numero}", etape);
+                await RefreshEtapes(current.id);
+            }
         }
 
         private async void buttonDelete_Click(object sender, EventArgs e)
         {
             if (bindingSourceEtapes.Current is not EtapeDTO current)
                 return;
-            await _rest.DeleteAsync($"{URL_DELETE_ETAPES}/{current.id}/{current.numero}");
-            await RefreshEtapes(current.id);
+
+            var result = MessageBox.Show($"Êtes-vous sûr de vouloir supprimer l'étape suivante : \n- numero : {current.numero}\n- Description : {current.texte} ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                await _rest.DeleteAsync($"{URL_DELETE_ETAPES}/{current.id}/{current.numero}");
+                await RefreshEtapes(current.id);
+            }
         }
 
         private async void buttonRefresh_Click(object sender, EventArgs e)

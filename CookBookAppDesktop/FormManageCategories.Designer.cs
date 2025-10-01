@@ -118,6 +118,7 @@
             dataGridViewRecettes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewRecettes.Size = new Size(291, 349);
             dataGridViewRecettes.TabIndex = 1;
+            dataGridViewRecettes.CurrentCellChanged += dataGridViewRecettes_CurrentCellChanged;
             // 
             // buttonRemoveCategorieFromRecette
             // 
@@ -168,6 +169,7 @@
             dataGridViewCategories.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewCategories.Size = new Size(188, 304);
             dataGridViewCategories.TabIndex = 0;
+            dataGridViewCategories.CurrentCellChanged += dataGridViewCategories_CurrentCellChanged;
             // 
             // tableLayoutPanelCategoriesInputs
             // 
@@ -230,6 +232,7 @@
             buttonModifyCategorie.TabIndex = 1;
             buttonModifyCategorie.Text = "Modifier";
             buttonModifyCategorie.UseVisualStyleBackColor = true;
+            buttonModifyCategorie.Click += buttonModifyCategory_Click;
             // 
             // buttonRemoveCategorie
             // 
@@ -239,6 +242,7 @@
             buttonRemoveCategorie.TabIndex = 2;
             buttonRemoveCategorie.Text = "Supprimer";
             buttonRemoveCategorie.UseVisualStyleBackColor = true;
+            buttonRemoveCategorie.Click += buttonDeleteCategory_Click;
             // 
             // FormManageCategories
             // 

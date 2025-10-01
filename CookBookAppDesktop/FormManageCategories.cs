@@ -24,6 +24,7 @@ namespace CookBookAppDesktop
         readonly RestClient _rest = new();
         BindingList<RecetteDetailsDTO> _recettes;
         BindingList<CategorieDTO> _categories;
+        BindingList<CategorieDTO> _categoriesInRecettes;
 
         #region Methods
 
@@ -45,10 +46,10 @@ namespace CookBookAppDesktop
             bindingSourceRecettes.DataSource = _recettes;
             dataGridViewRecettes.DataSource = bindingSourceRecettes;
 
-            // categories of recette
-            //_categoriesOfRecette = new();
-            //bindingSourceCategoriesOfRecette.DataSource = _categoriesOfRecette;
-            //dataGridViewCategoriesOfRecette.DataSource = bindingSourceCategoriesOfRecette;
+            // categories in recettes
+            _categoriesInRecettes = new();
+            bindingSourceCategoriesOfRecette.DataSource = _categoriesInRecettes;
+            dataGridViewCategoriesOfRecette.DataSource = bindingSourceCategoriesOfRecette;
         }
 
         private async Task RefreshCategories()
@@ -65,20 +66,6 @@ namespace CookBookAppDesktop
                 bindingSourceCategories.Position = bindingSourceCategories.IndexOf(current);
         }
 
-        private async Task RefreshRecettes()
-        {
-            RecetteDetailsDTO current = bindingSourceRecettes.Current as RecetteDetailsDTO;
-            // Remplissage de la liste
-            var res = await _rest.GetAsync<IEnumerable<RecetteDetailsDTO>>($"{URL_GET_RECETTES}/{current.id}");
-            _recettes.Clear();
-            foreach (var item in res)
-            {
-                _recettes.Add(item);
-            }
-            if (current != null)
-                bindingSourceRecettes.Position = bindingSourceRecettes.IndexOf(current);
-        }
-
         #endregion
 
         #region Events
@@ -89,17 +76,79 @@ namespace CookBookAppDesktop
             _rest.JwtToken = FormAppMain.Token;
 
             await RefreshCategories();
-            await RefreshRecettes();
         }
 
         private async void dataGridViewCategories_CurrentCellChanged(object sender, EventArgs e)
         {
-            await RefreshRecettes();
+            CategorieDTO current = bindingSourceCategories.Current as CategorieDTO;
+
+            if (current != null)
+            {
+                // Récupération des recettes de la catégorie
+                var recetteIDs = await _rest.GetAsync<IEnumerable<int>>($"{URL_GET_CATEGORIES}/RecettesIDs/{current.id}");
+                var allRecettes = await _rest.GetAsync<IEnumerable<RecetteDetailsDTO>>(URL_GET_RECETTES);
+                var recettesOfCategory = allRecettes.Where(r => recetteIDs.Contains(r.id)).ToList();
+
+                _recettes.Clear();
+                foreach (var item in recettesOfCategory)
+                {
+                    _recettes.Add(item);
+                }
+            }
+        }
+
+        private async void dataGridViewRecettes_CurrentCellChanged(object sender, EventArgs e)
+        {
+            RecetteDetailsDTO current = bindingSourceRecettes.Current as RecetteDetailsDTO;
+            if (current != null)
+            {
+                var categories = await _rest.GetAsync<IEnumerable<CategorieDTO>>($"{URL_GET_CATEGORIES}/{current.id}");
+
+                _categoriesInRecettes.Clear();
+                foreach (var item in categories)
+                {
+                    _categoriesInRecettes.Add(item);
+                }
+            }
         }
 
         private async void buttonRefreshCategories_Click(object sender, EventArgs e)
         {
             await RefreshCategories();
+        }
+
+        private async void buttonModifyCategory_Click(object sender, EventArgs e)
+        {
+            CategorieDTO current = bindingSourceCategories.Current as CategorieDTO;
+            if (current != null)
+            {
+                var categorieDTO = new CategorieDTO
+                {
+                    id = current.id,
+                    nom = textBoxCategorieNom.Text
+                };
+
+                var result = MessageBox.Show($"Êtes-vous sûr de vouloir Modifier le nom de la catégorie '{current.nom}' en '{categorieDTO.nom}' ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    await _rest.PutAsync($"{URL_UPDATE_CATEGORIES}/{current.id}", categorieDTO);
+                    await RefreshCategories();
+                }
+            }
+        }
+
+        private async void buttonDeleteCategory_Click(object sender, EventArgs e)
+        {
+            CategorieDTO current = bindingSourceCategories.Current as CategorieDTO;
+            if (current != null)
+            {
+                var result = MessageBox.Show($"Êtes-vous sûr de vouloir supprimer la catégorie '{current.nom}' ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    await _rest.DeleteAsync($"{URL_DELETE_CATEGORIES}/{current.id}");
+                    await RefreshCategories();
+                }
+            }
         }
 
         #endregion

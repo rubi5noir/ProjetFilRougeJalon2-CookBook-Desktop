@@ -40,12 +40,22 @@ namespace APIProjetFilRouge.Controllers
             return StatusCode(StatusCodes.Status200OK, categoriesDTO);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("RecettesIDs/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetRecipesIDsFromCategorieID([FromRoute] int id)
         {
             var recetteIDs = await _recetteService.GetCategorieRelationshipsByIdAsync(id);
+
+            return StatusCode(StatusCodes.Status200OK, recetteIDs);
+        }
+
+        [HttpGet("{idRecette}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetCategorieByRecetteID([FromRoute] int idRecette)
+        {
+            var recetteIDs = await _recetteService.GetCategoriesOfRecetteAsync(idRecette);
 
             return StatusCode(StatusCodes.Status200OK, recetteIDs);
         }
