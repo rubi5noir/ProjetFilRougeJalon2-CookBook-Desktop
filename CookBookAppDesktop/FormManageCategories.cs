@@ -117,7 +117,7 @@ namespace CookBookAppDesktop
             await RefreshCategories();
         }
 
-        private async void buttonModifyCategory_Click(object sender, EventArgs e)
+        private async void buttonModifyCategorie_Click(object sender, EventArgs e)
         {
             CategorieDTO current = bindingSourceCategories.Current as CategorieDTO;
             if (current != null)
@@ -137,7 +137,7 @@ namespace CookBookAppDesktop
             }
         }
 
-        private async void buttonDeleteCategory_Click(object sender, EventArgs e)
+        private async void buttonDeleteCategorie_Click(object sender, EventArgs e)
         {
             CategorieDTO current = bindingSourceCategories.Current as CategorieDTO;
             if (current != null)
@@ -147,6 +147,66 @@ namespace CookBookAppDesktop
                 {
                     await _rest.DeleteAsync($"{URL_DELETE_CATEGORIES}/{current.id}");
                     await RefreshCategories();
+                }
+            }
+        }
+
+        private async void buttonAddCategorieToRecette_Click(object sender, EventArgs e)
+        {
+            CategorieDTO currentCategorie = bindingSourceCategories.Current as CategorieDTO;
+            RecetteDetailsDTO currentRecette = bindingSourceRecettes.Current as RecetteDetailsDTO;
+
+            if (currentCategorie != null)
+            {
+                if (currentRecette != null)
+                {
+                    var result = MessageBox.Show($"Êtes-vous sûr de vouloir ajouter la catégorie '{currentCategorie.nom}' à la recette '{currentRecette.nom}' ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    if (result == DialogResult.Yes)
+                    {
+                        await _rest.PostAsync($"{URL_GET_CATEGORIES}/AddToRecette/{currentRecette.id}", currentCategorie);
+
+                        var categories = await _rest.GetAsync<IEnumerable<CategorieDTO>>($"{URL_GET_CATEGORIES}/{currentRecette.id}");
+                        
+                        _categoriesInRecettes.Clear();
+                        foreach (var item in categories)
+                        {
+                            _categoriesInRecettes.Add(item);
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Veuillez sélectionner une recette.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private async void buttonRemoveCategorieFromRecette_Click(object sender, EventArgs e)
+        {
+            CategorieDTO currentCategorie = bindingSourceCategoriesOfRecette.Current as CategorieDTO;
+
+            RecetteDetailsDTO currentRecette = bindingSourceRecettes.Current as RecetteDetailsDTO;
+
+            if (currentCategorie != null)
+            {
+                if (currentRecette != null)
+                {
+                    var result = MessageBox.Show($"Êtes-vous sûr de vouloir retirer la catégorie '{currentCategorie.nom}' de la recette '{currentRecette.nom}' ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    if (result == DialogResult.Yes)
+                    {
+                        await _rest.PostAsync($"{URL_GET_CATEGORIES}/RemoveFromRecette/{currentRecette.id}", currentCategorie);
+                        
+                        var categories = await _rest.GetAsync<IEnumerable<CategorieDTO>>($"{URL_GET_CATEGORIES}/{currentRecette.id}");
+                        _categoriesInRecettes.Clear();
+                        foreach (var item in categories)
+                        {
+                            _categoriesInRecettes.Add(item);
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Veuillez sélectionner une recette.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }

@@ -129,6 +129,7 @@
             buttonRemoveCategorieFromRecette.TabIndex = 2;
             buttonRemoveCategorieFromRecette.Text = "Supprimer Categorie de la recette";
             buttonRemoveCategorieFromRecette.UseVisualStyleBackColor = true;
+            buttonRemoveCategorieFromRecette.Click += buttonRemoveCategorieFromRecette_Click;
             // 
             // buttonAddCategorieToRecette
             // 
@@ -139,6 +140,7 @@
             buttonAddCategorieToRecette.TabIndex = 3;
             buttonAddCategorieToRecette.Text = "Ajouter Categorie a la recette";
             buttonAddCategorieToRecette.UseVisualStyleBackColor = true;
+            buttonAddCategorieToRecette.Click += buttonAddCategorieToRecette_Click;
             // 
             // tableLayoutPanelCategories
             // 
@@ -232,7 +234,7 @@
             buttonModifyCategorie.TabIndex = 1;
             buttonModifyCategorie.Text = "Modifier";
             buttonModifyCategorie.UseVisualStyleBackColor = true;
-            buttonModifyCategorie.Click += buttonModifyCategory_Click;
+            buttonModifyCategorie.Click += buttonModifyCategorie_Click;
             // 
             // buttonRemoveCategorie
             // 
@@ -242,7 +244,7 @@
             buttonRemoveCategorie.TabIndex = 2;
             buttonRemoveCategorie.Text = "Supprimer";
             buttonRemoveCategorie.UseVisualStyleBackColor = true;
-            buttonRemoveCategorie.Click += buttonDeleteCategory_Click;
+            buttonRemoveCategorie.Click += buttonDeleteCategorie_Click;
             // 
             // FormManageCategories
             // 

@@ -4,6 +4,7 @@ using APIProjetFilRouge.Models.DataTransfertObjects.Between;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace APIProjetFilRouge.Controllers
 {
@@ -37,6 +38,11 @@ namespace APIProjetFilRouge.Controllers
                 nom = c.nom
             }).ToList();
 
+            if (categoriesDTO.IsNullOrEmpty())
+            {
+                return BadRequest(categoriesDTO);
+            }
+
             return StatusCode(StatusCodes.Status200OK, categoriesDTO);
         }
 
@@ -47,17 +53,27 @@ namespace APIProjetFilRouge.Controllers
         {
             var recetteIDs = await _recetteService.GetCategorieRelationshipsByIdAsync(id);
 
+            if (recetteIDs.IsNullOrEmpty())
+            {
+                return BadRequest(recetteIDs);
+            }
+
             return StatusCode(StatusCodes.Status200OK, recetteIDs);
         }
 
         [HttpGet("{idRecette}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> GetCategorieByRecetteID([FromRoute] int idRecette)
+        public async Task<IActionResult> GetCategoriesByRecetteID([FromRoute] int idRecette)
         {
-            var recetteIDs = await _recetteService.GetCategoriesOfRecetteAsync(idRecette);
+            var categories = await _recetteService.GetCategoriesOfRecetteAsync(idRecette);
 
-            return StatusCode(StatusCodes.Status200OK, recetteIDs);
+            if(categories.IsNullOrEmpty())
+            {
+                return BadRequest(categories);
+            }
+
+            return StatusCode(StatusCodes.Status200OK, categories);
         }
 
         #endregion
@@ -83,6 +99,26 @@ namespace APIProjetFilRouge.Controllers
                 return BadRequest("Création de la catégorie échouée.");
             }
             return StatusCode(StatusCodes.Status201Created, result);
+        }
+
+        [Authorize(Roles = "Administrateur")]
+        [HttpPost("AddToRecette/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> AddCategorieToRecette([FromRoute] int id, [FromBody] CategorieDTO categorieDTO)
+        {
+            var categorie = new Categorie
+            {
+                id = categorieDTO.id,
+                nom = categorieDTO.nom
+            };
+
+            var result = await _recetteService.AddCategorieToRecetteAsync(id, categorie);
+            if (result == false)
+            {
+                return BadRequest("Ajout de la catégorie à la recette échouée.");
+            }
+            return Ok(result);
         }
 
         #endregion
@@ -128,7 +164,27 @@ namespace APIProjetFilRouge.Controllers
             }
             return Ok(result);
         }
+        
+        [Authorize(Roles = "Administrateur")]
+        [HttpDelete("RemoveFromRecette/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> RemoveCategorieFromRecette([FromRoute] int id, [FromBody] CategorieDTO categorieDTO)
+        {
+            var categorie = new Categorie
+            {
+                id = categorieDTO.id,
+                nom = categorieDTO.nom
+            };
+            var result = await _recetteService.RemoveCategorieFromRecetteAsync(id, categorie);
+            if (result == false)
+            {
+                return BadRequest("Suppression de la catégorie à la recette échouée.");
+            }
+            return Ok(result);
+        }
 
         #endregion
+
     }
 }
