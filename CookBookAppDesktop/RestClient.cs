@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -189,6 +190,11 @@ namespace CookBookAppDesktop
         public async Task DeleteAsync(string endpoint, Dictionary<string, string> customHeaders = null)
         {
             await SendAsync(HttpMethod.Delete, endpoint, null, customHeaders);
+        }
+
+        public async Task DeleteAsync(string endpoint, object content, Dictionary<string, string> customHeaders = null)
+        {
+            await SendAsync(HttpMethod.Delete, endpoint, JsonContent.Create(content), customHeaders);
         }
 
         #endregion DELETE

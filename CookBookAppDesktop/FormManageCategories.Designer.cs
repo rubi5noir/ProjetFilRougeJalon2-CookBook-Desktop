@@ -31,10 +31,12 @@
             components = new System.ComponentModel.Container();
             tableLayoutPanelManageCategories = new TableLayoutPanel();
             tableLayoutPanelManageCategoriesRecettes = new TableLayoutPanel();
+            tableLayoutPanel1 = new TableLayoutPanel();
             dataGridViewCategoriesOfRecette = new DataGridView();
             dataGridViewRecettes = new DataGridView();
             buttonRemoveCategorieFromRecette = new Button();
             buttonAddCategorieToRecette = new Button();
+            dataGridViewRecettesWithoutTheCategorie = new DataGridView();
             tableLayoutPanelCategories = new TableLayoutPanel();
             dataGridViewCategories = new DataGridView();
             tableLayoutPanelCategoriesInputs = new TableLayoutPanel();
@@ -47,10 +49,13 @@
             bindingSourceCategories = new BindingSource(components);
             bindingSourceRecettes = new BindingSource(components);
             bindingSourceCategoriesOfRecette = new BindingSource(components);
+            bindingSourceRecettesWithoutTheCategorie = new BindingSource(components);
             tableLayoutPanelManageCategories.SuspendLayout();
             tableLayoutPanelManageCategoriesRecettes.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewCategoriesOfRecette).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewRecettes).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewRecettesWithoutTheCategorie).BeginInit();
             tableLayoutPanelCategories.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewCategories).BeginInit();
             tableLayoutPanelCategoriesInputs.SuspendLayout();
@@ -58,6 +63,7 @@
             ((System.ComponentModel.ISupportInitialize)bindingSourceCategories).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bindingSourceRecettes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bindingSourceCategoriesOfRecette).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSourceRecettesWithoutTheCategorie).BeginInit();
             SuspendLayout();
             // 
             // tableLayoutPanelManageCategories
@@ -80,10 +86,10 @@
             tableLayoutPanelManageCategoriesRecettes.ColumnCount = 2;
             tableLayoutPanelManageCategoriesRecettes.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanelManageCategoriesRecettes.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanelManageCategoriesRecettes.Controls.Add(dataGridViewCategoriesOfRecette, 0, 0);
-            tableLayoutPanelManageCategoriesRecettes.Controls.Add(dataGridViewRecettes, 1, 0);
-            tableLayoutPanelManageCategoriesRecettes.Controls.Add(buttonRemoveCategorieFromRecette, 0, 1);
-            tableLayoutPanelManageCategoriesRecettes.Controls.Add(buttonAddCategorieToRecette, 1, 1);
+            tableLayoutPanelManageCategoriesRecettes.Controls.Add(tableLayoutPanel1, 1, 0);
+            tableLayoutPanelManageCategoriesRecettes.Controls.Add(buttonRemoveCategorieFromRecette, 1, 1);
+            tableLayoutPanelManageCategoriesRecettes.Controls.Add(buttonAddCategorieToRecette, 0, 1);
+            tableLayoutPanelManageCategoriesRecettes.Controls.Add(dataGridViewRecettesWithoutTheCategorie, 0, 0);
             tableLayoutPanelManageCategoriesRecettes.Dock = DockStyle.Fill;
             tableLayoutPanelManageCategoriesRecettes.Location = new Point(3, 3);
             tableLayoutPanelManageCategoriesRecettes.Name = "tableLayoutPanelManageCategoriesRecettes";
@@ -93,17 +99,31 @@
             tableLayoutPanelManageCategoriesRecettes.Size = new Size(594, 444);
             tableLayoutPanelManageCategoriesRecettes.TabIndex = 0;
             // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 1;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.Controls.Add(dataGridViewCategoriesOfRecette, 0, 1);
+            tableLayoutPanel1.Controls.Add(dataGridViewRecettes, 0, 0);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(300, 3);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 2;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.Size = new Size(291, 349);
+            tableLayoutPanel1.TabIndex = 4;
+            // 
             // dataGridViewCategoriesOfRecette
             // 
             dataGridViewCategoriesOfRecette.AllowUserToAddRows = false;
             dataGridViewCategoriesOfRecette.AllowUserToDeleteRows = false;
             dataGridViewCategoriesOfRecette.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCategoriesOfRecette.Dock = DockStyle.Fill;
-            dataGridViewCategoriesOfRecette.Location = new Point(3, 3);
+            dataGridViewCategoriesOfRecette.Location = new Point(3, 177);
             dataGridViewCategoriesOfRecette.Name = "dataGridViewCategoriesOfRecette";
             dataGridViewCategoriesOfRecette.ReadOnly = true;
             dataGridViewCategoriesOfRecette.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewCategoriesOfRecette.Size = new Size(291, 349);
+            dataGridViewCategoriesOfRecette.Size = new Size(285, 169);
             dataGridViewCategoriesOfRecette.TabIndex = 0;
             // 
             // dataGridViewRecettes
@@ -111,19 +131,17 @@
             dataGridViewRecettes.AllowUserToAddRows = false;
             dataGridViewRecettes.AllowUserToDeleteRows = false;
             dataGridViewRecettes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewRecettes.Dock = DockStyle.Fill;
-            dataGridViewRecettes.Location = new Point(300, 3);
+            dataGridViewRecettes.Location = new Point(3, 3);
             dataGridViewRecettes.Name = "dataGridViewRecettes";
             dataGridViewRecettes.ReadOnly = true;
             dataGridViewRecettes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewRecettes.Size = new Size(291, 349);
+            dataGridViewRecettes.Size = new Size(285, 168);
             dataGridViewRecettes.TabIndex = 1;
             dataGridViewRecettes.CurrentCellChanged += dataGridViewRecettes_CurrentCellChanged;
             // 
             // buttonRemoveCategorieFromRecette
             // 
-            buttonRemoveCategorieFromRecette.Dock = DockStyle.Fill;
-            buttonRemoveCategorieFromRecette.Location = new Point(3, 358);
+            buttonRemoveCategorieFromRecette.Location = new Point(300, 358);
             buttonRemoveCategorieFromRecette.Name = "buttonRemoveCategorieFromRecette";
             buttonRemoveCategorieFromRecette.Size = new Size(291, 83);
             buttonRemoveCategorieFromRecette.TabIndex = 2;
@@ -133,14 +151,25 @@
             // 
             // buttonAddCategorieToRecette
             // 
-            buttonAddCategorieToRecette.Dock = DockStyle.Fill;
-            buttonAddCategorieToRecette.Location = new Point(300, 358);
+            buttonAddCategorieToRecette.Location = new Point(3, 358);
             buttonAddCategorieToRecette.Name = "buttonAddCategorieToRecette";
             buttonAddCategorieToRecette.Size = new Size(291, 83);
             buttonAddCategorieToRecette.TabIndex = 3;
             buttonAddCategorieToRecette.Text = "Ajouter Categorie a la recette";
             buttonAddCategorieToRecette.UseVisualStyleBackColor = true;
             buttonAddCategorieToRecette.Click += buttonAddCategorieToRecette_Click;
+            // 
+            // dataGridViewRecettesWithoutTheCategorie
+            // 
+            dataGridViewRecettesWithoutTheCategorie.AllowUserToAddRows = false;
+            dataGridViewRecettesWithoutTheCategorie.AllowUserToDeleteRows = false;
+            dataGridViewRecettesWithoutTheCategorie.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewRecettesWithoutTheCategorie.Dock = DockStyle.Fill;
+            dataGridViewRecettesWithoutTheCategorie.Location = new Point(3, 3);
+            dataGridViewRecettesWithoutTheCategorie.Name = "dataGridViewRecettesWithoutTheCategorie";
+            dataGridViewRecettesWithoutTheCategorie.ReadOnly = true;
+            dataGridViewRecettesWithoutTheCategorie.Size = new Size(291, 349);
+            dataGridViewRecettesWithoutTheCategorie.TabIndex = 5;
             // 
             // tableLayoutPanelCategories
             // 
@@ -257,8 +286,10 @@
             Load += FormManageCategories_Load;
             tableLayoutPanelManageCategories.ResumeLayout(false);
             tableLayoutPanelManageCategoriesRecettes.ResumeLayout(false);
+            tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewCategoriesOfRecette).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewRecettes).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewRecettesWithoutTheCategorie).EndInit();
             tableLayoutPanelCategories.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewCategories).EndInit();
             tableLayoutPanelCategoriesInputs.ResumeLayout(false);
@@ -267,6 +298,7 @@
             ((System.ComponentModel.ISupportInitialize)bindingSourceCategories).EndInit();
             ((System.ComponentModel.ISupportInitialize)bindingSourceRecettes).EndInit();
             ((System.ComponentModel.ISupportInitialize)bindingSourceCategoriesOfRecette).EndInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSourceRecettesWithoutTheCategorie).EndInit();
             ResumeLayout(false);
         }
 
@@ -290,5 +322,8 @@
         private BindingSource bindingSourceCategories;
         private BindingSource bindingSourceRecettes;
         private BindingSource bindingSourceCategoriesOfRecette;
+        private TableLayoutPanel tableLayoutPanel1;
+        private DataGridView dataGridViewRecettesWithoutTheCategorie;
+        private BindingSource bindingSourceRecettesWithoutTheCategorie;
     }
 }

@@ -109,7 +109,7 @@ namespace APIUnitTests.APIUnitTests
 
             var sut = new CategoriesController(mockService);
 
-            var expectedResponse = new BadRequestObjectResult(new List<int>());
+            var expectedResponse = new BadRequestObjectResult("Aucune Recettes trouvées");
             
             // Act
             var result = sut.GetRecipesIDsFromCategorieID(categorieId).Result as ObjectResult;

@@ -23,6 +23,7 @@ namespace CookBookAppDesktop
 
         readonly RestClient _rest = new();
         BindingList<RecetteDetailsDTO> _recettes;
+        BindingList<RecetteDetailsDTO> _recettesWithoutTheCategorie;
         BindingList<CategorieDTO> _categories;
         BindingList<CategorieDTO> _categoriesInRecettes;
 
@@ -46,6 +47,11 @@ namespace CookBookAppDesktop
             bindingSourceRecettes.DataSource = _recettes;
             dataGridViewRecettes.DataSource = bindingSourceRecettes;
 
+            // recettes without the categorie
+            _recettesWithoutTheCategorie = new();
+            bindingSourceRecettesWithoutTheCategorie.DataSource = _recettesWithoutTheCategorie;
+            dataGridViewRecettesWithoutTheCategorie.DataSource = bindingSourceRecettesWithoutTheCategorie;
+
             // categories in recettes
             _categoriesInRecettes = new();
             bindingSourceCategoriesOfRecette.DataSource = _categoriesInRecettes;
@@ -63,7 +69,7 @@ namespace CookBookAppDesktop
                 _categories.Add(item);
             }
             if (current != null)
-                bindingSourceCategories.Position = bindingSourceCategories.IndexOf(current);
+                bindingSourceCategories.Position = _categories.IndexOf(_categories.Where(c => c.id == current.id).FirstOrDefault());
         }
 
         #endregion
@@ -85,14 +91,33 @@ namespace CookBookAppDesktop
             if (current != null)
             {
                 // Récupération des recettes de la catégorie
-                var recetteIDs = await _rest.GetAsync<IEnumerable<int>>($"{URL_GET_CATEGORIES}/RecettesIDs/{current.id}");
                 var allRecettes = await _rest.GetAsync<IEnumerable<RecetteDetailsDTO>>(URL_GET_RECETTES);
-                var recettesOfCategory = allRecettes.Where(r => recetteIDs.Contains(r.id)).ToList();
 
-                _recettes.Clear();
-                foreach (var item in recettesOfCategory)
+                try
                 {
-                    _recettes.Add(item);
+                    IEnumerable<int> recetteIDs = await _rest.GetAsync<IEnumerable<int>>($"{URL_GET_CATEGORIES}/RecettesIDs/{current.id}");
+
+                    var recettesOfCategory = allRecettes.Where(r => recetteIDs.Contains(r.id)).ToList();
+                    var recettesWithoutTheCategory = allRecettes.Where(r => !recetteIDs.Contains(r.id)).ToList();
+
+                    _recettes.Clear();
+                    foreach (var item in recettesOfCategory)
+                    {
+                        _recettes.Add(item);
+                    }
+
+                    _recettesWithoutTheCategorie.Clear();
+                    foreach (var item in recettesWithoutTheCategory)
+                    {
+                        _recettesWithoutTheCategorie.Add(item);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _recettes.Clear();
+                    _categoriesInRecettes.Clear();
+
+                    var result = MessageBox.Show($"{ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -154,7 +179,7 @@ namespace CookBookAppDesktop
         private async void buttonAddCategorieToRecette_Click(object sender, EventArgs e)
         {
             CategorieDTO currentCategorie = bindingSourceCategories.Current as CategorieDTO;
-            RecetteDetailsDTO currentRecette = bindingSourceRecettes.Current as RecetteDetailsDTO;
+            RecetteDetailsDTO currentRecette = bindingSourceRecettesWithoutTheCategorie.Current as RecetteDetailsDTO;
 
             if (currentCategorie != null)
             {
@@ -166,7 +191,7 @@ namespace CookBookAppDesktop
                         await _rest.PostAsync($"{URL_GET_CATEGORIES}/AddToRecette/{currentRecette.id}", currentCategorie);
 
                         var categories = await _rest.GetAsync<IEnumerable<CategorieDTO>>($"{URL_GET_CATEGORIES}/{currentRecette.id}");
-                        
+
                         _categoriesInRecettes.Clear();
                         foreach (var item in categories)
                         {
@@ -178,6 +203,7 @@ namespace CookBookAppDesktop
                 {
                     MessageBox.Show("Veuillez sélectionner une recette.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                await RefreshCategories();
             }
         }
 
@@ -194,8 +220,8 @@ namespace CookBookAppDesktop
                     var result = MessageBox.Show($"Êtes-vous sûr de vouloir retirer la catégorie '{currentCategorie.nom}' de la recette '{currentRecette.nom}' ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
                     if (result == DialogResult.Yes)
                     {
-                        await _rest.PostAsync($"{URL_GET_CATEGORIES}/RemoveFromRecette/{currentRecette.id}", currentCategorie);
-                        
+                        await _rest.DeleteAsync($"{URL_GET_CATEGORIES}/RemoveFromRecette/{currentRecette.id}", currentCategorie);
+
                         var categories = await _rest.GetAsync<IEnumerable<CategorieDTO>>($"{URL_GET_CATEGORIES}/{currentRecette.id}");
                         _categoriesInRecettes.Clear();
                         foreach (var item in categories)
@@ -208,6 +234,7 @@ namespace CookBookAppDesktop
                 {
                     MessageBox.Show("Veuillez sélectionner une recette.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                await RefreshCategories();
             }
         }
 

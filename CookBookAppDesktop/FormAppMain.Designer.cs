@@ -162,6 +162,7 @@
             tabControlApp.SelectedIndex = 0;
             tabControlApp.Size = new Size(678, 555);
             tabControlApp.TabIndex = 0;
+            tabControlApp.Selecting += tabControl_Selecting;
             // 
             // tabPageRecettes
             // 

@@ -55,7 +55,7 @@ namespace APIProjetFilRouge.Controllers
 
             if (recetteIDs.IsNullOrEmpty())
             {
-                return BadRequest(recetteIDs);
+                return BadRequest("Aucune Recettes trouvées");
             }
 
             return StatusCode(StatusCodes.Status200OK, recetteIDs);
