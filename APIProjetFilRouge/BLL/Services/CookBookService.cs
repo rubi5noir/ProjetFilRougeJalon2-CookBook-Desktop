@@ -42,7 +42,17 @@ namespace APIProjetFilRouge.BLL.Services
 
         public async Task<int> CreateAvisAsync(Avis avis)
         {
+            _unitOfWork.BeginTransaction();
+
             int newAvisId = await _unitOfWork.Avis.CreateAvisAsync(avis);
+
+            if (newAvisId > 1)
+            {
+                _unitOfWork.Rollback();
+                return 0; // number of line updated = 0
+            }
+
+            _unitOfWork.Commit();
             return newAvisId;
         }
 
@@ -401,48 +411,43 @@ namespace APIProjetFilRouge.BLL.Services
         {
             _unitOfWork.BeginTransaction();
 
-            try
+            List<Categorie> categories = await _unitOfWork.Categorie.GetCategoriesOfRecetteAsync(id);
+            List<Etape> etapes = await _unitOfWork.Etape.GetEtapesOfRecetteAsync(id);
+            List<Ingredient> ingredients = await _unitOfWork.Ingredient.GetIngredientsWithQuantitiesOfRecetteAsync(id);
+
+            foreach (var categorie in categories)
             {
-                List<Categorie> categories = await _unitOfWork.Categorie.GetCategoriesOfRecetteAsync(id);
-                List<Etape> etapes = await _unitOfWork.Etape.GetEtapesOfRecetteAsync(id);
-                List<Ingredient> ingredients = await _unitOfWork.Ingredient.GetIngredientsWithQuantitiesOfRecetteAsync(id);
+                await _unitOfWork.Categorie.RemoveCategorieFromRecetteAsync(id, categorie);
+            }
 
-                foreach (var categorie in categories)
-                {
-                    await _unitOfWork.Categorie.RemoveCategorieFromRecetteAsync(id, categorie);
-                }
+            foreach (var etape in etapes)
+            {
+                etape.id_recette = id;
 
-                foreach (var etape in etapes)
-                {
-                    etape.id_recette = id;
+                await _unitOfWork.Etape.DeleteEtapeAsync(etape.id_recette, etape.numero);
+            }
 
-                    await _unitOfWork.Etape.DeleteEtapeAsync(etape.id_recette, etape.numero);
-                }
+            foreach (var ingredient in ingredients)
+            {
+                await _unitOfWork.Ingredient.RemoveIngredientFromRecetteAsync(id, ingredient);
+            }
 
-                foreach (var ingredient in ingredients)
-                {
-                    await _unitOfWork.Ingredient.RemoveIngredientFromRecetteAsync(id, ingredient);
-                }
+            int rowAffected = await _unitOfWork.Recette.DeleteRecetteAsync(id);
 
-                int rowAffected = await _unitOfWork.Recette.DeleteRecetteAsync(id);
+            bool isDeleted = rowAffected == 1;
 
-                bool isDeleted = rowAffected == 1;
-
+            if (isDeleted)
+            {
                 _unitOfWork.Commit();
-
                 return isDeleted;
             }
-            catch (Exception)
-            {
-                _unitOfWork.Rollback();
-                throw;
-            }
+            _unitOfWork.Rollback();
+            return isDeleted;
         }
-
-        #endregion
-
-        #endregion
-
     }
+
+    #endregion
+
+    #endregion
 
 }
