@@ -316,7 +316,7 @@ namespace APIProjetFilRouge.BLL.Services
 
         #region GET
 
-        public async Task<List<Recette>> GetRecetteVignetteAsync()
+        public async Task<List<Recette>> GetAllRecettesAsync()
         {
             List<Recette> recettes = await _unitOfWork.Recette.GetAllRecettesAsync();
 

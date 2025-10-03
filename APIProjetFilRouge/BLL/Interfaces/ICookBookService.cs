@@ -193,10 +193,10 @@ namespace APIProjetFilRouge.BLL.Interfaces
         #region Recette
 
         /// <summary>
-        /// Retrieves a list of recipes formatted for vignettes
+        /// Retrieves a list of all recipes
         /// </summary>
-        /// <returns><see cref="List{Recette}"/> of <see cref="Recette"/> : Recipes for vignettes uses</returns>
-        Task<List<Recette>> GetRecetteVignetteAsync();
+        /// <returns><see cref="List{Recette}"/> of <see cref="Recette"/> : Recipes</returns>
+        Task<List<Recette>> GetAllRecettesAsync();
 
         /// <summary>
         /// Retrieves detailed information about a recipe by it's ID

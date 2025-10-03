@@ -1267,10 +1267,10 @@ namespace APIUnitTests.ServicesUnitTets
 
         #region Recette
 
-        #region GetRecetteVignetteAsync
+        #region GetAllRecettesAsync
 
         [Fact]
-        public void GetRecetteVignetteAsync_ReturnListRecettes()
+        public void GetAllRecettesAsync_ReturnListRecettes()
         {
             List<Recette> recettes = new List<Recette>
             {
@@ -1289,14 +1289,14 @@ namespace APIUnitTests.ServicesUnitTets
             var expectedResult = recettes;
 
             // Act
-            var result = sut.GetRecetteVignetteAsync().Result;
+            var result = sut.GetAllRecettesAsync().Result;
 
             // Assert
             Assert.Equal(expectedResult, result);
         }
 
         [Fact]
-        public void GetRecetteVignetteAsync_ReturnListEmpty()
+        public void GetAllRecettesAsync_ReturnListEmpty()
         {
             List<Recette> recettes = new List<Recette>();
 
@@ -1311,7 +1311,7 @@ namespace APIUnitTests.ServicesUnitTets
             var expectedResult = recettes;
 
             // Act
-            var result = sut.GetRecetteVignetteAsync().Result;
+            var result = sut.GetAllRecettesAsync().Result;
 
             // Assert
             Assert.Equal(expectedResult, result);

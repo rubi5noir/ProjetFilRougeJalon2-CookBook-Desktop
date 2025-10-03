@@ -22,7 +22,7 @@ namespace CookBookAppDesktop
 
 
         readonly RestClient _rest = new();
-        BindingList<RecetteDetailsDTO> _recettes;
+        BindingList<RecetteDTO> _recettes;
         BindingList<EtapeDTO> _etapes;
         BindingList<CategorieDTO> _categories;
         BindingList<IngredientDTO> _ingredients;
@@ -85,13 +85,13 @@ namespace CookBookAppDesktop
 
         private async Task RefreshRecettes()
         {
-            RecetteDetailsDTO current = bindingSourceRecettes.Current as RecetteDetailsDTO;
+            RecetteDTO current = bindingSourceRecettes.Current as RecetteDTO;
 
             // Remplissage de la liste
-            var res = await _rest.GetAsync<IEnumerable<RecetteDetailsDTO>>(URL_GET_RECETTES);
+            var res = await _rest.GetAsync<IEnumerable<RecetteDTO>>($"{URL_GET_RECETTES}/Details");
 
             _recettes.Clear();
-            foreach (RecetteDetailsDTO r in res)
+            foreach (RecetteDTO r in res)
                 _recettes.Add(r);
 
             // On se repositionne sur le current
@@ -101,7 +101,7 @@ namespace CookBookAppDesktop
 
         private async Task RefreshEtapes()
         {
-            RecetteDetailsDTO recette = bindingSourceRecettes.Current as RecetteDetailsDTO;
+            RecetteDTO recette = bindingSourceRecettes.Current as RecetteDTO;
             EtapeDTO current = bindingSourceEtapes.Current as EtapeDTO;
 
             var res = await _rest.GetAsync<IEnumerable<EtapeDTO>>($"{URL_GET_ETAPES}/{recette.id}");
@@ -217,7 +217,7 @@ namespace CookBookAppDesktop
 
         private async void buttonDeleteRecette_Click(object sender, EventArgs e)
         {
-            if (bindingSourceRecettes.Current is not RecetteDetailsDTO selectedRecette)
+            if (bindingSourceRecettes.Current is not RecetteDTO selectedRecette)
             {
                 MessageBox.Show("Veuillez Séléctionné une recette a supprimé.");
                 return;
@@ -255,7 +255,7 @@ namespace CookBookAppDesktop
 
         private async void dataGridViewRecettes_SelectionChanged(object sender, EventArgs e)
         {
-            RecetteDetailsDTO current = bindingSourceRecettes.Current as RecetteDetailsDTO;
+            RecetteDTO current = bindingSourceRecettes.Current as RecetteDTO;
 
             if (current != null)
             {

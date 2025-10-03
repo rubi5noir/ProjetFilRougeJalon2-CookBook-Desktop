@@ -32,7 +32,7 @@ namespace APIProjetFilRouge.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetRecettesVignettes()
         {
-            var recettes = await _recetteService.GetRecetteVignetteAsync();
+            var recettes = await _recetteService.GetAllRecettesAsync();
 
             var avis = await _recetteService.GetAvisOfAllRecettesAsync();
             AverageNoteDTO avisAverageNotes = new AverageNoteDTO();
@@ -54,6 +54,31 @@ namespace APIProjetFilRouge.Controllers
             }).ToList();
 
             return StatusCode(StatusCodes.Status200OK, recetteForVignetteList);
+        }
+
+        /// <summary>
+        /// Retrieves all recipes
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("Details")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetAllRecettes()
+        {
+            var recettes = await _recetteService.GetAllRecettesAsync();
+
+            List<RecetteDTO> recettesDTO = recettes.Select(r => new RecetteDTO
+            {
+                id = r.id,
+                nom = r.nom,
+                description = r.description,
+                temps_preparation = r.temps_preparation,
+                temps_cuisson = r.temps_cuisson,
+                difficulte = r.difficulte,
+                img = r.img,
+            }).ToList();
+
+            return StatusCode(StatusCodes.Status200OK, recettesDTO);
         }
 
         /// <summary>
