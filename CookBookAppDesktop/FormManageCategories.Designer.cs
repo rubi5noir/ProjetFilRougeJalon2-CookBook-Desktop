@@ -43,6 +43,7 @@
             labelCategorieNom = new Label();
             textBoxCategorieNom = new TextBox();
             flowLayoutPanelCategoriesButtons = new FlowLayoutPanel();
+            buttonActualiserCategorie = new Button();
             buttonAddCategorie = new Button();
             buttonModifyCategorie = new Button();
             buttonRemoveCategorie = new Button();
@@ -237,6 +238,7 @@
             // 
             // flowLayoutPanelCategoriesButtons
             // 
+            flowLayoutPanelCategoriesButtons.Controls.Add(buttonActualiserCategorie);
             flowLayoutPanelCategoriesButtons.Controls.Add(buttonAddCategorie);
             flowLayoutPanelCategoriesButtons.Controls.Add(buttonModifyCategorie);
             flowLayoutPanelCategoriesButtons.Controls.Add(buttonRemoveCategorie);
@@ -245,19 +247,29 @@
             flowLayoutPanelCategoriesButtons.Size = new Size(188, 84);
             flowLayoutPanelCategoriesButtons.TabIndex = 2;
             // 
+            // buttonActualiserCategorie
+            // 
+            buttonActualiserCategorie.Location = new Point(3, 3);
+            buttonActualiserCategorie.Name = "buttonActualiserCategorie";
+            buttonActualiserCategorie.Size = new Size(75, 23);
+            buttonActualiserCategorie.TabIndex = 3;
+            buttonActualiserCategorie.Text = "Actualiser";
+            buttonActualiserCategorie.UseVisualStyleBackColor = true;
+            buttonActualiserCategorie.Click += buttonRefreshCategories_Click;
+            // 
             // buttonAddCategorie
             // 
-            buttonAddCategorie.Location = new Point(3, 3);
+            buttonAddCategorie.Location = new Point(84, 3);
             buttonAddCategorie.Name = "buttonAddCategorie";
             buttonAddCategorie.Size = new Size(75, 23);
             buttonAddCategorie.TabIndex = 0;
-            buttonAddCategorie.Text = "Actualiser";
+            buttonAddCategorie.Text = "Ajouter";
             buttonAddCategorie.UseVisualStyleBackColor = true;
-            buttonAddCategorie.Click += buttonRefreshCategories_Click;
+            buttonAddCategorie.Click += buttonAddCategorie_Click;
             // 
             // buttonModifyCategorie
             // 
-            buttonModifyCategorie.Location = new Point(84, 3);
+            buttonModifyCategorie.Location = new Point(3, 32);
             buttonModifyCategorie.Name = "buttonModifyCategorie";
             buttonModifyCategorie.Size = new Size(75, 23);
             buttonModifyCategorie.TabIndex = 1;
@@ -267,7 +279,7 @@
             // 
             // buttonRemoveCategorie
             // 
-            buttonRemoveCategorie.Location = new Point(3, 32);
+            buttonRemoveCategorie.Location = new Point(84, 32);
             buttonRemoveCategorie.Name = "buttonRemoveCategorie";
             buttonRemoveCategorie.Size = new Size(75, 23);
             buttonRemoveCategorie.TabIndex = 2;
@@ -325,5 +337,6 @@
         private TableLayoutPanel tableLayoutPanel1;
         private DataGridView dataGridViewRecettesWithoutTheCategorie;
         private BindingSource bindingSourceRecettesWithoutTheCategorie;
+        private Button buttonActualiserCategorie;
     }
 }

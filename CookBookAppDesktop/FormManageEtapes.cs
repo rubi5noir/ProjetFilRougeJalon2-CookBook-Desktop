@@ -41,6 +41,12 @@ namespace CookBookAppDesktop
             bindingSourceEtapes.DataSource = _etapes;
             dataGridViewEtapes.DataSource = bindingSourceEtapes;
 
+            dataGridViewEtapes.Columns["id"].Visible = false;
+            dataGridViewEtapes.Columns["texte"].HeaderText = "Description";
+
+            numericUpDownTitre.DataBindings.Add("Value", bindingSourceEtapes, "numero", false, DataSourceUpdateMode.Never);
+            textBoxDescription.DataBindings.Add("Text", bindingSourceEtapes, "texte", false, DataSourceUpdateMode.Never);
+
             // recettes
             _recettes = new();
             bindingSourceRecettes.DataSource = _recettes;

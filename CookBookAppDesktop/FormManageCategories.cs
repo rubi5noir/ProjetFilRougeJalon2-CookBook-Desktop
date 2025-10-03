@@ -142,6 +142,26 @@ namespace CookBookAppDesktop
             await RefreshCategories();
         }
 
+        private async void buttonAddCategorie_Click(object sender, EventArgs e)
+        {
+            CategorieDTO current = bindingSourceCategories.Current as CategorieDTO;
+            if (current != null)
+            {
+                var categorieDTO = new CategorieDTO
+                {
+                    id = 0, // Database will Create it by itself
+                    nom = textBoxCategorieNom.Text
+                };
+
+                var result = MessageBox.Show($"Êtes-vous sûr de vouloir Ajouter la catégorie '{categorieDTO}' ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    await _rest.PutAsync($"{URL_UPDATE_CATEGORIES}", categorieDTO);
+                    await RefreshCategories();
+                }
+            }
+        }
+
         private async void buttonModifyCategorie_Click(object sender, EventArgs e)
         {
             CategorieDTO current = bindingSourceCategories.Current as CategorieDTO;
