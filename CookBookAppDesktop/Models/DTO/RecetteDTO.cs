@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CookBookAppDesktop.Models.DTO
 {
-    internal class RecetteDTO
+    public class RecetteDTO
     {
         public int id { get; set; }
         public string nom { get; set; }

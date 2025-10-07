@@ -20,6 +20,7 @@ namespace CookBookAppDesktop
 
         const string URL_GET_CATEGORIES = "api/Categories";
 
+        const string URL_GET_INGREDIENTS = "api/Ingredients";
 
         readonly RestClient _rest = new();
         BindingList<RecetteDTO> _recettes;
@@ -37,9 +38,23 @@ namespace CookBookAppDesktop
 
         public FormAppMain()
         {
+
+            DoubleBuffered = true;
             InitializeComponent();
             InitializeBinding();
             InitializeInputsLimits();
+
+
+            //Initialize the MouseWheel events as you can't do it with the properties on the conceptor side
+            //Using of Different Methods for each "part" in case they need some exclusive code in the future
+            numericUpDownDifficulteRecette.MouseWheel += NumericUpDownDifficulteRecette_MouseWheel;
+
+            //Same for both as i think that if there is some events logic to do with one the other need it
+            numericUpDownTemps_PréparationHeures.MouseWheel += NumericUpDownTempsPreparation_MouseWheel;
+            numericUpDownTemps_PréparationMinutes.MouseWheel += NumericUpDownTempsPreparation_MouseWheel;
+
+            numericUpDownTemps_CuissonHeures.MouseWheel += NumericUpDownTempsPreparation_MouseWheel;
+            numericUpDownTemps_CuissonMinutes.MouseWheel += NumericUpDownTempsPreparation_MouseWheel;
         }
 
         #region Methods
@@ -52,6 +67,27 @@ namespace CookBookAppDesktop
             dataGridViewRecettes.DataSource = bindingSourceRecettes;
             dataGridViewEtapesRecette.DataSource = bindingSourceRecettes;
 
+            dataGridViewRecettes.Columns["id"].Visible = false;
+
+            textBoxNomRecette.DataBindings.Add("text", bindingSourceRecettes, "nom", false, DataSourceUpdateMode.Never);
+            textBoxDescriptionRecette.DataBindings.Add("text", bindingSourceRecettes, "description", false, DataSourceUpdateMode.Never);
+            numericUpDownDifficulteRecette.DataBindings.Add("value", bindingSourceRecettes, "difficulte", true, DataSourceUpdateMode.Never);
+            textBoxImageRecette.DataBindings.Add("text", bindingSourceRecettes, "img", false, DataSourceUpdateMode.Never);
+
+            numericUpDownTemps_PréparationHeures.DataBindings.Add("value", bindingSourceRecettes, "temps_preparation", true, DataSourceUpdateMode.Never);
+            numericUpDownTemps_PréparationHeures.DataBindings["value"].Format += (obj, evt) => Utility.ConvertTimeSpanBinding(evt, true);
+
+            numericUpDownTemps_PréparationMinutes.DataBindings.Add("value", bindingSourceRecettes, "temps_preparation", true, DataSourceUpdateMode.Never);
+            numericUpDownTemps_PréparationMinutes.DataBindings["value"].Format += (obj, evt) => Utility.ConvertTimeSpanBinding(evt);
+
+
+            numericUpDownTemps_CuissonHeures.DataBindings.Add("value", bindingSourceRecettes, "temps_cuisson", true, DataSourceUpdateMode.Never);
+            numericUpDownTemps_CuissonHeures.DataBindings["value"].Format += (obj, evt) => Utility.ConvertTimeSpanBinding(evt, true);
+
+            numericUpDownTemps_CuissonMinutes.DataBindings.Add("value", bindingSourceRecettes, "temps_cuisson", true, DataSourceUpdateMode.Never);
+            numericUpDownTemps_CuissonMinutes.DataBindings["value"].Format += (obj, evt) => Utility.ConvertTimeSpanBinding(evt);
+
+
             // Etapes
             _etapes = new();
             bindingSourceEtapes.DataSource = _etapes;
@@ -61,7 +97,13 @@ namespace CookBookAppDesktop
             _categories = new();
             bindingSourceCategories.DataSource = _categories;
             dataGridViewCategories.DataSource = bindingSourceCategories;
+
+            // Ingredients
+            _ingredients = new();
+            bindingSourceIngredients.DataSource = _ingredients;
+            dataGridViewIngredients.DataSource = bindingSourceIngredients;
         }
+
 
         private void InitializeInputsLimits()
         {
@@ -86,7 +128,6 @@ namespace CookBookAppDesktop
         private async Task RefreshRecettes()
         {
             RecetteDTO current = bindingSourceRecettes.Current as RecetteDTO;
-
             // Remplissage de la liste
             var res = await _rest.GetAsync<IEnumerable<RecetteDTO>>($"{URL_GET_RECETTES}/Details");
 
@@ -129,6 +170,22 @@ namespace CookBookAppDesktop
             if (current is not null)
             {
                 bindingSourceCategories.Position = _categories.IndexOf(_categories.Where(c => c.id == current.id).FirstOrDefault());
+            }
+        }
+
+        private async Task RefreshIngredients()
+        {
+            IngredientDTO current = bindingSourceIngredients.Current as IngredientDTO;
+
+            var res = await _rest.GetAsync<IEnumerable<IngredientDTO>>($"{URL_GET_INGREDIENTS}");
+
+            _ingredients.Clear();
+            foreach (IngredientDTO i in res)
+                _ingredients.Add(i);
+
+            if (current is not null)
+            {
+                bindingSourceIngredients.Position = _ingredients.IndexOf(_ingredients.Where(i => i.id == current.id).FirstOrDefault());
             }
         }
 
@@ -176,8 +233,22 @@ namespace CookBookAppDesktop
                 await RefreshCategories();
         }
 
-
         #region TabPageRecettes
+
+        private async void NumericUpDownTempsPreparation_MouseWheel(object sender, MouseEventArgs e)
+        {
+            Utility.HandleMouseWheelEventForNumericUpDown(sender, e);
+        }
+
+        private async void NumericUpDownTempsCuisson_MouseWheel(object sender, MouseEventArgs e)
+        {
+            Utility.HandleMouseWheelEventForNumericUpDown(sender, e);
+        }
+
+        private async void NumericUpDownDifficulteRecette_MouseWheel(object? sender, MouseEventArgs e)
+        {
+            Utility.HandleMouseWheelEventForNumericUpDown(sender, e);
+        }
 
         private async void buttonRefreshRecettes_Click(object sender, EventArgs e)
         {
@@ -292,6 +363,24 @@ namespace CookBookAppDesktop
 
         #endregion
 
+        #region TabPageIngredients
+
+        private async void buttonRefreshIngredients_Click(object sender, EventArgs e)
+        {
+            await RefreshIngredients();
+        }
+
+        private async void buttonOpenFormManageIngredients_Click(object sender, EventArgs e)
+        {
+            FormManageIngredients formManageIngredients = new FormManageIngredients();
+            if (formManageIngredients.ShowDialog() == DialogResult.OK)
+            {
+                await RefreshIngredients();
+            }
+        }
+
+        #endregion
+
         #region TabPageUtilisateurs
 
 
@@ -299,5 +388,6 @@ namespace CookBookAppDesktop
         #endregion
 
         #endregion
+
     }
 }

@@ -8,5 +8,8 @@ namespace CookBookAppDesktop.Models.DTO
 {
     internal class IngredientDTO
     {
+        public int id { get; set; }
+        public string nom { get; set; }
+        public string quantite { get; set; }
     }
 }

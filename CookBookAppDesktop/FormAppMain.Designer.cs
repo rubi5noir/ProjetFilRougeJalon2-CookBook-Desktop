@@ -763,6 +763,7 @@
             buttonOpenFormSelectionIngredients.TabIndex = 0;
             buttonOpenFormSelectionIngredients.Text = "Gérér la liste des ingrédients";
             buttonOpenFormSelectionIngredients.UseVisualStyleBackColor = true;
+            buttonOpenFormSelectionIngredients.Click += buttonOpenFormManageIngredients_Click;
             // 
             // buttonRefreshIngredients
             // 
@@ -771,8 +772,9 @@
             buttonRefreshIngredients.Name = "buttonRefreshIngredients";
             buttonRefreshIngredients.Size = new Size(201, 120);
             buttonRefreshIngredients.TabIndex = 1;
-            buttonRefreshIngredients.Text = "button1";
+            buttonRefreshIngredients.Text = "Actualiser";
             buttonRefreshIngredients.UseVisualStyleBackColor = true;
+            buttonRefreshIngredients.Click += buttonRefreshIngredients_Click;
             // 
             // dataGridViewIngredients
             // 
