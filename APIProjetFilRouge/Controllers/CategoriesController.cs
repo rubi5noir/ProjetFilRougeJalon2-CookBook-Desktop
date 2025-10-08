@@ -1,10 +1,12 @@
 ﻿using APIProjetFilRouge.BLL.Interfaces;
 using APIProjetFilRouge.Models.BussinessObjects;
 using APIProjetFilRouge.Models.DataTransfertObjects.Between;
+using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using System.ComponentModel.DataAnnotations;
 
 namespace APIProjetFilRouge.Controllers
 {
@@ -68,7 +70,7 @@ namespace APIProjetFilRouge.Controllers
         {
             var categories = await _recetteService.GetCategoriesOfRecetteAsync(idRecette);
 
-            if(categories.IsNullOrEmpty())
+            if (categories.IsNullOrEmpty())
             {
                 return BadRequest(categories);
             }
@@ -84,41 +86,52 @@ namespace APIProjetFilRouge.Controllers
         [HttpPost()]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> CreateCategorie([FromBody] CategorieDTO categorieDTO)
+        public async Task<IActionResult> CreateCategorie(IValidator<CategorieDTO> validator, [FromBody] CategorieDTO categorieDTO)
         {
-            var categorie = new Categorie
+            if (validator.Validate(categorieDTO).IsValid == true)
             {
-                id = 0,
-                nom = categorieDTO.nom
-            };
+                var categorie = new Categorie
+                {
+                    id = 0,
+                    nom = categorieDTO.nom
+                };
 
-            var result = await _recetteService.CreateCategorieAsync(categorie);
+                var result = await _recetteService.CreateCategorieAsync(categorie);
 
-            if (result == 0)
+                if (result == 0)
+                {
+                    return BadRequest("Création de la catégorie échouée.");
+                }
+                return StatusCode(StatusCodes.Status201Created, result);
+            }
+            else
             {
                 return BadRequest("Création de la catégorie échouée.");
             }
-            return StatusCode(StatusCodes.Status201Created, result);
         }
 
         [Authorize(Roles = "Administrateur")]
         [HttpPost("AddToRecette/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> AddCategorieToRecette([FromRoute] int id, [FromBody] CategorieDTO categorieDTO)
+        public async Task<IActionResult> AddCategorieToRecette(IValidator<CategorieDTO> validator, [FromRoute] int id, [FromBody] CategorieDTO categorieDTO)
         {
-            var categorie = new Categorie
+            if (validator.Validate(categorieDTO).IsValid)
             {
-                id = categorieDTO.id,
-                nom = categorieDTO.nom
-            };
+                var categorie = new Categorie
+                {
+                    id = categorieDTO.id,
+                    nom = categorieDTO.nom
+                };
 
-            var result = await _recetteService.AddCategorieToRecetteAsync(id, categorie);
-            if (result == false)
-            {
-                return BadRequest("Ajout de la catégorie à la recette échouée.");
+                var result = await _recetteService.AddCategorieToRecetteAsync(id, categorie);
+                if (result == false)
+                {
+                    return BadRequest("Ajout de la catégorie à la recette échouée.");
+                }
+                return Ok(result);
             }
-            return Ok(result);
+            return BadRequest("Ajout de la catégorie à la recette échouée.");
         }
 
         #endregion
@@ -129,21 +142,25 @@ namespace APIProjetFilRouge.Controllers
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpdateCategorie([FromRoute] int id, [FromBody] CategorieDTO categorieDTO)
+        public async Task<IActionResult> UpdateCategorie(IValidator<CategorieDTO> validator, [FromRoute] int id, [FromBody] CategorieDTO categorieDTO)
         {
-            var categorie = new Categorie
+            if (validator.Validate(categorieDTO).IsValid)
             {
-                id = id,
-                nom = categorieDTO.nom
-            };
+                var categorie = new Categorie
+                {
+                    id = id,
+                    nom = categorieDTO.nom
+                };
 
-            bool result = await _recetteService.UpdateCategorieAsync(categorie);
+                bool result = await _recetteService.UpdateCategorieAsync(categorie);
 
-            if (result == false)
-            {
-                return BadRequest("Mise à jour de la catégorie échouée.");
+                if (result == false)
+                {
+                    return BadRequest("Mise à jour de la catégorie échouée.");
+                }
+                return Ok(result);
             }
-            return Ok(result);
+            return BadRequest("Mise à jour de la catégorie échouée.");
         }
 
         #endregion
@@ -164,24 +181,28 @@ namespace APIProjetFilRouge.Controllers
             }
             return Ok(result);
         }
-        
+
         [Authorize(Roles = "Administrateur")]
         [HttpDelete("RemoveFromRecette/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> RemoveCategorieFromRecette([FromRoute] int id, [FromBody] CategorieDTO categorieDTO)
+        public async Task<IActionResult> RemoveCategorieFromRecette(IValidator<CategorieDTO> validator, [FromRoute] int id, [FromBody] CategorieDTO categorieDTO)
         {
-            var categorie = new Categorie
+            if (validator.Validate(categorieDTO).IsValid)
             {
-                id = categorieDTO.id,
-                nom = categorieDTO.nom
-            };
-            var result = await _recetteService.RemoveCategorieFromRecetteAsync(id, categorie);
-            if (result == false)
-            {
-                return BadRequest("Suppression de la catégorie à la recette échouée.");
+                var categorie = new Categorie
+                {
+                    id = categorieDTO.id,
+                    nom = categorieDTO.nom
+                };
+                var result = await _recetteService.RemoveCategorieFromRecetteAsync(id, categorie);
+                if (result == false)
+                {
+                    return BadRequest("Suppression de la catégorie à la recette échouée.");
+                }
+                return Ok(result);
             }
-            return Ok(result);
+            return BadRequest("Suppression de la catégorie à la recette échouée.");
         }
 
         #endregion
