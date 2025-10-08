@@ -266,6 +266,13 @@ namespace APIProjetFilRouge.BLL.Services
             return ingredients;
         }
 
+        public async Task<List<int>> GetRecettesIDsFromIngredientAsync(int id)
+        {
+            var result = await _unitOfWork.Ingredient.GetRecettesIDsFromIngredientAsync(id);
+            
+            return result;
+        }
+
         #endregion
 
         #region SET

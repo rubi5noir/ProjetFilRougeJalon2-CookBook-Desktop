@@ -55,6 +55,9 @@
             buttonModifyIngredient = new Button();
             buttonRemoveIngredient = new Button();
             bindingSourceIngredients = new BindingSource(components);
+            bindingSourceIngredientsInRecette = new BindingSource(components);
+            bindingSourceRecetteWithTheIngredient = new BindingSource(components);
+            bindingSourceRecetteWithoutTheIngredients = new BindingSource(components);
             panelFormManageIngredients.SuspendLayout();
             tableLayoutPanelFormManageIngredients.SuspendLayout();
             tableLayoutPanelManageIngredients.SuspendLayout();
@@ -70,6 +73,9 @@
             tableLayoutPanelIngredientsInputs.SuspendLayout();
             flowLayoutPanelIngredientsButtons.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)bindingSourceIngredients).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSourceIngredientsInRecette).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSourceRecetteWithTheIngredient).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSourceRecetteWithoutTheIngredients).BeginInit();
             SuspendLayout();
             // 
             // panelFormManageIngredients
@@ -376,6 +382,9 @@
             tableLayoutPanelIngredientsInputs.PerformLayout();
             flowLayoutPanelIngredientsButtons.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)bindingSourceIngredients).EndInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSourceIngredientsInRecette).EndInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSourceRecetteWithTheIngredient).EndInit();
+            ((System.ComponentModel.ISupportInitialize)bindingSourceRecetteWithoutTheIngredients).EndInit();
             ResumeLayout(false);
         }
 
@@ -407,5 +416,8 @@
         private Button buttonAddIngredient;
         private Button buttonModifyIngredient;
         private Button buttonRemoveIngredient;
+        private BindingSource bindingSourceIngredientsInRecette;
+        private BindingSource bindingSourceRecetteWithTheIngredient;
+        private BindingSource bindingSourceRecetteWithoutTheIngredients;
     }
 }

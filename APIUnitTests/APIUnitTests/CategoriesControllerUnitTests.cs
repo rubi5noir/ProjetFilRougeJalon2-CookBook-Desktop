@@ -2,6 +2,7 @@
 using APIProjetFilRouge.Controllers;
 using APIProjetFilRouge.Models.BussinessObjects;
 using APIProjetFilRouge.Models.DataTransfertObjects.Between;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System;
@@ -184,6 +185,7 @@ namespace APIUnitTests.APIUnitTests
         public void CreateCategorie_ReturnsCreatedResult_WithNewCategoryId()
         {
             int newCategoryId = 1;
+            IValidator<CategorieDTO> validator = new ValidatorCategorieDTO();
             CategorieDTO categorieDTO = new CategorieDTO { id = 0, nom = "NewCategory" };
 
             // Arrange
@@ -197,7 +199,7 @@ namespace APIUnitTests.APIUnitTests
             var expectedResponse = new ObjectResult(newCategoryId) { StatusCode = 201 };
 
             // Act
-            var result = sut.CreateCategorie(categorieDTO).Result as ObjectResult;
+            var result = sut.CreateCategorie(validator, categorieDTO).Result as ObjectResult;
 
             // Assert
             Assert.Equivalent(expectedResponse, result);
@@ -207,6 +209,7 @@ namespace APIUnitTests.APIUnitTests
         public async void CreateCategorie_ReturnsBadRequest()
         {
             int newCategoryId = 0;
+            IValidator<CategorieDTO> validator = new ValidatorCategorieDTO();
             CategorieDTO categorieDTO = new CategorieDTO { id = 0, nom = "NewCategory" };
 
             // Arrange
@@ -220,7 +223,7 @@ namespace APIUnitTests.APIUnitTests
             var expectedResponse = new BadRequestObjectResult("Création de la catégorie échouée.");
 
             // Act 
-            var result = sut.CreateCategorie(categorieDTO);
+            var result = sut.CreateCategorie(validator, categorieDTO);
 
             // Assert
             Assert.Equivalent(expectedResponse, result.Result);
@@ -234,7 +237,7 @@ namespace APIUnitTests.APIUnitTests
         public async void AddCategorieToRecette_ReturnsOkResult_WithTrue()
         {
             int recetteId = 1;
-
+            IValidator<CategorieDTO> validator = new ValidatorCategorieDTO();
             CategorieDTO categorieDTO = new CategorieDTO
             {
                 id = 1,
@@ -258,7 +261,7 @@ namespace APIUnitTests.APIUnitTests
             var expectedResponse = new OkObjectResult(true);
 
             // Act
-            var result = await sut.AddCategorieToRecette(recetteId, categorieDTO) as ObjectResult;
+            var result = await sut.AddCategorieToRecette(validator, recetteId, categorieDTO) as ObjectResult;
             
             // Assert
             Assert.Equivalent(expectedResponse, result);
@@ -268,7 +271,7 @@ namespace APIUnitTests.APIUnitTests
         public async void AddCategorieToRecette_ReturnsBadRequest()
         {
             int recetteId = 1;
-
+            IValidator<CategorieDTO> validator = new ValidatorCategorieDTO();
             CategorieDTO categorieDTO = new CategorieDTO
             {
                 id = 1,
@@ -292,7 +295,7 @@ namespace APIUnitTests.APIUnitTests
             var expectedResponse = new BadRequestObjectResult("Ajout de la catégorie à la recette échouée.");
             
             // Act
-            var result = await sut.AddCategorieToRecette(recetteId, categorieDTO) as ObjectResult;
+            var result = await sut.AddCategorieToRecette(validator, recetteId, categorieDTO) as ObjectResult;
             
             // Assert
             Assert.Equivalent(expectedResponse, result);
@@ -306,7 +309,7 @@ namespace APIUnitTests.APIUnitTests
         public async void UpdateCategorie_ReturnsOkResult_WithTrue()
         {
             int newCategoryId = 1;
-
+            IValidator<CategorieDTO> validator = new ValidatorCategorieDTO();
             CategorieDTO categorieDTO = new CategorieDTO
             { id = newCategoryId, nom = "UpdatedCategory" };
 
@@ -324,7 +327,7 @@ namespace APIUnitTests.APIUnitTests
             var expectedResponse = new OkObjectResult(true);
 
             // Act
-            var result = await sut.UpdateCategorie(newCategoryId, categorieDTO) as ObjectResult;
+            var result = await sut.UpdateCategorie(validator, newCategoryId, categorieDTO) as ObjectResult;
 
             // Assert
             Assert.Equivalent(expectedResponse, result);
@@ -334,7 +337,7 @@ namespace APIUnitTests.APIUnitTests
         public async void UpdateCategorie_ReturnsBadRequest()
         {
             int newCategoryId = 1;
-
+            IValidator<CategorieDTO> validator = new ValidatorCategorieDTO();
             CategorieDTO categorieDTO = new CategorieDTO
             { id = newCategoryId, nom = "UpdatedCategory" };
 
@@ -352,7 +355,7 @@ namespace APIUnitTests.APIUnitTests
             var expectedResponse = new BadRequestObjectResult("Mise à jour de la catégorie échouée.");
 
             // Act
-            var result = sut.UpdateCategorie(newCategoryId, categorieDTO);
+            var result = sut.UpdateCategorie(validator, newCategoryId, categorieDTO);
 
             // Assert
             Assert.Equivalent(expectedResponse, result.Result);
@@ -414,7 +417,7 @@ namespace APIUnitTests.APIUnitTests
         public async void RemoveCategorieFromRecette_ReturnsOkResult_WithTrue()
         {
             int recetteId = 1;
-
+            IValidator<CategorieDTO> validator = new ValidatorCategorieDTO();
             CategorieDTO categorieDTO = new CategorieDTO
             {
                 id = 1,
@@ -438,7 +441,7 @@ namespace APIUnitTests.APIUnitTests
             var expectedResponse = new OkObjectResult(true);
 
             // Act
-            var result = await sut.RemoveCategorieFromRecette(recetteId, categorieDTO) as ObjectResult;
+            var result = await sut.RemoveCategorieFromRecette(validator, recetteId, categorieDTO) as ObjectResult;
             
             // Assert
             Assert.Equivalent(expectedResponse, result);
@@ -448,7 +451,7 @@ namespace APIUnitTests.APIUnitTests
         public async void RemoveCategorieFromRecette_ReturnsBadRequest()
         {
             int recetteId = 1;
-
+            IValidator<CategorieDTO> validator = new ValidatorCategorieDTO();
             CategorieDTO categorieDTO = new CategorieDTO
             {
                 id = 1,
@@ -472,7 +475,7 @@ namespace APIUnitTests.APIUnitTests
             var expectedResponse = new BadRequestObjectResult("Suppression de la catégorie à la recette échouée.");
             
             // Act
-            var result = await sut.RemoveCategorieFromRecette(recetteId, categorieDTO) as ObjectResult;
+            var result = await sut.RemoveCategorieFromRecette(validator, recetteId, categorieDTO) as ObjectResult;
             
             // Assert
             Assert.Equivalent(expectedResponse, result);

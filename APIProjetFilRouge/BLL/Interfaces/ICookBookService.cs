@@ -167,6 +167,13 @@ namespace APIProjetFilRouge.BLL.Interfaces
         Task<List<Ingredient>> GetIngredientsWithQuantitiesOfRecetteAsync(int id);
 
         /// <summary>
+        /// Retrieves the list of IDs of the recipe linked with the specified ingredient
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns><see cref="List{int}"/> of <see cref="int"/> : IDs of the recipes</returns>
+        Task<List<int>> GetRecettesIDsFromIngredientAsync(int id);
+
+        /// <summary>
         /// Create a new ingredient in the database
         /// </summary>
         /// <returns><see cref="int"/> : Id of the new ingredient</returns>

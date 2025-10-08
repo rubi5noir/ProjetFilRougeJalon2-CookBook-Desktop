@@ -32,6 +32,13 @@ namespace APIProjetFilRouge.DAL.Repositories
             $"JOIN {ingredientInRecetteTable} ON {ingredientTable}.id = {ingredientInRecetteTable}.id_ingredient " +
             $"WHERE {ingredientInRecetteTable}.id_recette = @Id";
 
+        private const string _queryGetRecettesIDsFromIngredient =
+            "SELECT " +
+            $"{ingredientTable}.id, {ingredientTable}.nom, {ingredientInRecetteTable}.quantite " +
+            $"FROM {ingredientTable} " +
+            $"JOIN {ingredientInRecetteTable} ON {ingredientTable}.id = {ingredientInRecetteTable}.id_ingredient " +
+            $"WHERE {ingredientInRecetteTable}.id_ingredient = @Id";
+
         #endregion
 
         #region Queries SET
@@ -77,7 +84,6 @@ namespace APIProjetFilRouge.DAL.Repositories
             return ingredients;
         }
 
-
         public async Task<List<Ingredient>> GetIngredientsWithQuantitiesOfRecetteAsync(int id)
         {
             List<Ingredient> ingredients;
@@ -88,6 +94,20 @@ namespace APIProjetFilRouge.DAL.Repositories
             }, transaction: _dbSession.Transaction)).ToList();
 
             return ingredients;
+        }
+
+        public async Task<List<int>> GetRecettesIDsFromIngredientAsync(int id)
+        {
+            List<Ingredient> ingredients;
+
+            ingredients = (await _dbSession.Connection.QueryAsync<Ingredient>(_queryGetIngredientsWithQuantitiesOfRecette, new
+            {
+                Id = id
+            }, transaction: _dbSession.Transaction)).ToList();
+
+            var ids = ingredients.Select(i => i.id).ToList();
+
+            return ids;
         }
 
         #endregion

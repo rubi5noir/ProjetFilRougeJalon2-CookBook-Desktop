@@ -36,6 +36,31 @@ namespace APIProjetFilRouge.Controllers
             return Ok(ingredientsDTO);
         }
 
+        [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetRecettesIDsFromIngredient([FromRoute] int idrecette)
+        {
+            var ids = await _recetteService.GetRecettesIDsFromIngredientAsync(idrecette);
+
+            return Ok(ids);
+        }
+
+        [HttpGet("{idrecette}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> GetIngredientsOfRecette([FromRoute] int idrecette)
+        {
+            var ingredients = await _recetteService.GetIngredientsWithQuantitiesOfRecetteAsync(idrecette);
+            var ingredientsDTO = ingredients.Select(i => new IngredientDTO
+            {
+                id = i.id,
+                nom = i.nom
+            }).ToList();
+
+            return Ok(ingredientsDTO);
+        }
+
         #endregion
 
         #region POST

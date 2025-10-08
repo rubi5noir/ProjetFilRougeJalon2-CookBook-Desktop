@@ -1118,6 +1118,56 @@ namespace APIUnitTests.ServicesUnitTets
 
         #endregion
 
+        #region GetRecettesIDsFromIngredientAsync
+
+        [Fact]
+        public void GetRecettesIDsFromIngredientAsync_ReturnListIDs()
+        {
+            // Arrange
+            int ingredientId = 1;
+            List<int> recettesIDs = new() { 10, 12 };
+
+            var mockUnitOfWork = Mock.Of<IUnitOfWork>();
+            Mock.Get(mockUnitOfWork)
+                .Setup(uow => uow.Ingredient.GetRecettesIDsFromIngredientAsync(ingredientId))
+                .ReturnsAsync(recettesIDs);
+
+            var sut = new CookBookService(mockUnitOfWork);
+
+            var expectedResult = recettesIDs;
+
+            // Act
+            var result = sut.GetRecettesIDsFromIngredientAsync(ingredientId).Result;
+
+            // Assert
+            Assert.Equal(expectedResult, result);
+        }
+
+        [Fact]
+        public void GetRecettesIDsFromIngredientAsync_ReturnListEmpty()
+        {
+            // Arrange
+            int ingredientId = 1;
+            List<int> recettesIDs = new(); // aucune recette liée
+
+            var mockUnitOfWork = Mock.Of<IUnitOfWork>();
+            Mock.Get(mockUnitOfWork)
+                .Setup(uow => uow.Ingredient.GetRecettesIDsFromIngredientAsync(ingredientId))
+                .ReturnsAsync(recettesIDs);
+
+            var sut = new CookBookService(mockUnitOfWork);
+
+            var expectedResult = new List<int>(); // liste vide attendue
+
+            // Act
+            var result = sut.GetRecettesIDsFromIngredientAsync(ingredientId).Result;
+
+            // Assert
+            Assert.Equal(expectedResult, result);
+        }
+
+        #endregion
+
         #region CreateIngredientAsync
 
         [Fact]
