@@ -40,10 +40,10 @@ namespace CookBookAppDesktop
         {
 
             DoubleBuffered = true;
-            InitializeComponent();
+            InitializeComponent(); //designer
+
             InitializeBinding();
             InitializeInputsLimits();
-
 
             //Initialize the MouseWheel events as you can't do it with the properties on the conceptor side
             //Using of Different Methods for each "part" in case they need some exclusive code in the future
@@ -55,6 +55,7 @@ namespace CookBookAppDesktop
 
             numericUpDownTemps_CuissonHeures.MouseWheel += NumericUpDownTempsPreparation_MouseWheel;
             numericUpDownTemps_CuissonMinutes.MouseWheel += NumericUpDownTempsPreparation_MouseWheel;
+
         }
 
         #region Methods
@@ -68,6 +69,17 @@ namespace CookBookAppDesktop
             dataGridViewEtapesRecette.DataSource = bindingSourceRecettes;
 
             dataGridViewRecettes.Columns["id"].Visible = false;
+            dataGridViewRecettes.Columns["img"].Visible = false;
+
+
+            dataGridViewEtapesRecette.Columns["id"].DisplayIndex = 2; //Deplacement d'index pour pouvoir le rendre invisible 
+            // raison = Pas trouvé d'autres soluce pour :/
+            dataGridViewEtapesRecette.Columns["id"].Visible = false;
+            dataGridViewEtapesRecette.Columns["temps_preparation"].Visible = false;
+            dataGridViewEtapesRecette.Columns["temps_cuisson"].Visible = false;
+            dataGridViewEtapesRecette.Columns["temps_total"].Visible = false;
+            dataGridViewEtapesRecette.Columns["difficulte"].Visible = false;
+            dataGridViewEtapesRecette.Columns["img"].Visible = false;
 
             textBoxNomRecette.DataBindings.Add("text", bindingSourceRecettes, "nom", false, DataSourceUpdateMode.Never);
             textBoxDescriptionRecette.DataBindings.Add("text", bindingSourceRecettes, "description", false, DataSourceUpdateMode.Never);
@@ -90,18 +102,30 @@ namespace CookBookAppDesktop
 
             // Etapes
             _etapes = new();
+            
             bindingSourceEtapes.DataSource = _etapes;
             dataGridViewEtapes.DataSource = bindingSourceEtapes;
+
+
+            dataGridViewEtapes.Columns["id"].DisplayIndex = 2; //Deplacement d'index pour pouvoir le rendre invisible 
+            // raison = Pas trouvé d'autres soluce pour :/
+            dataGridViewEtapes.Columns["id"].Visible = false;
+
 
             // Categories
             _categories = new();
             bindingSourceCategories.DataSource = _categories;
             dataGridViewCategories.DataSource = bindingSourceCategories;
 
+            dataGridViewCategories.Columns["id"].Visible = false;
+
             // Ingredients
             _ingredients = new();
             bindingSourceIngredients.DataSource = _ingredients;
             dataGridViewIngredients.DataSource = bindingSourceIngredients;
+
+            dataGridViewIngredients.Columns["id"].Visible = false;
+            dataGridViewIngredients.Columns["quantite"].Visible = false;
         }
 
 
@@ -150,11 +174,6 @@ namespace CookBookAppDesktop
             _etapes.Clear();
             foreach (EtapeDTO e in res)
                 _etapes.Add(e);
-
-            if (current is not null)
-            {
-                bindingSourceEtapes.Position = _etapes.IndexOf(_etapes.Where(e => e.id == current.id && e.numero == current.numero).FirstOrDefault());
-            }
         }
 
         private async Task RefreshCategories()
@@ -195,6 +214,7 @@ namespace CookBookAppDesktop
 
         private async void FormAppMain_Load(object sender, EventArgs e)
         {
+
             _rest.BaseUrl = Settings.Default.BaseUrl;
 
             if (string.IsNullOrEmpty(_rest.JwtToken))
@@ -216,6 +236,7 @@ namespace CookBookAppDesktop
                     await RefreshRecettes();
                 }
             }
+            dataGridViewEtapes.Columns["id"].Visible = false;
         }
 
         private void FormAppMain_FormClosing(object sender, FormClosingEventArgs e)
@@ -228,9 +249,11 @@ namespace CookBookAppDesktop
             if (e.TabPage == tabPageRecettes)
                 await RefreshRecettes();
             else if (e.TabPage == tabPageEtapes)
-                await RefreshRecettes();
+                await RefreshEtapes();
             else if (e.TabPage == tabPageCategories)
                 await RefreshCategories();
+            else if (e.TabPage == tabPageIngredients)
+                await RefreshIngredients();
         }
 
         #region TabPageRecettes
@@ -324,7 +347,7 @@ namespace CookBookAppDesktop
 
         #region TabPageEtapes
 
-        private async void dataGridViewRecettes_SelectionChanged(object sender, EventArgs e)
+        private async void dataGridViewEtapesRecettes_SelectionChanged(object sender, EventArgs e)
         {
             RecetteDTO current = bindingSourceRecettes.Current as RecetteDTO;
 

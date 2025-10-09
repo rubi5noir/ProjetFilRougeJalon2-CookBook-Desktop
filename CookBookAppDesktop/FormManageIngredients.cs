@@ -40,20 +40,39 @@ namespace CookBookAppDesktop
             bindingSourceIngredients.DataSource = _ingredients;
             dataGridViewIngredients.DataSource = bindingSourceIngredients;
 
+            dataGridViewIngredients.Columns["id"].Visible = false;
+            dataGridViewIngredients.Columns["quantite"].Visible = false;
+
             //Ingredients in recette
             _ingredientsInRecette = new();
             bindingSourceIngredientsInRecette.DataSource = _ingredientsInRecette;
             dataGridViewIngredientsOfRecette.DataSource = bindingSourceIngredientsInRecette;
+
+            dataGridViewIngredientsOfRecette.Columns["id"].Visible = false;
 
             //Recettes
             _recettesWithTheIngredient = new();
             bindingSourceRecetteWithTheIngredient.DataSource = _recettesWithTheIngredient;
             dataGridViewRecipes.DataSource = bindingSourceRecetteWithTheIngredient;
 
+            dataGridViewRecipes.Columns["id"].Visible = false;
+            dataGridViewRecipes.Columns["temps_preparation"].Visible = false;
+            dataGridViewRecipes.Columns["temps_cuisson"].Visible = false;
+            dataGridViewRecipes.Columns["temps_total"].Visible = false;
+            dataGridViewRecipes.Columns["difficulte"].Visible = false;
+            dataGridViewRecipes.Columns["img"].Visible = false;
+
             //Recettes without ingredients
             _recettesWithoutTheIngredient = new();
             bindingSourceRecetteWithoutTheIngredients.DataSource = _recettesWithoutTheIngredient;
             dataGridViewRecipesWithoutTheIngredient.DataSource = bindingSourceRecetteWithoutTheIngredients;
+
+            dataGridViewRecipesWithoutTheIngredient.Columns["id"].Visible = false;
+            dataGridViewRecipesWithoutTheIngredient.Columns["temps_preparation"].Visible = false;
+            dataGridViewRecipesWithoutTheIngredient.Columns["temps_cuisson"].Visible = false;
+            dataGridViewRecipesWithoutTheIngredient.Columns["temps_total"].Visible = false;
+            dataGridViewRecipesWithoutTheIngredient.Columns["difficulte"].Visible = false;
+            dataGridViewRecipesWithoutTheIngredient.Columns["img"].Visible = false;
         }
 
         #region Methods

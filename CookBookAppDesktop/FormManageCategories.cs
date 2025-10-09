@@ -42,20 +42,40 @@ namespace CookBookAppDesktop
             bindingSourceCategories.DataSource = _categories;
             dataGridViewCategories.DataSource = bindingSourceCategories;
 
+            dataGridViewCategories.Columns["id"].Visible = false;
+
             // recettes
             _recettes = new();
             bindingSourceRecettes.DataSource = _recettes;
             dataGridViewRecettes.DataSource = bindingSourceRecettes;
+
+            dataGridViewRecettes.Columns["id"].Visible = false;
+            dataGridViewRecettes.Columns["identifiantCreateur"].Visible = false;
+            dataGridViewRecettes.Columns["temps_preparation"].Visible = false;
+            dataGridViewRecettes.Columns["temps_cuisson"].Visible = false;
+            dataGridViewRecettes.Columns["temps_total"].Visible = false;
+            dataGridViewRecettes.Columns["difficulte"].Visible = false;
+            dataGridViewRecettes.Columns["img"].Visible = false;
 
             // recettes without the categorie
             _recettesWithoutTheCategorie = new();
             bindingSourceRecettesWithoutTheCategorie.DataSource = _recettesWithoutTheCategorie;
             dataGridViewRecettesWithoutTheCategorie.DataSource = bindingSourceRecettesWithoutTheCategorie;
 
+            dataGridViewRecettesWithoutTheCategorie.Columns["id"].Visible = false;
+            dataGridViewRecettesWithoutTheCategorie.Columns["identifiantCreateur"].Visible = false;
+            dataGridViewRecettesWithoutTheCategorie.Columns["temps_preparation"].Visible = false;
+            dataGridViewRecettesWithoutTheCategorie.Columns["temps_cuisson"].Visible = false;
+            dataGridViewRecettesWithoutTheCategorie.Columns["temps_total"].Visible = false;
+            dataGridViewRecettesWithoutTheCategorie.Columns["difficulte"].Visible = false;
+            dataGridViewRecettesWithoutTheCategorie.Columns["img"].Visible = false;
+
             // categories in recettes
             _categoriesInRecettes = new();
             bindingSourceCategoriesOfRecette.DataSource = _categoriesInRecettes;
             dataGridViewCategoriesOfRecette.DataSource = bindingSourceCategoriesOfRecette;
+
+            dataGridViewCategoriesOfRecette.Columns["id"].Visible = false;
         }
 
         private async Task RefreshCategories()

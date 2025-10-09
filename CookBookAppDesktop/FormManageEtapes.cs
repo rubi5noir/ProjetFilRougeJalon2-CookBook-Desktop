@@ -51,6 +51,14 @@ namespace CookBookAppDesktop
             _recettes = new();
             bindingSourceRecettes.DataSource = _recettes;
             dataGridViewRecettesForEtapes.DataSource = bindingSourceRecettes;
+
+            dataGridViewRecettesForEtapes.Columns["id"].Visible = false;
+            dataGridViewRecettesForEtapes.Columns["identifiantCreateur"].Visible = false;
+            dataGridViewRecettesForEtapes.Columns["temps_preparation"].Visible = false;
+            dataGridViewRecettesForEtapes.Columns["temps_cuisson"].Visible = false;
+            dataGridViewRecettesForEtapes.Columns["temps_total"].Visible = false;
+            dataGridViewRecettesForEtapes.Columns["difficulte"].Visible = false;
+            dataGridViewRecettesForEtapes.Columns["img"].Visible = false;
         }
 
         private async Task RefreshEtapes(int id)

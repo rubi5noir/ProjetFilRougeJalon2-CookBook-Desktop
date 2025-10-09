@@ -80,11 +80,11 @@ namespace CookBookAppDesktop
                 JwtToken = res.Token;
                 DialogResult = DialogResult.OK;
                 Close();
+                return;
             }
             catch (HttpRequestException ex)
             {
                 MessageBox.Show(ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Close();
                 return;
             }
         }
