@@ -34,9 +34,8 @@ namespace APIProjetFilRouge.DAL.Repositories
 
         private const string _queryGetRecettesIDsFromIngredient =
             "SELECT " +
-            $"{ingredientTable}.id, {ingredientTable}.nom, {ingredientInRecetteTable}.quantite " +
-            $"FROM {ingredientTable} " +
-            $"JOIN {ingredientInRecetteTable} ON {ingredientTable}.id = {ingredientInRecetteTable}.id_ingredient " +
+            $"{ingredientInRecetteTable}.id_recette " +
+            $"FROM {ingredientInRecetteTable} " +
             $"WHERE {ingredientInRecetteTable}.id_ingredient = @Id";
 
         #endregion
@@ -98,14 +97,12 @@ namespace APIProjetFilRouge.DAL.Repositories
 
         public async Task<List<int>> GetRecettesIDsFromIngredientAsync(int id)
         {
-            List<Ingredient> ingredients;
+            List<int> ids;
 
-            ingredients = (await _dbSession.Connection.QueryAsync<Ingredient>(_queryGetIngredientsWithQuantitiesOfRecette, new
+            ids = (await _dbSession.Connection.QueryAsync<int>(_queryGetRecettesIDsFromIngredient, new
             {
                 Id = id
             }, transaction: _dbSession.Transaction)).ToList();
-
-            var ids = ingredients.Select(i => i.id).ToList();
 
             return ids;
         }

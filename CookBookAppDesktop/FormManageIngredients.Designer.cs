@@ -34,16 +34,16 @@
             tableLayoutPanelManageIngredients = new TableLayoutPanel();
             tableLayoutPanelRecipesAndIngredientsInThem = new TableLayoutPanel();
             dataGridViewRecipes = new DataGridView();
-            dataGridViewIngredientsOfRecette = new DataGridView();
-            buttonAddIngredientToRecette = new Button();
-            buttonRemoveIngredientFromRecette = new Button();
-            tableLayoutPanelIngredientsManagement = new TableLayoutPanel();
             dataGridViewRecipesWithoutTheIngredient = new DataGridView();
+            tableLayoutPanelIngredientsManagement = new TableLayoutPanel();
+            dataGridViewIngredientsOfRecette = new DataGridView();
             tableLayoutPanelQuantityInputs = new TableLayoutPanel();
             labelModifyQuantity = new Label();
             textBoxModifyQuantity = new TextBox();
             flowLayoutPanelButtonModify = new FlowLayoutPanel();
             buttonModifyQuantityIngredient = new Button();
+            buttonAddIngredientToRecette = new Button();
+            buttonRemoveIngredientFromRecette = new Button();
             tableLayoutPanelIngredients = new TableLayoutPanel();
             dataGridViewIngredients = new DataGridView();
             tableLayoutPanelIngredientsInputs = new TableLayoutPanel();
@@ -63,9 +63,9 @@
             tableLayoutPanelManageIngredients.SuspendLayout();
             tableLayoutPanelRecipesAndIngredientsInThem.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewRecipes).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewIngredientsOfRecette).BeginInit();
-            tableLayoutPanelIngredientsManagement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewRecipesWithoutTheIngredient).BeginInit();
+            tableLayoutPanelIngredientsManagement.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewIngredientsOfRecette).BeginInit();
             tableLayoutPanelQuantityInputs.SuspendLayout();
             flowLayoutPanelButtonModify.SuspendLayout();
             tableLayoutPanelIngredients.SuspendLayout();
@@ -108,9 +108,9 @@
             tableLayoutPanelManageIngredients.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanelManageIngredients.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanelManageIngredients.Controls.Add(tableLayoutPanelRecipesAndIngredientsInThem, 1, 0);
-            tableLayoutPanelManageIngredients.Controls.Add(buttonAddIngredientToRecette, 0, 1);
-            tableLayoutPanelManageIngredients.Controls.Add(buttonRemoveIngredientFromRecette, 1, 1);
             tableLayoutPanelManageIngredients.Controls.Add(tableLayoutPanelIngredientsManagement, 0, 0);
+            tableLayoutPanelManageIngredients.Controls.Add(buttonAddIngredientToRecette, 1, 1);
+            tableLayoutPanelManageIngredients.Controls.Add(buttonRemoveIngredientFromRecette, 0, 1);
             tableLayoutPanelManageIngredients.Dock = DockStyle.Fill;
             tableLayoutPanelManageIngredients.Location = new Point(3, 3);
             tableLayoutPanelManageIngredients.Name = "tableLayoutPanelManageIngredients";
@@ -125,7 +125,7 @@
             tableLayoutPanelRecipesAndIngredientsInThem.ColumnCount = 1;
             tableLayoutPanelRecipesAndIngredientsInThem.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanelRecipesAndIngredientsInThem.Controls.Add(dataGridViewRecipes, 0, 0);
-            tableLayoutPanelRecipesAndIngredientsInThem.Controls.Add(dataGridViewIngredientsOfRecette, 0, 1);
+            tableLayoutPanelRecipesAndIngredientsInThem.Controls.Add(dataGridViewRecipesWithoutTheIngredient, 0, 1);
             tableLayoutPanelRecipesAndIngredientsInThem.Dock = DockStyle.Fill;
             tableLayoutPanelRecipesAndIngredientsInThem.Location = new Point(275, 3);
             tableLayoutPanelRecipesAndIngredientsInThem.Name = "tableLayoutPanelRecipesAndIngredientsInThem";
@@ -141,43 +141,26 @@
             dataGridViewRecipes.Dock = DockStyle.Fill;
             dataGridViewRecipes.Location = new Point(3, 3);
             dataGridViewRecipes.Name = "dataGridViewRecipes";
+            dataGridViewRecipes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewRecipes.Size = new Size(261, 171);
             dataGridViewRecipes.TabIndex = 0;
+            dataGridViewRecipes.CurrentCellChanged += dataGridViewRecipes_CurrentChanged;
             // 
-            // dataGridViewIngredientsOfRecette
+            // dataGridViewRecipesWithoutTheIngredient
             // 
-            dataGridViewIngredientsOfRecette.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewIngredientsOfRecette.Dock = DockStyle.Fill;
-            dataGridViewIngredientsOfRecette.Location = new Point(3, 180);
-            dataGridViewIngredientsOfRecette.Name = "dataGridViewIngredientsOfRecette";
-            dataGridViewIngredientsOfRecette.Size = new Size(261, 172);
-            dataGridViewIngredientsOfRecette.TabIndex = 1;
-            // 
-            // buttonAddIngredientToRecette
-            // 
-            buttonAddIngredientToRecette.Dock = DockStyle.Fill;
-            buttonAddIngredientToRecette.Location = new Point(3, 364);
-            buttonAddIngredientToRecette.Name = "buttonAddIngredientToRecette";
-            buttonAddIngredientToRecette.Size = new Size(266, 77);
-            buttonAddIngredientToRecette.TabIndex = 2;
-            buttonAddIngredientToRecette.Text = "Ajouter Ingredient a la recette";
-            buttonAddIngredientToRecette.UseVisualStyleBackColor = true;
-            // 
-            // buttonRemoveIngredientFromRecette
-            // 
-            buttonRemoveIngredientFromRecette.Dock = DockStyle.Fill;
-            buttonRemoveIngredientFromRecette.Location = new Point(275, 364);
-            buttonRemoveIngredientFromRecette.Name = "buttonRemoveIngredientFromRecette";
-            buttonRemoveIngredientFromRecette.Size = new Size(267, 77);
-            buttonRemoveIngredientFromRecette.TabIndex = 3;
-            buttonRemoveIngredientFromRecette.Text = "Supprimer Ingredient de la recette";
-            buttonRemoveIngredientFromRecette.UseVisualStyleBackColor = true;
+            dataGridViewRecipesWithoutTheIngredient.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewRecipesWithoutTheIngredient.Dock = DockStyle.Fill;
+            dataGridViewRecipesWithoutTheIngredient.Location = new Point(3, 180);
+            dataGridViewRecipesWithoutTheIngredient.Name = "dataGridViewRecipesWithoutTheIngredient";
+            dataGridViewRecipesWithoutTheIngredient.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewRecipesWithoutTheIngredient.Size = new Size(261, 172);
+            dataGridViewRecipesWithoutTheIngredient.TabIndex = 1;
             // 
             // tableLayoutPanelIngredientsManagement
             // 
             tableLayoutPanelIngredientsManagement.ColumnCount = 1;
             tableLayoutPanelIngredientsManagement.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanelIngredientsManagement.Controls.Add(dataGridViewRecipesWithoutTheIngredient, 0, 0);
+            tableLayoutPanelIngredientsManagement.Controls.Add(dataGridViewIngredientsOfRecette, 0, 0);
             tableLayoutPanelIngredientsManagement.Controls.Add(tableLayoutPanelQuantityInputs, 0, 1);
             tableLayoutPanelIngredientsManagement.Controls.Add(flowLayoutPanelButtonModify, 0, 2);
             tableLayoutPanelIngredientsManagement.Dock = DockStyle.Fill;
@@ -190,14 +173,15 @@
             tableLayoutPanelIngredientsManagement.Size = new Size(266, 355);
             tableLayoutPanelIngredientsManagement.TabIndex = 4;
             // 
-            // dataGridViewRecipesWithoutTheIngredient
+            // dataGridViewIngredientsOfRecette
             // 
-            dataGridViewRecipesWithoutTheIngredient.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewRecipesWithoutTheIngredient.Dock = DockStyle.Fill;
-            dataGridViewRecipesWithoutTheIngredient.Location = new Point(3, 3);
-            dataGridViewRecipesWithoutTheIngredient.Name = "dataGridViewRecipesWithoutTheIngredient";
-            dataGridViewRecipesWithoutTheIngredient.Size = new Size(260, 258);
-            dataGridViewRecipesWithoutTheIngredient.TabIndex = 1;
+            dataGridViewIngredientsOfRecette.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewIngredientsOfRecette.Dock = DockStyle.Fill;
+            dataGridViewIngredientsOfRecette.Location = new Point(3, 3);
+            dataGridViewIngredientsOfRecette.Name = "dataGridViewIngredientsOfRecette";
+            dataGridViewIngredientsOfRecette.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewIngredientsOfRecette.Size = new Size(260, 258);
+            dataGridViewIngredientsOfRecette.TabIndex = 1;
             // 
             // tableLayoutPanelQuantityInputs
             // 
@@ -249,6 +233,29 @@
             buttonModifyQuantityIngredient.TabIndex = 0;
             buttonModifyQuantityIngredient.Text = "Modifier Quantité";
             buttonModifyQuantityIngredient.UseVisualStyleBackColor = true;
+            buttonModifyQuantityIngredient.Click += buttonModifyIngredientQuantity_Click;
+            // 
+            // buttonAddIngredientToRecette
+            // 
+            buttonAddIngredientToRecette.Dock = DockStyle.Fill;
+            buttonAddIngredientToRecette.Location = new Point(275, 364);
+            buttonAddIngredientToRecette.Name = "buttonAddIngredientToRecette";
+            buttonAddIngredientToRecette.Size = new Size(267, 77);
+            buttonAddIngredientToRecette.TabIndex = 2;
+            buttonAddIngredientToRecette.Text = "Ajouter Ingredient a la recette";
+            buttonAddIngredientToRecette.UseVisualStyleBackColor = true;
+            buttonAddIngredientToRecette.Click += buttonAddIngredientToRecette_Click;
+            // 
+            // buttonRemoveIngredientFromRecette
+            // 
+            buttonRemoveIngredientFromRecette.Dock = DockStyle.Fill;
+            buttonRemoveIngredientFromRecette.Location = new Point(3, 364);
+            buttonRemoveIngredientFromRecette.Name = "buttonRemoveIngredientFromRecette";
+            buttonRemoveIngredientFromRecette.Size = new Size(266, 77);
+            buttonRemoveIngredientFromRecette.TabIndex = 3;
+            buttonRemoveIngredientFromRecette.Text = "Supprimer Ingredient de la recette";
+            buttonRemoveIngredientFromRecette.UseVisualStyleBackColor = true;
+            buttonRemoveIngredientFromRecette.Click += buttonRemoveIngredientFromRecette_Click;
             // 
             // tableLayoutPanelIngredients
             // 
@@ -273,8 +280,10 @@
             dataGridViewIngredients.Dock = DockStyle.Fill;
             dataGridViewIngredients.Location = new Point(3, 3);
             dataGridViewIngredients.Name = "dataGridViewIngredients";
+            dataGridViewIngredients.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewIngredients.Size = new Size(237, 315);
             dataGridViewIngredients.TabIndex = 0;
+            dataGridViewIngredients.CurrentCellChanged += dataGridViewIngredients_CurrentChanged;
             // 
             // tableLayoutPanelIngredientsInputs
             // 
@@ -329,6 +338,7 @@
             buttonRefreshIngredient.TabIndex = 0;
             buttonRefreshIngredient.Text = "Actualiser";
             buttonRefreshIngredient.UseVisualStyleBackColor = true;
+            buttonRefreshIngredient.Click += FormManageIngredients_Load;
             // 
             // buttonAddIngredient
             // 
@@ -338,6 +348,7 @@
             buttonAddIngredient.TabIndex = 1;
             buttonAddIngredient.Text = "Ajouter";
             buttonAddIngredient.UseVisualStyleBackColor = true;
+            buttonAddIngredient.Click += buttonAddIngredient_Click;
             // 
             // buttonModifyIngredient
             // 
@@ -347,6 +358,7 @@
             buttonModifyIngredient.TabIndex = 2;
             buttonModifyIngredient.Text = "Modifier";
             buttonModifyIngredient.UseVisualStyleBackColor = true;
+            buttonModifyIngredient.Click += buttonModifyIngredient_Click;
             // 
             // buttonRemoveIngredient
             // 
@@ -356,6 +368,7 @@
             buttonRemoveIngredient.TabIndex = 3;
             buttonRemoveIngredient.Text = "Supprimer";
             buttonRemoveIngredient.UseVisualStyleBackColor = true;
+            buttonRemoveIngredient.Click += buttonRemoveIngredient_Click;
             // 
             // FormManageIngredients
             // 
@@ -365,14 +378,15 @@
             Controls.Add(panelFormManageIngredients);
             Name = "FormManageIngredients";
             Text = "FormManageIngredients";
+            Load += FormManageIngredients_Load;
             panelFormManageIngredients.ResumeLayout(false);
             tableLayoutPanelFormManageIngredients.ResumeLayout(false);
             tableLayoutPanelManageIngredients.ResumeLayout(false);
             tableLayoutPanelRecipesAndIngredientsInThem.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewRecipes).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewIngredientsOfRecette).EndInit();
-            tableLayoutPanelIngredientsManagement.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewRecipesWithoutTheIngredient).EndInit();
+            tableLayoutPanelIngredientsManagement.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridViewIngredientsOfRecette).EndInit();
             tableLayoutPanelQuantityInputs.ResumeLayout(false);
             tableLayoutPanelQuantityInputs.PerformLayout();
             flowLayoutPanelButtonModify.ResumeLayout(false);
