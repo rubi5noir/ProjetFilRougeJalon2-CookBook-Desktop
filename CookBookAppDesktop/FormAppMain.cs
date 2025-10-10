@@ -102,7 +102,7 @@ namespace CookBookAppDesktop
 
             // Etapes
             _etapes = new();
-            
+
             bindingSourceEtapes.DataSource = _etapes;
             dataGridViewEtapes.DataSource = bindingSourceEtapes;
 
@@ -127,7 +127,6 @@ namespace CookBookAppDesktop
             dataGridViewIngredients.Columns["id"].Visible = false;
             dataGridViewIngredients.Columns["quantite"].Visible = false;
         }
-
 
         private void InitializeInputsLimits()
         {
@@ -280,7 +279,7 @@ namespace CookBookAppDesktop
 
         private async void buttonAddRecette_Click(object sender, EventArgs e)
         {
-            RecetteDetailsDTO newRecette = new()
+            RecetteDTO newRecette = new()
             {
                 nom = textBoxNomRecette.Text,
                 description = textBoxDescriptionRecette.Text,
@@ -290,12 +289,12 @@ namespace CookBookAppDesktop
                 img = textBoxImageRecette.Text
             };
 
-            var createdRecette = await _rest.PostAsync<RecetteDetailsDTO, RecetteDetailsDTO>(URL_CREATE_RECETTES, newRecette);
+            var createdRecette = await _rest.PostAsync<RecetteDTO, RecetteDTO>(URL_CREATE_RECETTES, newRecette);
         }
 
         private async void buttonUpdateRecette_Click(object sender, EventArgs e)
         {
-            if (bindingSourceRecettes.Current is not RecetteDetailsDTO selectedRecette)
+            if (bindingSourceRecettes.Current is not RecetteDTO selectedRecette)
             {
                 MessageBox.Show("Veuillez Séléctionné une recette a modifié.");
                 return;
@@ -306,7 +305,7 @@ namespace CookBookAppDesktop
             selectedRecette.temps_cuisson = new TimeSpan((int)numericUpDownTemps_CuissonHeures.Value, (int)numericUpDownTemps_CuissonMinutes.Value, 0);
             selectedRecette.difficulte = (int)numericUpDownDifficulteRecette.Value;
             selectedRecette.img = textBoxImageRecette.Text;
-            await _rest.PutAsync<RecetteDetailsDTO>($"{URL_UPDATE_RECETTES}/{selectedRecette.id}", selectedRecette);
+            await _rest.PutAsync($"{URL_UPDATE_RECETTES}/{selectedRecette.id}", selectedRecette);
         }
 
         private async void buttonDeleteRecette_Click(object sender, EventArgs e)
@@ -341,6 +340,14 @@ namespace CookBookAppDesktop
             {
                 textBoxImageRecette.Text = openFileDialog.FileName;
             }
+        }
+
+        private async void buttonOpenRecetteDetailsForm_Click(object sender, EventArgs e)
+        {
+            RecetteDTO current = bindingSourceRecettes.Current as RecetteDTO;
+
+            FormRecetteDetails formRecetteDetails = new FormRecetteDetails(current.id);
+            formRecetteDetails.ShowDialog();
         }
 
         #endregion

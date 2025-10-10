@@ -22,8 +22,8 @@ namespace CookBookAppDesktop
         const string URL_GET_RECETTES = "api/Recettes";
 
         readonly RestClient _rest = new();
-        BindingList<RecetteDetailsDTO> _recettes;
-        BindingList<RecetteDetailsDTO> _recettesWithoutTheCategorie;
+        BindingList<RecetteDTO> _recettes;
+        BindingList<RecetteDTO> _recettesWithoutTheCategorie;
         BindingList<CategorieDTO> _categories;
         BindingList<CategorieDTO> _categoriesInRecettes;
 
@@ -111,7 +111,7 @@ namespace CookBookAppDesktop
             if (current != null)
             {
                 // Récupération des recettes de la catégorie
-                var allRecettes = await _rest.GetAsync<IEnumerable<RecetteDetailsDTO>>(URL_GET_RECETTES);
+                var allRecettes = await _rest.GetAsync<IEnumerable<RecetteDTO>>(URL_GET_RECETTES);
 
                 try
                 {
@@ -144,7 +144,7 @@ namespace CookBookAppDesktop
 
         private async void dataGridViewRecettes_CurrentCellChanged(object sender, EventArgs e)
         {
-            RecetteDetailsDTO current = bindingSourceRecettes.Current as RecetteDetailsDTO;
+            RecetteDTO current = bindingSourceRecettes.Current as RecetteDTO;
             if (current != null)
             {
                 var categories = await _rest.GetAsync<IEnumerable<CategorieDTO>>($"{URL_GET_CATEGORIES}/{current.id}");
@@ -219,7 +219,7 @@ namespace CookBookAppDesktop
         private async void buttonAddCategorieToRecette_Click(object sender, EventArgs e)
         {
             CategorieDTO currentCategorie = bindingSourceCategories.Current as CategorieDTO;
-            RecetteDetailsDTO currentRecette = bindingSourceRecettesWithoutTheCategorie.Current as RecetteDetailsDTO;
+            RecetteDTO currentRecette = bindingSourceRecettesWithoutTheCategorie.Current as RecetteDTO;
 
             if (currentCategorie != null)
             {
@@ -251,7 +251,7 @@ namespace CookBookAppDesktop
         {
             CategorieDTO currentCategorie = bindingSourceCategoriesOfRecette.Current as CategorieDTO;
 
-            RecetteDetailsDTO currentRecette = bindingSourceRecettes.Current as RecetteDetailsDTO;
+            RecetteDTO currentRecette = bindingSourceRecettes.Current as RecetteDTO;
 
             if (currentCategorie != null)
             {
