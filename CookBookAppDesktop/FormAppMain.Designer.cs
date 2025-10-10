@@ -576,6 +576,7 @@
             buttonOpenRecetteDetailsForm.TabIndex = 4;
             buttonOpenRecetteDetailsForm.Text = "Détails";
             buttonOpenRecetteDetailsForm.UseVisualStyleBackColor = true;
+            buttonOpenRecetteDetailsForm.Click += buttonOpenRecetteDetailsForm_Click;
             // 
             // tabPageEtapes
             // 

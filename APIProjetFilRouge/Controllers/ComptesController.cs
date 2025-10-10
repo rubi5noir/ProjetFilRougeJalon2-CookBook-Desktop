@@ -25,7 +25,7 @@ namespace APIProjetFilRouge.Controllers
         /// </summary>
         /// <returns></returns>
         [Authorize(Roles = "Administrateur")]
-        [HttpGet("Comptes")]
+        [HttpGet()]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetComptes()
@@ -40,7 +40,7 @@ namespace APIProjetFilRouge.Controllers
             return Ok(comptesDTO);
         }
 
-        [HttpGet("Comptes/{id}")]
+        [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> GetCompteDetails([FromRoute] int id)

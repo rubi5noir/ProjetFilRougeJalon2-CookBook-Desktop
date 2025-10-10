@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace CookBookAppDesktop.Models.DTO
 {
-    internal class AvisDTO
+    internal class UtilisateurDTO
     {
-        public int note { get; set; }
-        public string commentaire { get; set; }
-        public int id_utilisateur { get; set; }
+        public int id { get; set; }
+        public string identifiant { get; set; }
     }
 }

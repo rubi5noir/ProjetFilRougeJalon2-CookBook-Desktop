@@ -25,7 +25,7 @@ namespace CookBookAppDesktop.Models.DTO
 
         //public Compte? utilisateur { get; set; }
 
-        //public List<AvisOfRecetteDTO> avis { get; set; }
+        public List<AvisDTO> avis { get; set; }
 
 
         public string? img { get; set; }
