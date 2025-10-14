@@ -47,6 +47,8 @@
             buttonRefresh = new Button();
             bindingSourceEtapes = new BindingSource(components);
             bindingSourceRecettes = new BindingSource(components);
+            labelRecettes = new Label();
+            labelEtapes = new Label();
             tableLayoutPanelFormManageEtapes.SuspendLayout();
             tableLayoutPanelManageEtapes.SuspendLayout();
             tableLayoutPanelManageEtapesInputs.SuspendLayout();
@@ -79,12 +81,14 @@
             // 
             tableLayoutPanelManageEtapes.ColumnCount = 1;
             tableLayoutPanelManageEtapes.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanelManageEtapes.Controls.Add(tableLayoutPanelManageEtapesInputs, 0, 1);
-            tableLayoutPanelManageEtapes.Controls.Add(dataGridViewEtapes, 0, 0);
+            tableLayoutPanelManageEtapes.Controls.Add(tableLayoutPanelManageEtapesInputs, 0, 2);
+            tableLayoutPanelManageEtapes.Controls.Add(dataGridViewEtapes, 0, 1);
+            tableLayoutPanelManageEtapes.Controls.Add(labelEtapes, 0, 0);
             tableLayoutPanelManageEtapes.Dock = DockStyle.Fill;
             tableLayoutPanelManageEtapes.Location = new Point(3, 3);
             tableLayoutPanelManageEtapes.Name = "tableLayoutPanelManageEtapes";
-            tableLayoutPanelManageEtapes.RowCount = 2;
+            tableLayoutPanelManageEtapes.RowCount = 3;
+            tableLayoutPanelManageEtapes.RowStyles.Add(new RowStyle());
             tableLayoutPanelManageEtapes.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanelManageEtapes.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanelManageEtapes.Size = new Size(394, 444);
@@ -97,12 +101,12 @@
             tableLayoutPanelManageEtapesInputs.Controls.Add(tableLayoutPanelInputs, 0, 0);
             tableLayoutPanelManageEtapesInputs.Controls.Add(flowLayoutPanelButtons, 0, 1);
             tableLayoutPanelManageEtapesInputs.Dock = DockStyle.Fill;
-            tableLayoutPanelManageEtapesInputs.Location = new Point(3, 225);
+            tableLayoutPanelManageEtapesInputs.Location = new Point(3, 232);
             tableLayoutPanelManageEtapesInputs.Name = "tableLayoutPanelManageEtapesInputs";
             tableLayoutPanelManageEtapesInputs.RowCount = 2;
             tableLayoutPanelManageEtapesInputs.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanelManageEtapesInputs.RowStyles.Add(new RowStyle());
-            tableLayoutPanelManageEtapesInputs.Size = new Size(388, 216);
+            tableLayoutPanelManageEtapesInputs.Size = new Size(388, 209);
             tableLayoutPanelManageEtapesInputs.TabIndex = 0;
             // 
             // tableLayoutPanelInputs
@@ -120,7 +124,7 @@
             tableLayoutPanelInputs.RowCount = 2;
             tableLayoutPanelInputs.RowStyles.Add(new RowStyle());
             tableLayoutPanelInputs.RowStyles.Add(new RowStyle());
-            tableLayoutPanelInputs.Size = new Size(382, 102);
+            tableLayoutPanelInputs.Size = new Size(382, 95);
             tableLayoutPanelInputs.TabIndex = 0;
             // 
             // labelTitre
@@ -166,7 +170,7 @@
             flowLayoutPanelButtons.Controls.Add(buttonModify);
             flowLayoutPanelButtons.Controls.Add(buttonRemove);
             flowLayoutPanelButtons.Dock = DockStyle.Fill;
-            flowLayoutPanelButtons.Location = new Point(3, 111);
+            flowLayoutPanelButtons.Location = new Point(3, 104);
             flowLayoutPanelButtons.Name = "flowLayoutPanelButtons";
             flowLayoutPanelButtons.Size = new Size(382, 102);
             flowLayoutPanelButtons.TabIndex = 1;
@@ -207,22 +211,24 @@
             dataGridViewEtapes.AllowUserToDeleteRows = false;
             dataGridViewEtapes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewEtapes.Dock = DockStyle.Fill;
-            dataGridViewEtapes.Location = new Point(3, 3);
+            dataGridViewEtapes.Location = new Point(3, 18);
             dataGridViewEtapes.Name = "dataGridViewEtapes";
             dataGridViewEtapes.ReadOnly = true;
-            dataGridViewEtapes.Size = new Size(388, 216);
+            dataGridViewEtapes.Size = new Size(388, 208);
             dataGridViewEtapes.TabIndex = 1;
             // 
             // tableLayoutPanelManageEtapesRecettes
             // 
             tableLayoutPanelManageEtapesRecettes.ColumnCount = 1;
             tableLayoutPanelManageEtapesRecettes.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanelManageEtapesRecettes.Controls.Add(dataGridViewRecettesForEtapes, 0, 0);
-            tableLayoutPanelManageEtapesRecettes.Controls.Add(buttonRefresh, 0, 1);
+            tableLayoutPanelManageEtapesRecettes.Controls.Add(dataGridViewRecettesForEtapes, 0, 1);
+            tableLayoutPanelManageEtapesRecettes.Controls.Add(buttonRefresh, 0, 2);
+            tableLayoutPanelManageEtapesRecettes.Controls.Add(labelRecettes, 0, 0);
             tableLayoutPanelManageEtapesRecettes.Dock = DockStyle.Fill;
             tableLayoutPanelManageEtapesRecettes.Location = new Point(403, 3);
             tableLayoutPanelManageEtapesRecettes.Name = "tableLayoutPanelManageEtapesRecettes";
-            tableLayoutPanelManageEtapesRecettes.RowCount = 2;
+            tableLayoutPanelManageEtapesRecettes.RowCount = 3;
+            tableLayoutPanelManageEtapesRecettes.RowStyles.Add(new RowStyle());
             tableLayoutPanelManageEtapesRecettes.RowStyles.Add(new RowStyle(SizeType.Percent, 85F));
             tableLayoutPanelManageEtapesRecettes.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
             tableLayoutPanelManageEtapesRecettes.Size = new Size(394, 444);
@@ -234,23 +240,43 @@
             dataGridViewRecettesForEtapes.AllowUserToDeleteRows = false;
             dataGridViewRecettesForEtapes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewRecettesForEtapes.Dock = DockStyle.Fill;
-            dataGridViewRecettesForEtapes.Location = new Point(3, 3);
+            dataGridViewRecettesForEtapes.Location = new Point(3, 18);
             dataGridViewRecettesForEtapes.Name = "dataGridViewRecettesForEtapes";
             dataGridViewRecettesForEtapes.ReadOnly = true;
-            dataGridViewRecettesForEtapes.Size = new Size(388, 371);
+            dataGridViewRecettesForEtapes.Size = new Size(388, 358);
             dataGridViewRecettesForEtapes.TabIndex = 0;
             dataGridViewRecettesForEtapes.CurrentCellChanged += dataGridViewRecettesForEtapes_SelectionChanged;
             // 
             // buttonRefresh
             // 
             buttonRefresh.Dock = DockStyle.Fill;
-            buttonRefresh.Location = new Point(3, 380);
+            buttonRefresh.Location = new Point(3, 382);
             buttonRefresh.Name = "buttonRefresh";
-            buttonRefresh.Size = new Size(388, 61);
+            buttonRefresh.Size = new Size(388, 59);
             buttonRefresh.TabIndex = 1;
             buttonRefresh.Text = "Actualiser";
             buttonRefresh.UseVisualStyleBackColor = true;
             buttonRefresh.Click += buttonRefresh_Click;
+            // 
+            // labelRecettes
+            // 
+            labelRecettes.AutoSize = true;
+            labelRecettes.Dock = DockStyle.Fill;
+            labelRecettes.Location = new Point(3, 0);
+            labelRecettes.Name = "labelRecettes";
+            labelRecettes.Size = new Size(388, 15);
+            labelRecettes.TabIndex = 2;
+            labelRecettes.Text = "Recettes";
+            // 
+            // labelEtapes
+            // 
+            labelEtapes.AutoSize = true;
+            labelEtapes.Dock = DockStyle.Fill;
+            labelEtapes.Location = new Point(3, 0);
+            labelEtapes.Name = "labelEtapes";
+            labelEtapes.Size = new Size(388, 15);
+            labelEtapes.TabIndex = 2;
+            labelEtapes.Text = "Etapes";
             // 
             // FormManageEtapes
             // 
@@ -263,6 +289,7 @@
             Load += FormManageEtapes_Load;
             tableLayoutPanelFormManageEtapes.ResumeLayout(false);
             tableLayoutPanelManageEtapes.ResumeLayout(false);
+            tableLayoutPanelManageEtapes.PerformLayout();
             tableLayoutPanelManageEtapesInputs.ResumeLayout(false);
             tableLayoutPanelInputs.ResumeLayout(false);
             tableLayoutPanelInputs.PerformLayout();
@@ -270,6 +297,7 @@
             flowLayoutPanelButtons.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewEtapes).EndInit();
             tableLayoutPanelManageEtapesRecettes.ResumeLayout(false);
+            tableLayoutPanelManageEtapesRecettes.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewRecettesForEtapes).EndInit();
             ((System.ComponentModel.ISupportInitialize)bindingSourceEtapes).EndInit();
             ((System.ComponentModel.ISupportInitialize)bindingSourceRecettes).EndInit();
@@ -296,5 +324,7 @@
         private DataGridView dataGridViewRecettesForEtapes;
         private Button buttonRefresh;
         private BindingSource bindingSourceRecettes;
+        private Label labelRecettes;
+        private Label labelEtapes;
     }
 }

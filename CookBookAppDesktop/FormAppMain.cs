@@ -126,6 +126,8 @@ namespace CookBookAppDesktop
 
             dataGridViewIngredients.Columns["id"].Visible = false;
             dataGridViewIngredients.Columns["quantite"].Visible = false;
+
+
         }
 
         private void InitializeInputsLimits()

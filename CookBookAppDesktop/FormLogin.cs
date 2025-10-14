@@ -30,6 +30,11 @@ namespace CookBookAppDesktop
             InitializeComponent();
         }
 
+        private void InitializeBinding()
+        {
+            
+        }
+
         public static IEnumerable<string> GetRolesFromJwt(string token, string[] possibleClaimTypes = null)
         {
             possibleClaimTypes ??=
@@ -88,5 +93,9 @@ namespace CookBookAppDesktop
                 return;
             }
         }
+
+
+
+
     }
 }

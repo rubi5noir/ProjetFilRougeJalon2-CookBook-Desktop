@@ -92,22 +92,31 @@
             // labelUsername
             // 
             labelUsername.AutoSize = true;
+            labelUsername.BackColor = Color.Gray;
             labelUsername.Dock = DockStyle.Fill;
+            labelUsername.FlatStyle = FlatStyle.Flat;
+            labelUsername.Font = new Font("Baskerville Old Face", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelUsername.ForeColor = SystemColors.ActiveCaptionText;
             labelUsername.Location = new Point(3, 0);
             labelUsername.Name = "labelUsername";
             labelUsername.Size = new Size(83, 35);
             labelUsername.TabIndex = 0;
             labelUsername.Text = "Username :";
+            labelUsername.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // labelMotDePasse
             // 
             labelMotDePasse.AutoSize = true;
+            labelMotDePasse.BackColor = Color.Gray;
             labelMotDePasse.Dock = DockStyle.Fill;
+            labelMotDePasse.FlatStyle = FlatStyle.Flat;
+            labelMotDePasse.Font = new Font("Baskerville Old Face", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             labelMotDePasse.Location = new Point(3, 35);
             labelMotDePasse.Name = "labelMotDePasse";
             labelMotDePasse.Size = new Size(83, 35);
             labelMotDePasse.TabIndex = 1;
             labelMotDePasse.Text = "Mot de passe :";
+            labelMotDePasse.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // textBoxUsername
             // 
@@ -115,7 +124,7 @@
             textBoxUsername.Location = new Point(92, 3);
             textBoxUsername.Name = "textBoxUsername";
             textBoxUsername.Size = new Size(377, 23);
-            textBoxUsername.TabIndex = 2;
+            textBoxUsername.TabIndex = 1;
             // 
             // textBoxMotDePasse
             // 
@@ -123,7 +132,7 @@
             textBoxMotDePasse.Location = new Point(92, 38);
             textBoxMotDePasse.Name = "textBoxMotDePasse";
             textBoxMotDePasse.Size = new Size(377, 23);
-            textBoxMotDePasse.TabIndex = 3;
+            textBoxMotDePasse.TabIndex = 2;
             textBoxMotDePasse.UseSystemPasswordChar = true;
             // 
             // flowLayoutPanelFormLoginButtons
@@ -138,10 +147,12 @@
             // 
             // buttonLogIn
             // 
+            buttonLogIn.FlatStyle = FlatStyle.Flat;
+            buttonLogIn.Font = new Font("Baskerville Old Face", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             buttonLogIn.Location = new Point(394, 3);
             buttonLogIn.Name = "buttonLogIn";
             buttonLogIn.Size = new Size(75, 23);
-            buttonLogIn.TabIndex = 1;
+            buttonLogIn.TabIndex = 3;
             buttonLogIn.Text = "LogIn";
             buttonLogIn.UseVisualStyleBackColor = true;
             buttonLogIn.Click += ButtonLogIn_Click;
@@ -150,8 +161,11 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Gray;
             ClientSize = new Size(484, 121);
             Controls.Add(tableLayoutPanelFormLogin);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             MaximumSize = new Size(500, 160);
             MinimumSize = new Size(500, 160);
             Name = "FormLogin";

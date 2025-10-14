@@ -53,7 +53,6 @@ namespace CookBookAppDesktop
             dataGridViewRecettesForEtapes.DataSource = bindingSourceRecettes;
 
             dataGridViewRecettesForEtapes.Columns["id"].Visible = false;
-            dataGridViewRecettesForEtapes.Columns["identifiantCreateur"].Visible = false;
             dataGridViewRecettesForEtapes.Columns["temps_preparation"].Visible = false;
             dataGridViewRecettesForEtapes.Columns["temps_cuisson"].Visible = false;
             dataGridViewRecettesForEtapes.Columns["temps_total"].Visible = false;

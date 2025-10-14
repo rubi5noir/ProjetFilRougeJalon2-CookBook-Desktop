@@ -50,7 +50,6 @@ namespace CookBookAppDesktop
             dataGridViewRecettes.DataSource = bindingSourceRecettes;
 
             dataGridViewRecettes.Columns["id"].Visible = false;
-            dataGridViewRecettes.Columns["identifiantCreateur"].Visible = false;
             dataGridViewRecettes.Columns["temps_preparation"].Visible = false;
             dataGridViewRecettes.Columns["temps_cuisson"].Visible = false;
             dataGridViewRecettes.Columns["temps_total"].Visible = false;
@@ -63,7 +62,6 @@ namespace CookBookAppDesktop
             dataGridViewRecettesWithoutTheCategorie.DataSource = bindingSourceRecettesWithoutTheCategorie;
 
             dataGridViewRecettesWithoutTheCategorie.Columns["id"].Visible = false;
-            dataGridViewRecettesWithoutTheCategorie.Columns["identifiantCreateur"].Visible = false;
             dataGridViewRecettesWithoutTheCategorie.Columns["temps_preparation"].Visible = false;
             dataGridViewRecettesWithoutTheCategorie.Columns["temps_cuisson"].Visible = false;
             dataGridViewRecettesWithoutTheCategorie.Columns["temps_total"].Visible = false;

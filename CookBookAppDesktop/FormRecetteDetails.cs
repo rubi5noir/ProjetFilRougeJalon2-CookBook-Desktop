@@ -35,7 +35,13 @@ namespace CookBookAppDesktop
         private async Task RefreshRecetteDetails()
         {
             RecetteDetailsDTO recette = await _rest.GetAsync<RecetteDetailsDTO>($"{URL_GET_RECETTES}/{idRecette}");
-            var noteMoyenne = recette.avis.Average(a => a.note);
+
+            double noteMoyenne = 0;
+
+            if (recette.avis.Count > 0)
+            {
+                noteMoyenne = recette.avis.Average(a => a.note);
+            }
 
             labelNomRecette.Text = recette.nom;
             textBoxDecriptionRecette.Text = recette.description;
@@ -57,25 +63,34 @@ namespace CookBookAppDesktop
 
         private async Task RefreshTableLayoutPanelIngredients(List<IngredientDTO> ingredients)
         {
-            tableLayoutPanelIngredients.Controls.Clear();
+            tableLayoutPanelIngredients.Controls.Clear(); // call redraw sur le control
+            tableLayoutPanelIngredients.RowStyles.Clear(); //call redraw sur la table
+            tableLayoutPanelIngredients.ColumnStyles[0].Width = 65; // call redraw
+            tableLayoutPanelIngredients.ColumnStyles[1].Width = 25;
             tableLayoutPanelIngredients.RowCount = ingredients.Count;
+            
+            
+          
 
             int rowIndex = 0;
-
-            foreach(IngredientDTO ingredient in ingredients)
+            foreach (IngredientDTO ingredient in ingredients)
             {
+                tableLayoutPanelIngredients.RowStyles.Add(new RowStyle(SizeType.AutoSize));
                 labelIngredient = new Label();
                 labelIngredient.Name = $"labelIngredient{ingredient.id}";
                 labelIngredient.AutoSize = true;
                 labelIngredient.Text = ingredient.nom;
-
+                labelIngredient.Dock = DockStyle.Top;
+                
                 labelQuantite = new Label();
                 labelQuantite.Name = $"labelQuantite{ingredient.id}";
                 labelQuantite.AutoSize = true;
                 labelQuantite.Text = ingredient.quantite;
+                labelQuantite.Dock = DockStyle.Top;
 
                 tableLayoutPanelIngredients.Controls.Add(labelIngredient, 0, rowIndex);
                 tableLayoutPanelIngredients.Controls.Add(labelQuantite, 1, rowIndex);
+
             
                 rowIndex++;
             }
@@ -178,6 +193,13 @@ namespace CookBookAppDesktop
             _rest.JwtToken = FormAppMain.Token;
 
             await RefreshRecetteDetails();
+        }
+
+        protected override void OnResizeEnd(EventArgs e)
+        {
+            base.OnResizeEnd(e);
+            Task.Delay(1);
+            tableLayoutPanelIngredients.Refresh();
         }
 
         #endregion

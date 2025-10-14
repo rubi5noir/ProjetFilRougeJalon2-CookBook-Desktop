@@ -44,6 +44,7 @@
             labelTempsCui = new Label();
             labelTitreTempsTotal = new Label();
             labelTempsTotal = new Label();
+            ScrollPanel = new Panel();
             tableLayoutPanelIngredients = new TableLayoutPanel();
             labelIngredient = new Label();
             labelQuantite = new Label();
@@ -65,6 +66,7 @@
             tableLayoutPanelRightPartDetails.SuspendLayout();
             tableLayoutPanelTempsIngredients.SuspendLayout();
             tableLayoutPanelTemps.SuspendLayout();
+            ScrollPanel.SuspendLayout();
             tableLayoutPanelIngredients.SuspendLayout();
             tableLayoutPanelCategories.SuspendLayout();
             tableLayoutPanelLeftPartDetails.SuspendLayout();
@@ -76,12 +78,11 @@
             // 
             panelFormRecetteDetails.AutoScroll = true;
             panelFormRecetteDetails.AutoSize = true;
-            panelFormRecetteDetails.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             panelFormRecetteDetails.Controls.Add(tableLayoutPanelFormRecetteDetails);
             panelFormRecetteDetails.Dock = DockStyle.Fill;
             panelFormRecetteDetails.Location = new Point(0, 0);
             panelFormRecetteDetails.Name = "panelFormRecetteDetails";
-            panelFormRecetteDetails.Size = new Size(981, 621);
+            panelFormRecetteDetails.Size = new Size(1039, 655);
             panelFormRecetteDetails.TabIndex = 0;
             // 
             // tableLayoutPanelFormRecetteDetails
@@ -99,7 +100,7 @@
             tableLayoutPanelFormRecetteDetails.RowCount = 2;
             tableLayoutPanelFormRecetteDetails.RowStyles.Add(new RowStyle(SizeType.Percent, 42.0289841F));
             tableLayoutPanelFormRecetteDetails.RowStyles.Add(new RowStyle(SizeType.Percent, 57.9710159F));
-            tableLayoutPanelFormRecetteDetails.Size = new Size(981, 621);
+            tableLayoutPanelFormRecetteDetails.Size = new Size(1039, 655);
             tableLayoutPanelFormRecetteDetails.TabIndex = 0;
             // 
             // tableLayoutPanelRecetteSummary
@@ -114,7 +115,7 @@
             tableLayoutPanelRecetteSummary.RowCount = 2;
             tableLayoutPanelRecetteSummary.RowStyles.Add(new RowStyle(SizeType.Percent, 26.4840183F));
             tableLayoutPanelRecetteSummary.RowStyles.Add(new RowStyle(SizeType.Percent, 73.51598F));
-            tableLayoutPanelRecetteSummary.Size = new Size(574, 255);
+            tableLayoutPanelRecetteSummary.Size = new Size(608, 269);
             tableLayoutPanelRecetteSummary.TabIndex = 0;
             // 
             // labelNomRecette
@@ -123,26 +124,27 @@
             labelNomRecette.Dock = DockStyle.Fill;
             labelNomRecette.Location = new Point(3, 0);
             labelNomRecette.Name = "labelNomRecette";
-            labelNomRecette.Size = new Size(568, 67);
+            labelNomRecette.Size = new Size(602, 71);
             labelNomRecette.TabIndex = 0;
             labelNomRecette.Text = "nom";
             // 
             // textBoxDecriptionRecette
             // 
             textBoxDecriptionRecette.Dock = DockStyle.Fill;
-            textBoxDecriptionRecette.Location = new Point(3, 70);
+            textBoxDecriptionRecette.Location = new Point(3, 74);
             textBoxDecriptionRecette.Multiline = true;
             textBoxDecriptionRecette.Name = "textBoxDecriptionRecette";
             textBoxDecriptionRecette.PlaceholderText = "Description recette";
-            textBoxDecriptionRecette.Size = new Size(568, 182);
+            textBoxDecriptionRecette.Size = new Size(602, 192);
             textBoxDecriptionRecette.TabIndex = 1;
             // 
             // pictureBoxImgRecette
             // 
             pictureBoxImgRecette.Dock = DockStyle.Fill;
-            pictureBoxImgRecette.Location = new Point(583, 3);
+            pictureBoxImgRecette.Location = new Point(617, 3);
             pictureBoxImgRecette.Name = "pictureBoxImgRecette";
-            pictureBoxImgRecette.Size = new Size(395, 255);
+            pictureBoxImgRecette.Size = new Size(419, 269);
+            pictureBoxImgRecette.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxImgRecette.TabIndex = 1;
             pictureBoxImgRecette.TabStop = false;
             // 
@@ -154,22 +156,22 @@
             tableLayoutPanelRightPartDetails.Controls.Add(tableLayoutPanelTempsIngredients, 0, 0);
             tableLayoutPanelRightPartDetails.Controls.Add(tableLayoutPanelCategories, 0, 1);
             tableLayoutPanelRightPartDetails.Dock = DockStyle.Fill;
-            tableLayoutPanelRightPartDetails.Location = new Point(583, 264);
+            tableLayoutPanelRightPartDetails.Location = new Point(617, 278);
             tableLayoutPanelRightPartDetails.Name = "tableLayoutPanelRightPartDetails";
             tableLayoutPanelRightPartDetails.RowCount = 3;
             tableLayoutPanelRightPartDetails.RowStyles.Add(new RowStyle(SizeType.Percent, 50.44248F));
             tableLayoutPanelRightPartDetails.RowStyles.Add(new RowStyle(SizeType.Percent, 13.8053093F));
             tableLayoutPanelRightPartDetails.RowStyles.Add(new RowStyle(SizeType.Percent, 35.7142868F));
-            tableLayoutPanelRightPartDetails.Size = new Size(395, 354);
+            tableLayoutPanelRightPartDetails.Size = new Size(419, 374);
             tableLayoutPanelRightPartDetails.TabIndex = 2;
             // 
             // labelCreateur
             // 
             labelCreateur.AutoSize = true;
             labelCreateur.Dock = DockStyle.Fill;
-            labelCreateur.Location = new Point(3, 226);
+            labelCreateur.Location = new Point(3, 239);
             labelCreateur.Name = "labelCreateur";
-            labelCreateur.Size = new Size(389, 128);
+            labelCreateur.Size = new Size(413, 135);
             labelCreateur.TabIndex = 0;
             labelCreateur.Text = "Créateur :";
             // 
@@ -178,14 +180,14 @@
             tableLayoutPanelTempsIngredients.ColumnCount = 1;
             tableLayoutPanelTempsIngredients.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanelTempsIngredients.Controls.Add(tableLayoutPanelTemps, 0, 0);
-            tableLayoutPanelTempsIngredients.Controls.Add(tableLayoutPanelIngredients, 0, 1);
+            tableLayoutPanelTempsIngredients.Controls.Add(ScrollPanel, 0, 1);
             tableLayoutPanelTempsIngredients.Dock = DockStyle.Fill;
             tableLayoutPanelTempsIngredients.Location = new Point(3, 3);
             tableLayoutPanelTempsIngredients.Name = "tableLayoutPanelTempsIngredients";
             tableLayoutPanelTempsIngredients.RowCount = 2;
             tableLayoutPanelTempsIngredients.RowStyles.Add(new RowStyle(SizeType.Percent, 31.899641F));
             tableLayoutPanelTempsIngredients.RowStyles.Add(new RowStyle(SizeType.Percent, 68.10036F));
-            tableLayoutPanelTempsIngredients.Size = new Size(389, 172);
+            tableLayoutPanelTempsIngredients.Size = new Size(413, 182);
             tableLayoutPanelTempsIngredients.TabIndex = 1;
             // 
             // tableLayoutPanelTemps
@@ -206,7 +208,7 @@
             tableLayoutPanelTemps.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanelTemps.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanelTemps.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanelTemps.Size = new Size(383, 48);
+            tableLayoutPanelTemps.Size = new Size(407, 52);
             tableLayoutPanelTemps.TabIndex = 0;
             // 
             // labelTitreTempsPrepa
@@ -215,7 +217,7 @@
             labelTitreTempsPrepa.Dock = DockStyle.Fill;
             labelTitreTempsPrepa.Location = new Point(3, 0);
             labelTitreTempsPrepa.Name = "labelTitreTempsPrepa";
-            labelTitreTempsPrepa.Size = new Size(122, 16);
+            labelTitreTempsPrepa.Size = new Size(130, 17);
             labelTitreTempsPrepa.TabIndex = 0;
             labelTitreTempsPrepa.Text = "Temps Préparation :";
             // 
@@ -223,9 +225,9 @@
             // 
             labelTempsPrepa.AutoSize = true;
             labelTempsPrepa.Dock = DockStyle.Fill;
-            labelTempsPrepa.Location = new Point(131, 0);
+            labelTempsPrepa.Location = new Point(139, 0);
             labelTempsPrepa.Name = "labelTempsPrepa";
-            labelTempsPrepa.Size = new Size(249, 16);
+            labelTempsPrepa.Size = new Size(265, 17);
             labelTempsPrepa.TabIndex = 1;
             labelTempsPrepa.Text = "0:00:0";
             // 
@@ -233,9 +235,9 @@
             // 
             labelTitreTempsCui.AutoSize = true;
             labelTitreTempsCui.Dock = DockStyle.Fill;
-            labelTitreTempsCui.Location = new Point(3, 16);
+            labelTitreTempsCui.Location = new Point(3, 17);
             labelTitreTempsCui.Name = "labelTitreTempsCui";
-            labelTitreTempsCui.Size = new Size(122, 16);
+            labelTitreTempsCui.Size = new Size(130, 17);
             labelTitreTempsCui.TabIndex = 2;
             labelTitreTempsCui.Text = "Temps Cuisson :";
             // 
@@ -243,9 +245,9 @@
             // 
             labelTempsCui.AutoSize = true;
             labelTempsCui.Dock = DockStyle.Fill;
-            labelTempsCui.Location = new Point(131, 16);
+            labelTempsCui.Location = new Point(139, 17);
             labelTempsCui.Name = "labelTempsCui";
-            labelTempsCui.Size = new Size(249, 16);
+            labelTempsCui.Size = new Size(265, 17);
             labelTempsCui.TabIndex = 3;
             labelTempsCui.Text = "0:00:0";
             // 
@@ -253,9 +255,9 @@
             // 
             labelTitreTempsTotal.AutoSize = true;
             labelTitreTempsTotal.Dock = DockStyle.Fill;
-            labelTitreTempsTotal.Location = new Point(3, 32);
+            labelTitreTempsTotal.Location = new Point(3, 34);
             labelTitreTempsTotal.Name = "labelTitreTempsTotal";
-            labelTitreTempsTotal.Size = new Size(122, 16);
+            labelTitreTempsTotal.Size = new Size(130, 18);
             labelTitreTempsTotal.TabIndex = 4;
             labelTitreTempsTotal.Text = "Temps Total :";
             // 
@@ -263,15 +265,25 @@
             // 
             labelTempsTotal.AutoSize = true;
             labelTempsTotal.Dock = DockStyle.Fill;
-            labelTempsTotal.Location = new Point(131, 32);
+            labelTempsTotal.Location = new Point(139, 34);
             labelTempsTotal.Name = "labelTempsTotal";
-            labelTempsTotal.Size = new Size(249, 16);
+            labelTempsTotal.Size = new Size(265, 18);
             labelTempsTotal.TabIndex = 5;
             labelTempsTotal.Text = "0:00:0";
             // 
+            // ScrollPanel
+            // 
+            ScrollPanel.AutoScroll = true;
+            ScrollPanel.AutoSize = true;
+            ScrollPanel.Controls.Add(tableLayoutPanelIngredients);
+            ScrollPanel.Dock = DockStyle.Fill;
+            ScrollPanel.Location = new Point(3, 61);
+            ScrollPanel.Name = "ScrollPanel";
+            ScrollPanel.Size = new Size(407, 118);
+            ScrollPanel.TabIndex = 1;
+            // 
             // tableLayoutPanelIngredients
             // 
-            tableLayoutPanelIngredients.AutoScroll = true;
             tableLayoutPanelIngredients.AutoSize = true;
             tableLayoutPanelIngredients.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             tableLayoutPanelIngredients.ColumnCount = 2;
@@ -279,29 +291,33 @@
             tableLayoutPanelIngredients.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 31.3315926F));
             tableLayoutPanelIngredients.Controls.Add(labelIngredient, 0, 0);
             tableLayoutPanelIngredients.Controls.Add(labelQuantite, 1, 0);
-            tableLayoutPanelIngredients.Dock = DockStyle.Fill;
-            tableLayoutPanelIngredients.Location = new Point(3, 57);
+            tableLayoutPanelIngredients.Dock = DockStyle.Top;
+            tableLayoutPanelIngredients.Location = new Point(0, 0);
             tableLayoutPanelIngredients.Name = "tableLayoutPanelIngredients";
             tableLayoutPanelIngredients.RowCount = 1;
             tableLayoutPanelIngredients.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanelIngredients.Size = new Size(383, 112);
-            tableLayoutPanelIngredients.TabIndex = 1;
+            tableLayoutPanelIngredients.Size = new Size(407, 18);
+            tableLayoutPanelIngredients.TabIndex = 2;
             // 
             // labelIngredient
             // 
             labelIngredient.AutoSize = true;
+            labelIngredient.Dock = DockStyle.Top;
             labelIngredient.Location = new Point(3, 0);
             labelIngredient.Name = "labelIngredient";
-            labelIngredient.Size = new Size(61, 15);
+            labelIngredient.Size = new Size(273, 15);
             labelIngredient.TabIndex = 0;
             labelIngredient.Text = "ingredient";
             // 
             // labelQuantite
             // 
             labelQuantite.AutoSize = true;
-            labelQuantite.Location = new Point(265, 0);
+            labelQuantite.BackColor = SystemColors.Control;
+            labelQuantite.Dock = DockStyle.Top;
+            labelQuantite.Location = new Point(282, 3);
+            labelQuantite.Margin = new Padding(3, 3, 30, 0);
             labelQuantite.Name = "labelQuantite";
-            labelQuantite.Size = new Size(51, 15);
+            labelQuantite.Size = new Size(95, 15);
             labelQuantite.TabIndex = 1;
             labelQuantite.Text = "quantite";
             // 
@@ -311,11 +327,11 @@
             tableLayoutPanelCategories.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanelCategories.Controls.Add(labelCategorie, 0, 0);
             tableLayoutPanelCategories.Dock = DockStyle.Fill;
-            tableLayoutPanelCategories.Location = new Point(3, 181);
+            tableLayoutPanelCategories.Location = new Point(3, 191);
             tableLayoutPanelCategories.Name = "tableLayoutPanelCategories";
             tableLayoutPanelCategories.RowCount = 1;
             tableLayoutPanelCategories.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanelCategories.Size = new Size(389, 42);
+            tableLayoutPanelCategories.Size = new Size(413, 45);
             tableLayoutPanelCategories.TabIndex = 2;
             // 
             // labelCategorie
@@ -324,7 +340,7 @@
             labelCategorie.Dock = DockStyle.Fill;
             labelCategorie.Location = new Point(3, 0);
             labelCategorie.Name = "labelCategorie";
-            labelCategorie.Size = new Size(383, 42);
+            labelCategorie.Size = new Size(407, 45);
             labelCategorie.TabIndex = 0;
             labelCategorie.Text = "categorie";
             // 
@@ -336,13 +352,13 @@
             tableLayoutPanelLeftPartDetails.Controls.Add(labelNoteMoyenne, 0, 1);
             tableLayoutPanelLeftPartDetails.Controls.Add(tableLayoutPanelAvis, 0, 2);
             tableLayoutPanelLeftPartDetails.Dock = DockStyle.Fill;
-            tableLayoutPanelLeftPartDetails.Location = new Point(3, 264);
+            tableLayoutPanelLeftPartDetails.Location = new Point(3, 278);
             tableLayoutPanelLeftPartDetails.Name = "tableLayoutPanelLeftPartDetails";
             tableLayoutPanelLeftPartDetails.RowCount = 3;
             tableLayoutPanelLeftPartDetails.RowStyles.Add(new RowStyle(SizeType.Percent, 59.3220329F));
             tableLayoutPanelLeftPartDetails.RowStyles.Add(new RowStyle(SizeType.Percent, 7.06214666F));
             tableLayoutPanelLeftPartDetails.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanelLeftPartDetails.Size = new Size(574, 354);
+            tableLayoutPanelLeftPartDetails.Size = new Size(608, 374);
             tableLayoutPanelLeftPartDetails.TabIndex = 3;
             // 
             // tableLayoutPanelEtapes
@@ -360,7 +376,7 @@
             tableLayoutPanelEtapes.Name = "tableLayoutPanelEtapes";
             tableLayoutPanelEtapes.RowCount = 1;
             tableLayoutPanelEtapes.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanelEtapes.Size = new Size(568, 204);
+            tableLayoutPanelEtapes.Size = new Size(602, 216);
             tableLayoutPanelEtapes.TabIndex = 2;
             // 
             // labelEtape
@@ -369,27 +385,27 @@
             labelEtape.Dock = DockStyle.Fill;
             labelEtape.Location = new Point(3, 0);
             labelEtape.Name = "labelEtape";
-            labelEtape.Size = new Size(72, 204);
+            labelEtape.Size = new Size(77, 216);
             labelEtape.TabIndex = 0;
             labelEtape.Text = "numero";
             // 
             // textBoxEtape
             // 
             textBoxEtape.Dock = DockStyle.Fill;
-            textBoxEtape.Location = new Point(81, 3);
+            textBoxEtape.Location = new Point(86, 3);
             textBoxEtape.Multiline = true;
             textBoxEtape.Name = "textBoxEtape";
             textBoxEtape.PlaceholderText = "Description Etape";
-            textBoxEtape.Size = new Size(484, 198);
+            textBoxEtape.Size = new Size(513, 210);
             textBoxEtape.TabIndex = 1;
             // 
             // labelNoteMoyenne
             // 
             labelNoteMoyenne.AutoSize = true;
             labelNoteMoyenne.Dock = DockStyle.Fill;
-            labelNoteMoyenne.Location = new Point(3, 210);
+            labelNoteMoyenne.Location = new Point(3, 222);
             labelNoteMoyenne.Name = "labelNoteMoyenne";
-            labelNoteMoyenne.Size = new Size(568, 25);
+            labelNoteMoyenne.Size = new Size(602, 26);
             labelNoteMoyenne.TabIndex = 0;
             labelNoteMoyenne.Text = "Note moyenne :";
             // 
@@ -406,11 +422,11 @@
             tableLayoutPanelAvis.Controls.Add(labelNote, 2, 0);
             tableLayoutPanelAvis.Controls.Add(textBoxAvis, 1, 0);
             tableLayoutPanelAvis.Dock = DockStyle.Fill;
-            tableLayoutPanelAvis.Location = new Point(3, 238);
+            tableLayoutPanelAvis.Location = new Point(3, 251);
             tableLayoutPanelAvis.Name = "tableLayoutPanelAvis";
             tableLayoutPanelAvis.RowCount = 1;
             tableLayoutPanelAvis.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanelAvis.Size = new Size(568, 113);
+            tableLayoutPanelAvis.Size = new Size(602, 120);
             tableLayoutPanelAvis.TabIndex = 1;
             // 
             // labelUtilisateur
@@ -419,7 +435,7 @@
             labelUtilisateur.Dock = DockStyle.Fill;
             labelUtilisateur.Location = new Point(3, 0);
             labelUtilisateur.Name = "labelUtilisateur";
-            labelUtilisateur.Size = new Size(160, 113);
+            labelUtilisateur.Size = new Size(170, 120);
             labelUtilisateur.TabIndex = 0;
             labelUtilisateur.Text = "utilisateur";
             // 
@@ -427,28 +443,29 @@
             // 
             labelNote.AutoSize = true;
             labelNote.Dock = DockStyle.Fill;
-            labelNote.Location = new Point(507, 0);
+            labelNote.Location = new Point(538, 0);
             labelNote.Name = "labelNote";
-            labelNote.Size = new Size(58, 113);
+            labelNote.Size = new Size(61, 120);
             labelNote.TabIndex = 1;
             labelNote.Text = "note";
             // 
             // textBoxAvis
             // 
             textBoxAvis.Dock = DockStyle.Fill;
-            textBoxAvis.Location = new Point(169, 3);
+            textBoxAvis.Location = new Point(179, 3);
             textBoxAvis.Multiline = true;
             textBoxAvis.Name = "textBoxAvis";
             textBoxAvis.PlaceholderText = "commentaire";
-            textBoxAvis.Size = new Size(332, 107);
+            textBoxAvis.Size = new Size(353, 114);
             textBoxAvis.TabIndex = 2;
             // 
             // FormRecetteDetails
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(981, 621);
+            ClientSize = new Size(1039, 655);
             Controls.Add(panelFormRecetteDetails);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "FormRecetteDetails";
             Text = "FormRecetteDetails";
             Load += FormRecetteDetails_FormLoad;
@@ -463,6 +480,8 @@
             tableLayoutPanelTempsIngredients.PerformLayout();
             tableLayoutPanelTemps.ResumeLayout(false);
             tableLayoutPanelTemps.PerformLayout();
+            ScrollPanel.ResumeLayout(false);
+            ScrollPanel.PerformLayout();
             tableLayoutPanelIngredients.ResumeLayout(false);
             tableLayoutPanelIngredients.PerformLayout();
             tableLayoutPanelCategories.ResumeLayout(false);
@@ -490,7 +509,6 @@
         private TableLayoutPanel tableLayoutPanelTempsIngredients;
         private Label labelNoteMoyenne;
         private TableLayoutPanel tableLayoutPanelTemps;
-        private TableLayoutPanel tableLayoutPanelIngredients;
         private TableLayoutPanel tableLayoutPanelCategories;
         private TableLayoutPanel tableLayoutPanelAvis;
         private TextBox textBoxDecriptionRecette;
@@ -501,13 +519,15 @@
         private Label labelTempsCui;
         private Label labelTitreTempsTotal;
         private Label labelTempsTotal;
-        private Label labelIngredient;
-        private Label labelQuantite;
         private Label labelCategorie;
         private Label labelUtilisateur;
         private Label labelNote;
         private TextBox textBoxAvis;
         private Label labelEtape;
         private TextBox textBoxEtape;
+        private Panel ScrollPanel;
+        private TableLayoutPanel tableLayoutPanelIngredients;
+        private Label labelIngredient;
+        private Label labelQuantite;
     }
 }
