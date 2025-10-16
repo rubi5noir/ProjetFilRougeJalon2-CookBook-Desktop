@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="BaseUrl" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://localhost:5555</Value>
+      <Value Profile="(Default)">http://localhost:32771</Value>
     </Setting>
   </Settings>
 </SettingsFile>
