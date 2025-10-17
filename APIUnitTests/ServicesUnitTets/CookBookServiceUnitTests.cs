@@ -697,18 +697,24 @@ namespace APIUnitTests.ServicesUnitTets
         {
             int id = 1;
 
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             Compte compte = null;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
 
             // Arrange
             IUnitOfWork mockUnitOfWork = Mock.Of<IUnitOfWork>();
+#pragma warning disable CS8620 // Impossible d'utiliser l'argument pour le paramètre, car il existe des différences dans l'acceptation des valeurs null par les types référence.
             Mock.Get(mockUnitOfWork)
                 .Setup(uow =>
                 uow.Compte.GetCompteByIdAsync(id))
                 .ReturnsAsync(compte);
+#pragma warning restore CS8620 // Impossible d'utiliser l'argument pour le paramètre, car il existe des différences dans l'acceptation des valeurs null par les types référence.
 
             var sut = new CookBookService(mockUnitOfWork);
 
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             Compte expectedResult = null;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
 
             // Act
             var result = sut.GetCompteByIdAsync(id).Result;
@@ -760,7 +766,7 @@ namespace APIUnitTests.ServicesUnitTets
         {
             int id = 1;
 
-            Compte compte = new Compte { id = 1, identifiant = "jdupont", nom = "Dupont", prenom = "Jean", email = "jean.dupont@example.com", password = "password123", admin = false };
+            Compte compte = new Compte { id = id, identifiant = "jdupont", nom = "Dupont", prenom = "Jean", email = "jean.dupont@example.com", password = "password123", admin = false };
 
             // Arrange
             IUnitOfWork mockUnitOfWork = Mock.Of<IUnitOfWork>();
@@ -1398,17 +1404,23 @@ namespace APIUnitTests.ServicesUnitTets
         public void GetRecetteByIdAsync_ReturnNull()
         {
             int id = 1;
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             Recette recette = null;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
 
             // Arrange
             IUnitOfWork mockUnitOfWork = Mock.Of<IUnitOfWork>();
+#pragma warning disable CS8620 // Impossible d'utiliser l'argument pour le paramètre, car il existe des différences dans l'acceptation des valeurs null par les types référence.
             Mock.Get(mockUnitOfWork)
                 .Setup(uow => uow.Recette.GetRecetteByIdAsync(id))
                 .ReturnsAsync(recette);
+#pragma warning restore CS8620 // Impossible d'utiliser l'argument pour le paramètre, car il existe des différences dans l'acceptation des valeurs null par les types référence.
 
             var sut = new CookBookService(mockUnitOfWork);
 
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             Recette expectedResult = null;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
 
             // Act
             var result = sut.GetRecetteByIdAsync(id).Result;

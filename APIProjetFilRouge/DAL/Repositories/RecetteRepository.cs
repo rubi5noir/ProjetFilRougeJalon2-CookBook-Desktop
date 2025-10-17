@@ -62,7 +62,7 @@ namespace APIProjetFilRouge.DAL.Repositories
 
         public async Task<List<Recette>> GetAllRecettesAsync()
         {
-            List<Recette> recettes = new List<Recette>();
+            List<Recette> recettes;
 
             recettes = (await _dbSession.Connection.QueryAsync<Recette>(_queryGetAllRecettes, transaction: _dbSession.Transaction)).ToList();
 
@@ -72,7 +72,7 @@ namespace APIProjetFilRouge.DAL.Repositories
 
         public async Task<Recette> GetRecetteByIdAsync(int id)
         {
-            Recette recette = new Recette();
+            Recette recette;
 
             recette = await _dbSession.Connection.QuerySingleAsync<Recette>(_queryGetRecetteById, new
             {

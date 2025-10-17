@@ -59,7 +59,7 @@ namespace APIProjetFilRouge.DAL.Repositories
 
         public async Task<List<Compte>> GetAllComptesAsync()
         {
-            List<Compte> comptes = new List<Compte>();
+            List<Compte> comptes;
 
             comptes = (await _dbSession.Connection.QueryAsync<Compte>(_queryGetAllComptes , transaction: _dbSession.Transaction)).ToList();
 
@@ -68,7 +68,7 @@ namespace APIProjetFilRouge.DAL.Repositories
 
         public async Task<Compte> GetCompteByIdAsync(int id)
         {
-            Compte compte = new Compte();
+            Compte compte;
 
             compte = await _dbSession.Connection.QuerySingleAsync<Compte>(_queryGetCompteById, new
             {

@@ -9,7 +9,7 @@ using static Dapper.SqlMapper;
 
 namespace APIProjetFilRouge.DAL
 {
-    public static class DALExtended
+    public static class DalExtended
     {
         public static void AddDal(this IServiceCollection services, IDatabaseSettings settings)
         {

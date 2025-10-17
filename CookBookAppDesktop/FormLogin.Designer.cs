@@ -92,7 +92,7 @@
             // labelUsername
             // 
             labelUsername.AutoSize = true;
-            labelUsername.BackColor = Color.Gray;
+            labelUsername.BackColor = Color.GhostWhite;
             labelUsername.Dock = DockStyle.Fill;
             labelUsername.FlatStyle = FlatStyle.Flat;
             labelUsername.Font = new Font("Baskerville Old Face", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -107,7 +107,7 @@
             // labelMotDePasse
             // 
             labelMotDePasse.AutoSize = true;
-            labelMotDePasse.BackColor = Color.Gray;
+            labelMotDePasse.BackColor = Color.GhostWhite;
             labelMotDePasse.Dock = DockStyle.Fill;
             labelMotDePasse.FlatStyle = FlatStyle.Flat;
             labelMotDePasse.Font = new Font("Baskerville Old Face", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -147,6 +147,7 @@
             // 
             // buttonLogIn
             // 
+            buttonLogIn.BackColor = Color.AliceBlue;
             buttonLogIn.FlatStyle = FlatStyle.Flat;
             buttonLogIn.Font = new Font("Baskerville Old Face", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             buttonLogIn.Location = new Point(394, 3);
@@ -154,14 +155,14 @@
             buttonLogIn.Size = new Size(75, 23);
             buttonLogIn.TabIndex = 3;
             buttonLogIn.Text = "LogIn";
-            buttonLogIn.UseVisualStyleBackColor = true;
+            buttonLogIn.UseVisualStyleBackColor = false;
             buttonLogIn.Click += ButtonLogIn_Click;
             // 
             // FormLogin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Gray;
+            BackColor = Color.GhostWhite;
             ClientSize = new Size(484, 121);
             Controls.Add(tableLayoutPanelFormLogin);
             FormBorderStyle = FormBorderStyle.FixedSingle;

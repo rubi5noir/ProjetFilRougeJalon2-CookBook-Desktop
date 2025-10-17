@@ -22,20 +22,21 @@ namespace CookBookAppDesktop
 
         public string JwtToken { get; private set; }
 
+#pragma warning disable S1104 // Fields should not have public accessibility
         public IEnumerable<string> _roles = [];
+#pragma warning restore S1104 // Fields should not have public accessibility
 
 
+#pragma warning disable CS8618 // Un champ non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le champ comme pouvant accepter la valeur Null.
         public FormLogin()
+#pragma warning restore CS8618 // Un champ non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le champ comme pouvant accepter la valeur Null.
         {
             InitializeComponent();
         }
 
-        private void InitializeBinding()
-        {
-            
-        }
-
+#pragma warning disable CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
         public static IEnumerable<string> GetRolesFromJwt(string token, string[] possibleClaimTypes = null)
+#pragma warning restore CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
         {
             possibleClaimTypes ??=
             [

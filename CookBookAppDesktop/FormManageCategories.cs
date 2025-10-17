@@ -29,7 +29,9 @@ namespace CookBookAppDesktop
 
         #region Methods
 
+#pragma warning disable CS8618 // Un champ non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le champ comme pouvant accepter la valeur Null.
         public FormManageCategories()
+#pragma warning restore CS8618 // Un champ non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le champ comme pouvant accepter la valeur Null.
         {
             InitializeComponent();
             InitializeBinding();
@@ -78,7 +80,11 @@ namespace CookBookAppDesktop
 
         private async Task RefreshCategories()
         {
+#pragma warning disable IDE0019 // Utiliser les critères spéciaux
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             CategorieDTO current = bindingSourceCategories.Current as CategorieDTO;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
+#pragma warning restore IDE0019 // Utiliser les critères spéciaux
             // Remplissage de la liste
             var res = await _rest.GetAsync<IEnumerable<CategorieDTO>>(URL_GET_CATEGORIES);
             _categories.Clear();
@@ -87,7 +93,9 @@ namespace CookBookAppDesktop
                 _categories.Add(item);
             }
             if (current != null)
-                bindingSourceCategories.Position = _categories.IndexOf(_categories.Where(c => c.id == current.id).FirstOrDefault());
+#pragma warning disable CS8604 // Existence possible d'un argument de référence null.
+                bindingSourceCategories.Position = _categories.IndexOf(_categories.FirstOrDefault(c => c.id == current.id));
+#pragma warning restore CS8604 // Existence possible d'un argument de référence null.
         }
 
         #endregion
@@ -104,7 +112,11 @@ namespace CookBookAppDesktop
 
         private async void dataGridViewCategories_CurrentCellChanged(object sender, EventArgs e)
         {
+#pragma warning disable IDE0019 // Utiliser les critères spéciaux
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             CategorieDTO current = bindingSourceCategories.Current as CategorieDTO;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
+#pragma warning restore IDE0019 // Utiliser les critères spéciaux
 
             if (current != null)
             {
@@ -135,14 +147,18 @@ namespace CookBookAppDesktop
                     _recettes.Clear();
                     _categoriesInRecettes.Clear();
 
-                    var result = MessageBox.Show($"{ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
         private async void dataGridViewRecettes_CurrentCellChanged(object sender, EventArgs e)
         {
+#pragma warning disable IDE0019 // Utiliser les critères spéciaux
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             RecetteDTO current = bindingSourceRecettes.Current as RecetteDTO;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
+#pragma warning restore IDE0019 // Utiliser les critères spéciaux
             if (current != null)
             {
                 var categories = await _rest.GetAsync<IEnumerable<CategorieDTO>>($"{URL_GET_CATEGORIES}/{current.id}");
@@ -162,7 +178,11 @@ namespace CookBookAppDesktop
 
         private async void buttonAddCategorie_Click(object sender, EventArgs e)
         {
+#pragma warning disable IDE0019 // Utiliser les critères spéciaux
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             CategorieDTO current = bindingSourceCategories.Current as CategorieDTO;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
+#pragma warning restore IDE0019 // Utiliser les critères spéciaux
             if (current != null)
             {
                 var categorieDTO = new CategorieDTO
@@ -174,7 +194,7 @@ namespace CookBookAppDesktop
                 var result = MessageBox.Show($"Êtes-vous sûr de vouloir Ajouter la catégorie '{categorieDTO}' ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
-                    await _rest.PutAsync($"{URL_UPDATE_CATEGORIES}", categorieDTO);
+                    await _rest.PutAsync($"{URL_CREATE_CATEGORIES}", categorieDTO);
                     await RefreshCategories();
                 }
             }
@@ -182,7 +202,11 @@ namespace CookBookAppDesktop
 
         private async void buttonModifyCategorie_Click(object sender, EventArgs e)
         {
+#pragma warning disable IDE0019 // Utiliser les critères spéciaux
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             CategorieDTO current = bindingSourceCategories.Current as CategorieDTO;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
+#pragma warning restore IDE0019 // Utiliser les critères spéciaux
             if (current != null)
             {
                 var categorieDTO = new CategorieDTO
@@ -202,7 +226,11 @@ namespace CookBookAppDesktop
 
         private async void buttonDeleteCategorie_Click(object sender, EventArgs e)
         {
+#pragma warning disable IDE0019 // Utiliser les critères spéciaux
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             CategorieDTO current = bindingSourceCategories.Current as CategorieDTO;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
+#pragma warning restore IDE0019 // Utiliser les critères spéciaux
             if (current != null)
             {
                 var result = MessageBox.Show($"Êtes-vous sûr de vouloir supprimer la catégorie '{current.nom}' ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -216,8 +244,16 @@ namespace CookBookAppDesktop
 
         private async void buttonAddCategorieToRecette_Click(object sender, EventArgs e)
         {
+#pragma warning disable IDE0019 // Utiliser les critères spéciaux
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             CategorieDTO currentCategorie = bindingSourceCategories.Current as CategorieDTO;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
+#pragma warning restore IDE0019 // Utiliser les critères spéciaux
+#pragma warning disable IDE0019 // Utiliser les critères spéciaux
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             RecetteDTO currentRecette = bindingSourceRecettesWithoutTheCategorie.Current as RecetteDTO;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
+#pragma warning restore IDE0019 // Utiliser les critères spéciaux
 
             if (currentCategorie != null)
             {
@@ -247,9 +283,17 @@ namespace CookBookAppDesktop
 
         private async void buttonRemoveCategorieFromRecette_Click(object sender, EventArgs e)
         {
+#pragma warning disable IDE0019 // Utiliser les critères spéciaux
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             CategorieDTO currentCategorie = bindingSourceCategoriesOfRecette.Current as CategorieDTO;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
+#pragma warning restore IDE0019 // Utiliser les critères spéciaux
 
+#pragma warning disable IDE0019 // Utiliser les critères spéciaux
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             RecetteDTO currentRecette = bindingSourceRecettes.Current as RecetteDTO;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
+#pragma warning restore IDE0019 // Utiliser les critères spéciaux
 
             if (currentCategorie != null)
             {

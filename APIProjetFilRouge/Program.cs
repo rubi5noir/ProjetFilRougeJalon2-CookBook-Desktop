@@ -15,7 +15,9 @@ using System.Text;
 
 namespace APIProjetFilRouge
 {
+#pragma warning disable S1118 // Utility classes should not have public constructors
     public class Program
+#pragma warning restore S1118 // Utility classes should not have public constructors
     {
         public static void Main(string[] args)
         {
@@ -189,7 +191,9 @@ namespace APIProjetFilRouge
                 foreach (var error in result.Errors)
                     logger.LogError(" - {Property}: {ErrorMessage}", error.PropertyName, error.ErrorMessage);
 
+#pragma warning disable CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
                 settings = null;
+#pragma warning restore CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
             }
 
             return result.IsValid;

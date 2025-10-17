@@ -34,6 +34,8 @@ namespace APIProjetFilRouge.Controllers
         /// <param name="request">Données de connexion de l'utilisateur.</param>
         /// <returns>Un jeton JWT si l'authentification réussit, sinon un code 401.</returns>
         [HttpPost("Login")]
+        [ProducesResponseType(typeof(JwtDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public IActionResult Login(IValidator<LoginDTO> validator, [FromBody] LoginDTO request)
         {
             validator.ValidateAndThrow(request);

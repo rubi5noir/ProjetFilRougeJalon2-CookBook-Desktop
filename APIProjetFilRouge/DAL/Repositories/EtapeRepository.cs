@@ -112,6 +112,11 @@ namespace APIProjetFilRouge.DAL.Repositories
                     numero = num
                 }, transaction: _dbSession.Transaction);
 
+                if (del == 0)
+                {
+                    return 0;
+                }
+
                 var result = await _dbSession.Connection.ExecuteAsync(_queryCreateEtape, new
                 {
                     texte = etape.texte,

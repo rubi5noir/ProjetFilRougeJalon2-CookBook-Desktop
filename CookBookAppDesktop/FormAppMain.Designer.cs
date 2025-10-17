@@ -181,6 +181,7 @@ namespace CookBookAppDesktop
             // 
             // tabPageRecettes
             // 
+            tabPageRecettes.BackColor = Color.GhostWhite;
             tabPageRecettes.Controls.Add(tableLayoutPanelGestionRecettes);
             tabPageRecettes.Location = new Point(4, 24);
             tabPageRecettes.Name = "tabPageRecettes";
@@ -188,7 +189,6 @@ namespace CookBookAppDesktop
             tabPageRecettes.Size = new Size(678, 529);
             tabPageRecettes.TabIndex = 0;
             tabPageRecettes.Text = "Recettes";
-            tabPageRecettes.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanelGestionRecettes
             // 
@@ -960,6 +960,7 @@ namespace CookBookAppDesktop
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            BackColor = Color.GhostWhite;
             ClientSize = new Size(692, 563);
             Controls.Add(tableLayoutPanelApp);
             MaximizeBox = false;
@@ -1047,7 +1048,6 @@ namespace CookBookAppDesktop
         private TableLayoutPanel tableLayoutPanelTemps_PréparationRecette;
         private NumericUpDown numericUpDownTemps_PréparationHeures;
         private NumericUpDown numericUpDownTemps_PréparationMinutes;
-        private NumericUpDown numericUpDownTemps_PréparationSecondes;
         private TableLayoutPanel tableLayoutPanelTemps_CuissonRecette;
         private NumericUpDown numericUpDownTemps_CuissonHeures;
         private NumericUpDown numericUpDownTemps_CuissonMinutes;
@@ -1065,7 +1065,6 @@ namespace CookBookAppDesktop
         private TableLayoutPanel tableLayoutPanelImageRecette;
         private TextBox textBoxImageRecette;
         private Button buttonSelectionnerImageRecette;
-        private NumericUpDown numericUpDown6;
         private TabPage tabPageCategories;
         private TabPage tabPageIngredients;
         private TabPage tabPageAvis;

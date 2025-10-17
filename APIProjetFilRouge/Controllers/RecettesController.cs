@@ -253,6 +253,10 @@ namespace APIProjetFilRouge.Controllers
         {
             bool isDeleted = await _recetteService.DeleteRecetteAsync(id);
 
+            if (!isDeleted)
+            {
+                return BadRequest("Suppression de la recette échouée.");
+            }
             return StatusCode(StatusCodes.Status204NoContent);
         }
 

@@ -24,7 +24,7 @@ namespace APITestIntegration
         #region GetCategories
 
         [Fact]
-        public async void GetCategories_ReturnExpectedListOfCategories()
+        public async Task GetCategories_ReturnExpectedListOfCategories()
         {
             //Arrange
             UpDatabase();
@@ -110,7 +110,7 @@ namespace APITestIntegration
         }
 
         [Fact]
-        public async void GetCategories_ReturnsBadRequest_WhenSomethingWrong()
+        public async Task GetCategories_ReturnsBadRequest_WhenSomethingWrong()
         {
             // Arrange
             UpDatabase();
@@ -156,7 +156,7 @@ namespace APITestIntegration
         #region GetRecipesIDsFromCategorieID
 
         [Fact]
-        public async void GetRecipesIDsFromCategorieID_ReturnExpectedListOfIDs()
+        public async Task GetRecipesIDsFromCategorieID_ReturnExpectedListOfIDs()
         {
             //Arrange
             UpDatabase();
@@ -180,7 +180,7 @@ namespace APITestIntegration
         }
 
         [Fact]
-        public async void GetRecipesIDsFromCategorieID_ReturnsBadRequest_WhenSomethingWrong()
+        public async Task GetRecipesIDsFromCategorieID_ReturnsBadRequest_WhenSomethingWrong()
         {
             // Arrange
             UpDatabase();
@@ -207,7 +207,7 @@ namespace APITestIntegration
         #region GetCategoriesByRecetteID
 
         [Fact]
-        public async void GetCategoriesByRecetteID_ReturnExpectedListOfCategories()
+        public async Task GetCategoriesByRecetteID_ReturnExpectedListOfCategories()
         {
             //Arrange
             UpDatabase();
@@ -241,7 +241,7 @@ namespace APITestIntegration
         }
 
         [Fact]
-        public async void GetCategoriesByRecetteID_ReturnsBadRequest_WhenSomethingWrong()
+        public async Task GetCategoriesByRecetteID_ReturnsBadRequest_WhenSomethingWrong()
         {
             // Arrange
             UpDatabase();
@@ -267,7 +267,7 @@ namespace APITestIntegration
         #region CreateCategorie
 
         [Fact]
-        public async void CreateCategorie_Return_The_NewID()
+        public async Task CreateCategorie_Return_The_NewID()
         {
             //Arrange
             UpDatabase();
@@ -287,7 +287,6 @@ namespace APITestIntegration
             reponseHttp.EnsureSuccessStatusCode();
             var createdID = await reponseHttp.Content.ReadFromJsonAsync<int>();
 
-            Assert.NotNull(createdID);
             Assert.Equal(Expected, createdID);
 
 
@@ -295,7 +294,7 @@ namespace APITestIntegration
         }
 
         [Fact]
-        public async void CreateCategorie_ReturnsBadRequest_WhenSomethingWrong()
+        public async Task CreateCategorie_ReturnsBadRequest_WhenSomethingWrong()
         {
             // Arrange
             UpDatabase();
@@ -325,7 +324,7 @@ namespace APITestIntegration
         #region AddCategorieToRecette
 
         [Fact]
-        public async void AddCategorieToRecette_ReturnTrue()
+        public async Task AddCategorieToRecette_ReturnTrue()
         {
             // Arrange
             UpDatabase();
@@ -352,7 +351,7 @@ namespace APITestIntegration
         }
 
         [Fact]
-        public async void AddCategorieToRecette_ReturnBadRequest_WhenInvalid()
+        public async Task AddCategorieToRecette_ReturnBadRequest_WhenInvalid()
         {
             // Arrange
             UpDatabase();
@@ -383,7 +382,7 @@ namespace APITestIntegration
         #region UpdateCategorie
 
         [Fact]
-        public async void UpdateCategorie_ReturnTrue()
+        public async Task UpdateCategorie_ReturnTrue()
         {
             // Arrange
             UpDatabase();
@@ -410,7 +409,7 @@ namespace APITestIntegration
         }
 
         [Fact]
-        public async void UpdateCategorie_ReturnBadRequest_WhenInvalid()
+        public async Task UpdateCategorie_ReturnBadRequest_WhenInvalid()
         {
             // Arrange
             UpDatabase();
@@ -441,7 +440,7 @@ namespace APITestIntegration
         #region DeleteCategorie
 
         [Fact]
-        public async void DeleteCategorie_ReturnTrue()
+        public async Task DeleteCategorie_ReturnTrue()
         {
             // Arrange
             UpDatabase();
@@ -463,7 +462,7 @@ namespace APITestIntegration
         }
 
         [Fact]
-        public async void DeleteCategorie_ReturnBadRequest_WhenInvalid()
+        public async Task DeleteCategorie_ReturnBadRequest_WhenInvalid()
         {
             // Arrange
             UpDatabase();
@@ -489,7 +488,7 @@ namespace APITestIntegration
         #region RemoveCategorieFromRecette
 
         [Fact]
-        public async void RemoveCategorieFromRecette_ReturnTrue()
+        public async Task RemoveCategorieFromRecette_ReturnTrue()
         {
             // Arrange
             UpDatabase();
@@ -521,7 +520,7 @@ namespace APITestIntegration
         }
 
         [Fact]
-        public async void RemoveCategorieFromRecette_ReturnBadRequest_WhenInvalid()
+        public async Task RemoveCategorieFromRecette_ReturnBadRequest_WhenInvalid()
         {
             // Arrange
             UpDatabase();

@@ -16,8 +16,12 @@ namespace CookBookAppDesktop
         public static void ConvertTimeSpanBinding(ConvertEventArgs evt, bool isHour = false)
         {
             decimal valueFormated = 0;
-            if (evt.Value is not null && evt.Value is TimeSpan)
+#pragma warning disable IDE0038 // Utiliser les critères spéciaux
+#pragma warning disable S3247 // Duplicate casts should not be made
+            if (evt.Value is TimeSpan)
                 valueFormated = (isHour) ? ((TimeSpan)evt.Value).Hours : ((TimeSpan)evt.Value).Minutes;
+#pragma warning restore S3247 // Duplicate casts should not be made
+#pragma warning restore IDE0038 // Utiliser les critères spéciaux
 
             evt.Value = valueFormated;
         }

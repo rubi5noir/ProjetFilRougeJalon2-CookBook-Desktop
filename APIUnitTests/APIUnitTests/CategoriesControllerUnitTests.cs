@@ -48,6 +48,7 @@ namespace APIUnitTests.APIUnitTests
         }
 
         [Fact]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "xUnit1031:Do not use blocking task operations in test method", Justification = "<En attente>")]
         public void GetAllCategories_ReturnsBadRequestResult_WithListOfCategoriesEmpty()
         {
             List<Categorie> categories = new List<Categorie>();
@@ -206,7 +207,9 @@ namespace APIUnitTests.APIUnitTests
         }
 
         [Fact]
-        public async void CreateCategorie_ReturnsBadRequest()
+#pragma warning disable CS1998 // Cette méthode async n'a pas d'opérateur 'await' et elle s'exécutera de façon synchrone
+        public async Task CreateCategorie_ReturnsBadRequest()
+#pragma warning restore CS1998 // Cette méthode async n'a pas d'opérateur 'await' et elle s'exécutera de façon synchrone
         {
             int newCategoryId = 0;
             IValidator<CategorieDTO> validator = new ValidatorCategorieDTO();
@@ -234,7 +237,7 @@ namespace APIUnitTests.APIUnitTests
         #region AddCategorieToRecette
 
         [Fact]
-        public async void AddCategorieToRecette_ReturnsOkResult_WithTrue()
+        public async Task AddCategorieToRecette_ReturnsOkResult_WithTrue()
         {
             int recetteId = 1;
             IValidator<CategorieDTO> validator = new ValidatorCategorieDTO();
@@ -268,7 +271,7 @@ namespace APIUnitTests.APIUnitTests
         }
 
         [Fact]
-        public async void AddCategorieToRecette_ReturnsBadRequest()
+        public async Task AddCategorieToRecette_ReturnsBadRequest()
         {
             int recetteId = 1;
             IValidator<CategorieDTO> validator = new ValidatorCategorieDTO();
@@ -306,7 +309,7 @@ namespace APIUnitTests.APIUnitTests
         #region UpdateCategorie
 
         [Fact]
-        public async void UpdateCategorie_ReturnsOkResult_WithTrue()
+        public async Task UpdateCategorie_ReturnsOkResult_WithTrue()
         {
             int newCategoryId = 1;
             IValidator<CategorieDTO> validator = new ValidatorCategorieDTO();
@@ -334,7 +337,9 @@ namespace APIUnitTests.APIUnitTests
         }
 
         [Fact]
-        public async void UpdateCategorie_ReturnsBadRequest()
+#pragma warning disable CS1998 // Cette méthode async n'a pas d'opérateur 'await' et elle s'exécutera de façon synchrone
+        public async Task UpdateCategorie_ReturnsBadRequest()
+#pragma warning restore CS1998 // Cette méthode async n'a pas d'opérateur 'await' et elle s'exécutera de façon synchrone
         {
             int newCategoryId = 1;
             IValidator<CategorieDTO> validator = new ValidatorCategorieDTO();
@@ -366,7 +371,7 @@ namespace APIUnitTests.APIUnitTests
         #region DeleteCategorie
 
         [Fact]
-        public async void DeleteCategorie_ReturnsOkResult_WithTrue()
+        public async Task DeleteCategorie_ReturnsOkResult_WithTrue()
         {
             int CategoryId = 1;
 
@@ -388,7 +393,7 @@ namespace APIUnitTests.APIUnitTests
         }
 
         [Fact]
-        public async void DeleteCategorie_ReturnsBadRequest()
+        public async Task DeleteCategorie_ReturnsBadRequest()
         {
             int CategoryId = 1;
 
@@ -414,7 +419,7 @@ namespace APIUnitTests.APIUnitTests
         #region RemoveCategorieFromRecette
 
         [Fact]
-        public async void RemoveCategorieFromRecette_ReturnsOkResult_WithTrue()
+        public async Task RemoveCategorieFromRecette_ReturnsOkResult_WithTrue()
         {
             int recetteId = 1;
             IValidator<CategorieDTO> validator = new ValidatorCategorieDTO();
@@ -448,7 +453,7 @@ namespace APIUnitTests.APIUnitTests
         }
 
         [Fact]
-        public async void RemoveCategorieFromRecette_ReturnsBadRequest()
+        public async Task RemoveCategorieFromRecette_ReturnsBadRequest()
         {
             int recetteId = 1;
             IValidator<CategorieDTO> validator = new ValidatorCategorieDTO();

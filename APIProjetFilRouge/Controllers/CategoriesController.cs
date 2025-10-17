@@ -88,7 +88,7 @@ namespace APIProjetFilRouge.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateCategorie(IValidator<CategorieDTO> validator, [FromBody] CategorieDTO categorieDTO)
         {
-            if (validator.Validate(categorieDTO).IsValid == true)
+            if (validator.Validate(categorieDTO).IsValid)
             {
                 var categorie = new Categorie
                 {
@@ -125,7 +125,7 @@ namespace APIProjetFilRouge.Controllers
                 };
 
                 var result = await _recetteService.AddCategorieToRecetteAsync(id, categorie);
-                if (result == false)
+                if (!result)
                 {
                     return BadRequest("Ajout de la catégorie à la recette échouée.");
                 }
@@ -154,7 +154,7 @@ namespace APIProjetFilRouge.Controllers
 
                 bool result = await _recetteService.UpdateCategorieAsync(categorie);
 
-                if (result == false)
+                if (!result)
                 {
                     return BadRequest("Mise à jour de la catégorie échouée.");
                 }
@@ -175,7 +175,7 @@ namespace APIProjetFilRouge.Controllers
         {
             var result = await _recetteService.DeleteCategorieAsync(id);
 
-            if (result == false)
+            if (!result)
             {
                 return BadRequest("Suppression de la catégorie échouée.");
             }
@@ -196,7 +196,7 @@ namespace APIProjetFilRouge.Controllers
                     nom = categorieDTO.nom
                 };
                 var result = await _recetteService.RemoveCategorieFromRecetteAsync(id, categorie);
-                if (result == false)
+                if (!result)
                 {
                     return BadRequest("Suppression de la catégorie à la recette échouée.");
                 }

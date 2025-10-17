@@ -12,7 +12,7 @@ namespace CookBookAppDesktop
     ///     - Application.ThreadException pour les exceptions dans le thread principal (UI).
     ///     - AppDomain.CurrentDomain.UnhandledException pour les exceptions dans les threads en arrière-plan (background threads).
     /// </summary>
-    internal class GlobalException
+    public class GlobalException : Exception
     {
 
 
@@ -40,7 +40,9 @@ namespace CookBookAppDesktop
         public static void HandleException(object sender, UnhandledExceptionEventArgs e)
         {
             // Récupère l'exception
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             Exception ex = e.ExceptionObject as Exception;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
 
             // Affiche un message d'erreur à l'utilisateur
             MessageBox.Show(

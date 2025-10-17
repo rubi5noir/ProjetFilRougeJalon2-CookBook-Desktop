@@ -27,16 +27,25 @@ namespace CookBookAppDesktop
         BindingList<EtapeDTO> _etapes;
         BindingList<CategorieDTO> _categories;
         BindingList<IngredientDTO> _ingredients;
-        BindingList<AvisDTO> _avis;
 
 
+#pragma warning disable CS8618 // Un champ non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le champ comme pouvant accepter la valeur Null.
+#pragma warning disable S1104 // Fields should not have public accessibility
+#pragma warning disable S2223 // Non-constant static fields should not be visible
         public static string Token;
+#pragma warning restore S2223 // Non-constant static fields should not be visible
+#pragma warning restore S1104 // Fields should not have public accessibility
+#pragma warning restore CS8618 // Un champ non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le champ comme pouvant accepter la valeur Null.
 
+#pragma warning disable S4487 // Unread "private" fields should be removed
         IEnumerable<string> _roles = [];
+#pragma warning restore S4487 // Unread "private" fields should be removed
 
 
 
+#pragma warning disable CS8618 // Un champ non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le champ comme pouvant accepter la valeur Null.
         public FormAppMain()
+#pragma warning restore CS8618 // Un champ non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le champ comme pouvant accepter la valeur Null.
         {
 
             DoubleBuffered = true;
@@ -50,11 +59,13 @@ namespace CookBookAppDesktop
             numericUpDownDifficulteRecette.MouseWheel += NumericUpDownDifficulteRecette_MouseWheel;
 
             //Same for both as i think that if there is some events logic to do with one the other need it
+#pragma warning disable CS8622 // La nullabilité des types référence dans le type du paramètre ne correspond pas au délégué cible (probablement en raison des attributs de nullabilité).
             numericUpDownTemps_PréparationHeures.MouseWheel += NumericUpDownTempsPreparation_MouseWheel;
             numericUpDownTemps_PréparationMinutes.MouseWheel += NumericUpDownTempsPreparation_MouseWheel;
 
             numericUpDownTemps_CuissonHeures.MouseWheel += NumericUpDownTempsPreparation_MouseWheel;
             numericUpDownTemps_CuissonMinutes.MouseWheel += NumericUpDownTempsPreparation_MouseWheel;
+#pragma warning restore CS8622 // La nullabilité des types référence dans le type du paramètre ne correspond pas au délégué cible (probablement en raison des attributs de nullabilité).
 
         }
 
@@ -152,8 +163,10 @@ namespace CookBookAppDesktop
 
         private async Task RefreshRecettes()
         {
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             RecetteDTO current = bindingSourceRecettes.Current as RecetteDTO;
-            // Remplissage de la liste
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
+                              // Remplissage de la liste
             var res = await _rest.GetAsync<IEnumerable<RecetteDTO>>($"{URL_GET_RECETTES}/Details");
 
             _recettes.Clear();
@@ -162,15 +175,20 @@ namespace CookBookAppDesktop
 
             // On se repositionne sur le current
             if (current is not null)
-                bindingSourceRecettes.Position = _recettes.IndexOf(_recettes.Where(r => r.id == current.id).FirstOrDefault());
+#pragma warning disable CS8604 // Existence possible d'un argument de référence null.
+                bindingSourceRecettes.Position = _recettes.IndexOf(_recettes.FirstOrDefault(r => r.id == current.id));
+#pragma warning restore CS8604 // Existence possible d'un argument de référence null.
         }
 
         private async Task RefreshEtapes()
         {
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             RecetteDTO recette = bindingSourceRecettes.Current as RecetteDTO;
-            EtapeDTO current = bindingSourceEtapes.Current as EtapeDTO;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
 
+#pragma warning disable CS8602 // Déréférencement d'une éventuelle référence null.
             var res = await _rest.GetAsync<IEnumerable<EtapeDTO>>($"{URL_GET_ETAPES}/{recette.id}");
+#pragma warning restore CS8602 // Déréférencement d'une éventuelle référence null.
 
             _etapes.Clear();
             foreach (EtapeDTO e in res)
@@ -179,7 +197,9 @@ namespace CookBookAppDesktop
 
         private async Task RefreshCategories()
         {
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             CategorieDTO current = bindingSourceRecettes.Current as CategorieDTO;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
 
             var res = await _rest.GetAsync<IEnumerable<CategorieDTO>>($"{URL_GET_CATEGORIES}");
 
@@ -189,13 +209,17 @@ namespace CookBookAppDesktop
 
             if (current is not null)
             {
-                bindingSourceCategories.Position = _categories.IndexOf(_categories.Where(c => c.id == current.id).FirstOrDefault());
+#pragma warning disable CS8604 // Existence possible d'un argument de référence null.
+                bindingSourceCategories.Position = _categories.IndexOf(_categories.FirstOrDefault(c => c.id == current.id));
+#pragma warning restore CS8604 // Existence possible d'un argument de référence null.
             }
         }
 
         private async Task RefreshIngredients()
         {
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             IngredientDTO current = bindingSourceIngredients.Current as IngredientDTO;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
 
             var res = await _rest.GetAsync<IEnumerable<IngredientDTO>>($"{URL_GET_INGREDIENTS}");
 
@@ -205,7 +229,9 @@ namespace CookBookAppDesktop
 
             if (current is not null)
             {
-                bindingSourceIngredients.Position = _ingredients.IndexOf(_ingredients.Where(i => i.id == current.id).FirstOrDefault());
+#pragma warning disable CS8604 // Existence possible d'un argument de référence null.
+                bindingSourceIngredients.Position = _ingredients.IndexOf(_ingredients.FirstOrDefault(i => i.id == current.id));
+#pragma warning restore CS8604 // Existence possible d'un argument de référence null.
             }
         }
 
@@ -230,7 +256,9 @@ namespace CookBookAppDesktop
                 {
                     _rest.JwtToken = formLogin.JwtToken;
                     _roles = formLogin._roles;
+#pragma warning disable S2696 // Instance members should not write to "static" fields
                     Token = _rest.JwtToken;
+#pragma warning restore S2696 // Instance members should not write to "static" fields
 
                     tableLayoutPanelApp.Enabled = true;
 
@@ -259,19 +287,21 @@ namespace CookBookAppDesktop
 
         #region TabPageRecettes
 
-        private async void NumericUpDownTempsPreparation_MouseWheel(object sender, MouseEventArgs e)
+        private void NumericUpDownTempsPreparation_MouseWheel(object sender, MouseEventArgs e)
         {
             Utility.HandleMouseWheelEventForNumericUpDown(sender, e);
         }
 
-        private async void NumericUpDownTempsCuisson_MouseWheel(object sender, MouseEventArgs e)
+        private void NumericUpDownTempsCuisson_MouseWheel(object sender, MouseEventArgs e)
         {
             Utility.HandleMouseWheelEventForNumericUpDown(sender, e);
         }
 
-        private async void NumericUpDownDifficulteRecette_MouseWheel(object? sender, MouseEventArgs e)
+        private void NumericUpDownDifficulteRecette_MouseWheel(object? sender, MouseEventArgs e)
         {
+#pragma warning disable CS8604 // Existence possible d'un argument de référence null.
             Utility.HandleMouseWheelEventForNumericUpDown(sender, e);
+#pragma warning restore CS8604 // Existence possible d'un argument de référence null.
         }
 
         private async void buttonRefreshRecettes_Click(object sender, EventArgs e)
@@ -291,7 +321,7 @@ namespace CookBookAppDesktop
                 img = textBoxImageRecette.Text
             };
 
-            var createdRecette = await _rest.PostAsync<RecetteDTO, RecetteDTO>(URL_CREATE_RECETTES, newRecette);
+            await _rest.PostAsync<RecetteDTO, RecetteDTO>(URL_CREATE_RECETTES, newRecette);
         }
 
         private async void buttonUpdateRecette_Click(object sender, EventArgs e)
@@ -327,7 +357,7 @@ namespace CookBookAppDesktop
             await RefreshRecettes();
         }
 
-        private async void buttonSelectionnerImageRecette_Click(object sender, EventArgs e)
+        private void buttonSelectionnerImageRecette_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
@@ -344,11 +374,15 @@ namespace CookBookAppDesktop
             }
         }
 
-        private async void buttonOpenRecetteDetailsForm_Click(object sender, EventArgs e)
+        private void buttonOpenRecetteDetailsForm_Click(object sender, EventArgs e)
         {
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             RecetteDTO current = bindingSourceRecettes.Current as RecetteDTO;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
 
+#pragma warning disable CS8602 // Déréférencement d'une éventuelle référence null.
             FormRecetteDetails formRecetteDetails = new FormRecetteDetails(current.id);
+#pragma warning restore CS8602 // Déréférencement d'une éventuelle référence null.
             formRecetteDetails.ShowDialog();
         }
 
@@ -358,7 +392,11 @@ namespace CookBookAppDesktop
 
         private async void dataGridViewEtapesRecettes_SelectionChanged(object sender, EventArgs e)
         {
+#pragma warning disable IDE0019 // Utiliser les critères spéciaux
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             RecetteDTO current = bindingSourceRecettes.Current as RecetteDTO;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
+#pragma warning restore IDE0019 // Utiliser les critères spéciaux
 
             if (current != null)
             {

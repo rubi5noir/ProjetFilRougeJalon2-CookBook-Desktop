@@ -26,7 +26,9 @@ namespace CookBookAppDesktop
         BindingList<EtapeDTO> _etapes;
         BindingList<RecetteDTO> _recettes;
 
+#pragma warning disable CS8618 // Un champ non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le champ comme pouvant accepter la valeur Null.
         public FormManageEtapes()
+#pragma warning restore CS8618 // Un champ non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le champ comme pouvant accepter la valeur Null.
         {
             InitializeComponent();
             InitializeBinding();
@@ -62,7 +64,9 @@ namespace CookBookAppDesktop
 
         private async Task RefreshEtapes(int id)
         {
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             EtapeDTO current = bindingSourceEtapes.Current as EtapeDTO;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
 
             // Remplissage de la liste
             var res = await _rest.GetAsync<IEnumerable<EtapeDTO>>($"{URL_GET_ETAPES}/{id}");
@@ -81,12 +85,16 @@ namespace CookBookAppDesktop
 
             // On se repositionne sur le current
             if (current is not null)
-                bindingSourceEtapes.Position = _etapes.IndexOf(_etapes.Where(e => e.numero == current.numero).FirstOrDefault());
+#pragma warning disable CS8604 // Existence possible d'un argument de référence null.
+                bindingSourceEtapes.Position = _etapes.IndexOf(_etapes.FirstOrDefault(e => e.numero == current.numero));
+#pragma warning restore CS8604 // Existence possible d'un argument de référence null.
         }
 
         private async Task RefreshRecettes()
         {
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             RecetteDTO current = bindingSourceRecettes.Current as RecetteDTO;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
 
             // Remplissage de la liste
             var res = await _rest.GetAsync<IEnumerable<RecetteDTO>>(URL_GET_RECETTES);
@@ -97,7 +105,9 @@ namespace CookBookAppDesktop
 
             // On se repositionne sur le current
             if (current is not null)
-                bindingSourceRecettes.Position = _recettes.IndexOf(_recettes.Where(r => r.id == current.id).FirstOrDefault());
+#pragma warning disable CS8604 // Existence possible d'un argument de référence null.
+                bindingSourceRecettes.Position = _recettes.IndexOf(_recettes.FirstOrDefault(r => r.id == current.id));
+#pragma warning restore CS8604 // Existence possible d'un argument de référence null.
         }
 
         #endregion
@@ -114,7 +124,9 @@ namespace CookBookAppDesktop
 
         private async void dataGridViewRecettesForEtapes_SelectionChanged(object sender, EventArgs e)
         {
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             RecetteDTO current = bindingSourceRecettes.Current as RecetteDTO;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
 
             if (current is not null)
                 await RefreshEtapes(current.id);
@@ -122,7 +134,9 @@ namespace CookBookAppDesktop
 
         private async void buttonAdd_Click(object sender, EventArgs e)
         {
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             EtapeDTO current = bindingSourceEtapes.Current as EtapeDTO;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
 
             var etape = new EtapeDTO
             {
@@ -133,7 +147,9 @@ namespace CookBookAppDesktop
             var result = MessageBox.Show($"Êtes-vous sûr de vouloir créer l'étape suivante : \n- numero : {etape.numero}\n- Description : {etape.texte} ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                var res = await _rest.PostAsync<EtapeDTO, EtapeDTO>($"{URL_CREATE_ETAPES}/{current.id}", etape);
+#pragma warning disable CS8602 // Déréférencement d'une éventuelle référence null.
+                await _rest.PostAsync<EtapeDTO, EtapeDTO>($"{URL_CREATE_ETAPES}/{current.id}", etape);
+#pragma warning restore CS8602 // Déréférencement d'une éventuelle référence null.
                 await RefreshEtapes(current.id);
             }
 
@@ -152,7 +168,7 @@ namespace CookBookAppDesktop
             var result = MessageBox.Show($"Êtes-vous sûr de vouloir modifier l'étape actuel : \n- numero : {current.numero}\n- Description : {current.texte}\nen l'étape suivante : \n- numero : {etape.numero}\n- Description : {etape.texte} ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-                var res = await _rest.PutAsync<EtapeDTO, EtapeDTO>($"{URL_UPDATE_ETAPES}/{current.id}/{current.numero}", etape);
+                await _rest.PutAsync<EtapeDTO, EtapeDTO>($"{URL_UPDATE_ETAPES}/{current.id}/{current.numero}", etape);
                 await RefreshEtapes(current.id);
             }
         }

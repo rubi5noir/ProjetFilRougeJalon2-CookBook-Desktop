@@ -6,9 +6,12 @@ namespace APIProjetFilRouge.DAL.Session
     public abstract class BaseSession : IDBSession
     {
         public DatabaseProviderName? DatabaseProviderName { get; protected set; }
+#pragma warning disable CS8618 // Un champ non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le champ comme pouvant accepter la valeur Null.
         public IDbConnection Connection { get; protected set; }
-
+#pragma warning restore CS8618 // Un champ non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le champ comme pouvant accepter la valeur Null.
+#pragma warning disable CS8618 // Un champ non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le champ comme pouvant accepter la valeur Null.
         public IDbTransaction Transaction { get; private set; }
+#pragma warning restore CS8618 // Un champ non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le champ comme pouvant accepter la valeur Null.
         public bool HasActiveTransaction => Transaction != null;
 
         public void BeginTransaction()
@@ -18,21 +21,27 @@ namespace APIProjetFilRouge.DAL.Session
                 if (Connection?.State != ConnectionState.Open)
                     Connection?.Open();
 
+#pragma warning disable CS8601 // Existence possible d'une assignation de référence null.
                 Transaction = Connection?.BeginTransaction();
+#pragma warning restore CS8601 // Existence possible d'une assignation de référence null.
             }
         }
 
         public void Commit()
         {
             Transaction?.Commit();
+#pragma warning disable CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
             Transaction = null;
+#pragma warning restore CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
             Connection?.Close();
         }
 
         public void Rollback()
         {
             Transaction?.Rollback();
+#pragma warning disable CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
             Transaction = null;
+#pragma warning restore CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
             Connection?.Close();
         }
 

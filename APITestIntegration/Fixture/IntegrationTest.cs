@@ -19,7 +19,7 @@ public abstract class IntegrationTest : IClassFixture<APIWebApplicationFactory>
 {
     public HttpClient httpClient { get; set; }
     private IConfiguration _configuration { get; set; }
-    public IntegrationTest(APIWebApplicationFactory webApi)
+    protected IntegrationTest(APIWebApplicationFactory webApi)
     {
         //instancier le client
         httpClient = webApi.CreateClient();
@@ -40,7 +40,9 @@ public abstract class IntegrationTest : IClassFixture<APIWebApplicationFactory>
         {
 
             var JwtDTO = await httpResponse.Content.ReadFromJsonAsync<JwtDTO>();
+#pragma warning disable CS8602 // Déréférencement d'une éventuelle référence null.
             httpClient.DefaultRequestHeaders.Authorization = new("bearer", JwtDTO.Token);
+#pragma warning restore CS8602 // Déréférencement d'une éventuelle référence null.
         }
         else
         {
@@ -69,7 +71,9 @@ public abstract class IntegrationTest : IClassFixture<APIWebApplicationFactory>
         con.Dispose();
     }
 
+#pragma warning disable CS1998 // Cette méthode async n'a pas d'opérateur 'await' et elle s'exécutera de façon synchrone
     public async Task ExecuteSqlAsync(string sql)
+#pragma warning restore CS1998 // Cette méthode async n'a pas d'opérateur 'await' et elle s'exécutera de façon synchrone
     {
         var stringConnection = _configuration.GetSection("DataBaseSettings").GetValue<string>("ConnectionString");
         IDbConnection con = new NpgsqlConnection(stringConnection);

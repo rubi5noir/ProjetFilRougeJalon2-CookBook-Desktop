@@ -61,7 +61,9 @@ namespace CookBookAppDesktop
 
         #region RightPartDetails
 
+#pragma warning disable CS1998 // Cette méthode async n'a pas d'opérateur 'await' et elle s'exécutera de façon synchrone
         private async Task RefreshTableLayoutPanelIngredients(List<IngredientDTO> ingredients)
+#pragma warning restore CS1998 // Cette méthode async n'a pas d'opérateur 'await' et elle s'exécutera de façon synchrone
         {
             tableLayoutPanelIngredients.Controls.Clear(); // call redraw sur le control
             tableLayoutPanelIngredients.RowStyles.Clear(); //call redraw sur la table
@@ -96,7 +98,9 @@ namespace CookBookAppDesktop
             }
         }
 
+#pragma warning disable CS1998 // Cette méthode async n'a pas d'opérateur 'await' et elle s'exécutera de façon synchrone
         private async Task RefreshTableLayoutPanelCategories(List<CategorieDTO> categories)
+#pragma warning restore CS1998 // Cette méthode async n'a pas d'opérateur 'await' et elle s'exécutera de façon synchrone
         {
             tableLayoutPanelCategories.Controls.Clear();
             tableLayoutPanelCategories.RowCount = categories.Count;
@@ -120,9 +124,13 @@ namespace CookBookAppDesktop
 
         #region LeftPartDetails
 
+#pragma warning disable CS1998 // Cette méthode async n'a pas d'opérateur 'await' et elle s'exécutera de façon synchrone
         private async Task RefreshTableLayoutPanelEtapes(List<EtapeDTO> etapes)
+#pragma warning restore CS1998 // Cette méthode async n'a pas d'opérateur 'await' et elle s'exécutera de façon synchrone
         {
-            tableLayoutPanelEtapes.Controls.Clear();
+            tableLayoutPanelEtapes.Controls.Clear(); // call redraw sur le control
+            tableLayoutPanelEtapes.RowStyles.Clear(); //call redraw sur la table
+            // besoin mettre un style permettant de voir le multiligne et pas plus que ce que le texte prends
             tableLayoutPanelEtapes.RowCount = etapes.Count;
 
             int rowIndex = 0;
@@ -162,7 +170,9 @@ namespace CookBookAppDesktop
                 var utilisateur = utilisateurs.FirstOrDefault(u => u.id == avi.id_utilisateur);
 
                 labelUtilisateur = new Label();
+#pragma warning disable CS8602 // Déréférencement d'une éventuelle référence null.
                 labelUtilisateur.Text = utilisateur.identifiant;
+#pragma warning restore CS8602 // Déréférencement d'une éventuelle référence null.
 
                 textBoxAvis = new TextBox();
                 textBoxAvis.Name = $"textBoxAvis{avi.id_utilisateur}";

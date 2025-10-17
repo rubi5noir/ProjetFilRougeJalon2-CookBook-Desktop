@@ -27,7 +27,9 @@ namespace CookBookAppDesktop
         BindingList<RecetteDTO> _recettesWithTheIngredient;
         BindingList<RecetteDTO> _recettesWithoutTheIngredient;
 
+#pragma warning disable CS8618 // Un champ non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le champ comme pouvant accepter la valeur Null.
         public FormManageIngredients()
+#pragma warning restore CS8618 // Un champ non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le champ comme pouvant accepter la valeur Null.
         {
             InitializeComponent();
             InitializeBinding();
@@ -79,7 +81,9 @@ namespace CookBookAppDesktop
 
         private async Task RefreshIngredients()
         {
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             IngredientDTO current = bindingSourceIngredients.Current as IngredientDTO;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
 
             var res = await _rest.GetAsync<IEnumerable<IngredientDTO>>(URL_GET_INGREDIENTS);
 
@@ -89,7 +93,9 @@ namespace CookBookAppDesktop
 
             // On se repositionne sur le current
             if (current is not null)
-                bindingSourceIngredients.Position = _ingredients.IndexOf(_ingredients.Where(r => r.id == current.id).FirstOrDefault());
+#pragma warning disable CS8604 // Existence possible d'un argument de référence null.
+                bindingSourceIngredients.Position = _ingredients.IndexOf(_ingredients.FirstOrDefault(r => r.id == current.id));
+#pragma warning restore CS8604 // Existence possible d'un argument de référence null.
         }
 
         #endregion
@@ -106,7 +112,11 @@ namespace CookBookAppDesktop
 
         private async void dataGridViewIngredients_CurrentChanged(object sender, EventArgs e)
         {
+#pragma warning disable IDE0019 // Utiliser les critères spéciaux
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             IngredientDTO current = bindingSourceIngredients.Current as IngredientDTO;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
+#pragma warning restore IDE0019 // Utiliser les critères spéciaux
 
             _ingredientsInRecette.Clear();
 
@@ -137,14 +147,18 @@ namespace CookBookAppDesktop
                     _recettesWithTheIngredient.Clear();
                     _recettesWithoutTheIngredient.Clear();
 
-                    var result = MessageBox.Show($"{ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
         private async void dataGridViewRecipes_CurrentChanged(object sender, EventArgs e)
         {
+#pragma warning disable IDE0019 // Utiliser les critères spéciaux
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             RecetteDTO current = bindingSourceRecetteWithTheIngredient.Current as RecetteDTO;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
+#pragma warning restore IDE0019 // Utiliser les critères spéciaux
 
             _ingredientsInRecette.Clear();
 
@@ -163,7 +177,7 @@ namespace CookBookAppDesktop
                 catch (Exception ex)
                 {
                     _ingredientsInRecette.Clear();
-                    var result = MessageBox.Show($"{ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -187,15 +201,19 @@ namespace CookBookAppDesktop
 
         private async void buttonModifyIngredient_Click(object sender, EventArgs e)
         {
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             IngredientDTO current = bindingSourceIngredients.Current as IngredientDTO;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             var nom = textBoxNomIngredient.Text;
 
+#pragma warning disable CS8602 // Déréférencement d'une éventuelle référence null.
             var confirm = MessageBox.Show(
                 $"Modifier l'ingrédient : {current.nom} en '{nom}' ?",
                 "Confirmation",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question
             );
+#pragma warning restore CS8602 // Déréférencement d'une éventuelle référence null.
             if (confirm == DialogResult.Yes)
             {
                 await _rest.PutAsync($"{URL_MODIFY_INGREDIENTS}/{current.id}", nom);
@@ -205,25 +223,37 @@ namespace CookBookAppDesktop
 
         private async void buttonRemoveIngredient_Click(object sender, EventArgs e)
         {
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             IngredientDTO current = bindingSourceIngredients.Current as IngredientDTO;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
 
+#pragma warning disable CS8602 // Déréférencement d'une éventuelle référence null.
             var confirm = MessageBox.Show(
                 $"Supprimer l'ingrédient : {current.nom} ?",
                 "Confirmation",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question
             );
+#pragma warning restore CS8602 // Déréférencement d'une éventuelle référence null.
             if (confirm == DialogResult.Yes)
             {
-                await _rest.DeleteAsync($"{URL_CREATE_INGREDIENTS}/{current.id}");
+                await _rest.DeleteAsync($"{URL_DELETE_INGREDIENTS}/{current.id}");
                 await RefreshIngredients();
             }
         }
 
         private async void buttonAddIngredientToRecette_Click(object sender, EventArgs e)
         {
+#pragma warning disable IDE0019 // Utiliser les critères spéciaux
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             IngredientDTO current = bindingSourceIngredients.Current as IngredientDTO;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
+#pragma warning restore IDE0019 // Utiliser les critères spéciaux
+#pragma warning disable IDE0019 // Utiliser les critères spéciaux
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             RecetteDTO recette = bindingSourceRecetteWithoutTheIngredients.Current as RecetteDTO;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
+#pragma warning restore IDE0019 // Utiliser les critères spéciaux
 
             if (recette is null || current is null)
             {
@@ -247,8 +277,16 @@ namespace CookBookAppDesktop
 
         private async void buttonModifyIngredientQuantity_Click(object sender, EventArgs e)
         {
+#pragma warning disable IDE0019 // Utiliser les critères spéciaux
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             IngredientDTO current = bindingSourceIngredientsInRecette.Current as IngredientDTO;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
+#pragma warning restore IDE0019 // Utiliser les critères spéciaux
+#pragma warning disable IDE0019 // Utiliser les critères spéciaux
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             RecetteDTO recette = bindingSourceRecetteWithTheIngredient.Current as RecetteDTO;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
+#pragma warning restore IDE0019 // Utiliser les critères spéciaux
 
             if (recette is null || current is null)
             {
@@ -285,8 +323,16 @@ namespace CookBookAppDesktop
 
         private async void buttonRemoveIngredientFromRecette_Click(object sender, EventArgs e)
         {
+#pragma warning disable IDE0019 // Utiliser les critères spéciaux
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             IngredientDTO current = bindingSourceIngredientsInRecette.Current as IngredientDTO;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
+#pragma warning restore IDE0019 // Utiliser les critères spéciaux
+#pragma warning disable IDE0019 // Utiliser les critères spéciaux
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             RecetteDTO recette = bindingSourceRecetteWithTheIngredient.Current as RecetteDTO;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
+#pragma warning restore IDE0019 // Utiliser les critères spéciaux
 
             if (recette is null || current is null)
             {
@@ -302,7 +348,7 @@ namespace CookBookAppDesktop
             );
             if (confirm == DialogResult.Yes)
             {
-                await _rest.DeleteAsync($"{URL_CREATE_INGREDIENTS}/RemoveFromRecette/{recette.id}/{current.id}");
+                await _rest.DeleteAsync($"{URL_DELETE_INGREDIENTS}/RemoveFromRecette/{recette.id}/{current.id}");
                 await RefreshIngredients();
             }
         }

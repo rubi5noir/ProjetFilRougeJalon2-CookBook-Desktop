@@ -22,11 +22,17 @@ namespace CookBookAppDesktop
             }
         };
 
+#pragma warning disable CS8618 // Un champ non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le champ comme pouvant accepter la valeur Null.
         public string BaseUrl { get; set; }
+#pragma warning restore CS8618 // Un champ non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le champ comme pouvant accepter la valeur Null.
 
+#pragma warning disable CS8618 // Un champ non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le champ comme pouvant accepter la valeur Null.
         public string JwtToken { get; set; }
+#pragma warning restore CS8618 // Un champ non-nullable doit contenir une valeur autre que Null lors de la fermeture du constructeur. Envisagez d’ajouter le modificateur « required » ou de déclarer le champ comme pouvant accepter la valeur Null.
 
+#pragma warning disable CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
         private async Task<HttpResponseMessage> SendAsync(HttpMethod method, string endUrl, HttpContent content = null, Dictionary<string, string> customHeaders = null)
+#pragma warning restore CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
         {
             string Url = CombinerUrl(BaseUrl, endUrl);
 
@@ -58,20 +64,28 @@ namespace CookBookAppDesktop
             return response;
         }
 
-        private async Task HandleError(HttpResponseMessage response)
+        private static async Task HandleError(HttpResponseMessage response)
         {
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             APIError problem = null;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             string raw = null;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
 
             try
             {
                 // On tente de lire le contenu comme APIError
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
                 problem = await response.Content.ReadFromJsonAsync<APIError>();
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             }
             catch
             {
                 // Si la désérialisation échoue (pas du JSON ou mauvais format)
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
                 problem = null;
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             }
 
             // Si la désérialisation a échoué ou ne donne pas d'infos utiles
@@ -95,7 +109,7 @@ namespace CookBookAppDesktop
             throw new HttpRequestException(message);
         }
 
-        private string CombinerUrl(string baseUrl, string endUrl)
+        private static string CombinerUrl(string baseUrl, string endUrl)
         {
             if (string.IsNullOrEmpty(baseUrl))
                 return endUrl;
@@ -107,92 +121,138 @@ namespace CookBookAppDesktop
 
         #region GET
 
+#pragma warning disable CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
         public async Task<T> GetAsync<T>(string endpoint, Dictionary<string, string> customHeaders = null)
+#pragma warning restore CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
         {
+#pragma warning disable CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
             HttpResponseMessage response = await SendAsync(HttpMethod.Get, endpoint, null, customHeaders);
+#pragma warning restore CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
 
             // Si la réponse est vide (NoContent ou Content-Length = 0 ou null), retourne default
             var contentLength = response.Content?.Headers?.ContentLength;
             if (response.StatusCode == HttpStatusCode.NoContent || contentLength == 0 || contentLength is null)
+#pragma warning disable CS8603 // Existence possible d'un retour de référence null.
                 return default;
+#pragma warning restore CS8603 // Existence possible d'un retour de référence null.
 
+#pragma warning disable CS8604 // Existence possible d'un argument de référence null.
             return await response.Content.ReadJsonSafeAsync<T>();
+#pragma warning restore CS8604 // Existence possible d'un argument de référence null.
         }
 
         #endregion GET
 
         #region POST
 
+#pragma warning disable CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
         public async Task<T> PostAsync<T, C>(string endpoint, C content, Dictionary<string, string> customHeaders = null)
+#pragma warning restore CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
         {
             HttpResponseMessage response = await SendAsync(HttpMethod.Post, endpoint, JsonContent.Create(content), customHeaders);
 
             // Si la réponse est vide (NoContent ou Content-Length = 0 ou null), retourne default
             var contentLength = response.Content?.Headers?.ContentLength;
             if (response.StatusCode == HttpStatusCode.NoContent || contentLength == 0 || contentLength is null)
+#pragma warning disable CS8603 // Existence possible d'un retour de référence null.
                 return default;
+#pragma warning restore CS8603 // Existence possible d'un retour de référence null.
 
+#pragma warning disable CS8604 // Existence possible d'un argument de référence null.
             return await response.Content.ReadJsonSafeAsync<T>();
+#pragma warning restore CS8604 // Existence possible d'un argument de référence null.
         }
 
+#pragma warning disable CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
         public async Task PostAsync<C>(string endpoint, C content, Dictionary<string, string> customHeaders = null)
+#pragma warning restore CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
         {
             await SendAsync(HttpMethod.Post, endpoint, JsonContent.Create(content), customHeaders);
         }
 
+#pragma warning disable CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
         public async Task PostAsync(string endpoint, Dictionary<string, string> customHeaders = null)
+#pragma warning restore CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
         {
+#pragma warning disable CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
             await SendAsync(HttpMethod.Post, endpoint, null, customHeaders);
+#pragma warning restore CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
         }
 
         #endregion POST
 
         #region PUT
 
+#pragma warning disable CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
         public async Task<T> PutAsync<T, C>(string endpoint, C content, Dictionary<string, string> customHeaders = null)
+#pragma warning restore CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
         {
             HttpResponseMessage response = await SendAsync(HttpMethod.Put, endpoint, JsonContent.Create(content), customHeaders);
 
             // Si la réponse est vide (NoContent ou Content-Length = 0 ou null), retourne default
             var contentLength = response.Content?.Headers?.ContentLength;
             if (response.StatusCode == HttpStatusCode.NoContent || contentLength == 0 || contentLength is null)
+#pragma warning disable CS8603 // Existence possible d'un retour de référence null.
                 return default;
+#pragma warning restore CS8603 // Existence possible d'un retour de référence null.
 
+#pragma warning disable CS8604 // Existence possible d'un argument de référence null.
             return await response.Content.ReadJsonSafeAsync<T>();
+#pragma warning restore CS8604 // Existence possible d'un argument de référence null.
         }
 
+#pragma warning disable CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
         public async Task PutAsync<C>(string endpoint, C content, Dictionary<string, string> customHeaders = null)
+#pragma warning restore CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
         {
             await SendAsync(HttpMethod.Put, endpoint, JsonContent.Create(content), customHeaders);
         }
 
+#pragma warning disable CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
         public async Task PutAsync(string endpoint, Dictionary<string, string> customHeaders = null)
+#pragma warning restore CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
         {
+#pragma warning disable CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
             await SendAsync(HttpMethod.Put, endpoint, null, customHeaders);
+#pragma warning restore CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
         }
 
         #endregion PUT
 
         #region DELETE
 
+#pragma warning disable CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
         public async Task<T> DeleteAsync<T>(string endpoint, Dictionary<string, string> customHeaders = null)
+#pragma warning restore CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
         {
+#pragma warning disable CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
             HttpResponseMessage response = await SendAsync(HttpMethod.Delete, endpoint, null, customHeaders);
+#pragma warning restore CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
 
             // Si la réponse est vide (NoContent ou Content-Length = 0 ou null), retourne default
             var contentLength = response.Content?.Headers?.ContentLength;
             if (response.StatusCode == HttpStatusCode.NoContent || contentLength == 0 || contentLength is null)
+#pragma warning disable CS8603 // Existence possible d'un retour de référence null.
                 return default;
+#pragma warning restore CS8603 // Existence possible d'un retour de référence null.
 
+#pragma warning disable CS8604 // Existence possible d'un argument de référence null.
             return await response.Content.ReadJsonSafeAsync<T>();
+#pragma warning restore CS8604 // Existence possible d'un argument de référence null.
         }
 
+#pragma warning disable CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
         public async Task DeleteAsync(string endpoint, Dictionary<string, string> customHeaders = null)
+#pragma warning restore CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
         {
+#pragma warning disable CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
             await SendAsync(HttpMethod.Delete, endpoint, null, customHeaders);
+#pragma warning restore CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
         }
 
+#pragma warning disable CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
         public async Task DeleteAsync(string endpoint, object content, Dictionary<string, string> customHeaders = null)
+#pragma warning restore CS8625 // Impossible de convertir un littéral ayant une valeur null en type référence non-nullable.
         {
             await SendAsync(HttpMethod.Delete, endpoint, JsonContent.Create(content), customHeaders);
         }
@@ -210,11 +270,15 @@ namespace CookBookAppDesktop
         {
             try
             {
+#pragma warning disable CS8603 // Existence possible d'un retour de référence null.
                 return await content.ReadFromJsonAsync<T>();
+#pragma warning restore CS8603 // Existence possible d'un retour de référence null.
             }
             catch (JsonException)
             {
+#pragma warning disable CS8603 // Existence possible d'un retour de référence null.
                 return default;
+#pragma warning restore CS8603 // Existence possible d'un retour de référence null.
             }
         }
     }

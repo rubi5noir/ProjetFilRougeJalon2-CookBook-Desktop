@@ -59,20 +59,20 @@ namespace APIProjetFilRouge.DAL.Repositories
 
         public async Task<List<Avis>> GetAllAvisAsync()
         {
-            List<Avis> Avis = new List<Avis>();
+            List<Avis> Avis;
 
             Avis = (await _dbSession.Connection.QueryAsync<Avis>(_queryGetAllAvis ,transaction: _dbSession.Transaction)).ToList();
 
             return Avis;
         }
 
-        public async Task<List<Avis>> GetAvisByRecetteIdAsync(int id)
+        public async Task<List<Avis>> GetAvisByRecetteIdAsync(int idRecette)
         {
-            List<Avis> Avis = new List<Avis>();
+            List<Avis> Avis;
 
             Avis = (await _dbSession.Connection.QueryAsync<Avis>(_queryGetAvisByRecetteId, new
             {
-                Id = id
+                Id = idRecette
             }, transaction: _dbSession.Transaction)).ToList();
 
             return Avis;
