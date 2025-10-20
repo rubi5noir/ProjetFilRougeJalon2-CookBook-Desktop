@@ -35,11 +35,11 @@ jobs:
         dotnet-version: 8.0.x
         ASPNETCORE_ENVIRONMENT: Integration
 
-    - name: Restore dependencies
-      run: dotnet restore APIContinousIntegration.slnf
+    # - name: Restore dependencies
+    #   run: dotnet restore APIContinousIntegration.slnf
 
-    - name: Build
-      run: dotnet build APIContinousIntegration.slnf --no-restore
+    # - name: Build
+    #   run: dotnet build APIContinousIntegration.slnf --no-restore
 
     - name: Test
-      run: dotnet test APIContinousIntegration.slnf --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal
