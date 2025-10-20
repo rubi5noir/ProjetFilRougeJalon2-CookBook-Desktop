@@ -1,0 +1,10 @@
+{
+  "solution": {
+    "path": "ProjetFilRougeJalon2.sln",
+    "projects": [
+      "APIProjetFilRouge\\APIProjetFilRouge.csproj",
+      "APITestIntegration\\APITestIntegration.csproj",
+      "APIUnitTests\\APIUnitTests.csproj"
+    ]
+  }
+}

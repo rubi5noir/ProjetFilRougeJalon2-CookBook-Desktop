@@ -21,13 +21,13 @@ jobs:
         dotnet-version: 8.0.x
         EnableWindowsTargeting: true
 
-    # - name: Restore dependencies
-    #   run: dotnet restore
+    - name: Restore dependencies
+      run: dotnet restore
 
-    # - name: Build solution
-    #   run: dotnet build --configuration Release --no-restore
+    - name: Build solution
+      run: dotnet build APIContinousIntegration.slnf --configuration Release --no-restore
 
     - name: Run Unit Tests
-      run: dotnet test --configuration Release --verbosity normal
+      run: dotnet test APIContinousIntegration.slnf --configuration Release --no-build --verbosity normal
 
   
