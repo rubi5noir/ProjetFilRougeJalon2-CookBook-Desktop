@@ -42,4 +42,4 @@ jobs:
     #   run: dotnet build APIContinousIntegration.slnf --no-restore
 
     - name: Test
-      run: dotnet test ProjetFilRougeJalon2.sln
+      run: dotnet test ./ProjetFilRougeJalon2/ProjetFilRougeJalon2.csproj
