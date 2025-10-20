@@ -7,26 +7,39 @@ on:
     branches: [ "master" ]
 
 jobs:
-  unit-tests:
-    name: Run Unit Tests
+  build:
     runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+    services:
+      postgres:
+        image: postgres
 
-    - name: Setup .NET 8
+        env:
+          POSTGRES_PASSWORD: password
+          POSTGRES_USER: postgres
+          POSTGRES_DB: cookbookTesting
+
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5435:5432
+
+    steps:
+
+    - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
+        ASPNETCORE_ENVIRONMENT: Integration
 
     - name: Restore dependencies
       run: dotnet restore APIContinousIntegration.slnf
 
-    - name: Build solution
-      run: dotnet build APIContinousIntegration.slnf --configuration Release --no-restore
+    - name: Build
+      run: dotnet build APIContinousIntegration.slnf --no-restore
 
-    - name: Run Unit Tests
-      run: dotnet test APIContinousIntegration.slnf --configuration Release --no-build --verbosity normal
-
-  
+    - name: Test
+      run: dotnet test APIContinousIntegration.slnf --no-build --verbosity normal
