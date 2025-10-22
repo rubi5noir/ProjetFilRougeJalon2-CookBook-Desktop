@@ -34,12 +34,6 @@ namespace APIProjetFilRouge.Controllers
 
        
 
-        #region Etapes
-
-
-
-        #endregion
-
         
 
         #endregion

@@ -126,7 +126,7 @@ namespace APIProjetFilRouge.Controllers
         [HttpPost("UpdateQuantityFromRecette/{id}")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> ModifyIngredientFromRecette([FromRoute] int id, [FromBody] Ingredient ingredientDTO)
+        public async Task<IActionResult> ModifyIngredientFromRecette([FromRoute] int id, [FromBody] IngredientDTO ingredientDTO)
         {
             var ingredient = new Ingredient
             {
@@ -162,7 +162,7 @@ namespace APIProjetFilRouge.Controllers
         [HttpPost("RemoveFromRecette/{id}")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> RemoveIngredientFromRecette([FromRoute] int id, [FromBody] Ingredient ingredientDTO)
+        public async Task<IActionResult> RemoveIngredientFromRecette([FromRoute] int id, [FromBody] IngredientDTO ingredientDTO)
         {
             var ingredient = new Ingredient
             {

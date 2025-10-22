@@ -1,4 +1,4 @@
-name: .NET Build & Test
+name: .NET API Test
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ "master" ]
 
 jobs:
-  build:
+  Test:
     runs-on: ubuntu-latest
 
     services:
