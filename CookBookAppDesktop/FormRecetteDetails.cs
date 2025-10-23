@@ -83,12 +83,15 @@ namespace CookBookAppDesktop
                 labelIngredient.AutoSize = true;
                 labelIngredient.Text = ingredient.nom;
                 labelIngredient.Dock = DockStyle.Top;
-                
+                labelIngredient.BackColor = Color.FromArgb(147, 129, 255);
+
+
                 labelQuantite = new Label();
                 labelQuantite.Name = $"labelQuantite{ingredient.id}";
                 labelQuantite.AutoSize = true;
                 labelQuantite.Text = ingredient.quantite;
                 labelQuantite.Dock = DockStyle.Top;
+                labelQuantite.BackColor = Color.FromArgb(147, 129, 255);
 
                 tableLayoutPanelIngredients.Controls.Add(labelIngredient, 0, rowIndex);
                 tableLayoutPanelIngredients.Controls.Add(labelQuantite, 1, rowIndex);
@@ -113,6 +116,7 @@ namespace CookBookAppDesktop
                 labelCategorie.Name = $"labelCategorie{categorie.id}";
                 labelCategorie.AutoSize = true;
                 labelCategorie.Text = categorie.nom;
+                labelCategorie.BackColor = Color.FromArgb(147, 129, 255);
 
                 tableLayoutPanelCategories.Controls.Add(labelCategorie, 0, rowIndex);
 
@@ -141,6 +145,7 @@ namespace CookBookAppDesktop
                 labelEtape.Name = $"labelEtape{etape.numero}";
                 labelEtape.AutoSize = true;
                 labelEtape.Text = etape.numero.ToString();
+                labelEtape.BackColor = Color.FromArgb(147, 129, 255);
 
                 textBoxEtape = new TextBox();
                 textBoxEtape.Name = $"textBoxEtape{etape.numero}";
@@ -173,6 +178,7 @@ namespace CookBookAppDesktop
 #pragma warning disable CS8602 // Déréférencement d'une éventuelle référence null.
                 labelUtilisateur.Text = utilisateur.identifiant;
 #pragma warning restore CS8602 // Déréférencement d'une éventuelle référence null.
+                labelUtilisateur.BackColor = Color.FromArgb(147, 129, 255);
 
                 textBoxAvis = new TextBox();
                 textBoxAvis.Name = $"textBoxAvis{avi.id_utilisateur}";
@@ -184,6 +190,7 @@ namespace CookBookAppDesktop
                 labelNote = new Label();
                 labelNote.Name = $"labelNote{avi.id_utilisateur}";
                 labelNote.Text = avi.note.ToString();
+                labelNote.BackColor = Color.FromArgb(147, 129, 255);
 
                 tableLayoutPanelAvis.Controls.Add(labelUtilisateur, 0, rowIndex);
                 tableLayoutPanelAvis.Controls.Add(textBoxAvis, 1, rowIndex);

@@ -25,7 +25,7 @@ namespace CookBookAppDesktop.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:32771")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:2555")]
         public string BaseUrl {
             get {
                 return ((string)(this["BaseUrl"]));

@@ -37,6 +37,9 @@ namespace CookBookAppDesktop
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAppMain));
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             tableLayoutPanelApp = new TableLayoutPanel();
             tabControlApp = new TabControl();
             tabPageRecettes = new TabPage();
@@ -181,7 +184,7 @@ namespace CookBookAppDesktop
             // 
             // tabPageRecettes
             // 
-            tabPageRecettes.BackColor = Color.GhostWhite;
+            tabPageRecettes.BackColor = Color.FromArgb(31, 22, 70);
             tabPageRecettes.Controls.Add(tableLayoutPanelGestionRecettes);
             tabPageRecettes.Location = new Point(4, 24);
             tabPageRecettes.Name = "tabPageRecettes";
@@ -293,6 +296,7 @@ namespace CookBookAppDesktop
             // labelDescriptionRecette
             // 
             labelDescriptionRecette.AutoSize = true;
+            labelDescriptionRecette.BackColor = Color.FromArgb(147, 129, 255);
             labelDescriptionRecette.Dock = DockStyle.Fill;
             labelDescriptionRecette.Location = new Point(3, 35);
             labelDescriptionRecette.Name = "labelDescriptionRecette";
@@ -303,6 +307,7 @@ namespace CookBookAppDesktop
             // labelNomRecette
             // 
             labelNomRecette.AutoSize = true;
+            labelNomRecette.BackColor = Color.FromArgb(147, 129, 255);
             labelNomRecette.Dock = DockStyle.Fill;
             labelNomRecette.Location = new Point(3, 0);
             labelNomRecette.Name = "labelNomRecette";
@@ -358,18 +363,19 @@ namespace CookBookAppDesktop
             // 
             // buttonSelectionnerImageRecette
             // 
-            buttonSelectionnerImageRecette.Dock = DockStyle.Fill;
+            buttonSelectionnerImageRecette.BackColor = Color.AliceBlue;
             buttonSelectionnerImageRecette.Location = new Point(3, 3);
             buttonSelectionnerImageRecette.Name = "buttonSelectionnerImageRecette";
             buttonSelectionnerImageRecette.Size = new Size(125, 27);
             buttonSelectionnerImageRecette.TabIndex = 1;
             buttonSelectionnerImageRecette.Text = "Ajouter une image";
-            buttonSelectionnerImageRecette.UseVisualStyleBackColor = true;
+            buttonSelectionnerImageRecette.UseVisualStyleBackColor = false;
             buttonSelectionnerImageRecette.Click += buttonSelectionnerImageRecette_Click;
             // 
             // labelTemps_PréparationRecette
             // 
             labelTemps_PréparationRecette.AutoSize = true;
+            labelTemps_PréparationRecette.BackColor = Color.FromArgb(147, 129, 255);
             labelTemps_PréparationRecette.Dock = DockStyle.Fill;
             labelTemps_PréparationRecette.Location = new Point(3, 70);
             labelTemps_PréparationRecette.Name = "labelTemps_PréparationRecette";
@@ -412,6 +418,7 @@ namespace CookBookAppDesktop
             // labelTemps_CuissonRecette
             // 
             labelTemps_CuissonRecette.AutoSize = true;
+            labelTemps_CuissonRecette.BackColor = Color.FromArgb(147, 129, 255);
             labelTemps_CuissonRecette.Dock = DockStyle.Fill;
             labelTemps_CuissonRecette.Location = new Point(3, 105);
             labelTemps_CuissonRecette.Name = "labelTemps_CuissonRecette";
@@ -454,6 +461,7 @@ namespace CookBookAppDesktop
             // labelDifficulteRecette
             // 
             labelDifficulteRecette.AutoSize = true;
+            labelDifficulteRecette.BackColor = Color.FromArgb(147, 129, 255);
             labelDifficulteRecette.Dock = DockStyle.Fill;
             labelDifficulteRecette.Location = new Point(3, 140);
             labelDifficulteRecette.Name = "labelDifficulteRecette";
@@ -464,6 +472,7 @@ namespace CookBookAppDesktop
             // labelIMGRecette
             // 
             labelIMGRecette.AutoSize = true;
+            labelIMGRecette.BackColor = Color.FromArgb(147, 129, 255);
             labelIMGRecette.Dock = DockStyle.Fill;
             labelIMGRecette.Location = new Point(3, 175);
             labelIMGRecette.Name = "labelIMGRecette";
@@ -518,6 +527,7 @@ namespace CookBookAppDesktop
             // flowLayoutPanelGestionRecettesButtons
             // 
             flowLayoutPanelGestionRecettesButtons.AutoSize = true;
+            flowLayoutPanelGestionRecettesButtons.BackColor = Color.FromArgb(186, 187, 235);
             flowLayoutPanelGestionRecettesButtons.Controls.Add(buttonRefreshRecettes);
             flowLayoutPanelGestionRecettesButtons.Controls.Add(buttonAddRecettes);
             flowLayoutPanelGestionRecettesButtons.Controls.Add(buttonModifyRecettes);
@@ -531,6 +541,7 @@ namespace CookBookAppDesktop
             // 
             // buttonRefreshRecettes
             // 
+            buttonRefreshRecettes.BackColor = Color.AliceBlue;
             buttonRefreshRecettes.Image = (Image)resources.GetObject("buttonRefreshRecettes.Image");
             buttonRefreshRecettes.Location = new Point(3, 3);
             buttonRefreshRecettes.Name = "buttonRefreshRecettes";
@@ -538,11 +549,12 @@ namespace CookBookAppDesktop
             buttonRefreshRecettes.TabIndex = 0;
             buttonRefreshRecettes.Text = "Actualiser";
             buttonRefreshRecettes.TextImageRelation = TextImageRelation.ImageBeforeText;
-            buttonRefreshRecettes.UseVisualStyleBackColor = true;
+            buttonRefreshRecettes.UseVisualStyleBackColor = false;
             buttonRefreshRecettes.Click += buttonRefreshRecettes_Click;
             // 
             // buttonAddRecettes
             // 
+            buttonAddRecettes.BackColor = Color.AliceBlue;
             buttonAddRecettes.Image = (Image)resources.GetObject("buttonAddRecettes.Image");
             buttonAddRecettes.Location = new Point(114, 3);
             buttonAddRecettes.Name = "buttonAddRecettes";
@@ -550,11 +562,12 @@ namespace CookBookAppDesktop
             buttonAddRecettes.TabIndex = 1;
             buttonAddRecettes.Text = "Ajouter";
             buttonAddRecettes.TextImageRelation = TextImageRelation.ImageBeforeText;
-            buttonAddRecettes.UseVisualStyleBackColor = true;
+            buttonAddRecettes.UseVisualStyleBackColor = false;
             buttonAddRecettes.Click += buttonAddRecette_Click;
             // 
             // buttonModifyRecettes
             // 
+            buttonModifyRecettes.BackColor = Color.AliceBlue;
             buttonModifyRecettes.Image = (Image)resources.GetObject("buttonModifyRecettes.Image");
             buttonModifyRecettes.Location = new Point(225, 3);
             buttonModifyRecettes.Name = "buttonModifyRecettes";
@@ -562,11 +575,12 @@ namespace CookBookAppDesktop
             buttonModifyRecettes.TabIndex = 2;
             buttonModifyRecettes.Text = "Modifier";
             buttonModifyRecettes.TextImageRelation = TextImageRelation.ImageBeforeText;
-            buttonModifyRecettes.UseVisualStyleBackColor = true;
+            buttonModifyRecettes.UseVisualStyleBackColor = false;
             buttonModifyRecettes.Click += buttonUpdateRecette_Click;
             // 
             // buttonRemoveRecettes
             // 
+            buttonRemoveRecettes.BackColor = Color.AliceBlue;
             buttonRemoveRecettes.Image = (Image)resources.GetObject("buttonRemoveRecettes.Image");
             buttonRemoveRecettes.Location = new Point(336, 3);
             buttonRemoveRecettes.Name = "buttonRemoveRecettes";
@@ -574,22 +588,24 @@ namespace CookBookAppDesktop
             buttonRemoveRecettes.TabIndex = 3;
             buttonRemoveRecettes.Text = "Supprimer";
             buttonRemoveRecettes.TextImageRelation = TextImageRelation.ImageBeforeText;
-            buttonRemoveRecettes.UseVisualStyleBackColor = true;
+            buttonRemoveRecettes.UseVisualStyleBackColor = false;
             buttonRemoveRecettes.Click += buttonDeleteRecette_Click;
             // 
             // buttonOpenRecetteDetailsForm
             // 
+            buttonOpenRecetteDetailsForm.BackColor = Color.AliceBlue;
             buttonOpenRecetteDetailsForm.Location = new Point(447, 3);
             buttonOpenRecetteDetailsForm.Name = "buttonOpenRecetteDetailsForm";
             buttonOpenRecetteDetailsForm.Size = new Size(216, 55);
             buttonOpenRecetteDetailsForm.TabIndex = 4;
             buttonOpenRecetteDetailsForm.Text = "Détails";
-            buttonOpenRecetteDetailsForm.UseVisualStyleBackColor = true;
+            buttonOpenRecetteDetailsForm.UseVisualStyleBackColor = false;
             buttonOpenRecetteDetailsForm.Click += buttonOpenRecetteDetailsForm_Click;
             // 
             // labelRecettes
             // 
             labelRecettes.AutoSize = true;
+            labelRecettes.BackColor = Color.FromArgb(147, 129, 255);
             labelRecettes.Dock = DockStyle.Fill;
             labelRecettes.Location = new Point(3, 0);
             labelRecettes.Name = "labelRecettes";
@@ -599,6 +615,7 @@ namespace CookBookAppDesktop
             // 
             // tabPageEtapes
             // 
+            tabPageEtapes.BackColor = Color.FromArgb(31, 22, 70);
             tabPageEtapes.Controls.Add(tableLayoutPanelEtapesRecette);
             tabPageEtapes.Location = new Point(4, 24);
             tabPageEtapes.Name = "tabPageEtapes";
@@ -606,7 +623,6 @@ namespace CookBookAppDesktop
             tabPageEtapes.Size = new Size(678, 529);
             tabPageEtapes.TabIndex = 1;
             tabPageEtapes.Text = "Etapes";
-            tabPageEtapes.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanelEtapesRecette
             // 
@@ -625,6 +641,7 @@ namespace CookBookAppDesktop
             // 
             // tableLayoutPanelEtapesButtons
             // 
+            tableLayoutPanelEtapesButtons.BackColor = Color.FromArgb(186, 187, 235);
             tableLayoutPanelEtapesButtons.ColumnCount = 2;
             tableLayoutPanelEtapesButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
             tableLayoutPanelEtapesButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
@@ -640,24 +657,26 @@ namespace CookBookAppDesktop
             // 
             // buttonOpenFormSelectionEtapes
             // 
+            buttonOpenFormSelectionEtapes.BackColor = Color.AliceBlue;
             buttonOpenFormSelectionEtapes.Dock = DockStyle.Fill;
             buttonOpenFormSelectionEtapes.Location = new Point(202, 3);
             buttonOpenFormSelectionEtapes.Name = "buttonOpenFormSelectionEtapes";
             buttonOpenFormSelectionEtapes.Size = new Size(461, 119);
             buttonOpenFormSelectionEtapes.TabIndex = 0;
             buttonOpenFormSelectionEtapes.Text = "Gérer les étapes";
-            buttonOpenFormSelectionEtapes.UseVisualStyleBackColor = true;
+            buttonOpenFormSelectionEtapes.UseVisualStyleBackColor = false;
             buttonOpenFormSelectionEtapes.Click += buttonOpenFormSelectionEtapes_Click;
             // 
             // buttonRefreshEtapes
             // 
+            buttonRefreshEtapes.BackColor = Color.AliceBlue;
             buttonRefreshEtapes.Dock = DockStyle.Fill;
             buttonRefreshEtapes.Location = new Point(3, 3);
             buttonRefreshEtapes.Name = "buttonRefreshEtapes";
             buttonRefreshEtapes.Size = new Size(193, 119);
             buttonRefreshEtapes.TabIndex = 1;
             buttonRefreshEtapes.Text = "Actualiser";
-            buttonRefreshEtapes.UseVisualStyleBackColor = true;
+            buttonRefreshEtapes.UseVisualStyleBackColor = false;
             buttonRefreshEtapes.Click += buttonRefreshRecettes_Click;
             // 
             // tableLayoutPanelDataGridViewsEtapes
@@ -715,14 +734,21 @@ namespace CookBookAppDesktop
             dataGridViewEtapesRecette.AllowUserToAddRows = false;
             dataGridViewEtapesRecette.AllowUserToDeleteRows = false;
             dataGridViewEtapesRecette.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewEtapesRecette.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            dataGridViewEtapesRecette.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewEtapesRecette.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.LightCoral;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = Color.Red;
+            dataGridViewCellStyle6.SelectionForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dataGridViewEtapesRecette.DefaultCellStyle = dataGridViewCellStyle6;
             dataGridViewEtapesRecette.Dock = DockStyle.Fill;
             dataGridViewEtapesRecette.EnableHeadersVisualStyles = false;
             dataGridViewEtapesRecette.Location = new Point(289, 18);
             dataGridViewEtapesRecette.Name = "dataGridViewEtapesRecette";
             dataGridViewEtapesRecette.ReadOnly = true;
-            dataGridViewEtapesRecette.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewEtapesRecette.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewEtapesRecette.RowHeadersVisible = false;
             dataGridViewEtapesRecette.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewEtapesRecette.Size = new Size(374, 365);
@@ -732,6 +758,7 @@ namespace CookBookAppDesktop
             // labelEtapes
             // 
             labelEtapes.AutoSize = true;
+            labelEtapes.BackColor = Color.FromArgb(147, 129, 255);
             labelEtapes.Dock = DockStyle.Fill;
             labelEtapes.Location = new Point(3, 0);
             labelEtapes.Name = "labelEtapes";
@@ -742,6 +769,7 @@ namespace CookBookAppDesktop
             // labelEtapesRecette
             // 
             labelEtapesRecette.AutoSize = true;
+            labelEtapesRecette.BackColor = Color.FromArgb(147, 129, 255);
             labelEtapesRecette.Dock = DockStyle.Fill;
             labelEtapesRecette.Location = new Point(289, 0);
             labelEtapesRecette.Name = "labelEtapesRecette";
@@ -751,6 +779,7 @@ namespace CookBookAppDesktop
             // 
             // tabPageCategories
             // 
+            tabPageCategories.BackColor = Color.FromArgb(31, 22, 70);
             tabPageCategories.Controls.Add(tableLayoutPanelCategoriesRecette);
             tabPageCategories.Location = new Point(4, 24);
             tabPageCategories.Name = "tabPageCategories";
@@ -758,7 +787,6 @@ namespace CookBookAppDesktop
             tabPageCategories.Size = new Size(678, 529);
             tabPageCategories.TabIndex = 2;
             tabPageCategories.Text = "Categories";
-            tabPageCategories.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanelCategoriesRecette
             // 
@@ -779,6 +807,7 @@ namespace CookBookAppDesktop
             // 
             // tableLayoutPanelCategories
             // 
+            tableLayoutPanelCategories.BackColor = Color.FromArgb(186, 187, 235);
             tableLayoutPanelCategories.ColumnCount = 2;
             tableLayoutPanelCategories.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tableLayoutPanelCategories.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 75F));
@@ -794,23 +823,25 @@ namespace CookBookAppDesktop
             // 
             // buttonOpenFormSelectionCategories
             // 
+            buttonOpenFormSelectionCategories.BackColor = Color.AliceBlue;
             buttonOpenFormSelectionCategories.Location = new Point(169, 3);
             buttonOpenFormSelectionCategories.Name = "buttonOpenFormSelectionCategories";
             buttonOpenFormSelectionCategories.Size = new Size(488, 115);
             buttonOpenFormSelectionCategories.TabIndex = 0;
             buttonOpenFormSelectionCategories.Text = "Gérer la liste des catégories";
-            buttonOpenFormSelectionCategories.UseVisualStyleBackColor = true;
+            buttonOpenFormSelectionCategories.UseVisualStyleBackColor = false;
             buttonOpenFormSelectionCategories.Click += buttonOpenFormSelectionCategories_Click;
             // 
             // buttonRefreshCategories
             // 
+            buttonRefreshCategories.BackColor = Color.AliceBlue;
             buttonRefreshCategories.Dock = DockStyle.Fill;
             buttonRefreshCategories.Location = new Point(3, 3);
             buttonRefreshCategories.Name = "buttonRefreshCategories";
             buttonRefreshCategories.Size = new Size(160, 115);
             buttonRefreshCategories.TabIndex = 1;
             buttonRefreshCategories.Text = "Actualiser";
-            buttonRefreshCategories.UseVisualStyleBackColor = true;
+            buttonRefreshCategories.UseVisualStyleBackColor = false;
             buttonRefreshCategories.Click += buttonRefreshCategories_Click;
             // 
             // dataGridViewCategories
@@ -818,14 +849,21 @@ namespace CookBookAppDesktop
             dataGridViewCategories.AllowUserToAddRows = false;
             dataGridViewCategories.AllowUserToDeleteRows = false;
             dataGridViewCategories.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCategories.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            dataGridViewCategories.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCategories.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.LightCoral;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = Color.Red;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dataGridViewCategories.DefaultCellStyle = dataGridViewCellStyle7;
             dataGridViewCategories.Dock = DockStyle.Fill;
             dataGridViewCategories.EnableHeadersVisualStyles = false;
             dataGridViewCategories.Location = new Point(3, 18);
             dataGridViewCategories.Name = "dataGridViewCategories";
             dataGridViewCategories.ReadOnly = true;
-            dataGridViewCategories.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCategories.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewCategories.RowHeadersVisible = false;
             dataGridViewCategories.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewCategories.Size = new Size(666, 375);
@@ -834,6 +872,7 @@ namespace CookBookAppDesktop
             // labelCategories
             // 
             labelCategories.AutoSize = true;
+            labelCategories.BackColor = Color.FromArgb(147, 129, 255);
             labelCategories.Dock = DockStyle.Fill;
             labelCategories.Location = new Point(3, 0);
             labelCategories.Name = "labelCategories";
@@ -843,6 +882,7 @@ namespace CookBookAppDesktop
             // 
             // tabPageIngredients
             // 
+            tabPageIngredients.BackColor = Color.FromArgb(31, 22, 70);
             tabPageIngredients.Controls.Add(tableLayoutPanelIngredientsRecette);
             tabPageIngredients.Location = new Point(4, 24);
             tabPageIngredients.Name = "tabPageIngredients";
@@ -850,7 +890,6 @@ namespace CookBookAppDesktop
             tabPageIngredients.Size = new Size(678, 529);
             tabPageIngredients.TabIndex = 3;
             tabPageIngredients.Text = "Ingredients";
-            tabPageIngredients.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanelIngredientsRecette
             // 
@@ -871,6 +910,7 @@ namespace CookBookAppDesktop
             // 
             // tableLayoutPanelIngredientsButtons
             // 
+            tableLayoutPanelIngredientsButtons.BackColor = Color.FromArgb(186, 187, 235);
             tableLayoutPanelIngredientsButtons.ColumnCount = 2;
             tableLayoutPanelIngredientsButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 31.4589672F));
             tableLayoutPanelIngredientsButtons.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 68.54103F));
@@ -886,24 +926,26 @@ namespace CookBookAppDesktop
             // 
             // buttonOpenFormSelectionIngredients
             // 
+            buttonOpenFormSelectionIngredients.BackColor = Color.AliceBlue;
             buttonOpenFormSelectionIngredients.Dock = DockStyle.Fill;
             buttonOpenFormSelectionIngredients.Location = new Point(212, 3);
             buttonOpenFormSelectionIngredients.Name = "buttonOpenFormSelectionIngredients";
             buttonOpenFormSelectionIngredients.Size = new Size(451, 117);
             buttonOpenFormSelectionIngredients.TabIndex = 0;
             buttonOpenFormSelectionIngredients.Text = "Gérér la liste des ingrédients";
-            buttonOpenFormSelectionIngredients.UseVisualStyleBackColor = true;
+            buttonOpenFormSelectionIngredients.UseVisualStyleBackColor = false;
             buttonOpenFormSelectionIngredients.Click += buttonOpenFormManageIngredients_Click;
             // 
             // buttonRefreshIngredients
             // 
+            buttonRefreshIngredients.BackColor = Color.AliceBlue;
             buttonRefreshIngredients.Dock = DockStyle.Fill;
             buttonRefreshIngredients.Location = new Point(3, 3);
             buttonRefreshIngredients.Name = "buttonRefreshIngredients";
             buttonRefreshIngredients.Size = new Size(203, 117);
             buttonRefreshIngredients.TabIndex = 1;
             buttonRefreshIngredients.Text = "Actualiser";
-            buttonRefreshIngredients.UseVisualStyleBackColor = true;
+            buttonRefreshIngredients.UseVisualStyleBackColor = false;
             buttonRefreshIngredients.Click += buttonRefreshIngredients_Click;
             // 
             // dataGridViewIngredients
@@ -911,14 +953,21 @@ namespace CookBookAppDesktop
             dataGridViewIngredients.AllowUserToAddRows = false;
             dataGridViewIngredients.AllowUserToDeleteRows = false;
             dataGridViewIngredients.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewIngredients.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            dataGridViewIngredients.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewIngredients.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = Color.LightCoral;
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle8.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = Color.Red;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
+            dataGridViewIngredients.DefaultCellStyle = dataGridViewCellStyle8;
             dataGridViewIngredients.Dock = DockStyle.Fill;
             dataGridViewIngredients.EnableHeadersVisualStyles = false;
             dataGridViewIngredients.Location = new Point(3, 18);
             dataGridViewIngredients.Name = "dataGridViewIngredients";
             dataGridViewIngredients.ReadOnly = true;
-            dataGridViewIngredients.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewIngredients.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewIngredients.RowHeadersVisible = false;
             dataGridViewIngredients.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewIngredients.Size = new Size(666, 373);
@@ -927,6 +976,7 @@ namespace CookBookAppDesktop
             // labelIngredients
             // 
             labelIngredients.AutoSize = true;
+            labelIngredients.BackColor = Color.FromArgb(147, 129, 255);
             labelIngredients.Dock = DockStyle.Fill;
             labelIngredients.Location = new Point(3, 0);
             labelIngredients.Name = "labelIngredients";
@@ -936,23 +986,23 @@ namespace CookBookAppDesktop
             // 
             // tabPageAvis
             // 
+            tabPageAvis.BackColor = Color.GhostWhite;
             tabPageAvis.Location = new Point(4, 24);
             tabPageAvis.Name = "tabPageAvis";
             tabPageAvis.Padding = new Padding(3);
             tabPageAvis.Size = new Size(678, 529);
             tabPageAvis.TabIndex = 4;
             tabPageAvis.Text = "Avis";
-            tabPageAvis.UseVisualStyleBackColor = true;
             // 
             // tabPageCompte
             // 
+            tabPageCompte.BackColor = Color.GhostWhite;
             tabPageCompte.Location = new Point(4, 24);
             tabPageCompte.Name = "tabPageCompte";
             tabPageCompte.Padding = new Padding(3);
             tabPageCompte.Size = new Size(678, 529);
             tabPageCompte.TabIndex = 5;
             tabPageCompte.Text = "Compte";
-            tabPageCompte.UseVisualStyleBackColor = true;
             // 
             // FormAppMain
             // 
@@ -960,12 +1010,9 @@ namespace CookBookAppDesktop
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            BackColor = Color.GhostWhite;
+            BackColor = Color.FromArgb(31, 22, 70);
             ClientSize = new Size(692, 563);
             Controls.Add(tableLayoutPanelApp);
-            MaximizeBox = false;
-            MaximumSize = new Size(708, 602);
-            MinimumSize = new Size(700, 600);
             Name = "FormAppMain";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "CookBook App";

@@ -92,7 +92,7 @@
             // labelUsername
             // 
             labelUsername.AutoSize = true;
-            labelUsername.BackColor = Color.GhostWhite;
+            labelUsername.BackColor = Color.FromArgb(147, 129, 255);
             labelUsername.Dock = DockStyle.Fill;
             labelUsername.FlatStyle = FlatStyle.Flat;
             labelUsername.Font = new Font("Baskerville Old Face", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -107,7 +107,7 @@
             // labelMotDePasse
             // 
             labelMotDePasse.AutoSize = true;
-            labelMotDePasse.BackColor = Color.GhostWhite;
+            labelMotDePasse.BackColor = Color.FromArgb(147, 129, 255);
             labelMotDePasse.Dock = DockStyle.Fill;
             labelMotDePasse.FlatStyle = FlatStyle.Flat;
             labelMotDePasse.Font = new Font("Baskerville Old Face", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -137,6 +137,7 @@
             // 
             // flowLayoutPanelFormLoginButtons
             // 
+            flowLayoutPanelFormLoginButtons.BackColor = Color.FromArgb(186, 187, 235);
             flowLayoutPanelFormLoginButtons.Controls.Add(buttonLogIn);
             flowLayoutPanelFormLoginButtons.Dock = DockStyle.Fill;
             flowLayoutPanelFormLoginButtons.Location = new Point(3, 79);
@@ -147,7 +148,7 @@
             // 
             // buttonLogIn
             // 
-            buttonLogIn.BackColor = Color.AliceBlue;
+            buttonLogIn.BackColor = Color.FromArgb(147, 129, 255);
             buttonLogIn.FlatStyle = FlatStyle.Flat;
             buttonLogIn.Font = new Font("Baskerville Old Face", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             buttonLogIn.Location = new Point(394, 3);
@@ -162,7 +163,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.GhostWhite;
+            BackColor = Color.FromArgb(31, 22, 70);
             ClientSize = new Size(484, 121);
             Controls.Add(tableLayoutPanelFormLogin);
             FormBorderStyle = FormBorderStyle.FixedSingle;

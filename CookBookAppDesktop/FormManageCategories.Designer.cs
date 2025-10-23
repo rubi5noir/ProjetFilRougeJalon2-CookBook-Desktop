@@ -152,6 +152,7 @@
             // labelCategorieOfRecette
             // 
             labelCategorieOfRecette.AutoSize = true;
+            labelCategorieOfRecette.BackColor = Color.FromArgb(147, 129, 255);
             labelCategorieOfRecette.Dock = DockStyle.Fill;
             labelCategorieOfRecette.Location = new Point(3, 161);
             labelCategorieOfRecette.Name = "labelCategorieOfRecette";
@@ -161,22 +162,24 @@
             // 
             // buttonRemoveCategorieFromRecette
             // 
+            buttonRemoveCategorieFromRecette.BackColor = Color.AliceBlue;
             buttonRemoveCategorieFromRecette.Location = new Point(300, 361);
             buttonRemoveCategorieFromRecette.Name = "buttonRemoveCategorieFromRecette";
             buttonRemoveCategorieFromRecette.Size = new Size(291, 80);
             buttonRemoveCategorieFromRecette.TabIndex = 2;
             buttonRemoveCategorieFromRecette.Text = "Supprimer Categorie de la recette";
-            buttonRemoveCategorieFromRecette.UseVisualStyleBackColor = true;
+            buttonRemoveCategorieFromRecette.UseVisualStyleBackColor = false;
             buttonRemoveCategorieFromRecette.Click += buttonRemoveCategorieFromRecette_Click;
             // 
             // buttonAddCategorieToRecette
             // 
+            buttonAddCategorieToRecette.BackColor = Color.AliceBlue;
             buttonAddCategorieToRecette.Location = new Point(3, 361);
             buttonAddCategorieToRecette.Name = "buttonAddCategorieToRecette";
             buttonAddCategorieToRecette.Size = new Size(291, 80);
             buttonAddCategorieToRecette.TabIndex = 3;
             buttonAddCategorieToRecette.Text = "Ajouter Categorie a la recette";
-            buttonAddCategorieToRecette.UseVisualStyleBackColor = true;
+            buttonAddCategorieToRecette.UseVisualStyleBackColor = false;
             buttonAddCategorieToRecette.Click += buttonAddCategorieToRecette_Click;
             // 
             // dataGridViewRecettesWithoutTheCategorie
@@ -194,6 +197,7 @@
             // labelRecettesWithoutTheCategories
             // 
             labelRecettesWithoutTheCategories.AutoSize = true;
+            labelRecettesWithoutTheCategories.BackColor = Color.FromArgb(147, 129, 255);
             labelRecettesWithoutTheCategories.Dock = DockStyle.Fill;
             labelRecettesWithoutTheCategories.Location = new Point(3, 0);
             labelRecettesWithoutTheCategories.Name = "labelRecettesWithoutTheCategories";
@@ -204,6 +208,7 @@
             // labelRecettes
             // 
             labelRecettes.AutoSize = true;
+            labelRecettes.BackColor = Color.FromArgb(147, 129, 255);
             labelRecettes.Dock = DockStyle.Fill;
             labelRecettes.Location = new Point(300, 0);
             labelRecettes.Name = "labelRecettes";
@@ -262,6 +267,7 @@
             // labelCategorieNom
             // 
             labelCategorieNom.AutoSize = true;
+            labelCategorieNom.BackColor = Color.FromArgb(147, 129, 255);
             labelCategorieNom.Dock = DockStyle.Fill;
             labelCategorieNom.Location = new Point(3, 0);
             labelCategorieNom.Name = "labelCategorieNom";
@@ -279,6 +285,7 @@
             // 
             // flowLayoutPanelCategoriesButtons
             // 
+            flowLayoutPanelCategoriesButtons.BackColor = Color.FromArgb(186, 187, 235);
             flowLayoutPanelCategoriesButtons.Controls.Add(buttonActualiserCategorie);
             flowLayoutPanelCategoriesButtons.Controls.Add(buttonAddCategorie);
             flowLayoutPanelCategoriesButtons.Controls.Add(buttonModifyCategorie);
@@ -290,47 +297,52 @@
             // 
             // buttonActualiserCategorie
             // 
+            buttonActualiserCategorie.BackColor = Color.AliceBlue;
             buttonActualiserCategorie.Location = new Point(3, 3);
             buttonActualiserCategorie.Name = "buttonActualiserCategorie";
             buttonActualiserCategorie.Size = new Size(75, 23);
             buttonActualiserCategorie.TabIndex = 3;
             buttonActualiserCategorie.Text = "Actualiser";
-            buttonActualiserCategorie.UseVisualStyleBackColor = true;
+            buttonActualiserCategorie.UseVisualStyleBackColor = false;
             buttonActualiserCategorie.Click += buttonRefreshCategories_Click;
             // 
             // buttonAddCategorie
             // 
+            buttonAddCategorie.BackColor = Color.AliceBlue;
             buttonAddCategorie.Location = new Point(84, 3);
             buttonAddCategorie.Name = "buttonAddCategorie";
             buttonAddCategorie.Size = new Size(75, 23);
             buttonAddCategorie.TabIndex = 0;
             buttonAddCategorie.Text = "Ajouter";
-            buttonAddCategorie.UseVisualStyleBackColor = true;
+            buttonAddCategorie.UseVisualStyleBackColor = false;
             buttonAddCategorie.Click += buttonAddCategorie_Click;
             // 
             // buttonModifyCategorie
             // 
+            buttonModifyCategorie.BackColor = Color.AliceBlue;
             buttonModifyCategorie.Location = new Point(3, 32);
             buttonModifyCategorie.Name = "buttonModifyCategorie";
             buttonModifyCategorie.Size = new Size(75, 23);
             buttonModifyCategorie.TabIndex = 1;
             buttonModifyCategorie.Text = "Modifier";
-            buttonModifyCategorie.UseVisualStyleBackColor = true;
+            buttonModifyCategorie.UseVisualStyleBackColor = false;
             buttonModifyCategorie.Click += buttonModifyCategorie_Click;
             // 
             // buttonRemoveCategorie
             // 
+            buttonRemoveCategorie.BackColor = Color.AliceBlue;
             buttonRemoveCategorie.Location = new Point(84, 32);
             buttonRemoveCategorie.Name = "buttonRemoveCategorie";
             buttonRemoveCategorie.Size = new Size(75, 23);
             buttonRemoveCategorie.TabIndex = 2;
             buttonRemoveCategorie.Text = "Supprimer";
-            buttonRemoveCategorie.UseVisualStyleBackColor = true;
+            buttonRemoveCategorie.UseVisualStyleBackColor = false;
             buttonRemoveCategorie.Click += buttonDeleteCategorie_Click;
             // 
             // labelCategories
             // 
             labelCategories.AutoSize = true;
+            labelCategories.BackColor = Color.FromArgb(147, 129, 255);
             labelCategories.Dock = DockStyle.Fill;
             labelCategories.Location = new Point(3, 0);
             labelCategories.Name = "labelCategories";
@@ -342,6 +354,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(31, 22, 70);
             ClientSize = new Size(800, 450);
             Controls.Add(tableLayoutPanelManageCategories);
             Name = "FormManageCategories";

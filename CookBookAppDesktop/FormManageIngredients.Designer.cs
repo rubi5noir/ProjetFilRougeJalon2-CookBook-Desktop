@@ -167,6 +167,7 @@
             // labelRecipes
             // 
             labelRecipes.AutoSize = true;
+            labelRecipes.BackColor = Color.FromArgb(147, 129, 255);
             labelRecipes.Dock = DockStyle.Fill;
             labelRecipes.Location = new Point(3, 0);
             labelRecipes.Name = "labelRecipes";
@@ -177,6 +178,7 @@
             // labelRecipesWithoutTheIngredients
             // 
             labelRecipesWithoutTheIngredients.AutoSize = true;
+            labelRecipesWithoutTheIngredients.BackColor = Color.FromArgb(147, 129, 255);
             labelRecipesWithoutTheIngredients.Dock = DockStyle.Fill;
             labelRecipesWithoutTheIngredients.Location = new Point(3, 177);
             labelRecipesWithoutTheIngredients.Name = "labelRecipesWithoutTheIngredients";
@@ -231,6 +233,7 @@
             // labelModifyQuantity
             // 
             labelModifyQuantity.AutoSize = true;
+            labelModifyQuantity.BackColor = Color.FromArgb(147, 129, 255);
             labelModifyQuantity.Dock = DockStyle.Fill;
             labelModifyQuantity.Location = new Point(3, 0);
             labelModifyQuantity.Name = "labelModifyQuantity";
@@ -257,17 +260,19 @@
             // 
             // buttonModifyQuantityIngredient
             // 
+            buttonModifyQuantityIngredient.BackColor = Color.AliceBlue;
             buttonModifyQuantityIngredient.Location = new Point(3, 3);
             buttonModifyQuantityIngredient.Name = "buttonModifyQuantityIngredient";
             buttonModifyQuantityIngredient.Size = new Size(257, 44);
             buttonModifyQuantityIngredient.TabIndex = 0;
             buttonModifyQuantityIngredient.Text = "Modifier Quantité";
-            buttonModifyQuantityIngredient.UseVisualStyleBackColor = true;
+            buttonModifyQuantityIngredient.UseVisualStyleBackColor = false;
             buttonModifyQuantityIngredient.Click += buttonModifyIngredientQuantity_Click;
             // 
             // labelIngredientsOfRecette
             // 
             labelIngredientsOfRecette.AutoSize = true;
+            labelIngredientsOfRecette.BackColor = Color.FromArgb(147, 129, 255);
             labelIngredientsOfRecette.Dock = DockStyle.Fill;
             labelIngredientsOfRecette.Location = new Point(3, 0);
             labelIngredientsOfRecette.Name = "labelIngredientsOfRecette";
@@ -277,24 +282,26 @@
             // 
             // buttonAddIngredientToRecette
             // 
+            buttonAddIngredientToRecette.BackColor = Color.AliceBlue;
             buttonAddIngredientToRecette.Dock = DockStyle.Fill;
             buttonAddIngredientToRecette.Location = new Point(275, 364);
             buttonAddIngredientToRecette.Name = "buttonAddIngredientToRecette";
             buttonAddIngredientToRecette.Size = new Size(267, 77);
             buttonAddIngredientToRecette.TabIndex = 2;
             buttonAddIngredientToRecette.Text = "Ajouter Ingredient a la recette";
-            buttonAddIngredientToRecette.UseVisualStyleBackColor = true;
+            buttonAddIngredientToRecette.UseVisualStyleBackColor = false;
             buttonAddIngredientToRecette.Click += buttonAddIngredientToRecette_Click;
             // 
             // buttonRemoveIngredientFromRecette
             // 
+            buttonRemoveIngredientFromRecette.BackColor = Color.AliceBlue;
             buttonRemoveIngredientFromRecette.Dock = DockStyle.Fill;
             buttonRemoveIngredientFromRecette.Location = new Point(3, 364);
             buttonRemoveIngredientFromRecette.Name = "buttonRemoveIngredientFromRecette";
             buttonRemoveIngredientFromRecette.Size = new Size(266, 77);
             buttonRemoveIngredientFromRecette.TabIndex = 3;
             buttonRemoveIngredientFromRecette.Text = "Supprimer Ingredient de la recette";
-            buttonRemoveIngredientFromRecette.UseVisualStyleBackColor = true;
+            buttonRemoveIngredientFromRecette.UseVisualStyleBackColor = false;
             buttonRemoveIngredientFromRecette.Click += buttonRemoveIngredientFromRecette_Click;
             // 
             // tableLayoutPanelIngredients
@@ -345,6 +352,7 @@
             // labelNomIngredient
             // 
             labelNomIngredient.AutoSize = true;
+            labelNomIngredient.BackColor = Color.FromArgb(147, 129, 255);
             labelNomIngredient.Dock = DockStyle.Fill;
             labelNomIngredient.Location = new Point(3, 0);
             labelNomIngredient.Name = "labelNomIngredient";
@@ -362,6 +370,7 @@
             // 
             // flowLayoutPanelIngredientsButtons
             // 
+            flowLayoutPanelIngredientsButtons.BackColor = Color.FromArgb(186, 187, 235);
             flowLayoutPanelIngredientsButtons.Controls.Add(buttonRefreshIngredient);
             flowLayoutPanelIngredientsButtons.Controls.Add(buttonAddIngredient);
             flowLayoutPanelIngredientsButtons.Controls.Add(buttonModifyIngredient);
@@ -374,47 +383,52 @@
             // 
             // buttonRefreshIngredient
             // 
+            buttonRefreshIngredient.BackColor = Color.AliceBlue;
             buttonRefreshIngredient.Location = new Point(3, 3);
             buttonRefreshIngredient.Name = "buttonRefreshIngredient";
             buttonRefreshIngredient.Size = new Size(75, 23);
             buttonRefreshIngredient.TabIndex = 0;
             buttonRefreshIngredient.Text = "Actualiser";
-            buttonRefreshIngredient.UseVisualStyleBackColor = true;
+            buttonRefreshIngredient.UseVisualStyleBackColor = false;
             buttonRefreshIngredient.Click += FormManageIngredients_Load;
             // 
             // buttonAddIngredient
             // 
+            buttonAddIngredient.BackColor = Color.AliceBlue;
             buttonAddIngredient.Location = new Point(84, 3);
             buttonAddIngredient.Name = "buttonAddIngredient";
             buttonAddIngredient.Size = new Size(75, 23);
             buttonAddIngredient.TabIndex = 1;
             buttonAddIngredient.Text = "Ajouter";
-            buttonAddIngredient.UseVisualStyleBackColor = true;
+            buttonAddIngredient.UseVisualStyleBackColor = false;
             buttonAddIngredient.Click += buttonAddIngredient_Click;
             // 
             // buttonModifyIngredient
             // 
+            buttonModifyIngredient.BackColor = Color.AliceBlue;
             buttonModifyIngredient.Location = new Point(3, 32);
             buttonModifyIngredient.Name = "buttonModifyIngredient";
             buttonModifyIngredient.Size = new Size(75, 23);
             buttonModifyIngredient.TabIndex = 2;
             buttonModifyIngredient.Text = "Modifier";
-            buttonModifyIngredient.UseVisualStyleBackColor = true;
+            buttonModifyIngredient.UseVisualStyleBackColor = false;
             buttonModifyIngredient.Click += buttonModifyIngredient_Click;
             // 
             // buttonRemoveIngredient
             // 
+            buttonRemoveIngredient.BackColor = Color.AliceBlue;
             buttonRemoveIngredient.Location = new Point(84, 32);
             buttonRemoveIngredient.Name = "buttonRemoveIngredient";
             buttonRemoveIngredient.Size = new Size(75, 23);
             buttonRemoveIngredient.TabIndex = 3;
             buttonRemoveIngredient.Text = "Supprimer";
-            buttonRemoveIngredient.UseVisualStyleBackColor = true;
+            buttonRemoveIngredient.UseVisualStyleBackColor = false;
             buttonRemoveIngredient.Click += buttonRemoveIngredient_Click;
             // 
             // labelIngredients
             // 
             labelIngredients.AutoSize = true;
+            labelIngredients.BackColor = Color.FromArgb(147, 129, 255);
             labelIngredients.Dock = DockStyle.Fill;
             labelIngredients.Location = new Point(3, 0);
             labelIngredients.Name = "labelIngredients";
@@ -426,6 +440,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(31, 22, 70);
             ClientSize = new Size(800, 450);
             Controls.Add(panelFormManageIngredients);
             Name = "FormManageIngredients";

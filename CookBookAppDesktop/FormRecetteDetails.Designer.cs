@@ -121,6 +121,7 @@
             // labelNomRecette
             // 
             labelNomRecette.AutoSize = true;
+            labelNomRecette.BackColor = Color.FromArgb(147, 129, 255);
             labelNomRecette.Dock = DockStyle.Fill;
             labelNomRecette.Location = new Point(3, 0);
             labelNomRecette.Name = "labelNomRecette";
@@ -140,6 +141,7 @@
             // 
             // pictureBoxImgRecette
             // 
+            pictureBoxImgRecette.BackColor = Color.FromArgb(186, 187, 235);
             pictureBoxImgRecette.Dock = DockStyle.Fill;
             pictureBoxImgRecette.Location = new Point(617, 3);
             pictureBoxImgRecette.Name = "pictureBoxImgRecette";
@@ -168,6 +170,7 @@
             // labelCreateur
             // 
             labelCreateur.AutoSize = true;
+            labelCreateur.BackColor = Color.FromArgb(147, 129, 255);
             labelCreateur.Dock = DockStyle.Fill;
             labelCreateur.Location = new Point(3, 239);
             labelCreateur.Name = "labelCreateur";
@@ -177,6 +180,7 @@
             // 
             // tableLayoutPanelTempsIngredients
             // 
+            tableLayoutPanelTempsIngredients.BackColor = Color.Transparent;
             tableLayoutPanelTempsIngredients.ColumnCount = 1;
             tableLayoutPanelTempsIngredients.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanelTempsIngredients.Controls.Add(tableLayoutPanelTemps, 0, 0);
@@ -192,6 +196,7 @@
             // 
             // tableLayoutPanelTemps
             // 
+            tableLayoutPanelTemps.BackColor = Color.FromArgb(192, 192, 255);
             tableLayoutPanelTemps.ColumnCount = 2;
             tableLayoutPanelTemps.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.4203644F));
             tableLayoutPanelTemps.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 66.5796356F));
@@ -214,6 +219,7 @@
             // labelTitreTempsPrepa
             // 
             labelTitreTempsPrepa.AutoSize = true;
+            labelTitreTempsPrepa.BackColor = Color.FromArgb(147, 129, 255);
             labelTitreTempsPrepa.Dock = DockStyle.Fill;
             labelTitreTempsPrepa.Location = new Point(3, 0);
             labelTitreTempsPrepa.Name = "labelTitreTempsPrepa";
@@ -224,6 +230,7 @@
             // labelTempsPrepa
             // 
             labelTempsPrepa.AutoSize = true;
+            labelTempsPrepa.BackColor = Color.FromArgb(147, 129, 255);
             labelTempsPrepa.Dock = DockStyle.Fill;
             labelTempsPrepa.Location = new Point(139, 0);
             labelTempsPrepa.Name = "labelTempsPrepa";
@@ -234,7 +241,9 @@
             // labelTitreTempsCui
             // 
             labelTitreTempsCui.AutoSize = true;
+            labelTitreTempsCui.BackColor = Color.FromArgb(147, 129, 255);
             labelTitreTempsCui.Dock = DockStyle.Fill;
+            labelTitreTempsCui.ForeColor = Color.Black;
             labelTitreTempsCui.Location = new Point(3, 17);
             labelTitreTempsCui.Name = "labelTitreTempsCui";
             labelTitreTempsCui.Size = new Size(130, 17);
@@ -244,6 +253,7 @@
             // labelTempsCui
             // 
             labelTempsCui.AutoSize = true;
+            labelTempsCui.BackColor = Color.FromArgb(147, 129, 255);
             labelTempsCui.Dock = DockStyle.Fill;
             labelTempsCui.Location = new Point(139, 17);
             labelTempsCui.Name = "labelTempsCui";
@@ -254,6 +264,7 @@
             // labelTitreTempsTotal
             // 
             labelTitreTempsTotal.AutoSize = true;
+            labelTitreTempsTotal.BackColor = Color.FromArgb(147, 129, 255);
             labelTitreTempsTotal.Dock = DockStyle.Fill;
             labelTitreTempsTotal.Location = new Point(3, 34);
             labelTitreTempsTotal.Name = "labelTitreTempsTotal";
@@ -264,6 +275,7 @@
             // labelTempsTotal
             // 
             labelTempsTotal.AutoSize = true;
+            labelTempsTotal.BackColor = Color.FromArgb(147, 129, 255);
             labelTempsTotal.Dock = DockStyle.Fill;
             labelTempsTotal.Location = new Point(139, 34);
             labelTempsTotal.Name = "labelTempsTotal";
@@ -275,6 +287,7 @@
             // 
             ScrollPanel.AutoScroll = true;
             ScrollPanel.AutoSize = true;
+            ScrollPanel.BackColor = Color.FromArgb(192, 192, 255);
             ScrollPanel.Controls.Add(tableLayoutPanelIngredients);
             ScrollPanel.Dock = DockStyle.Fill;
             ScrollPanel.Location = new Point(3, 61);
@@ -302,6 +315,7 @@
             // labelIngredient
             // 
             labelIngredient.AutoSize = true;
+            labelIngredient.BackColor = Color.FromArgb(147, 129, 255);
             labelIngredient.Dock = DockStyle.Top;
             labelIngredient.Location = new Point(3, 0);
             labelIngredient.Name = "labelIngredient";
@@ -312,7 +326,7 @@
             // labelQuantite
             // 
             labelQuantite.AutoSize = true;
-            labelQuantite.BackColor = SystemColors.Control;
+            labelQuantite.BackColor = Color.FromArgb(147, 129, 255);
             labelQuantite.Dock = DockStyle.Top;
             labelQuantite.Location = new Point(282, 3);
             labelQuantite.Margin = new Padding(3, 3, 30, 0);
@@ -323,6 +337,7 @@
             // 
             // tableLayoutPanelCategories
             // 
+            tableLayoutPanelCategories.BackColor = Color.FromArgb(192, 192, 255);
             tableLayoutPanelCategories.ColumnCount = 1;
             tableLayoutPanelCategories.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanelCategories.Controls.Add(labelCategorie, 0, 0);
@@ -337,6 +352,7 @@
             // labelCategorie
             // 
             labelCategorie.AutoSize = true;
+            labelCategorie.BackColor = Color.FromArgb(147, 129, 255);
             labelCategorie.Dock = DockStyle.Fill;
             labelCategorie.Location = new Point(3, 0);
             labelCategorie.Name = "labelCategorie";
@@ -382,6 +398,7 @@
             // labelEtape
             // 
             labelEtape.AutoSize = true;
+            labelEtape.BackColor = Color.FromArgb(147, 129, 255);
             labelEtape.Dock = DockStyle.Fill;
             labelEtape.Location = new Point(3, 0);
             labelEtape.Name = "labelEtape";
@@ -402,6 +419,7 @@
             // labelNoteMoyenne
             // 
             labelNoteMoyenne.AutoSize = true;
+            labelNoteMoyenne.BackColor = Color.FromArgb(147, 129, 255);
             labelNoteMoyenne.Dock = DockStyle.Fill;
             labelNoteMoyenne.Location = new Point(3, 222);
             labelNoteMoyenne.Name = "labelNoteMoyenne";
@@ -432,6 +450,7 @@
             // labelUtilisateur
             // 
             labelUtilisateur.AutoSize = true;
+            labelUtilisateur.BackColor = Color.FromArgb(147, 129, 255);
             labelUtilisateur.Dock = DockStyle.Fill;
             labelUtilisateur.Location = new Point(3, 0);
             labelUtilisateur.Name = "labelUtilisateur";
@@ -442,6 +461,7 @@
             // labelNote
             // 
             labelNote.AutoSize = true;
+            labelNote.BackColor = Color.FromArgb(147, 129, 255);
             labelNote.Dock = DockStyle.Fill;
             labelNote.Location = new Point(538, 0);
             labelNote.Name = "labelNote";
@@ -463,6 +483,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(31, 22, 70);
             ClientSize = new Size(1039, 655);
             Controls.Add(panelFormRecetteDetails);
             FormBorderStyle = FormBorderStyle.FixedSingle;

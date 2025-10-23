@@ -42,13 +42,13 @@
             buttonModify = new Button();
             buttonRemove = new Button();
             dataGridViewEtapes = new DataGridView();
+            labelEtapes = new Label();
             tableLayoutPanelManageEtapesRecettes = new TableLayoutPanel();
             dataGridViewRecettesForEtapes = new DataGridView();
             buttonRefresh = new Button();
+            labelRecettes = new Label();
             bindingSourceEtapes = new BindingSource(components);
             bindingSourceRecettes = new BindingSource(components);
-            labelRecettes = new Label();
-            labelEtapes = new Label();
             tableLayoutPanelFormManageEtapes.SuspendLayout();
             tableLayoutPanelManageEtapes.SuspendLayout();
             tableLayoutPanelManageEtapesInputs.SuspendLayout();
@@ -130,6 +130,7 @@
             // labelTitre
             // 
             labelTitre.AutoSize = true;
+            labelTitre.BackColor = Color.FromArgb(147, 129, 255);
             labelTitre.Dock = DockStyle.Fill;
             labelTitre.Location = new Point(3, 0);
             labelTitre.Name = "labelTitre";
@@ -140,6 +141,7 @@
             // labelDescription
             // 
             labelDescription.AutoSize = true;
+            labelDescription.BackColor = Color.FromArgb(147, 129, 255);
             labelDescription.Dock = DockStyle.Fill;
             labelDescription.Location = new Point(3, 29);
             labelDescription.Name = "labelDescription";
@@ -166,6 +168,7 @@
             // 
             // flowLayoutPanelButtons
             // 
+            flowLayoutPanelButtons.BackColor = Color.FromArgb(186, 187, 235);
             flowLayoutPanelButtons.Controls.Add(buttonAdd);
             flowLayoutPanelButtons.Controls.Add(buttonModify);
             flowLayoutPanelButtons.Controls.Add(buttonRemove);
@@ -177,32 +180,35 @@
             // 
             // buttonAdd
             // 
+            buttonAdd.BackColor = Color.AliceBlue;
             buttonAdd.Location = new Point(3, 3);
             buttonAdd.Name = "buttonAdd";
             buttonAdd.Size = new Size(75, 23);
             buttonAdd.TabIndex = 0;
             buttonAdd.Text = "Ajouter";
-            buttonAdd.UseVisualStyleBackColor = true;
+            buttonAdd.UseVisualStyleBackColor = false;
             buttonAdd.Click += buttonAdd_Click;
             // 
             // buttonModify
             // 
+            buttonModify.BackColor = Color.AliceBlue;
             buttonModify.Location = new Point(84, 3);
             buttonModify.Name = "buttonModify";
             buttonModify.Size = new Size(75, 23);
             buttonModify.TabIndex = 1;
             buttonModify.Text = "Modifier";
-            buttonModify.UseVisualStyleBackColor = true;
+            buttonModify.UseVisualStyleBackColor = false;
             buttonModify.Click += buttonModify_Click;
             // 
             // buttonRemove
             // 
+            buttonRemove.BackColor = Color.AliceBlue;
             buttonRemove.Location = new Point(165, 3);
             buttonRemove.Name = "buttonRemove";
             buttonRemove.Size = new Size(74, 23);
             buttonRemove.TabIndex = 2;
             buttonRemove.Text = "Supprimer";
-            buttonRemove.UseVisualStyleBackColor = true;
+            buttonRemove.UseVisualStyleBackColor = false;
             buttonRemove.Click += buttonDelete_Click;
             // 
             // dataGridViewEtapes
@@ -216,6 +222,17 @@
             dataGridViewEtapes.ReadOnly = true;
             dataGridViewEtapes.Size = new Size(388, 208);
             dataGridViewEtapes.TabIndex = 1;
+            // 
+            // labelEtapes
+            // 
+            labelEtapes.AutoSize = true;
+            labelEtapes.BackColor = Color.FromArgb(147, 129, 255);
+            labelEtapes.Dock = DockStyle.Fill;
+            labelEtapes.Location = new Point(3, 0);
+            labelEtapes.Name = "labelEtapes";
+            labelEtapes.Size = new Size(388, 15);
+            labelEtapes.TabIndex = 2;
+            labelEtapes.Text = "Etapes";
             // 
             // tableLayoutPanelManageEtapesRecettes
             // 
@@ -249,18 +266,20 @@
             // 
             // buttonRefresh
             // 
+            buttonRefresh.BackColor = Color.AliceBlue;
             buttonRefresh.Dock = DockStyle.Fill;
             buttonRefresh.Location = new Point(3, 382);
             buttonRefresh.Name = "buttonRefresh";
             buttonRefresh.Size = new Size(388, 59);
             buttonRefresh.TabIndex = 1;
             buttonRefresh.Text = "Actualiser";
-            buttonRefresh.UseVisualStyleBackColor = true;
+            buttonRefresh.UseVisualStyleBackColor = false;
             buttonRefresh.Click += buttonRefresh_Click;
             // 
             // labelRecettes
             // 
             labelRecettes.AutoSize = true;
+            labelRecettes.BackColor = Color.FromArgb(147, 129, 255);
             labelRecettes.Dock = DockStyle.Fill;
             labelRecettes.Location = new Point(3, 0);
             labelRecettes.Name = "labelRecettes";
@@ -268,20 +287,11 @@
             labelRecettes.TabIndex = 2;
             labelRecettes.Text = "Recettes";
             // 
-            // labelEtapes
-            // 
-            labelEtapes.AutoSize = true;
-            labelEtapes.Dock = DockStyle.Fill;
-            labelEtapes.Location = new Point(3, 0);
-            labelEtapes.Name = "labelEtapes";
-            labelEtapes.Size = new Size(388, 15);
-            labelEtapes.TabIndex = 2;
-            labelEtapes.Text = "Etapes";
-            // 
             // FormManageEtapes
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(31, 22, 70);
             ClientSize = new Size(800, 450);
             Controls.Add(tableLayoutPanelFormManageEtapes);
             Name = "FormManageEtapes";
