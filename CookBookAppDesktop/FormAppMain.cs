@@ -166,7 +166,7 @@ namespace CookBookAppDesktop
 #pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
             RecetteDTO current = bindingSourceRecettes.Current as RecetteDTO;
 #pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
-                              // Remplissage de la liste
+            // Remplissage de la liste
             var res = await _rest.GetAsync<IEnumerable<RecetteDTO>>($"{URL_GET_RECETTES}/Details");
 
             _recettes.Clear();
@@ -453,11 +453,21 @@ namespace CookBookAppDesktop
 
         #region TabPageUtilisateurs
 
+        private async void buttonLogOut_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show($"Êtes-vous sûr de vouloir vous déconnecter ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                _rest.JwtToken = null;
+                _roles = [];
 
+                this.FormAppMain_Load(this, EventArgs.Empty);
+            }
+        }
 
-        #endregion
+            #endregion
 
-        #endregion
+            #endregion
 
+        }
     }
-}
