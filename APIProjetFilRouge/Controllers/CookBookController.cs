@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace APIProjetFilRouge.Controllers
 {
-    [Authorize(Roles = "Administrateur,Utilisateur")]
+    [Authorize(Roles = "Admin,User")]
     [Route("api/[controller]")]
     [ApiController]
     public class CookBookController : ControllerBase

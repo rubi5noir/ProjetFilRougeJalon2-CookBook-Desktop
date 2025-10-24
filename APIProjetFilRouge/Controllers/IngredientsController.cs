@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace APIProjetFilRouge.Controllers
 {
-    [Authorize(Roles = "Administrateur,Utilisateur")]
+    [Authorize(Roles = "Admin,User")]
     [Route("api/[controller]")]
     [ApiController]
     public class IngredientsController : ControllerBase
@@ -70,7 +70,7 @@ namespace APIProjetFilRouge.Controllers
         /// Create a new ingredient
         /// </summary>
         /// <returns></returns>
-        [Authorize(Roles = "Administrateur")]
+        [Authorize(Roles = "Admin")]
         [HttpPost("Create")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -86,7 +86,7 @@ namespace APIProjetFilRouge.Controllers
             return Ok(result);
         }
 
-        [Authorize(Roles = "Administrateur")]
+        [Authorize(Roles = "Admin")]
         [HttpPost("AddToRecette/{id}")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -106,7 +106,7 @@ namespace APIProjetFilRouge.Controllers
 
         #region PUT
 
-        [Authorize(Roles = "Administrateur")]
+        [Authorize(Roles = "Admin")]
         [HttpPut("Update/{id}")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -122,7 +122,7 @@ namespace APIProjetFilRouge.Controllers
             return Ok(result);
         }
 
-        [Authorize(Roles = "Administrateur")]
+        [Authorize(Roles = "Admin")]
         [HttpPost("UpdateQuantityFromRecette/{id}")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -148,7 +148,7 @@ namespace APIProjetFilRouge.Controllers
 
         #region DELETE
 
-        [Authorize(Roles = "Administrateur")]
+        [Authorize(Roles = "Admin")]
         [HttpDelete("Delete/{id}")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -158,7 +158,7 @@ namespace APIProjetFilRouge.Controllers
             return Ok(result);
         }
 
-        [Authorize(Roles = "Administrateur")]
+        [Authorize(Roles = "Admin")]
         [HttpPost("RemoveFromRecette/{id}")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

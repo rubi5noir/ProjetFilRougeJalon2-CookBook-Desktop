@@ -10,7 +10,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace APIProjetFilRouge.Controllers
 {
-    [Authorize(Roles = "Administrateur,Utilisateur")]
+    [Authorize(Roles = "Admin,User")]
     [Route("api/[controller]")]
     [ApiController]
     public class CategoriesController : ControllerBase
@@ -82,7 +82,7 @@ namespace APIProjetFilRouge.Controllers
 
         #region POST
 
-        [Authorize(Roles = "Administrateur")]
+        [Authorize(Roles = "Admin")]
         [HttpPost()]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -110,7 +110,7 @@ namespace APIProjetFilRouge.Controllers
             }
         }
 
-        [Authorize(Roles = "Administrateur")]
+        [Authorize(Roles = "Admin")]
         [HttpPost("AddToRecette/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -138,7 +138,7 @@ namespace APIProjetFilRouge.Controllers
 
         #region PUT
 
-        [Authorize(Roles = "Administrateur")]
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -167,7 +167,7 @@ namespace APIProjetFilRouge.Controllers
 
         #region DELETE
 
-        [Authorize(Roles = "Administrateur")]
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -182,7 +182,7 @@ namespace APIProjetFilRouge.Controllers
             return Ok(result);
         }
 
-        [Authorize(Roles = "Administrateur")]
+        [Authorize(Roles = "Admin")]
         [HttpDelete("RemoveFromRecette/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

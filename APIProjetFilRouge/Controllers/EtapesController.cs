@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.ActionConstraints;
 
 namespace APIProjetFilRouge.Controllers
 {
-    [Authorize(Roles = "Administrateur,Utilisateur")]
+    [Authorize(Roles = "Admin,User")]
     [Route("api/[controller]")]
     [ApiController]
     public class EtapesController : ControllerBase
@@ -60,7 +60,7 @@ namespace APIProjetFilRouge.Controllers
 
         #region POST
 
-        [Authorize(Roles = "Administrateur")]
+        [Authorize(Roles = "Admin")]
         [HttpPost("{id}")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -81,7 +81,7 @@ namespace APIProjetFilRouge.Controllers
 
         #region PUT
 
-        [Authorize(Roles = "Administrateur")]
+        [Authorize(Roles = "Admin")]
         [HttpPut("{id}/{num}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -102,7 +102,7 @@ namespace APIProjetFilRouge.Controllers
 
         #region DELETE
 
-        [Authorize(Roles = "Administrateur")]
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id}/{num}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

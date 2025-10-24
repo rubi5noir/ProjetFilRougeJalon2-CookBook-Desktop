@@ -1,34 +1,77 @@
 ﻿using APIProjetFilRouge.BLL.Interfaces;
+using APIProjetFilRouge.DAL.Interfaces;
 using APIProjetFilRouge.Models;
+using APIProjetFilRouge.Models.BussinessObjects;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using BCrypt.Net;
 
 namespace APIProjetFilRouge.BLL.Services
 {
     /// <summary>
     /// Service responsable de la génération des tokens JWT pour l'authentification et l'autorisation.
     /// </summary>
-    public class JwtTokenService : IJwtTokenService
+    public class AuthentificationService : IAuthentificationService
     {
         private readonly IJwtSettings _jwtSettings;
+        private readonly ICompteRepository _compteRepository;
 
         /// <summary>
-        /// Initialise une nouvelle instance de la classe <see cref="JwtTokenService"/>.
+        /// Initialise une nouvelle instance de la classe <see cref="AuthentificationService"/>.
         /// </summary>
         /// <param name="jwtSettings">Paramètres de configuration JWT.</param>
-        public JwtTokenService(IJwtSettings jwtSettings)
+        public AuthentificationService(IJwtSettings jwtSettings, ICompteRepository compteRepository)
         {
             _jwtSettings = jwtSettings;
+            _compteRepository = compteRepository;
         }
 
-        /// <summary>
-        /// Génère un token JWT pour un utilisateur donné et ses rôles.
-        /// </summary>
-        /// <param name="username">Nom d'utilisateur pour lequel générer le token.</param>
-        /// <param name="roles">Liste des rôles associés à l'utilisateur.</param>
-        /// <returns>Le token JWT généré sous forme de chaîne.</returns>
+        public string Authenticate(string username, string password)
+        {
+            Compte compte = _compteRepository.GetByIdentifiantAsync(username);
+
+            if (compte == null)
+            {
+#pragma warning disable CS8603 // Existence possible d'un retour de référence null.
+                return null;
+#pragma warning restore CS8603 // Existence possible d'un retour de référence null.
+            }
+
+            if (VerifyPassword(password, compte.password))
+            {
+                string Token;
+
+                if (compte.Role == "Admin")
+                {
+                    Token = GenerateToken(compte.identifiant, "Admin", "User");
+                }
+                else
+                {
+                    Token = GenerateToken(compte.identifiant, "User");
+                }
+
+                return Token;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public string HashPassword(string password)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool VerifyPassword(string password, string hashedPassword)
+        {
+            var result = BCrypt.Net.BCrypt.Verify(password, hashedPassword);
+
+            return result;
+        }
+
         public string GenerateToken(string username, params string[] roles)
         {
             // Ajoute les informations de l'utilisateur dans les claims

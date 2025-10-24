@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace APIProjetFilRouge.Controllers
 {
-    [Authorize(Roles = "Administrateur,Utilisateur")]
+    [Authorize(Roles = "Admin,User")]
     [Route("api/[controller]")]
     [ApiController]
     public class ComptesController : ControllerBase
@@ -24,7 +24,7 @@ namespace APIProjetFilRouge.Controllers
         /// Retrieve All user's accounts
         /// </summary>
         /// <returns></returns>
-        [Authorize(Roles = "Administrateur")]
+        [Authorize(Roles = "Admin")]
         [HttpGet()]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

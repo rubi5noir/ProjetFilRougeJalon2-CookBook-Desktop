@@ -16,6 +16,8 @@ namespace APIProjetFilRouge.DAL.Interfaces
         /// <returns><see cref="List{Compte}"/> of <see cref="Compte"/> : All account of the user</returns>
         Task<Compte> GetCompteByIdAsync(int id);
 
+        Compte GetByIdentifiantAsync(string identifiant);
+
         /// <summary>
         /// Creates a new account in the database.
         /// </summary>

@@ -30,6 +30,12 @@ namespace APIProjetFilRouge.DAL.Repositories
             $"FROM {compteTable} " +
             "WHERE id = @Id";
 
+        public const string _queryGetByIdentifiant =
+            "SELECT " +
+            "id, identifiant, nom, prenom, email, password, admin " +
+            $"FROM {compteTable} " +
+            "WHERE identifiant = @identifiant";
+
         #endregion
 
         #region Queries SET
@@ -76,6 +82,22 @@ namespace APIProjetFilRouge.DAL.Repositories
             } , transaction: _dbSession.Transaction);
 
             return compte;
+        }
+
+        public Compte GetByIdentifiantAsync(string identifiant)
+        {
+            Compte compte;
+
+#pragma warning disable CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
+            compte = _dbSession.Connection.QuerySingleOrDefault<Compte>(_queryGetByIdentifiant, new
+            {
+                identifiant = identifiant
+            }, transaction: _dbSession.Transaction);
+#pragma warning restore CS8600 // Conversion de littéral ayant une valeur null ou d'une éventuelle valeur null en type non-nullable.
+
+#pragma warning disable CS8603 // Existence possible d'un retour de référence null.
+            return compte;
+#pragma warning restore CS8603 // Existence possible d'un retour de référence null.
         }
 
         #endregion
