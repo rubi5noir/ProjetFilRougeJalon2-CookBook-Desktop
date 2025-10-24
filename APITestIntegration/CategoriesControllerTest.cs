@@ -28,7 +28,7 @@ namespace APITestIntegration
         {
             //Arrange
             UpDatabase();
-            await Login("admin", "admin");
+            await Login("rubisnoir", "838665654");
             List<CategorieDTO> categoriesExpected = new List<CategorieDTO>()
             {
                 new()
@@ -114,7 +114,7 @@ namespace APITestIntegration
         {
             // Arrange
             UpDatabase();
-            await Login("admin", "admin");
+            await Login("rubisnoir", "838665654");
 
             // Simule un cas provoquant une BadRequest
             // (par exemple en appelant une route incorrecte volontairement)
@@ -160,7 +160,7 @@ namespace APITestIntegration
         {
             //Arrange
             UpDatabase();
-            await Login("admin", "admin");
+            await Login("rubisnoir", "838665654");
             int categorie = 2;
             List<int> Expected = new()
             {
@@ -184,7 +184,7 @@ namespace APITestIntegration
         {
             // Arrange
             UpDatabase();
-            await Login("admin", "admin");
+            await Login("rubisnoir", "838665654");
 
             int categorie = 999; // ID inexistant pour forcer la liste vide
 
@@ -211,7 +211,7 @@ namespace APITestIntegration
         {
             //Arrange
             UpDatabase();
-            await Login("admin", "admin");
+            await Login("rubisnoir", "838665654");
             int recette = 5;
             List<CategorieDTO> categorieExpected = new List<CategorieDTO>()
             {
@@ -245,7 +245,7 @@ namespace APITestIntegration
         {
             // Arrange
             UpDatabase();
-            await Login("admin", "admin");
+            await Login("rubisnoir", "838665654");
 
             int recette = 999; // ID de recette inexistant pour provoquer la liste vide
 
@@ -271,7 +271,7 @@ namespace APITestIntegration
         {
             //Arrange
             UpDatabase();
-            await Login("admin", "admin");
+            await Login("rubisnoir", "838665654");
             CategorieDTO createCategorieDTO = new CategorieDTO()
             {
                 id = 0,
@@ -298,7 +298,7 @@ namespace APITestIntegration
         {
             // Arrange
             UpDatabase();
-            await Login("admin", "admin");
+            await Login("rubisnoir", "838665654");
             CategorieDTO createCategorieDTO = new CategorieDTO()
             {
                 id = 0,
@@ -328,7 +328,7 @@ namespace APITestIntegration
         {
             // Arrange
             UpDatabase();
-            await Login("admin", "admin");
+            await Login("rubisnoir", "838665654");
             int recetteID = 5;
             CategorieDTO categorieDTO = new CategorieDTO
             {
@@ -355,7 +355,7 @@ namespace APITestIntegration
         {
             // Arrange
             UpDatabase();
-            await Login("admin", "admin");
+            await Login("rubisnoir", "838665654");
             int recetteID = 5;
             CategorieDTO categorieDTO = new CategorieDTO
             {
@@ -386,7 +386,7 @@ namespace APITestIntegration
         {
             // Arrange
             UpDatabase();
-            await Login("admin", "admin");
+            await Login("rubisnoir", "838665654");
             int id = 3;
             CategorieDTO updateCategorieDTO = new()
             {
@@ -413,7 +413,7 @@ namespace APITestIntegration
         {
             // Arrange
             UpDatabase();
-            await Login("admin", "admin");
+            await Login("rubisnoir", "838665654");
             int id = 5; 
             CategorieDTO updateCategorieDTO = new()
             {
@@ -444,7 +444,7 @@ namespace APITestIntegration
         {
             // Arrange
             UpDatabase();
-            await Login("admin", "admin");
+            await Login("rubisnoir", "838665654");
             int id = 13;
             bool Expected = true;
 
@@ -466,7 +466,7 @@ namespace APITestIntegration
         {
             // Arrange
             UpDatabase();
-            await Login("admin", "admin");
+            await Login("rubisnoir", "838665654");
             int id = 999;
 
             // Act
@@ -492,7 +492,7 @@ namespace APITestIntegration
         {
             // Arrange
             UpDatabase();
-            await Login("admin", "admin");
+            await Login("rubisnoir", "838665654");
             int recetteID = 5;
             CategorieDTO categorieDTO = new CategorieDTO
             {
@@ -524,7 +524,7 @@ namespace APITestIntegration
         {
             // Arrange
             UpDatabase();
-            await Login("admin", "admin");
+            await Login("rubisnoir", "838665654");
             int recetteID = 5;
             CategorieDTO categorieDTO = new CategorieDTO
             {
