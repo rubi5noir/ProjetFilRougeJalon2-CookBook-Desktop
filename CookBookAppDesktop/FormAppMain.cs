@@ -235,6 +235,19 @@ namespace CookBookAppDesktop
             }
         }
 
+        /// <summary>
+        /// Write user info in the compte tab / such as username and roles based on JWT token
+        /// </summary>
+        /// <returns></returns>
+        private async Task WriteUserInfo()
+        {
+            var handler = new JwtSecurityTokenHandler();
+            var jwt = handler.ReadJwtToken(_rest.JwtToken);
+
+            labelPseudonymeUtilisateur.Text = jwt.Claims.First(c => c.Type == "sub").Value; ;
+            labelRoleUtilisateur.Text = _roles != null && _roles.Any() ? string.Join(", ", _roles) : "Aucun rôle";
+        }
+
         #endregion
 
         #region Events
@@ -243,6 +256,9 @@ namespace CookBookAppDesktop
         {
 
             _rest.BaseUrl = Settings.Default.BaseUrl;
+
+            // Hide the tab that is not implemented yet
+            tabControlApp.TabPages.Remove(tabPageAvis);
 
             if (string.IsNullOrEmpty(_rest.JwtToken))
             {
@@ -283,6 +299,8 @@ namespace CookBookAppDesktop
                 await RefreshCategories();
             else if (e.TabPage == tabPageIngredients)
                 await RefreshIngredients();
+            else if (e.TabPage == tabPageCompte)
+                await WriteUserInfo();
         }
 
         #region TabPageRecettes

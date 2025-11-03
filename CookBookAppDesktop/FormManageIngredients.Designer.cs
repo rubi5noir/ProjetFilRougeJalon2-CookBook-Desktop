@@ -29,6 +29,14 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             panelFormManageIngredients = new Panel();
             tableLayoutPanelFormManageIngredients = new TableLayoutPanel();
             tableLayoutPanelManageIngredients = new TableLayoutPanel();
@@ -145,10 +153,29 @@
             // 
             // dataGridViewRecipes
             // 
+            dataGridViewRecipes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.Maroon;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.DarkRed;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridViewRecipes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewRecipes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.LightCoral;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.Red;
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dataGridViewRecipes.DefaultCellStyle = dataGridViewCellStyle2;
             dataGridViewRecipes.Dock = DockStyle.Fill;
+            dataGridViewRecipes.EnableHeadersVisualStyles = false;
             dataGridViewRecipes.Location = new Point(3, 18);
             dataGridViewRecipes.Name = "dataGridViewRecipes";
+            dataGridViewRecipes.RowHeadersVisible = false;
             dataGridViewRecipes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewRecipes.Size = new Size(261, 156);
             dataGridViewRecipes.TabIndex = 0;
@@ -156,10 +183,29 @@
             // 
             // dataGridViewRecipesWithoutTheIngredient
             // 
+            dataGridViewRecipesWithoutTheIngredient.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.Maroon;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = Color.DarkRed;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dataGridViewRecipesWithoutTheIngredient.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dataGridViewRecipesWithoutTheIngredient.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.LightCoral;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = Color.Red;
+            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dataGridViewRecipesWithoutTheIngredient.DefaultCellStyle = dataGridViewCellStyle4;
             dataGridViewRecipesWithoutTheIngredient.Dock = DockStyle.Fill;
+            dataGridViewRecipesWithoutTheIngredient.EnableHeadersVisualStyles = false;
             dataGridViewRecipesWithoutTheIngredient.Location = new Point(3, 195);
             dataGridViewRecipesWithoutTheIngredient.Name = "dataGridViewRecipesWithoutTheIngredient";
+            dataGridViewRecipesWithoutTheIngredient.RowHeadersVisible = false;
             dataGridViewRecipesWithoutTheIngredient.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewRecipesWithoutTheIngredient.Size = new Size(261, 157);
             dataGridViewRecipesWithoutTheIngredient.TabIndex = 1;
@@ -207,10 +253,29 @@
             // 
             // dataGridViewIngredientsOfRecette
             // 
+            dataGridViewIngredientsOfRecette.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.Maroon;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle5.ForeColor = Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = Color.DarkRed;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dataGridViewIngredientsOfRecette.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             dataGridViewIngredientsOfRecette.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.LightCoral;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = Color.Red;
+            dataGridViewCellStyle6.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
+            dataGridViewIngredientsOfRecette.DefaultCellStyle = dataGridViewCellStyle6;
             dataGridViewIngredientsOfRecette.Dock = DockStyle.Fill;
+            dataGridViewIngredientsOfRecette.EnableHeadersVisualStyles = false;
             dataGridViewIngredientsOfRecette.Location = new Point(3, 18);
             dataGridViewIngredientsOfRecette.Name = "dataGridViewIngredientsOfRecette";
+            dataGridViewIngredientsOfRecette.RowHeadersVisible = false;
             dataGridViewIngredientsOfRecette.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewIngredientsOfRecette.Size = new Size(260, 247);
             dataGridViewIngredientsOfRecette.TabIndex = 1;
@@ -325,10 +390,29 @@
             // 
             // dataGridViewIngredients
             // 
+            dataGridViewIngredients.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.Maroon;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle7.ForeColor = Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = Color.DarkRed;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dataGridViewIngredients.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             dataGridViewIngredients.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = Color.LightCoral;
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle8.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = Color.Red;
+            dataGridViewCellStyle8.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            dataGridViewIngredients.DefaultCellStyle = dataGridViewCellStyle8;
             dataGridViewIngredients.Dock = DockStyle.Fill;
+            dataGridViewIngredients.EnableHeadersVisualStyles = false;
             dataGridViewIngredients.Location = new Point(3, 18);
             dataGridViewIngredients.Name = "dataGridViewIngredients";
+            dataGridViewIngredients.RowHeadersVisible = false;
             dataGridViewIngredients.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewIngredients.Size = new Size(237, 302);
             dataGridViewIngredients.TabIndex = 0;

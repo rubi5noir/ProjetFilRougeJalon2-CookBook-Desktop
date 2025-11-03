@@ -31,15 +31,19 @@ namespace CookBookAppDesktop
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAppMain));
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAppMain));
             DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle13 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle14 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle15 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle16 = new DataGridViewCellStyle();
             tableLayoutPanelApp = new TableLayoutPanel();
             tabControlApp = new TabControl();
             tabPageRecettes = new TabPage();
@@ -103,6 +107,11 @@ namespace CookBookAppDesktop
             tabPageCompte = new TabPage();
             tableLayoutPanelCompte = new TableLayoutPanel();
             buttonLogOut = new Button();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            labelRole = new Label();
+            labelRoleUtilisateur = new Label();
+            labelPseudonyme = new Label();
+            labelPseudonymeUtilisateur = new Label();
             bindingSourceRecettes = new BindingSource(components);
             bindingSourceEtapes = new BindingSource(components);
             bindingSourceCategories = new BindingSource(components);
@@ -144,6 +153,7 @@ namespace CookBookAppDesktop
             ((System.ComponentModel.ISupportInitialize)dataGridViewIngredients).BeginInit();
             tabPageCompte.SuspendLayout();
             tableLayoutPanelCompte.SuspendLayout();
+            tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)bindingSourceRecettes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bindingSourceEtapes).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bindingSourceCategories).BeginInit();
@@ -223,35 +233,35 @@ namespace CookBookAppDesktop
             dataGridViewRecettes.AllowUserToAddRows = false;
             dataGridViewRecettes.AllowUserToDeleteRows = false;
             dataGridViewRecettes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = Color.Maroon;
-            dataGridViewCellStyle9.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle9.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = Color.DarkRed;
-            dataGridViewCellStyle9.SelectionForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
-            dataGridViewRecettes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = Color.LightCoral;
-            dataGridViewCellStyle10.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle10.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = Color.Red;
-            dataGridViewCellStyle10.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.False;
-            dataGridViewRecettes.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.Maroon;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.DarkRed;
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridViewRecettes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.LightCoral;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.Red;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dataGridViewRecettes.DefaultCellStyle = dataGridViewCellStyle2;
             dataGridViewRecettes.Dock = DockStyle.Fill;
             dataGridViewRecettes.EnableHeadersVisualStyles = false;
             dataGridViewRecettes.Location = new Point(3, 18);
             dataGridViewRecettes.Name = "dataGridViewRecettes";
             dataGridViewRecettes.ReadOnly = true;
-            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = Color.OrangeRed;
-            dataGridViewCellStyle11.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle11.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
-            dataGridViewRecettes.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.OrangeRed;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dataGridViewRecettes.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dataGridViewRecettes.RowHeadersVisible = false;
             dataGridViewRecettes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewRecettes.Size = new Size(666, 214);
@@ -706,23 +716,23 @@ namespace CookBookAppDesktop
             dataGridViewEtapes.AllowUserToAddRows = false;
             dataGridViewEtapes.AllowUserToDeleteRows = false;
             dataGridViewEtapes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = Color.Maroon;
-            dataGridViewCellStyle12.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle12.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = Color.DarkRed;
-            dataGridViewCellStyle12.SelectionForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
-            dataGridViewEtapes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.Maroon;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = Color.DarkRed;
+            dataGridViewCellStyle4.SelectionForeColor = Color.White;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dataGridViewEtapes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dataGridViewEtapes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle13.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = Color.LightCoral;
-            dataGridViewCellStyle13.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle13.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle13.SelectionBackColor = Color.Red;
-            dataGridViewCellStyle13.SelectionForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle13.WrapMode = DataGridViewTriState.False;
-            dataGridViewEtapes.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.LightCoral;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle5.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = Color.Red;
+            dataGridViewCellStyle5.SelectionForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            dataGridViewEtapes.DefaultCellStyle = dataGridViewCellStyle5;
             dataGridViewEtapes.Dock = DockStyle.Fill;
             dataGridViewEtapes.EnableHeadersVisualStyles = false;
             dataGridViewEtapes.Location = new Point(3, 18);
@@ -738,21 +748,35 @@ namespace CookBookAppDesktop
             dataGridViewEtapesRecette.AllowUserToAddRows = false;
             dataGridViewEtapesRecette.AllowUserToDeleteRows = false;
             dataGridViewEtapesRecette.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewEtapesRecette.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            dataGridViewCellStyle14.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = Color.LightCoral;
-            dataGridViewCellStyle14.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle14.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle14.SelectionBackColor = Color.Red;
-            dataGridViewCellStyle14.SelectionForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle14.WrapMode = DataGridViewTriState.True;
-            dataGridViewEtapesRecette.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = Color.Maroon;
+            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle6.ForeColor = Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = Color.DarkRed;
+            dataGridViewCellStyle6.SelectionForeColor = Color.White;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dataGridViewEtapesRecette.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.LightCoral;
+            dataGridViewCellStyle7.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = Color.Red;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            dataGridViewEtapesRecette.DefaultCellStyle = dataGridViewCellStyle7;
             dataGridViewEtapesRecette.Dock = DockStyle.Fill;
             dataGridViewEtapesRecette.EnableHeadersVisualStyles = false;
             dataGridViewEtapesRecette.Location = new Point(289, 18);
             dataGridViewEtapesRecette.Name = "dataGridViewEtapesRecette";
             dataGridViewEtapesRecette.ReadOnly = true;
-            dataGridViewEtapesRecette.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = Color.Maroon;
+            dataGridViewCellStyle8.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle8.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = Color.DarkRed;
+            dataGridViewCellStyle8.SelectionForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
+            dataGridViewEtapesRecette.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             dataGridViewEtapesRecette.RowHeadersVisible = false;
             dataGridViewEtapesRecette.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewEtapesRecette.Size = new Size(374, 365);
@@ -853,21 +877,28 @@ namespace CookBookAppDesktop
             dataGridViewCategories.AllowUserToAddRows = false;
             dataGridViewCategories.AllowUserToDeleteRows = false;
             dataGridViewCategories.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = Color.Maroon;
+            dataGridViewCellStyle9.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle9.ForeColor = Color.White;
+            dataGridViewCellStyle9.SelectionBackColor = Color.DarkRed;
+            dataGridViewCellStyle9.SelectionForeColor = Color.White;
+            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.True;
             dataGridViewCategories.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = Color.LightCoral;
-            dataGridViewCellStyle15.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle15.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = Color.Red;
-            dataGridViewCellStyle15.SelectionForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle15.WrapMode = DataGridViewTriState.True;
-            dataGridViewCategories.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = Color.LightCoral;
+            dataGridViewCellStyle10.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle10.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = Color.Red;
+            dataGridViewCellStyle10.SelectionForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.True;
+            dataGridViewCategories.DefaultCellStyle = dataGridViewCellStyle10;
             dataGridViewCategories.Dock = DockStyle.Fill;
             dataGridViewCategories.EnableHeadersVisualStyles = false;
             dataGridViewCategories.Location = new Point(3, 18);
             dataGridViewCategories.Name = "dataGridViewCategories";
             dataGridViewCategories.ReadOnly = true;
-            dataGridViewCategories.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCategories.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             dataGridViewCategories.RowHeadersVisible = false;
             dataGridViewCategories.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewCategories.Size = new Size(666, 375);
@@ -957,21 +988,28 @@ namespace CookBookAppDesktop
             dataGridViewIngredients.AllowUserToAddRows = false;
             dataGridViewIngredients.AllowUserToDeleteRows = false;
             dataGridViewIngredients.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewIngredients.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            dataGridViewCellStyle16.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = Color.LightCoral;
-            dataGridViewCellStyle16.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle16.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle16.SelectionBackColor = Color.Red;
-            dataGridViewCellStyle16.SelectionForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle16.WrapMode = DataGridViewTriState.True;
-            dataGridViewIngredients.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = Color.Maroon;
+            dataGridViewCellStyle11.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle11.ForeColor = Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = Color.DarkRed;
+            dataGridViewCellStyle11.SelectionForeColor = Color.White;
+            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.True;
+            dataGridViewIngredients.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = Color.LightCoral;
+            dataGridViewCellStyle12.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle12.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = Color.Red;
+            dataGridViewCellStyle12.SelectionForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.True;
+            dataGridViewIngredients.DefaultCellStyle = dataGridViewCellStyle12;
             dataGridViewIngredients.Dock = DockStyle.Fill;
             dataGridViewIngredients.EnableHeadersVisualStyles = false;
             dataGridViewIngredients.Location = new Point(3, 18);
             dataGridViewIngredients.Name = "dataGridViewIngredients";
             dataGridViewIngredients.ReadOnly = true;
-            dataGridViewIngredients.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewIngredients.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             dataGridViewIngredients.RowHeadersVisible = false;
             dataGridViewIngredients.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewIngredients.Size = new Size(666, 373);
@@ -1012,28 +1050,89 @@ namespace CookBookAppDesktop
             // tableLayoutPanelCompte
             // 
             tableLayoutPanelCompte.BackColor = Color.FromArgb(31, 22, 70);
-            tableLayoutPanelCompte.ColumnCount = 2;
-            tableLayoutPanelCompte.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanelCompte.ColumnCount = 1;
             tableLayoutPanelCompte.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanelCompte.Controls.Add(buttonLogOut, 0, 1);
+            tableLayoutPanelCompte.Controls.Add(tableLayoutPanel1, 0, 0);
             tableLayoutPanelCompte.Dock = DockStyle.Fill;
             tableLayoutPanelCompte.Location = new Point(3, 3);
             tableLayoutPanelCompte.Name = "tableLayoutPanelCompte";
             tableLayoutPanelCompte.RowCount = 2;
-            tableLayoutPanelCompte.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanelCompte.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanelCompte.RowStyles.Add(new RowStyle(SizeType.Percent, 29.8279152F));
+            tableLayoutPanelCompte.RowStyles.Add(new RowStyle(SizeType.Percent, 70.17208F));
             tableLayoutPanelCompte.Size = new Size(672, 523);
             tableLayoutPanelCompte.TabIndex = 0;
             // 
             // buttonLogOut
             // 
-            buttonLogOut.Location = new Point(3, 264);
+            buttonLogOut.Dock = DockStyle.Top;
+            buttonLogOut.Location = new Point(3, 159);
             buttonLogOut.Name = "buttonLogOut";
-            buttonLogOut.Size = new Size(330, 23);
+            buttonLogOut.Size = new Size(666, 62);
             buttonLogOut.TabIndex = 0;
             buttonLogOut.Text = "Déconnection";
             buttonLogOut.UseVisualStyleBackColor = true;
             buttonLogOut.Click += buttonLogOut_Click;
+            // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 2;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 13.9639635F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 86.03603F));
+            tableLayoutPanel1.Controls.Add(labelRole, 0, 1);
+            tableLayoutPanel1.Controls.Add(labelRoleUtilisateur, 1, 1);
+            tableLayoutPanel1.Controls.Add(labelPseudonyme, 0, 0);
+            tableLayoutPanel1.Controls.Add(labelPseudonymeUtilisateur, 1, 0);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(3, 3);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 2;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel1.Size = new Size(666, 150);
+            tableLayoutPanel1.TabIndex = 1;
+            // 
+            // labelRole
+            // 
+            labelRole.AutoSize = true;
+            labelRole.BackColor = Color.FromArgb(147, 129, 255);
+            labelRole.Dock = DockStyle.Fill;
+            labelRole.Location = new Point(3, 75);
+            labelRole.Name = "labelRole";
+            labelRole.Size = new Size(87, 75);
+            labelRole.TabIndex = 2;
+            labelRole.Text = "Role :";
+            // 
+            // labelRoleUtilisateur
+            // 
+            labelRoleUtilisateur.AutoSize = true;
+            labelRoleUtilisateur.BackColor = Color.FromArgb(147, 129, 255);
+            labelRoleUtilisateur.Dock = DockStyle.Fill;
+            labelRoleUtilisateur.Location = new Point(96, 75);
+            labelRoleUtilisateur.Name = "labelRoleUtilisateur";
+            labelRoleUtilisateur.Size = new Size(567, 75);
+            labelRoleUtilisateur.TabIndex = 3;
+            // 
+            // labelPseudonyme
+            // 
+            labelPseudonyme.AutoSize = true;
+            labelPseudonyme.BackColor = Color.FromArgb(147, 129, 255);
+            labelPseudonyme.Dock = DockStyle.Fill;
+            labelPseudonyme.Location = new Point(3, 0);
+            labelPseudonyme.Name = "labelPseudonyme";
+            labelPseudonyme.Size = new Size(87, 75);
+            labelPseudonyme.TabIndex = 1;
+            labelPseudonyme.Text = "Pseudonyme :";
+            // 
+            // labelPseudonymeUtilisateur
+            // 
+            labelPseudonymeUtilisateur.AutoSize = true;
+            labelPseudonymeUtilisateur.BackColor = Color.FromArgb(147, 129, 255);
+            labelPseudonymeUtilisateur.Dock = DockStyle.Fill;
+            labelPseudonymeUtilisateur.Location = new Point(96, 0);
+            labelPseudonymeUtilisateur.Name = "labelPseudonymeUtilisateur";
+            labelPseudonymeUtilisateur.Size = new Size(567, 75);
+            labelPseudonymeUtilisateur.TabIndex = 0;
             // 
             // FormAppMain
             // 
@@ -1092,6 +1191,8 @@ namespace CookBookAppDesktop
             ((System.ComponentModel.ISupportInitialize)dataGridViewIngredients).EndInit();
             tabPageCompte.ResumeLayout(false);
             tableLayoutPanelCompte.ResumeLayout(false);
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)bindingSourceRecettes).EndInit();
             ((System.ComponentModel.ISupportInitialize)bindingSourceEtapes).EndInit();
             ((System.ComponentModel.ISupportInitialize)bindingSourceCategories).EndInit();
@@ -1173,5 +1274,10 @@ namespace CookBookAppDesktop
         private Label labelIngredients;
         private TableLayoutPanel tableLayoutPanelCompte;
         private Button buttonLogOut;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Label labelRole;
+        private Label labelRoleUtilisateur;
+        private Label labelPseudonyme;
+        private Label labelPseudonymeUtilisateur;
     }
 }

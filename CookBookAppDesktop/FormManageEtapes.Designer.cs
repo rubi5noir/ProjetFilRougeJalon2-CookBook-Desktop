@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             tableLayoutPanelFormManageEtapes = new TableLayoutPanel();
             tableLayoutPanelManageEtapes = new TableLayoutPanel();
             tableLayoutPanelManageEtapesInputs = new TableLayoutPanel();
@@ -215,11 +219,30 @@
             // 
             dataGridViewEtapes.AllowUserToAddRows = false;
             dataGridViewEtapes.AllowUserToDeleteRows = false;
+            dataGridViewEtapes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.Maroon;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.DarkRed;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridViewEtapes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewEtapes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.LightCoral;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.Red;
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dataGridViewEtapes.DefaultCellStyle = dataGridViewCellStyle2;
             dataGridViewEtapes.Dock = DockStyle.Fill;
+            dataGridViewEtapes.EnableHeadersVisualStyles = false;
             dataGridViewEtapes.Location = new Point(3, 18);
             dataGridViewEtapes.Name = "dataGridViewEtapes";
             dataGridViewEtapes.ReadOnly = true;
+            dataGridViewEtapes.RowHeadersVisible = false;
             dataGridViewEtapes.Size = new Size(388, 208);
             dataGridViewEtapes.TabIndex = 1;
             // 
@@ -255,11 +278,30 @@
             // 
             dataGridViewRecettesForEtapes.AllowUserToAddRows = false;
             dataGridViewRecettesForEtapes.AllowUserToDeleteRows = false;
+            dataGridViewRecettesForEtapes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.Maroon;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = Color.DarkRed;
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dataGridViewRecettesForEtapes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dataGridViewRecettesForEtapes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.LightCoral;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = Color.Red;
+            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dataGridViewRecettesForEtapes.DefaultCellStyle = dataGridViewCellStyle4;
             dataGridViewRecettesForEtapes.Dock = DockStyle.Fill;
+            dataGridViewRecettesForEtapes.EnableHeadersVisualStyles = false;
             dataGridViewRecettesForEtapes.Location = new Point(3, 18);
             dataGridViewRecettesForEtapes.Name = "dataGridViewRecettesForEtapes";
             dataGridViewRecettesForEtapes.ReadOnly = true;
+            dataGridViewRecettesForEtapes.RowHeadersVisible = false;
             dataGridViewRecettesForEtapes.Size = new Size(388, 358);
             dataGridViewRecettesForEtapes.TabIndex = 0;
             dataGridViewRecettesForEtapes.CurrentCellChanged += dataGridViewRecettesForEtapes_SelectionChanged;
