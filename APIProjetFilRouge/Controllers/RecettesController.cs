@@ -8,8 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace APIProjetFilRouge.Controllers
 {
-    [Authorize(Roles = "Admin")]
-    [Authorize(Roles = "User")]
+    [Authorize(Policy = "UserOrAdmin")]
     [Route("api/[controller]")]
     [ApiController]
     public class RecettesController : ControllerBase

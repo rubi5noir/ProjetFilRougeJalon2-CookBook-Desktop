@@ -127,6 +127,14 @@ namespace APIProjetFilRouge
                 });
             });
 
+            // Configuration des politiques d'autorisation.
+            builder.Services.AddAuthorization(options =>
+            {
+                options.AddPolicy("UserOrAdmin", policy =>
+                    policy.RequireRole("User", "Admin")); // ceci = OR
+            });
+
+
             var app = builder.Build();
 
             app.UseMiddleware<GlobalExceptionMiddleware>();

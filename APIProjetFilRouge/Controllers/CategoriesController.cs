@@ -8,8 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace APIProjetFilRouge.Controllers
 {
-    [Authorize(Roles = "Admin")]
-    [Authorize(Roles = "User")]
+    [Authorize(Policy = "UserOrAdmin")]
     [Route("api/[controller]")]
     [ApiController]
     public class CategoriesController : ControllerBase
