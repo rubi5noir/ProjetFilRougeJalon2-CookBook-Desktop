@@ -1,10 +1,6 @@
 ﻿using APIProjetFilRouge.BLL.Interfaces;
-using APIProjetFilRouge.DAL.Interfaces;
-using APIProjetFilRouge.DAL.Repositories;
 using APIProjetFilRouge.DAL.UnitsOfWork;
 using APIProjetFilRouge.Models.BussinessObjects;
-using APIProjetFilRouge.Models.DataTransfertObjects.Between;
-using APIProjetFilRouge.Models.DataTransfertObjects.Out;
 
 namespace APIProjetFilRouge.BLL.Services
 {
@@ -269,7 +265,7 @@ namespace APIProjetFilRouge.BLL.Services
         public async Task<List<int>> GetRecettesIDsFromIngredientAsync(int id)
         {
             var result = await _unitOfWork.Ingredient.GetRecettesIDsFromIngredientAsync(id);
-            
+
             return result;
         }
 

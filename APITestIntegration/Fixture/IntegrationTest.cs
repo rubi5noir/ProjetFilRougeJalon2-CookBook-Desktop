@@ -1,16 +1,9 @@
 ﻿using APIProjetFilRouge.Models.DataTransfertObjects.In;
 using APIProjetFilRouge.Models.DataTransfertObjects.Out;
-using APITestIntegration.Fixture;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
-using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Data;
-using System.Linq;
 using System.Net.Http.Json;
-using System.Text;
-using System.Threading.Tasks;
 
 [assembly: CollectionBehavior(DisableTestParallelization = true)]
 

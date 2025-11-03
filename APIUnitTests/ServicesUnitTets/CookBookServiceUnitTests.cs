@@ -1,14 +1,7 @@
-﻿using APIProjetFilRouge.BLL.Interfaces;
-using APIProjetFilRouge.BLL.Services;
+﻿using APIProjetFilRouge.BLL.Services;
 using APIProjetFilRouge.DAL.UnitsOfWork;
 using APIProjetFilRouge.Models.BussinessObjects;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace APIUnitTests.ServicesUnitTets
 {

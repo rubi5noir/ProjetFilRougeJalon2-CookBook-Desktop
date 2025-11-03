@@ -4,8 +4,6 @@ using APIProjetFilRouge.DAL.Session;
 using APIProjetFilRouge.DAL.Session.PostGres;
 using APIProjetFilRouge.DAL.UnitsOfWork;
 using APIProjetFilRouge.Models;
-using Microsoft.AspNetCore.Http;
-using static Dapper.SqlMapper;
 
 namespace APIProjetFilRouge.DAL
 {

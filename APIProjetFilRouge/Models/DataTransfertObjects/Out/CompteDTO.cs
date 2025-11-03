@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace APIProjetFilRouge.Models.DataTransfertObjects.Out
+﻿namespace APIProjetFilRouge.Models.DataTransfertObjects.Out
 {
 #pragma warning disable S101 // Types should be named in PascalCase
     public class CompteDTO

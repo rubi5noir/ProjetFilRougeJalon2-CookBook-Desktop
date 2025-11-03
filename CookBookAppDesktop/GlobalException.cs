@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CookBookAppDesktop
+﻿namespace CookBookAppDesktop
 {
     /// <summary>
     /// Classe statique pour centraliser la gestion des exceptions non gérées dans une application WinForms.

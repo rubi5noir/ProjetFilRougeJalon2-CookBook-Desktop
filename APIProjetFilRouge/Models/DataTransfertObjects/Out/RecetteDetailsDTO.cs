@@ -1,5 +1,4 @@
-﻿using APIProjetFilRouge.Models.BussinessObjects;
-using APIProjetFilRouge.Models.DataTransfertObjects.Between;
+﻿using APIProjetFilRouge.Models.DataTransfertObjects.Between;
 
 namespace APIProjetFilRouge.Models.DataTransfertObjects.Out
 {

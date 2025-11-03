@@ -3,7 +3,6 @@ using APIProjetFilRouge.Models.DataTransfertObjects.In;
 using APIProjetFilRouge.Models.DataTransfertObjects.Out;
 using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace APIProjetFilRouge.Controllers

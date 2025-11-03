@@ -1,6 +1,4 @@
-﻿using APIProjetFilRouge.Models.BussinessObjects;
-
-namespace APIProjetFilRouge.BLL.Interfaces
+﻿namespace APIProjetFilRouge.BLL.Interfaces
 {
     public interface IAuthentificationService
     {

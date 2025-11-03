@@ -5,11 +5,6 @@ using APIProjetFilRouge.Models.DataTransfertObjects.Between;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace APIUnitTests.APIUnitTests
 {
@@ -92,7 +87,7 @@ namespace APIUnitTests.APIUnitTests
 
             // Act
             var result = sut.GetRecipesIDsFromCategorieID(categorieId).Result as ObjectResult;
-           
+
             // Assert
             Assert.Equivalent(expectedResponse, result);
         }
@@ -112,10 +107,10 @@ namespace APIUnitTests.APIUnitTests
             var sut = new CategoriesController(mockService);
 
             var expectedResponse = new BadRequestObjectResult("Aucune Recettes trouvées");
-            
+
             // Act
             var result = sut.GetRecipesIDsFromCategorieID(categorieId).Result as ObjectResult;
-            
+
             // Assert
             Assert.Equivalent(expectedResponse, result);
         }
@@ -147,10 +142,10 @@ namespace APIUnitTests.APIUnitTests
                 id = c.id,
                 nom = c.nom
             }).ToList());
-            
+
             // Act
             var result = sut.GetCategoriesByRecetteID(recetteId).Result as ObjectResult;
-            
+
             // Assert
             Assert.Equivalent(expectedResponse, result);
         }
@@ -170,10 +165,10 @@ namespace APIUnitTests.APIUnitTests
             var sut = new CategoriesController(mockService);
 
             var expectedResponse = new BadRequestObjectResult(new List<CategorieDTO>());
-            
+
             // Act
             var result = sut.GetCategoriesByRecetteID(recetteId).Result as ObjectResult;
-            
+
             // Assert
             Assert.Equivalent(expectedResponse, result);
         }
@@ -265,7 +260,7 @@ namespace APIUnitTests.APIUnitTests
 
             // Act
             var result = await sut.AddCategorieToRecette(validator, recetteId, categorieDTO) as ObjectResult;
-            
+
             // Assert
             Assert.Equivalent(expectedResponse, result);
         }
@@ -296,10 +291,10 @@ namespace APIUnitTests.APIUnitTests
             var sut = new CategoriesController(mockService);
 
             var expectedResponse = new BadRequestObjectResult("Ajout de la catégorie à la recette échouée.");
-            
+
             // Act
             var result = await sut.AddCategorieToRecette(validator, recetteId, categorieDTO) as ObjectResult;
-            
+
             // Assert
             Assert.Equivalent(expectedResponse, result);
         }
@@ -447,7 +442,7 @@ namespace APIUnitTests.APIUnitTests
 
             // Act
             var result = await sut.RemoveCategorieFromRecette(validator, recetteId, categorieDTO) as ObjectResult;
-            
+
             // Assert
             Assert.Equivalent(expectedResponse, result);
         }
@@ -478,10 +473,10 @@ namespace APIUnitTests.APIUnitTests
             var sut = new CategoriesController(mockService);
 
             var expectedResponse = new BadRequestObjectResult("Suppression de la catégorie à la recette échouée.");
-            
+
             // Act
             var result = await sut.RemoveCategorieFromRecette(validator, recetteId, categorieDTO) as ObjectResult;
-            
+
             // Assert
             Assert.Equivalent(expectedResponse, result);
         }

@@ -2,8 +2,6 @@
 using APIProjetFilRouge.DAL.Session;
 using APIProjetFilRouge.Models.BussinessObjects;
 using Dapper;
-using Npgsql;
-using System.Security.Claims;
 
 namespace APIProjetFilRouge.DAL.Repositories
 {

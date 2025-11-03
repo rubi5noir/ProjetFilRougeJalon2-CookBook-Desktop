@@ -3,13 +3,12 @@ using APIProjetFilRouge.Models.BussinessObjects;
 using APIProjetFilRouge.Models.DataTransfertObjects.Between;
 using APIProjetFilRouge.Models.DataTransfertObjects.Out;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ActionConstraints;
 
 namespace APIProjetFilRouge.Controllers
 {
-    [Authorize(Roles = "Admin,User")]
+    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "User")]
     [Route("api/[controller]")]
     [ApiController]
     public class EtapesController : ControllerBase
@@ -85,7 +84,7 @@ namespace APIProjetFilRouge.Controllers
         [HttpPut("{id}/{num}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpdateEtape([FromRoute] int id,[FromRoute] int num, [FromBody] EtapeDTO etapeDTO)
+        public async Task<IActionResult> UpdateEtape([FromRoute] int id, [FromRoute] int num, [FromBody] EtapeDTO etapeDTO)
         {
             var etape = new Etape
             {

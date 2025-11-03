@@ -2,8 +2,6 @@
 using APIProjetFilRouge.DAL.Session;
 using APIProjetFilRouge.Models.BussinessObjects;
 using Dapper;
-using Npgsql;
-using System.Collections.Generic;
 
 namespace APIProjetFilRouge.DAL.Repositories
 {
@@ -61,7 +59,7 @@ namespace APIProjetFilRouge.DAL.Repositories
         {
             List<Avis> Avis;
 
-            Avis = (await _dbSession.Connection.QueryAsync<Avis>(_queryGetAllAvis ,transaction: _dbSession.Transaction)).ToList();
+            Avis = (await _dbSession.Connection.QueryAsync<Avis>(_queryGetAllAvis, transaction: _dbSession.Transaction)).ToList();
 
             return Avis;
         }

@@ -1,5 +1,4 @@
 ﻿using APIProjetFilRouge.Models.BussinessObjects;
-using APIProjetFilRouge.Models.DataTransfertObjects.Between;
 
 namespace APIProjetFilRouge.DAL.Interfaces
 {

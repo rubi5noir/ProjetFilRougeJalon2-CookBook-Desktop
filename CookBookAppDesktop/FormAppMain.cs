@@ -1,10 +1,7 @@
 using CookBookAppDesktop.Models.DTO;
 using CookBookAppDesktop.Properties;
 using System.ComponentModel;
-using System.Configuration;
 using System.IdentityModel.Tokens.Jwt;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace CookBookAppDesktop
 {
@@ -239,7 +236,9 @@ namespace CookBookAppDesktop
         /// Write user info in the compte tab / such as username and roles based on JWT token
         /// </summary>
         /// <returns></returns>
+#pragma warning disable CS1998 // Cette méthode async n'a pas d'opérateur 'await' et elle s'exécutera de façon synchrone
         private async Task WriteUserInfo()
+#pragma warning restore CS1998 // Cette méthode async n'a pas d'opérateur 'await' et elle s'exécutera de façon synchrone
         {
             var handler = new JwtSecurityTokenHandler();
             var jwt = handler.ReadJwtToken(_rest.JwtToken);
@@ -483,9 +482,9 @@ namespace CookBookAppDesktop
             }
         }
 
-            #endregion
+        #endregion
 
-            #endregion
+        #endregion
 
-        }
     }
+}

@@ -1,15 +1,5 @@
 ﻿using CookBookAppDesktop.Models.DTO;
 using CookBookAppDesktop.Properties;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.DirectoryServices.ActiveDirectory;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace CookBookAppDesktop
 {
@@ -70,9 +60,9 @@ namespace CookBookAppDesktop
             tableLayoutPanelIngredients.ColumnStyles[0].Width = 65; // call redraw
             tableLayoutPanelIngredients.ColumnStyles[1].Width = 25;
             tableLayoutPanelIngredients.RowCount = ingredients.Count;
-            
-            
-          
+
+
+
 
             int rowIndex = 0;
             foreach (IngredientDTO ingredient in ingredients)
@@ -96,7 +86,7 @@ namespace CookBookAppDesktop
                 tableLayoutPanelIngredients.Controls.Add(labelIngredient, 0, rowIndex);
                 tableLayoutPanelIngredients.Controls.Add(labelQuantite, 1, rowIndex);
 
-            
+
                 rowIndex++;
             }
         }
@@ -153,7 +143,7 @@ namespace CookBookAppDesktop
                 textBoxEtape.Multiline = true;
                 textBoxEtape.Dock = DockStyle.Fill;
                 textBoxEtape.Text = etape.texte;
-                
+
                 tableLayoutPanelEtapes.Controls.Add(labelEtape, 0, rowIndex);
                 tableLayoutPanelEtapes.Controls.Add(textBoxEtape, 1, rowIndex);
 
@@ -166,7 +156,7 @@ namespace CookBookAppDesktop
             tableLayoutPanelAvis.Controls.Clear();
             tableLayoutPanelAvis.RowCount = avis.Count;
 
-            List<UtilisateurDTO> utilisateurs = await _rest.GetAsync<List<UtilisateurDTO>>(URL_GET_COMPTES); 
+            List<UtilisateurDTO> utilisateurs = await _rest.GetAsync<List<UtilisateurDTO>>(URL_GET_COMPTES);
 
             int rowIndex = 0;
 

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CookBookAppDesktop.Models.DTO
+﻿namespace CookBookAppDesktop.Models.DTO
 {
 #pragma warning disable S101 // Types should be named in PascalCase
     internal class CategorieDTO

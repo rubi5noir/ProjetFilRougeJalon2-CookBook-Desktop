@@ -1,16 +1,8 @@
 ﻿using APIProjetFilRouge.Models.DataTransfertObjects.Between;
-using APIProjetFilRouge.Models.DataTransfertObjects.Out;
 using APITestIntegration.Fixture;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Net.Http.Json;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace APITestIntegration
 {
@@ -414,7 +406,7 @@ namespace APITestIntegration
             // Arrange
             UpDatabase();
             await Login("rubisnoir", "838665654");
-            int id = 5; 
+            int id = 5;
             CategorieDTO updateCategorieDTO = new()
             {
                 id = id,

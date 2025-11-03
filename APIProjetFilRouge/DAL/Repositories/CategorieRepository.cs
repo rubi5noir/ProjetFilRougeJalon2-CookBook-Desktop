@@ -2,7 +2,6 @@
 using APIProjetFilRouge.DAL.Session;
 using APIProjetFilRouge.Models.BussinessObjects;
 using Dapper;
-using System.Runtime.CompilerServices;
 
 namespace APIProjetFilRouge.DAL.Repositories
 {

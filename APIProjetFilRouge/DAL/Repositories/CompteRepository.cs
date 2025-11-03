@@ -67,7 +67,7 @@ namespace APIProjetFilRouge.DAL.Repositories
         {
             List<Compte> comptes;
 
-            comptes = (await _dbSession.Connection.QueryAsync<Compte>(_queryGetAllComptes , transaction: _dbSession.Transaction)).ToList();
+            comptes = (await _dbSession.Connection.QueryAsync<Compte>(_queryGetAllComptes, transaction: _dbSession.Transaction)).ToList();
 
             return comptes;
         }
@@ -79,7 +79,7 @@ namespace APIProjetFilRouge.DAL.Repositories
             compte = await _dbSession.Connection.QuerySingleAsync<Compte>(_queryGetCompteById, new
             {
                 Id = id
-            } , transaction: _dbSession.Transaction);
+            }, transaction: _dbSession.Transaction);
 
             return compte;
         }
@@ -106,7 +106,7 @@ namespace APIProjetFilRouge.DAL.Repositories
 
         public async Task<int> CreateCompteAsync(Compte compte)
         {
-            
+
             int newId = await _dbSession.Connection.QuerySingleAsync<int>(_queryCreateCompte, new
             {
                 compte.identifiant,
@@ -121,7 +121,7 @@ namespace APIProjetFilRouge.DAL.Repositories
 
         public async Task<int> UpdateCompteAsync(Compte compte)
         {
-            int rowsAffected = await _dbSession.Connection.ExecuteAsync(_queryUpdateCompte,new
+            int rowsAffected = await _dbSession.Connection.ExecuteAsync(_queryUpdateCompte, new
             {
                 compte.identifiant,
                 compte.id

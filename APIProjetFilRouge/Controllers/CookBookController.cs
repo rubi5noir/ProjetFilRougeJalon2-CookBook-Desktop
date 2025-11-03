@@ -1,18 +1,13 @@
 ﻿using APIProjetFilRouge.BLL.Interfaces;
-using APIProjetFilRouge.BLL.Services;
-using APIProjetFilRouge.DAL.Interfaces;
 using APIProjetFilRouge.Models.BussinessObjects;
 using APIProjetFilRouge.Models.DataTransfertObjects.Between;
-using APIProjetFilRouge.Models.DataTransfertObjects.In;
-using APIProjetFilRouge.Models.DataTransfertObjects.Out;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace APIProjetFilRouge.Controllers
 {
-    [Authorize(Roles = "Admin,User")]
+    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "User")]
     [Route("api/[controller]")]
     [ApiController]
     public class CookBookController : ControllerBase
@@ -32,9 +27,9 @@ namespace APIProjetFilRouge.Controllers
 
         #endregion
 
-       
 
-        
+
+
 
         #endregion
 
@@ -96,7 +91,7 @@ namespace APIProjetFilRouge.Controllers
         #endregion
 
 
-       
+
 
 
 
