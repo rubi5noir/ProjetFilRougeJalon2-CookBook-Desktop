@@ -23,7 +23,6 @@ namespace APIProjetFilRouge.Controllers
         /// Retrieve All user's accounts
         /// </summary>
         /// <returns></returns>
-        [Authorize(Roles = "Admin")]
         [HttpGet()]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
