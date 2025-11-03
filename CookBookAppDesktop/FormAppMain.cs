@@ -247,6 +247,42 @@ namespace CookBookAppDesktop
             labelRoleUtilisateur.Text = _roles != null && _roles.Any() ? string.Join(", ", _roles) : "Aucun rôle";
         }
 
+        private async Task ToggleAllowedButtons()
+        {
+            if (_roles.Contains("Admin"))
+            {
+                // Recettes Tab
+                buttonAddRecettes.Enabled = true;
+                buttonModifyRecettes.Enabled = true;
+                buttonRemoveRecettes.Enabled = true;
+
+                // Etapes Tab
+                buttonOpenFormSelectionEtapes.Enabled = true;
+
+                // Categories Tab
+                buttonOpenFormSelectionCategories.Enabled = true;
+
+                // Ingredients Tab
+                buttonOpenFormSelectionIngredients.Enabled = true;
+            }
+            else if (_roles.Contains("User"))
+            {
+                // Recettes Tab
+                buttonAddRecettes.Enabled = false;
+                buttonModifyRecettes.Enabled = false;
+                buttonRemoveRecettes.Enabled = false;
+
+                // Etapes Tab
+                buttonOpenFormSelectionEtapes.Enabled = false;
+
+                // Categories Tab
+                buttonOpenFormSelectionCategories.Enabled = false;
+
+                // Ingredients Tab
+                buttonOpenFormSelectionIngredients.Enabled = false;
+            }
+        }
+
         #endregion
 
         #region Events
@@ -277,7 +313,10 @@ namespace CookBookAppDesktop
 
                     tableLayoutPanelApp.Enabled = true;
 
+                    await ToggleAllowedButtons();
+
                     await RefreshRecettes();
+                    await WriteUserInfo();
                 }
             }
             dataGridViewEtapes.Columns["id"].Visible = false;
@@ -290,6 +329,8 @@ namespace CookBookAppDesktop
 
         private async void tabControl_Selecting(object sender, TabControlCancelEventArgs e)
         {
+            await ToggleAllowedButtons();
+
             if (e.TabPage == tabPageRecettes)
                 await RefreshRecettes();
             else if (e.TabPage == tabPageEtapes)
