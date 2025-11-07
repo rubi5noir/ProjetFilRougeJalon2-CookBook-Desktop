@@ -245,7 +245,7 @@ namespace APIProjetFilRouge.Controllers
         #region DELETE
 
         [Authorize(Roles = "Admin")]
-        [HttpDelete("Delete/{id}")]
+        [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> DeleteRecette([FromRoute] int id)

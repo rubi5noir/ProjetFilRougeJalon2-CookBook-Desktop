@@ -33,9 +33,7 @@ namespace APIProjetFilRouge.BLL.Services
 
             if (compte == null)
             {
-#pragma warning disable CS8603 // Existence possible d'un retour de référence null.
                 return null;
-#pragma warning restore CS8603 // Existence possible d'un retour de référence null.
             }
 
             if (VerifyPassword(password, compte.password))

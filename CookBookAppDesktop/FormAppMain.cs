@@ -60,8 +60,8 @@ namespace CookBookAppDesktop
             numericUpDownTemps_PréparationHeures.MouseWheel += NumericUpDownTempsPreparation_MouseWheel;
             numericUpDownTemps_PréparationMinutes.MouseWheel += NumericUpDownTempsPreparation_MouseWheel;
 
-            numericUpDownTemps_CuissonHeures.MouseWheel += NumericUpDownTempsPreparation_MouseWheel;
-            numericUpDownTemps_CuissonMinutes.MouseWheel += NumericUpDownTempsPreparation_MouseWheel;
+            numericUpDownTemps_CuissonHeures.MouseWheel += NumericUpDownTempsCuisson_MouseWheel;
+            numericUpDownTemps_CuissonMinutes.MouseWheel += NumericUpDownTempsCuisson_MouseWheel;
 #pragma warning restore CS8622 // La nullabilité des types référence dans le type du paramètre ne correspond pas au délégué cible (probablement en raison des attributs de nullabilité).
 
         }
