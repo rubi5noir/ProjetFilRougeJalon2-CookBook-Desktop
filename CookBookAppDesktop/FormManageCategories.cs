@@ -184,7 +184,7 @@ namespace CookBookAppDesktop
                     nom = textBoxCategorieNom.Text
                 };
 
-                var result = MessageBox.Show($"Êtes-vous sûr de vouloir Ajouter la catégorie '{categorieDTO}' ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                var result = MessageBox.Show($"Êtes-vous sûr de vouloir Ajouter la catégorie '{categorieDTO.nom}' ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
                     await _rest.PostAsync($"{URL_CREATE_CATEGORIES}", categorieDTO);
