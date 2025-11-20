@@ -1,0 +1,26 @@
+services:
+  APICookBook:
+    image: ghcr.io/rubi5noir/cookbook:latest # <- Modifier selon la version de l'API voulue
+    restart: unless-stopped # <- Redémarre le conteneur sauf s'il est arrêté manuellement (a changer selon le besoin)
+    environment:
+      DB_HOST: db
+      DB_USERNAME: postgres # <- A modifier selon la configuration de la base de données
+      DB_PASSWORD: password # <- A modifier selon la configuration de la base de données
+    ports:
+      - "2555:5555" # <- Port externe a modifier selon le besoin ; Port interne a laisser tel quel sauf Instructions contraires dans la procédure de déploiement
+    depends_on:
+      - db
+
+  db:
+    image: postgres:17 # <- Version de Postgresql a modifier selon le besoin
+    hostname: postgresql
+    container_name: postgresql
+    environment:
+      POSTGRES_USER: postgres # <- A modifier selon la configuration de la base de données (doit correspondre a DB_USERNAME)
+      POSTGRES_PASSWORD: password # <- A modifier selon la configuration de la base de données (doit correspondre a DB_PASSWORD)
+      POSTGRES_DB: API
+    volumes:
+      - postgresql:/var/lib/postgresql/data
+
+volumes:
+  postgresql:
