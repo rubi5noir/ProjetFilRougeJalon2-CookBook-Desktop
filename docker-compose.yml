@@ -21,6 +21,7 @@ services:
       POSTGRES_DB: API
     volumes:
       - postgresql:/var/lib/postgresql/data
+      - ./init-db:/docker-entrypoint-initdb.d # <- Dossier local dans lequel il faut placer le script SQL d'initialisation de la base de données fourni
 
 volumes:
   postgresql:
